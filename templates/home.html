@@ -5,56 +5,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BiotekPharm - Dori-darmon yetkazib berishda yetakchi</title>
+    <meta name="description" content="BiotekPharm - Xalqaro farmatsevtika mahsulotlarini yetkazib berishda yetakchi kompaniya">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Animated Background Elements -->
+    <div class="background-elements">
+        <div class="floating-pill" style="--x:5%;--y:10%;--delay:0s;--duration:25s;"></div>
+        <div class="floating-pill" style="--x:15%;--y:30%;--delay:3s;--duration:30s;"></div>
+        <div class="floating-pill" style="--x:25%;--y:50%;--delay:6s;--duration:35s;"></div>
+        <div class="floating-pill" style="--x:35%;--y:70%;--delay:9s;--duration:40s;"></div>
+        <div class="floating-pill" style="--x:45%;--y:90%;--delay:12s;--duration:25s;"></div>
+        <div class="floating-pill" style="--x:55%;--y:20%;--delay:15s;--duration:30s;"></div>
+        <div class="floating-pill" style="--x:65%;--y:40%;--delay:18s;--duration:35s;"></div>
+        <div class="floating-pill" style="--x:75%;--y:60%;--delay:21s;--duration:40s;"></div>
+        <div class="floating-pill" style="--x:85%;--y:80%;--delay:24s;--duration:25s;"></div>
+        <div class="floating-pill" style="--x:95%;--y:30%;--delay:27s;--duration:30s;"></div>
+    </div>
+
     <!-- Preloader -->
     <div class="preloader">
         <div class="loader">
-            <div class="pill"></div>
-            <div class="pill"></div>
-            <div class="pill"></div>
+            <div class="molecule-loader">
+                <div class="central-atom"></div>
+                <div class="orbiting-atom" style="--i:1;"></div>
+                <div class="orbiting-atom" style="--i:2;"></div>
+                <div class="orbiting-atom" style="--i:3;"></div>
+                <div class="bond" style="--i:1;"></div>
+                <div class="bond" style="--i:2;"></div>
+                <div class="bond" style="--i:3;"></div>
+            </div>
+            <p class="loading-text" data-i18n="loading">Yuklanmoqda...</p>
         </div>
     </div>
 
-<!-- Til almashtirgich -->
-<div class="language-switcher">
-    <select id="language-select" class="lang-select">
-        <option value="uz">O'Z</option>
-        <option value="ru">RU</option>
-        <option value="en">EN</option>
-    </select>
-</div>
-
-<!-- Navigatsiya menyusi -->
-<nav class="navbar">
-    <div class="container">
-        <a href="#" class="logo">BiotekPharm</a>
-
-        <button id="mobile-menu" class="menu-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-
-        <ul class="nav-list">
-            <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
-            <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya haqida</a></li>
-            <li><a href="#products" class="nav-link" data-i18n="products">Mahsulotlar</a></li>
-            <li><a href="#supply" class="nav-link" data-i18n="supply">Yetkazib berish</a></li>
-            <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
-            <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
-            <li class="nav-cta"><a href="#contact" class="btn" data-i18n="contact_us">Biz bilan bog'lanish</a></li>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <div class="selected-language">
+            <img src="{% static 'img/uz-flag.png' %}" alt="UZ" class="language-flag" id="current-flag">
+            <span id="current-lang">O'Z</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <ul class="language-dropdown">
+            <li data-lang="uz"><img src="{% static 'img/uz-flag.png' %}" alt="UZ"> O'zbekcha</li>
+            <li data-lang="ru"><img src="{% static 'img/ru-flag.png' %}" alt="RU"> Русский</li>
+            <li data-lang="en"><img src="{% static 'img/uk-flag.png' %}" alt="EN"> English</li>
         </ul>
     </div>
-</nav>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="bio">Bio</span><span class="tek">tek</span><span class="pharm">Pharm</span>
+            </a>
+
+            <button id="mobile-menu" class="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
+                <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya</a></li>
+                <li><a href="#products" class="nav-link" data-i18n="products">Mahsulotlar</a></li>
+                <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>
+                <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1 data-i18n="hero_title">Dori-darmon yetkazib berishda yetakchi</h1>
+                <h1 data-i18n="hero_title">Dori-darmon yetkazib berishda <span>yetakchi</span></h1>
                 <p class="subtitle" data-i18n="hero_subtitle">Butun dunyo bo'ylab sifat va barcha normal talablarga rioya qilgan holda ishonchli farmatsevtika mahsulotlarini yetkazib berish</p>
                 <div class="hero-buttons">
                     <a href="#products" class="btn btn-primary" data-i18n="our_products">Mahsulotlarimiz</a>
@@ -62,8 +93,20 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="pill-shape"></div>
-                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Pharmaceutical products" class="hero-img">
+                <div class="pill-bottle">
+                    <div class="bottle-cap"></div>
+                    <div class="bottle-neck"></div>
+                    <div class="bottle-body">
+                        <div class="pill" style="--i:1;"></div>
+                        <div class="pill" style="--i:2;"></div>
+                        <div class="pill" style="--i:3;"></div>
+                        <div class="pill" style="--i:4;"></div>
+                        <div class="pill" style="--i:5;"></div>
+                    </div>
+                    <div class="bottle-label">
+                        <span>BiotekPharm</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -77,28 +120,28 @@
             </div>
             <div class="about-grid">
                 <div class="about-card">
-                    <div class="icon-box">
+                    <div class="card-icon">
                         <i class="fas fa-globe"></i>
                     </div>
                     <h3 data-i18n="about_card1_title">Xalqaro yetkazib berish</h3>
                     <p data-i18n="about_card1_text">30 dan ortiq mamlakatlardagi hamkorlar bilan ishlash tajribasi</p>
                 </div>
                 <div class="about-card">
-                    <div class="icon-box">
+                    <div class="card-icon">
                         <i class="fas fa-certificate"></i>
                     </div>
                     <h3 data-i18n="about_card2_title">Sifat kafolati</h3>
                     <p data-i18n="about_card2_text">Yetkazib berishning barcha bosqichlarida qat'iy sifat nazorati</p>
                 </div>
                 <div class="about-card">
-                    <div class="icon-box">
+                    <div class="card-icon">
                         <i class="fas fa-clock"></i>
                     </div>
                     <h3 data-i18n="about_card3_title">Muddatlarga rioya qilish</h3>
                     <p data-i18n="about_card3_text">Belgilangan muddatlarda majburiyatlarning aniq bajarilishi</p>
                 </div>
                 <div class="about-card">
-                    <div class="icon-box">
+                    <div class="card-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3 data-i18n="about_card4_title">Normativ muvofiqlik</h3>
@@ -128,23 +171,50 @@
         </div>
     </section>
 
-    <!-- Supply Section -->
-    <section class="supply" id="supply">
+    <!-- Services Section -->
+    <section class="services" id="services">
         <div class="container">
-            <div class="supply-content">
-                <h2 data-i18n="supply_title">Yetkazib berish xizmatlari</h2>
-                <p data-i18n="supply_subtitle">Biz xalqaro farmatsevtika mahsulotlarini yetkazib berish bo'yicha kompleks yechimlarni taklif qilamiz:</p>
-                <ul class="supply-list">
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="supply_item1">To'liq bojxona rasmiylashtirish</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="supply_item2">Sertifikatlash va ro'yxatdan o'tkazish</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="supply_item3">Logistika va tashish</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="supply_item4">Harorat rejimiga rioya qilgan holda saqlash</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="supply_item5">Yuklarni sug'urtalash</span></li>
-                </ul>
-                <a href="#contact" class="btn btn-primary" data-i18n="request_quote">So'rov yuborish</a>
+            <div class="section-header">
+                <h2 data-i18n="services_title">Xizmatlarimiz</h2>
+                <p data-i18n="services_subtitle">Biz taklif qiladigan asosiy xizmatlar</p>
             </div>
-            <div class="supply-image">
-                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Supply chain">
+            <div class="services-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="service1_title">Mahsulot ro'yxatdan o'tkazish</h3>
+                        <p data-i18n="service1_text">Mahsulotlarni mahalliy va xalqaro bozorlarda ro'yxatdan o'tkazish</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="service2_title">Logistika xizmatlari</h3>
+                        <p data-i18n="service2_text">Harorat nazorati ostida xavfsiz yetkazib berish</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="service3_title">Bojxona rasmiylashtirish</h3>
+                        <p data-i18n="service3_text">Barcha bojxona protseduralarini amalga oshirish</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="service4_title">Sifat nazorati</h3>
+                        <p data-i18n="service4_text">Har bir partiyani qat'iy sifat nazoratidan o'tkazish</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -156,21 +226,21 @@
                 <h2 data-i18n="partners_title">Hamkorlarimiz</h2>
                 <p data-i18n="partners_subtitle">Biz butun dunyo bo'ylab etakchi farmatsevtika kompaniyalari bilan ishlaymiz</p>
             </div>
-            <div class="partners-grid">
-                <div class="partner-logo">
-                    <img src="https://via.placeholder.com/150x80?text=Partner+1" alt="Partner 1">
+            <div class="partners-slider">
+                <div class="partner-slide">
+                    <img src="{% static 'img/partner1.png' %}" alt="Partner 1">
                 </div>
-                <div class="partner-logo">
-                    <img src="https://via.placeholder.com/150x80?text=Partner+2" alt="Partner 2">
+                <div class="partner-slide">
+                    <img src="{% static 'img/partner2.png' %}" alt="Partner 2">
                 </div>
-                <div class="partner-logo">
-                    <img src="https://via.placeholder.com/150x80?text=Partner+3" alt="Partner 3">
+                <div class="partner-slide">
+                    <img src="{% static 'img/partner3.png' %}" alt="Partner 3">
                 </div>
-                <div class="partner-logo">
-                    <img src="https://via.placeholder.com/150x80?text=Partner+4" alt="Partner 4">
+                <div class="partner-slide">
+                    <img src="{% static 'img/partner4.png' %}" alt="Partner 4">
                 </div>
-                <div class="partner-logo">
-                    <img src="https://via.placeholder.com/150x80?text=Partner+5" alt="Partner 5">
+                <div class="partner-slide">
+                    <img src="{% static 'img/partner5.png' %}" alt="Partner 5">
                 </div>
             </div>
         </div>
@@ -186,31 +256,39 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="info-text">
                             <h3 data-i18n="phone">Telefon</h3>
-                            <p>+998 90 123 45 67</p>
-                            <p>+998 71 234 56 78</p>
+                            <a href="tel:+998901234567">+998 90 123 45 67</a>
+                            <a href="tel:+998712345678">+998 71 234 56 78</a>
                         </div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-text">
                             <h3 data-i18n="email">Elektron pochta</h3>
-                            <p>info@pharmaleader.uz</p>
-                            <p>sales@pharmaleader.uz</p>
+                            <a href="mailto:info@biotekpharm.uz">info@biotekpharm.uz</a>
+                            <a href="mailto:sales@biotekpharm.uz">sales@biotekpharm.uz</a>
                         </div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-text">
                             <h3 data-i18n="address">Manzil</h3>
                             <p data-i18n="address_text">Toshkent shahri, Yunusobod tumani, Navoiy ko'chasi 45</p>
                         </div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-text">
                             <h3 data-i18n="working_hours">Ish vaqti</h3>
                             <p data-i18n="working_hours_text">Dushanba-Juma: 9:00 - 18:00</p>
                         </div>
@@ -245,16 +323,16 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
+                <div class="footer-col footer-about">
                     <a href="#" class="logo">
-                        <span class="pharma">Pharma</span><span class="leader">Leader</span>
+                        <span class="bio">Bio</span><span class="tek">tek</span><span class="pharm">Pharm</span>
                     </a>
                     <p data-i18n="footer_about">Dori-darmon yetkazib berish sohasida yetakchi kompaniya</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -263,7 +341,7 @@
                         <li><a href="#home" data-i18n="home">Bosh sahifa</a></li>
                         <li><a href="#about" data-i18n="about">Kompaniya haqida</a></li>
                         <li><a href="#products" data-i18n="products">Mahsulotlar</a></li>
-                        <li><a href="#supply" data-i18n="supply">Yetkazib berish</a></li>
+                        <li><a href="#services" data-i18n="services">Xizmatlar</a></li>
                         <li><a href="#contact" data-i18n="contact">Aloqa</a></li>
                     </ul>
                 </div>
@@ -280,14 +358,14 @@
                 <div class="footer-col">
                     <h3 data-i18n="footer_contact">Aloqa</h3>
                     <ul>
-                        <li><i class="fas fa-phone"></i> +998 90 123 45 67</li>
-                        <li><i class="fas fa-envelope"></i> info@pharmaleader.uz</li>
+                        <li><i class="fas fa-phone-alt"></i> +998 90 123 45 67</li>
+                        <li><i class="fas fa-envelope"></i> info@biotekpharm.uz</li>
                         <li><i class="fas fa-map-marker-alt"></i> <span data-i18n="address_text">Toshkent shahri, Yunusobod tumani, Navoiy ko'chasi 45</span></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> PharmaLeader. <span data-i18n="all_rights">Barcha huquqlar himoyalangan</span></p>
+                <p>&copy; <span id="year"></span> <span class="company">BiotekPharm</span>. <span data-i18n="all_rights">Barcha huquqlar himoyalangan</span></p>
             </div>
         </div>
     </footer>
