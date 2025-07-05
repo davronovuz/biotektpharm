@@ -1,34 +1,35 @@
 services:
-  biotekt-app:
+  app:
     build: .
     volumes:
       - .:/app
-      - biotekt-static:/app/staticfiles  # Statik fayllar uchun
-      - biotekt-media:/app/media  # Media fayllar uchun
+      - static-data:/app/staticfiles
+      - media-data:/app/media
     environment:
       - PYTHONUNBUFFERED=1
     networks:
-      - biotekt-network
+      - app-network
 
-  bekendchi-nginx:
+  nginx:
     image: nginx:latest
     ports:
-      - "7000:7000"  # HTTP uchun 7000-port
-      - "8000:8000"  # HTTPS uchun 8443-port
+      - "80:80"
+      - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      - biotekt-static:/app/staticfiles  # Statik fayllar
-      - biotekt-media:/app/media  # Media fayllar
-      - /etc/letsencrypt:/etc/letsencrypt:ro  # SSL sertifikat fayllari
+      - static-data:/app/staticfiles
+      - media-data:/app/media
+      - /root/it_tat_web_api/ssl/live/ittat.uz/fullchain.pem:/etc/nginx/ssl/fullchain.pem
+      - /root/it_tat_web_api/ssl/live/ittat.uz/privkey.pem:/etc/nginx/ssl/privkey.pem
     depends_on:
-      - biotekt-app
+      - app
     networks:
-      - biotekt-network
+      - app-network
 
 networks:
-  bekendchi-network:
+  app-network:
     driver: bridge
 
 volumes:
-  bekendchi-static:
-  bekendchi-media:
+  static-data:
+  media-data:

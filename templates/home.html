@@ -1,59 +1,51 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="uz">
+<html lang="uz" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BiotekPharm - Dori-darmon yetkazib berishda yetakchi</title>
-    <meta name="description" content="BiotekPharm - Xalqaro farmatsevtika mahsulotlarini yetkazib berishda yetakchi kompaniya">
+    <title>BiotekPharm - Farmatsevtika Mahsulotlari Yetkazib Berish</title>
+    <meta name="description" content="BiotekPharm - Xalqaro standartdagi dori-darmonlar yetkazib berish bo'yicha yetakchi kompaniya">
+    <meta name="keywords" content="dori yetkazib berish, farmatsevtika, tibbiy mahsulotlar, O'zbekiston, BiotekPharm">
+    <meta name="author" content="BiotekPharm">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="BiotekPharm - Sifatli Dori Vositalari">
+    <meta property="og:description" content="Xalqaro standartdagi farmatsevtika mahsulotlarini yetkazib berish">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://biotekpharm.uz">
+    <meta property="og:image" content="https://biotekpharm.uz/images/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Animated Background Elements -->
-    <div class="background-elements">
-        <div class="floating-pill" style="--x:5%;--y:10%;--delay:0s;--duration:25s;"></div>
-        <div class="floating-pill" style="--x:15%;--y:30%;--delay:3s;--duration:30s;"></div>
-        <div class="floating-pill" style="--x:25%;--y:50%;--delay:6s;--duration:35s;"></div>
-        <div class="floating-pill" style="--x:35%;--y:70%;--delay:9s;--duration:40s;"></div>
-        <div class="floating-pill" style="--x:45%;--y:90%;--delay:12s;--duration:25s;"></div>
-        <div class="floating-pill" style="--x:55%;--y:20%;--delay:15s;--duration:30s;"></div>
-        <div class="floating-pill" style="--x:65%;--y:40%;--delay:18s;--duration:35s;"></div>
-        <div class="floating-pill" style="--x:75%;--y:60%;--delay:21s;--duration:40s;"></div>
-        <div class="floating-pill" style="--x:85%;--y:80%;--delay:24s;--duration:25s;"></div>
-        <div class="floating-pill" style="--x:95%;--y:30%;--delay:27s;--duration:30s;"></div>
-    </div>
-
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader">
-            <div class="molecule-loader">
-                <div class="central-atom"></div>
-                <div class="orbiting-atom" style="--i:1;"></div>
-                <div class="orbiting-atom" style="--i:2;"></div>
-                <div class="orbiting-atom" style="--i:3;"></div>
-                <div class="bond" style="--i:1;"></div>
-                <div class="bond" style="--i:2;"></div>
-                <div class="bond" style="--i:3;"></div>
-            </div>
-            <p class="loading-text" data-i18n="loading">Yuklanmoqda...</p>
-        </div>
-    </div>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" aria-label="Change theme">
+        <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
+        <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
+    </button>
 
     <!-- Language Switcher -->
     <div class="language-switcher">
         <div class="selected-language">
-            <img src="{% static 'img/uz-flag.png' %}" alt="UZ" class="language-flag" id="current-flag">
-            <span id="current-lang">O'Z</span>
+            <span id="current-lang">UZ</span>
             <i class="fas fa-chevron-down"></i>
         </div>
         <ul class="language-dropdown">
-            <li data-lang="uz"><img src="{% static 'img/uz-flag.png' %}" alt="UZ"> O'zbekcha</li>
-            <li data-lang="ru"><img src="{% static 'img/ru-flag.png' %}" alt="RU"> Русский</li>
-            <li data-lang="en"><img src="{% static 'img/uk-flag.png' %}" alt="EN"> English</li>
+            <li data-lang="uz">Oʻzbekcha</li>
+            <li data-lang="ru">Русский</li>
+            <li data-lang="en">English</li>
         </ul>
     </div>
 
@@ -61,10 +53,13 @@
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <span class="bio">Bio</span><span class="tek">tek</span><span class="pharm">Pharm</span>
+                <div class="logo-content">
+                    <div class="logo-main">BIOTEK</div>
+                    <div class="logo-sub">PHARM</div>
+                </div>
             </a>
 
-            <button id="mobile-menu" class="menu-toggle">
+            <button id="mobile-menu" class="menu-toggle" aria-label="Toggle menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -228,19 +223,19 @@
             </div>
             <div class="partners-slider">
                 <div class="partner-slide">
-                    <img src="{% static 'img/partner1.png' %}" alt="Partner 1">
+                    <img src="images/partner1.png" alt="Partner 1" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="{% static 'img/partner2.png' %}" alt="Partner 2">
+                    <img src="images/partner2.png" alt="Partner 2" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="{% static 'img/partner3.png' %}" alt="Partner 3">
+                    <img src="images/partner3.png" alt="Partner 3" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="{% static 'img/partner4.png' %}" alt="Partner 4">
+                    <img src="images/partner4.png" alt="Partner 4" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="{% static 'img/partner5.png' %}" alt="Partner 5">
+                    <img src="images/partner5.png" alt="Partner 5" loading="lazy">
                 </div>
             </div>
         </div>
@@ -307,6 +302,14 @@
                         <div class="form-group">
                             <input type="tel" id="phone" placeholder=" ">
                             <label for="phone" data-i18n="form_phone">Telefon (ixtiyoriy)</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="subject" required>
+                                <option value="" disabled selected data-i18n="form_subject">Mavzu</option>
+                                <option value="sales" data-i18n="sales">Sotuv bo'yicha</option>
+                                <option value="partnership" data-i18n="partnership">Hamkorlik</option>
+                                <option value="info" data-i18n="information">Ma'lumot</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <textarea id="message" placeholder=" " required></textarea>
