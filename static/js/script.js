@@ -82,49 +82,56 @@ document.addEventListener("DOMContentLoaded", function() {
         uz: {
             home: "Bosh sahifa",
             about: "Kompaniya",
+            history: "Tarix",
             products: "Mahsulotlar",
             services: "Xizmatlar",
             partners: "Hamkorlar",
             contact: "Aloqa",
-            hero_title: "Dori-darmon yetkazib berishda <span>yetakchi</span>",
-            hero_subtitle: "Butun dunyo bo'ylab sifat va barcha normal talablarga rioya qilgan holda ishonchli farmatsevtika mahsulotlarini yetkazib berish",
+            hero_title: "Sog'liq uchun <span>ishonchli</span> yechimlar",
+            hero_subtitle: "20 yillik tajribaga ega O'zbekistonning yetakchi farmatsevtika distribyutori",
             our_products: "Mahsulotlarimiz",
             phone: "Telefon",
             email: "Elektron pochta",
             address: "Manzil",
-            address_text: "Toshkent shahri, Yunusobod tumani, Navoiy ko'chasi 45",
+            address_text: "Samarqand, O'zbekiston ko'chasi, 158-uy",
             working_hours: "Ish vaqti",
             working_hours_text: "Dushanba-Juma: 9:00 - 18:00",
             form_name: "Ismingiz",
             form_email: "Elektron pochta",
             form_phone: "Telefon (ixtiyoriy)",
             form_subject: "Mavzu",
-            form_message: "Xabar",
+            form_message: "Xabaringiz",
             form_submit: "Xabarni yuborish",
             all_rights: "Barcha huquqlar himoyalangan",
-            footer_about: "Dori-darmon yetkazib berish sohasida yetakchi kompaniya",
+            footer_about: "O'zbekiston farmatsevtika bozorining yetakchi distribyutor kompaniyasi",
             footer_links: "Tez havolalar",
             footer_products: "Mahsulotlar",
             footer_contact: "Aloqa",
             about_title: "Kompaniya haqida",
-            about_subtitle: "BiotekPharm - bu xalqaro farmatsevtika mahsulotlarini yetkazib berish sohasida ishonchli hamkor",
-            about_card1_title: "Xalqaro yetkazib berish",
-            about_card1_text: "30 dan ortiq mamlakatlardagi hamkorlar bilan ishlash tajribasi",
-            about_card2_title: "Sifat kafolati",
-            about_card2_text: "Yetkazib berishning barcha bosqichlarida qat'iy sifat nazorati",
-            about_card3_title: "Muddatlarga rioya qilish",
-            about_card3_text: "Belgilangan muddatlarda majburiyatlarning aniq bajarilishi",
-            about_card4_title: "Normativ muvofiqlik",
-            about_card4_text: "Xalqaro farmatsevtika standartlarining to'liq qo'llanilishi",
+            about_subtitle: "Bizning missiya va qadriyatlarimiz",
+            mission_title: "Missiyamiz",
+            mission_text: "O'zbekiston aholisiga sifatli va arzon narxdagi dori-darmonlarni yetkazib berish",
+            vision_title: "Ko'zlagan maqsadimiz",
+            vision_text: "Mintaqadagi eng yirik va ishonchli farmatsevtika distribyutori bo'lish",
+            values_title: "Qadriyatlarimiz",
+            values_text: "Ishonchlilik, sifat, mijozlar uchun qadrlash",
+            history_title: "Bizning tarix",
+            history_subtitle: "Ishonch va sifat yo'lida 20 yillik safar",
+            stat_products: "Mahsulotlar",
+            stat_clients: "Mijozlar",
+            stat_suppliers: "Yetkazib beruvchilar",
+            stat_partners: "Xalqaro hamkorlar",
             products_title: "Mahsulotlarimiz",
-            products_subtitle: "Keng qirrali farmatsevtika mahsulotlari assortimenti",
+            products_subtitle: "Keng qirrali farmatsevtika mahsulotlari",
             all_products: "Hammasi",
             antibiotics: "Antibiotiklar",
-            cardiovascular: "Kardiologiya",
+            cardiovascular: "Yurak-damar",
             neurology: "Nevrologiya",
             oncology: "Onkologiya",
+            vitamins: "Vitaminlar",
+            view_all: "Barcha mahsulotlarni ko'rish",
             services_title: "Xizmatlarimiz",
-            services_subtitle: "Biz taklif qiladigan asosiy xizmatlar",
+            services_subtitle: "Biz mijozlarimizga qanday xizmat ko'rsatamiz",
             service1_title: "Mahsulot ro'yxatdan o'tkazish",
             service1_text: "Mahsulotlarni mahalliy va xalqaro bozorlarda ro'yxatdan o'tkazish",
             service2_title: "Logistika xizmatlari",
@@ -133,58 +140,85 @@ document.addEventListener("DOMContentLoaded", function() {
             service3_text: "Barcha bojxona protseduralarini amalga oshirish",
             service4_title: "Sifat nazorati",
             service4_text: "Har bir partiyani qat'iy sifat nazoratidan o'tkazish",
+            service5_title: "Sklad xizmatlari",
+            service5_text: "15,000 m² maydondagi zamonaviy omborlarimiz",
+            service6_title: "24/7 mijozlar uchun qo'llab-quvvatlash",
+            service6_text: "Har qanday savolingizga javob beramiz",
+            learn_more: "Batafsil",
             partners_title: "Hamkorlarimiz",
             partners_subtitle: "Biz butun dunyo bo'ylab etakchi farmatsevtika kompaniyalari bilan ishlaymiz",
+            locations_title: "Bizning joylashuvlar",
+            locations_subtitle: "Butun O'zbekiston bo'ylab ofis va omborlarimiz",
+            testimonials_title: "Mijozlarimiz fikrlari",
+            testimonials_subtitle: "Bizning mijozlarimiz biz haqimizda nima deyishadi",
+            testimonial1_text: "\"BIOTEK FARM bilan 5 yildan beri hamkorlik qilamiz. Har doim sifatli mahsulotlar va ishonchli yetkazib berish tizimi uchun minnatdormiz.\"",
+            testimonial2_text: "\"Yetkazib berish muddatlari juda aniq. Har qanday muammoda 24/7 qo'llab-quvvatlash xizmati mavjud. Haqiqiy professional jamoa!\"",
+            testimonial3_text: "\"Xalqaro farmatsevtika kompaniyasi sifatida BIOTEK FARM bilan ishlashdan mamnunmiz. Barcha shartnoma majburiyatlarini vaqtida bajaryapti.\"",
+            pharmacy_owner: "Dorixona egasi",
+            hospital_director: "Shifoxona direktori",
+            international_partner: "Xalqaro hamkor",
             sales: "Sotuv bo'yicha",
             partnership: "Hamkorlik",
-            information: "Ma'lumot"
+            information: "Ma'lumot",
+            support: "Qo'llab-quvvatlash",
+            privacy_policy: "Maxfiylik siyosati",
+            terms: "Foydalanish shartlari",
+            founder_title: "Asoschi va Direktor",
+            years_exp: "yillik tajriba"
         },
         ru: {
             home: "Главная",
             about: "Компания",
+            history: "История",
             products: "Продукты",
             services: "Услуги",
             partners: "Партнеры",
             contact: "Контакты",
-            hero_title: "Лидер в поставках <span>фармацевтической продукции</span>",
-            hero_subtitle: "Надежные поставки фармацевтической продукции по всему миру с соблюдением качества и всех нормативных требований",
+            hero_title: "Надежные <span>решения</span> для здоровья",
+            hero_subtitle: "Ведущий дистрибьютор фармацевтической продукции в Узбекистане с 20-летним опытом",
             our_products: "Наши продукты",
             phone: "Телефон",
             email: "Электронная почта",
             address: "Адрес",
-            address_text: "г. Ташкент, Юнусабадский район, ул. Навои, 45",
+            address_text: "Самарканд, улица Узбекистан, 158",
             working_hours: "Время работы",
             working_hours_text: "Пн-Пт: 9:00 - 18:00",
             form_name: "Ваше имя",
             form_email: "Электронная почта",
             form_phone: "Телефон (необязательно)",
             form_subject: "Тема",
-            form_message: "Сообщение",
+            form_message: "Ваше сообщение",
             form_submit: "Отправить сообщение",
             all_rights: "Все права защищены",
-            footer_about: "Ведущая компания в сфере поставок фармацевтической продукции",
+            footer_about: "Ведущая дистрибьюторская компания фармацевтической продукции в Узбекистане",
             footer_links: "Быстрые ссылки",
             footer_products: "Продукты",
             footer_contact: "Контакты",
             about_title: "О компании",
-            about_subtitle: "BiotekPharm - надежный партнер в сфере поставок международных фармацевтических продуктов",
-            about_card1_title: "Международные поставки",
-            about_card1_text: "Опыт работы с партнерами в более чем 30 странах",
-            about_card2_title: "Гарантия качества",
-            about_card2_text: "Строгий контроль качества на всех этапах поставки",
-            about_card3_title: "Соблюдение сроков",
-            about_card3_text: "Точное выполнение обязательств в установленные сроки",
-            about_card4_title: "Нормативное соответствие",
-            about_card4_text: "Полное соблюдение международных фармацевтических стандартов",
+            about_subtitle: "Наша миссия и ценности",
+            mission_title: "Наша миссия",
+            mission_text: "Обеспечение населения Узбекистана качественными и доступными лекарственными средствами",
+            vision_title: "Наше видение",
+            vision_text: "Стать крупнейшим и самым надежным фармацевтическим дистрибьютором в регионе",
+            values_title: "Наши ценности",
+            values_text: "Надежность, качество, уважение к клиентам",
+            history_title: "Наша история",
+            history_subtitle: "20-летний путь доверия и качества",
+            stat_products: "Продукты",
+            stat_clients: "Клиенты",
+            stat_suppliers: "Поставщики",
+            stat_partners: "Международные партнеры",
             products_title: "Наши продукты",
             products_subtitle: "Широкий ассортимент фармацевтической продукции",
             all_products: "Все",
             antibiotics: "Антибиотики",
-            cardiovascular: "Кардиология",
+            cardiovascular: "Сердечно-сосудистые",
             neurology: "Неврология",
             oncology: "Онкология",
+            vitamins: "Витамины",
+            view_all: "Посмотреть все продукты",
             services_title: "Наши услуги",
-            services_subtitle: "Основные услуги, которые мы предлагаем",
+            services_subtitle: "Как мы обслуживаем наших клиентов",
             service1_title: "Регистрация продукции",
             service1_text: "Регистрация продукции на местных и международных рынках",
             service2_title: "Логистические услуги",
@@ -193,49 +227,74 @@ document.addEventListener("DOMContentLoaded", function() {
             service3_text: "Оформление всех таможенных процедур",
             service4_title: "Контроль качества",
             service4_text: "Строгий контроль качества каждой партии",
+            service5_title: "Складские услуги",
+            service5_text: "Современные склады площадью 15,000 м²",
+            service6_title: "Поддержка клиентов 24/7",
+            service6_text: "Ответим на любые ваши вопросы",
+            learn_more: "Подробнее",
             partners_title: "Наши партнеры",
             partners_subtitle: "Мы работаем с ведущими фармацевтическими компаниями по всему миру",
+            locations_title: "Наши локации",
+            locations_subtitle: "Офисы и склады по всему Узбекистану",
+            testimonials_title: "Отзывы клиентов",
+            testimonials_subtitle: "Что говорят о нас наши клиенты",
+            testimonial1_text: "\"Мы сотрудничаем с BIOTEK FARM уже 5 лет. Всегда благодарны за качественную продукцию и надежную систему доставки.\"",
+            testimonial2_text: "\"Сроки поставки очень точные. При любых проблемах доступна поддержка 24/7. Настоящая профессиональная команда!\"",
+            testimonial3_text: "\"Как международная фармацевтическая компания, мы довольны сотрудничеством с BIOTEK FARM. Все договорные обязательства выполняются в срок.\"",
+            pharmacy_owner: "Владелец аптеки",
+            hospital_director: "Директор больницы",
+            international_partner: "Международный партнер",
             sales: "Продажи",
             partnership: "Партнерство",
-            information: "Информация"
+            information: "Информация",
+            support: "Поддержка",
+            privacy_policy: "Политика конфиденциальности",
+            terms: "Условия использования",
+            founder_title: "Основатель и Директор",
+            years_exp: "лет опыта"
         },
         en: {
             home: "Home",
             about: "Company",
+            history: "History",
             products: "Products",
             services: "Services",
             partners: "Partners",
             contact: "Contact",
-            hero_title: "Leading in <span>pharmaceutical delivery</span>",
-            hero_subtitle: "Reliable delivery of pharmaceutical products worldwide with quality and compliance to all regulatory requirements",
+            hero_title: "Reliable <span>solutions</span> for health",
+            hero_subtitle: "Leading pharmaceutical distributor in Uzbekistan with 20 years of experience",
             our_products: "Our Products",
             phone: "Phone",
             email: "Email",
             address: "Address",
-            address_text: "45 Navoi Street, Yunusabad District, Tashkent",
+            address_text: "Samarkand, Uzbekistan street, 158",
             working_hours: "Working Hours",
-            working_hours_text: "Monday-Friday: 9:00 AM - 6:00 PM",
+            working_hours_text: "Mon-Fri: 9:00 AM - 6:00 PM",
             form_name: "Your Name",
             form_email: "Email Address",
             form_phone: "Phone (optional)",
             form_subject: "Subject",
-            form_message: "Message",
+            form_message: "Your Message",
             form_submit: "Send Message",
             all_rights: "All Rights Reserved",
-            footer_about: "Leading company in pharmaceutical product delivery",
+            footer_about: "Leading pharmaceutical distribution company in Uzbekistan",
             footer_links: "Quick Links",
             footer_products: "Products",
             footer_contact: "Contact",
             about_title: "About Company",
-            about_subtitle: "BiotekPharm - a reliable partner in international pharmaceutical product delivery",
-            about_card1_title: "International Delivery",
-            about_card1_text: "Experience working with partners in over 30 countries",
-            about_card2_title: "Quality Assurance",
-            about_card2_text: "Strict quality control at all stages of delivery",
-            about_card3_title: "Timely Delivery",
-            about_card3_text: "Accurate fulfillment of obligations within agreed timelines",
-            about_card4_title: "Regulatory Compliance",
-            about_card4_text: "Full compliance with international pharmaceutical standards",
+            about_subtitle: "Our mission and values",
+            mission_title: "Our Mission",
+            mission_text: "Providing quality and affordable medicines to the population of Uzbekistan",
+            vision_title: "Our Vision",
+            vision_text: "To become the largest and most reliable pharmaceutical distributor in the region",
+            values_title: "Our Values",
+            values_text: "Reliability, quality, respect for customers",
+            history_title: "Our History",
+            history_subtitle: "20-year journey of trust and quality",
+            stat_products: "Products",
+            stat_clients: "Clients",
+            stat_suppliers: "Suppliers",
+            stat_partners: "International Partners",
             products_title: "Our Products",
             products_subtitle: "Wide range of pharmaceutical products",
             all_products: "All",
@@ -243,8 +302,10 @@ document.addEventListener("DOMContentLoaded", function() {
             cardiovascular: "Cardiovascular",
             neurology: "Neurology",
             oncology: "Oncology",
+            vitamins: "Vitamins",
+            view_all: "View All Products",
             services_title: "Our Services",
-            services_subtitle: "Main services we offer",
+            services_subtitle: "How we serve our customers",
             service1_title: "Product Registration",
             service1_text: "Product registration in local and international markets",
             service2_title: "Logistics Services",
@@ -253,11 +314,31 @@ document.addEventListener("DOMContentLoaded", function() {
             service3_text: "Handling all customs procedures",
             service4_title: "Quality Control",
             service4_text: "Strict quality control for each batch",
+            service5_title: "Warehouse Services",
+            service5_text: "Modern warehouses with 15,000 m² area",
+            service6_title: "24/7 Customer Support",
+            service6_text: "Answering all your questions",
+            learn_more: "Learn More",
             partners_title: "Our Partners",
             partners_subtitle: "We work with leading pharmaceutical companies worldwide",
+            locations_title: "Our Locations",
+            locations_subtitle: "Offices and warehouses across Uzbekistan",
+            testimonials_title: "Customer Testimonials",
+            testimonials_subtitle: "What our customers say about us",
+            testimonial1_text: "\"We have been cooperating with BIOTEK FARM for 5 years. Always grateful for quality products and reliable delivery system.\"",
+            testimonial2_text: "\"Delivery times are very accurate. For any issues, 24/7 support is available. A truly professional team!\"",
+            testimonial3_text: "\"As an international pharmaceutical company, we are satisfied with cooperation with BIOTEK FARM. All contractual obligations are fulfilled on time.\"",
+            pharmacy_owner: "Pharmacy Owner",
+            hospital_director: "Hospital Director",
+            international_partner: "International Partner",
             sales: "Sales",
             partnership: "Partnership",
-            information: "Information"
+            information: "Information",
+            support: "Support",
+            privacy_policy: "Privacy Policy",
+            terms: "Terms of Use",
+            founder_title: "Founder & Director",
+            years_exp: "years of experience"
         }
     };
 
@@ -283,6 +364,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
         });
+
+        // Update products based on language
+        renderProducts(products);
     }
 
     // Language switcher toggle
@@ -312,35 +396,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // ===== Theme Toggle =====
     const themeToggle = document.querySelector(".theme-toggle");
-    const themeIcons = {
-        sun: document.querySelector(".theme-icon.sun"),
-        moon: document.querySelector(".theme-icon.moon")
-    };
+    const themeIcons = themeToggle.querySelectorAll("i");
 
     // Check for saved theme preference
     const savedTheme = localStorage.getItem("theme") || "light";
-    document.body.setAttribute("data-theme", savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
 
     // Set initial icon state
-    if (savedTheme === "light") {
-        themeIcons.sun.classList.add("active");
-        themeIcons.moon.classList.remove("active");
-    } else {
-        themeIcons.sun.classList.remove("active");
-        themeIcons.moon.classList.add("active");
-    }
+    themeIcons.forEach(icon => {
+        if ((savedTheme === "light" && icon.classList.contains("fa-sun")) ||
+            (savedTheme === "dark" && icon.classList.contains("fa-moon"))) {
+            icon.classList.add("active");
+        } else {
+            icon.classList.remove("active");
+        }
+    });
 
     // Toggle theme
     themeToggle.addEventListener("click", () => {
-        const currentTheme = document.body.getAttribute("data-theme");
+        const currentTheme = document.documentElement.getAttribute("data-theme");
         const newTheme = currentTheme === "light" ? "dark" : "light";
 
-        document.body.setAttribute("data-theme", newTheme);
+        document.documentElement.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
 
         // Toggle icons
-        themeIcons.sun.classList.toggle("active", newTheme === "light");
-        themeIcons.moon.classList.toggle("active", newTheme === "dark");
+        themeIcons.forEach(icon => {
+            if ((newTheme === "light" && icon.classList.contains("fa-sun")) ||
+                (newTheme === "dark" && icon.classList.contains("fa-moon"))) {
+                icon.classList.add("active");
+            } else {
+                icon.classList.remove("active");
+            }
+        });
     });
 
     // ===== Products Filter =====
@@ -358,7 +446,7 @@ document.addEventListener("DOMContentLoaded", function() {
             description_ru: "Антибиотик широкого спектра действия для лечения инфекций верхних дыхательных путей",
             description_en: "Broad-spectrum antibiotic for upper respiratory tract infections",
             category: "antibiotics",
-            image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            image: "assets/products/amoxicillin.jpg"
         },
         {
             id: 2,
@@ -369,7 +457,7 @@ document.addEventListener("DOMContentLoaded", function() {
             description_ru: "Антибиотик группы макролидов для лечения бронхита и пневмонии",
             description_en: "Macrolide antibiotic for bronchitis and pneumonia",
             category: "antibiotics",
-            image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            image: "assets/products/azithromycin.jpg"
         },
         {
             id: 3,
@@ -380,7 +468,7 @@ document.addEventListener("DOMContentLoaded", function() {
             description_ru: "Снижает уровень холестерина, предотвращает сердечно-сосудистые заболевания",
             description_en: "Lowers cholesterol levels, prevents cardiovascular diseases",
             category: "cardiovascular",
-            image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            image: "assets/products/atorvastatin.jpg"
         },
         {
             id: 4,
@@ -391,7 +479,7 @@ document.addEventListener("DOMContentLoaded", function() {
             description_ru: "Бета-блокатор для лечения артериальной гипертензии и стенокардии",
             description_en: "Beta-blocker for arterial hypertension and angina pectoris",
             category: "cardiovascular",
-            image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            image: "assets/products/metoprolol.jpg"
         },
         {
             id: 5,
@@ -402,7 +490,7 @@ document.addEventListener("DOMContentLoaded", function() {
             description_ru: "Улучшает когнитивные функции при болезни Альцгеймера",
             description_en: "Improves cognitive function in Alzheimer's disease",
             category: "neurology",
-            image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            image: "assets/products/donepezil.jpg"
         },
         {
             id: 6,
@@ -413,7 +501,29 @@ document.addEventListener("DOMContentLoaded", function() {
             description_ru: "Широко применяемый противоопухолевый препарат против многих новообразований",
             description_en: "Widely used antineoplastic agent against many tumors",
             category: "oncology",
-            image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&id=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            image: "assets/products/paclitaxel.jpg"
+        },
+        {
+            id: 7,
+            title: "Vitamin C",
+            title_ru: "Витамин C",
+            title_en: "Vitamin C",
+            description: "Immunitetni mustahkamlovchi va antioksidant ta'sirga ega vitamin",
+            description_ru: "Витамин, укрепляющий иммунитет и обладающий антиоксидантным действием",
+            description_en: "Vitamin that strengthens immunity and has antioxidant effect",
+            category: "vitamins",
+            image: "assets/products/vitamin-c.jpg"
+        },
+        {
+            id: 8,
+            title: "Vitamin D3",
+            title_ru: "Витамин D3",
+            title_en: "Vitamin D3",
+            description: "Suyaklar salomatligi va immunitet uchun muhim vitamin",
+            description_ru: "Важный витамин для здоровья костей и иммунитета",
+            description_en: "Important vitamin for bone health and immunity",
+            category: "vitamins",
+            image: "assets/products/vitamin-d3.jpg"
         }
     ];
 
@@ -508,24 +618,249 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // ===== Partners Animation =====
-    const partnerSlides = document.querySelectorAll(".partner-slide");
+    // ===== Stats Counter =====
+    const statNumbers = document.querySelectorAll(".stat-number");
+    const statsSection = document.querySelector(".stats");
 
-    function animatePartners() {
-        partnerSlides.forEach((slide, index) => {
-            setTimeout(() => {
-                slide.style.transform = "translateY(-10px)";
-                setTimeout(() => {
-                    slide.style.transform = "translateY(0)";
-                }, 500);
-            }, 200 * index);
+    function animateStats() {
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.getAttribute("data-count"));
+            const duration = 2000;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                stat.textContent = Math.floor(current);
+
+                if (current >= target) {
+                    stat.textContent = target;
+                    clearInterval(timer);
+                }
+            }, 16);
         });
     }
 
-    // Animate every 5 seconds
-    setInterval(animatePartners, 5000);
-    animatePartners(); // Initial animation
+    // Start animation when stats section is in view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(statsSection);
+
+    // ===== Timeline Animation =====
+    const timeline = document.querySelector(".timeline");
+    const timelineProgress = document.querySelector(".timeline-progress");
+
+    function animateTimeline() {
+        const timelineHeight = timeline.offsetHeight;
+        const scrollPosition = window.scrollY;
+        const timelineOffset = timeline.offsetTop;
+        const timelineStart = timelineOffset - window.innerHeight * 0.8;
+
+        if (scrollPosition > timelineStart) {
+            const progress = (scrollPosition - timelineStart) / (timelineHeight * 0.7);
+            const percentage = Math.min(progress * 100, 100);
+            timelineProgress.style.height = `${percentage}%`;
+        }
+    }
+
+    window.addEventListener("scroll", animateTimeline);
+
+    // ===== Back to Top Button =====
+    const backToTop = document.querySelector(".back-to-top");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add("visible");
+        } else {
+            backToTop.classList.remove("visible");
+        }
+    });
+
+    backToTop.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 
     // ===== Current Year =====
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ===== Particles.js =====
+    if (typeof particlesJS !== "undefined") {
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#3a86ff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#3a86ff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    }
+
+    // ===== Map Interaction =====
+    const mapAreas = document.querySelectorAll("area");
+    const locationCards = document.querySelectorAll(".location-card");
+
+    mapAreas.forEach(area => {
+        area.addEventListener("mouseover", () => {
+            const region = area.getAttribute("data-region");
+            locationCards.forEach(card => {
+                card.classList.remove("active");
+                if (card.getAttribute("data-region") === region) {
+                    card.classList.add("active");
+                }
+            });
+        });
+    });
+
+    // ===== Testimonials Slider =====
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    const slider = document.querySelector(".testimonials-slider");
+
+    slider.addEventListener("mousedown", dragStart);
+    slider.addEventListener("touchstart", dragStart);
+    slider.addEventListener("mouseup", dragEnd);
+    slider.addEventListener("touchend", dragEnd);
+    slider.addEventListener("mouseleave", dragEnd);
+    slider.addEventListener("mousemove", drag);
+    slider.addEventListener("touchmove", drag);
+
+    function dragStart(e) {
+        if (e.type === "touchstart") {
+            startPos = e.touches[0].clientX;
+        } else {
+            startPos = e.clientX;
+            e.preventDefault();
+        }
+
+        isDragging = true;
+        slider.style.cursor = "grabbing";
+        slider.style.scrollBehavior = "auto";
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+
+        const currentPosition = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+        const diff = currentPosition - startPos;
+
+        slider.scrollLeft = prevTranslate - diff;
+    }
+
+    function dragEnd() {
+        isDragging = false;
+        slider.style.cursor = "grab";
+        slider.style.scrollBehavior = "smooth";
+        prevTranslate = slider.scrollLeft;
+    }
 });

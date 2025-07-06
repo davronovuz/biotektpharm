@@ -4,36 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BiotekPharm - Farmatsevtika Mahsulotlari Yetkazib Berish</title>
-    <meta name="description" content="BiotekPharm - Xalqaro standartdagi dori-darmonlar yetkazib berish bo'yicha yetakchi kompaniya">
-    <meta name="keywords" content="dori yetkazib berish, farmatsevtika, tibbiy mahsulotlar, O'zbekiston, BiotekPharm">
-    <meta name="author" content="BiotekPharm">
-
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="BiotekPharm - Sifatli Dori Vositalari">
-    <meta property="og:description" content="Xalqaro standartdagi farmatsevtika mahsulotlarini yetkazib berish">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://biotekpharm.uz">
-    <meta property="og:image" content="https://biotekpharm.uz/images/og-image.jpg">
+    <title>BiotekPharm - Farmatsevtika Yetakchisi</title>
+    <meta name="description" content="BiotekPharm - O'zbekistonda farmatsevtika sohasining yetakchi distribyutor kompaniyasi">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" href="assets/favicon.ico">
 
-    <!-- CSS -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="pill-animation">
+            <div class="pill"></div>
+            <div class="pill"></div>
+            <div class="pill"></div>
+        </div>
+    </div>
+
     <!-- Theme Toggle -->
     <button class="theme-toggle" aria-label="Change theme">
-        <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
-        <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
     </button>
 
     <!-- Language Switcher -->
@@ -43,9 +42,9 @@
             <i class="fas fa-chevron-down"></i>
         </div>
         <ul class="language-dropdown">
-            <li data-lang="uz">Oʻzbekcha</li>
-            <li data-lang="ru">Русский</li>
-            <li data-lang="en">English</li>
+            <li data-lang="uz"><i class="fas fa-language"></i> Oʻzbekcha</li>
+            <li data-lang="ru"><i class="fas fa-language"></i> Русский</li>
+            <li data-lang="en"><i class="fas fa-language"></i> English</li>
         </ul>
     </div>
 
@@ -53,18 +52,23 @@
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <div class="logo-content">
-                    <div class="logo-main">BIOTEK</div>
-                    <div class="logo-sub">PHARM</div>
+                <div class="logo-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">BIOTEK</span>
+                    <span class="logo-sub">PHARM</span>
                 </div>
             </a>
 
             <button id="mobile-menu" class="menu-toggle" aria-label="Toggle menu">
+
             </button>
 
             <ul class="nav-list">
                 <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
                 <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya</a></li>
+                <li><a href="#history" class="nav-link" data-i18n="history">Tarix</a></li>
                 <li><a href="#products" class="nav-link" data-i18n="products">Mahsulotlar</a></li>
                 <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>
                 <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
@@ -75,28 +79,47 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="hero-particles" id="particles-js"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 data-i18n="hero_title">Dori-darmon yetkazib berishda <span>yetakchi</span></h1>
-                <p class="subtitle" data-i18n="hero_subtitle">Butun dunyo bo'ylab sifat va barcha normal talablarga rioya qilgan holda ishonchli farmatsevtika mahsulotlarini yetkazib berish</p>
+                <h1 data-i18n="hero_title">Sog'liq uchun <span>ishonchli</span> yechimlar</h1>
+                <p class="subtitle" data-i18n="hero_subtitle">20 yillik tajribaga ega O'zbekistonning yetakchi farmatsevtika distribyutori</p>
                 <div class="hero-buttons">
                     <a href="#products" class="btn btn-primary" data-i18n="our_products">Mahsulotlarimiz</a>
-                    <a href="#contact" class="btn btn-secondary" data-i18n="contact">Aloqa</a>
+                    <a href="#contact" class="btn btn-secondary" data-i18n="contact">Bog'lanish</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="5000">0</div>
+                        <div class="stat-label" data-i18n="stat_products">Mahsulotlar</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="3200">0</div>
+                        <div class="stat-label" data-i18n="stat_clients">Mijozlar</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="20">0</div>
+                        <div class="stat-label" data-i18n="stat_partners">Xalqaro hamkorlar</div>
+                    </div>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="pill-bottle">
-                    <div class="bottle-cap"></div>
-                    <div class="bottle-neck"></div>
-                    <div class="bottle-body">
-                        <div class="pill" style="--i:1;"></div>
-                        <div class="pill" style="--i:2;"></div>
-                        <div class="pill" style="--i:3;"></div>
-                        <div class="pill" style="--i:4;"></div>
-                        <div class="pill" style="--i:5;"></div>
+                <div class="science-animation">
+                    <div class="molecule">
+                        <div class="atom"></div>
+                        <div class="electron"></div>
+                        <div class="electron"></div>
+                        <div class="electron"></div>
                     </div>
-                    <div class="bottle-label">
-                        <span>BiotekPharm</span>
+                    <div class="pill-bottle">
+                        <div class="bottle-cap"></div>
+                        <div class="bottle-neck"></div>
+                        <div class="bottle-body">
+                            <div class="pill" style="--i:1;"></div>
+                            <div class="pill" style="--i:2;"></div>
+                            <div class="pill" style="--i:3;"></div>
+                        </div>
+                        <div class="bottle-label">BIOTEK</div>
                     </div>
                 </div>
             </div>
@@ -108,36 +131,156 @@
         <div class="container">
             <div class="section-header">
                 <h2 data-i18n="about_title">Kompaniya haqida</h2>
-                <p data-i18n="about_subtitle">BiotekPharm - bu xalqaro farmatsevtika mahsulotlarini yetkazib berish sohasida ishonchli hamkor</p>
+                <p data-i18n="about_subtitle">Bizning missiya va qadriyatlarimiz</p>
             </div>
+
             <div class="about-grid">
                 <div class="about-card">
                     <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 data-i18n="mission_title">Missiyamiz</h3>
+                    <p data-i18n="mission_text">O'zbekiston aholisiga sifatli va arzon narxdagi dori-darmonlarni yetkazib berish</p>
+                </div>
+
+                <div class="about-card">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 data-i18n="vision_title">Ko'zlagan maqsadimiz</h3>
+                    <p data-i18n="vision_text">Mintaqadagi eng yirik va ishonchli farmatsevtika distribyutori bo'lish</p>
+                </div>
+
+                <div class="about-card">
+                    <div class="card-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 data-i18n="values_title">Qadriyatlarimiz</h3>
+                    <p data-i18n="values_text">Ishonchlilik, sifat, mijozlar uchun qadrlash</p>
+                </div>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 data-i18n="about_content_title">BIOTEK FARM haqida</h3>
+                    <p data-i18n="about_content_text">2017 yilda tashkil etilgan BIOTEK FARM O'zbekiston farmatsevtika bozorining yetakchi distribyutorlaridan biridir. Biz 5000 dan ortiq dori vositalari, 3200 dan ortiq faol mijozlar va 20 dan ortiq xalqaro hamkorlarga ega bo'lgan ishonchli kompaniyamiz.</p>
+                    <div class="signature">
+                        <img src="assets/signature.png" alt="BiotekPharm Signature">
+                        <div>
+                            <h4>Shuqurov Sh.</h4>
+                            <p data-i18n="founder_title">Asoschi va Direktor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-frame">
+                        <img src="assets/about-image.jpg" alt="BiotekPharm Team">
+                        <div class="experience-badge">
+                            <span data-count="20">0</span>
+                            <small data-i18n="years_exp">yillik tajriba</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Timeline -->
+    <section class="history" id="history">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="history_title">Bizning tarix</h2>
+                <p data-i18n="history_subtitle">20 yillik muvaffaqiyatli safar</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-progress"></div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2005</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="timeline1_title">YUMAX FARM tashkil etildi</h3>
+                        <p data-i18n="timeline1_text">Samarqandda birinchi dorixonani ochdik</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2012</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="timeline2_title">Ulgurji savdoga o'tish</h3>
+                        <p data-i18n="timeline2_text">4 ta viloyatda ombor va ofislar ochdik</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2017</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="timeline3_title">BIOTEK FARM asos solindi</h3>
+                        <p data-i18n="timeline3_text">Xalqaro distribyutorlik faoliyatini boshladik</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2019</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="timeline4_title">MaxMed Group tashkil etildi</h3>
+                        <p data-i18n="timeline4_text">40 ta malakali xodimli promotsion kompaniya</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2021-2024</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="timeline5_title">Mintaqaviy kengayish</h3>
+                        <p data-i18n="timeline5_text">Toshkent, Farg'ona va Urganchda yangi ofislar</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Bugun</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="timeline6_title">Yetakchi 10 distribyutor</h3>
+                        <p data-i18n="timeline6_text">O'zbekistonning eng yirik farmatsevtika distribyutorlaridan biri</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="stat-number" data-count="5000">0</div>
+                    <div class="stat-label" data-i18n="stat_products">Mahsulotlar</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" data-count="3200">0</div>
+                    <div class="stat-label" data-i18n="stat_clients">Faol mijozlar</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="stat-number" data-count="120">0</div>
+                    <div class="stat-label" data-i18n="stat_suppliers">Yetkazib beruvchilar</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
                         <i class="fas fa-globe"></i>
                     </div>
-                    <h3 data-i18n="about_card1_title">Xalqaro yetkazib berish</h3>
-                    <p data-i18n="about_card1_text">30 dan ortiq mamlakatlardagi hamkorlar bilan ishlash tajribasi</p>
-                </div>
-                <div class="about-card">
-                    <div class="card-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3 data-i18n="about_card2_title">Sifat kafolati</h3>
-                    <p data-i18n="about_card2_text">Yetkazib berishning barcha bosqichlarida qat'iy sifat nazorati</p>
-                </div>
-                <div class="about-card">
-                    <div class="card-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3 data-i18n="about_card3_title">Muddatlarga rioya qilish</h3>
-                    <p data-i18n="about_card3_text">Belgilangan muddatlarda majburiyatlarning aniq bajarilishi</p>
-                </div>
-                <div class="about-card">
-                    <div class="card-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 data-i18n="about_card4_title">Normativ muvofiqlik</h3>
-                    <p data-i18n="about_card4_text">Xalqaro farmatsevtika standartlarining to'liq qo'llanilishi</p>
+                    <div class="stat-number" data-count="20">0</div>
+                    <div class="stat-label" data-i18n="stat_partners">Xalqaro hamkorlar</div>
                 </div>
             </div>
         </div>
@@ -148,17 +291,24 @@
         <div class="container">
             <div class="section-header">
                 <h2 data-i18n="products_title">Mahsulotlarimiz</h2>
-                <p data-i18n="products_subtitle">Keng qirrali farmatsevtika mahsulotlari assortimenti</p>
+                <p data-i18n="products_subtitle">Keng qirrali farmatsevtika mahsulotlari</p>
             </div>
+
             <div class="product-categories">
                 <button class="category-btn active" data-category="all" data-i18n="all_products">Hammasi</button>
                 <button class="category-btn" data-category="antibiotics" data-i18n="antibiotics">Antibiotiklar</button>
-                <button class="category-btn" data-category="cardiovascular" data-i18n="cardiovascular">Kardiologiya</button>
+                <button class="category-btn" data-category="cardiovascular" data-i18n="cardiovascular">Yurak-damar</button>
                 <button class="category-btn" data-category="neurology" data-i18n="neurology">Nevrologiya</button>
                 <button class="category-btn" data-category="oncology" data-i18n="oncology">Onkologiya</button>
+                <button class="category-btn" data-category="vitamins" data-i18n="vitamins">Vitaminlar</button>
             </div>
+
             <div class="products-grid">
                 <!-- Products will be loaded via JavaScript -->
+            </div>
+
+            <div class="view-all">
+                <a href="#" class="btn btn-outline" data-i18n="view_all">Barcha mahsulotlarni ko'rish</a>
             </div>
         </div>
     </section>
@@ -168,44 +318,62 @@
         <div class="container">
             <div class="section-header">
                 <h2 data-i18n="services_title">Xizmatlarimiz</h2>
-                <p data-i18n="services_subtitle">Biz taklif qiladigan asosiy xizmatlar</p>
+                <p data-i18n="services_subtitle">Biz mijozlarimizga qanday xizmat ko'rsatamiz</p>
             </div>
-            <div class="services-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon">
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-passport"></i>
                     </div>
-                    <div class="timeline-content">
-                        <h3 data-i18n="service1_title">Mahsulot ro'yxatdan o'tkazish</h3>
-                        <p data-i18n="service1_text">Mahsulotlarni mahalliy va xalqaro bozorlarda ro'yxatdan o'tkazish</p>
-                    </div>
+                    <h3 data-i18n="service1_title">Mahsulot ro'yxatdan o'tkazish</h3>
+                    <p data-i18n="service1_text">Mahsulotlarni mahalliy va xalqaro bozorlarda ro'yxatdan o'tkazish</p>
+                    <a href="#" class="service-link" data-i18n="learn_more">Batafsil <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon">
+
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-truck"></i>
                     </div>
-                    <div class="timeline-content">
-                        <h3 data-i18n="service2_title">Logistika xizmatlari</h3>
-                        <p data-i18n="service2_text">Harorat nazorati ostida xavfsiz yetkazib berish</p>
-                    </div>
+                    <h3 data-i18n="service2_title">Logistika xizmatlari</h3>
+                    <p data-i18n="service2_text">Harorat nazorati ostida xavfsiz yetkazib berish</p>
+                    <a href="#" class="service-link" data-i18n="learn_more">Batafsil <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon">
+
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-file-contract"></i>
                     </div>
-                    <div class="timeline-content">
-                        <h3 data-i18n="service3_title">Bojxona rasmiylashtirish</h3>
-                        <p data-i18n="service3_text">Barcha bojxona protseduralarini amalga oshirish</p>
-                    </div>
+                    <h3 data-i18n="service3_title">Bojxona rasmiylashtirish</h3>
+                    <p data-i18n="service3_text">Barcha bojxona protseduralarini amalga oshirish</p>
+                    <a href="#" class="service-link" data-i18n="learn_more">Batafsil <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon">
+
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
-                    <div class="timeline-content">
-                        <h3 data-i18n="service4_title">Sifat nazorati</h3>
-                        <p data-i18n="service4_text">Har bir partiyani qat'iy sifat nazoratidan o'tkazish</p>
+                    <h3 data-i18n="service4_title">Sifat nazorati</h3>
+                    <p data-i18n="service4_text">Har bir partiyani qat'iy sifat nazoratidan o'tkazish</p>
+                    <a href="#" class="service-link" data-i18n="learn_more">Batafsil <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-warehouse"></i>
                     </div>
+                    <h3 data-i18n="service5_title">Sklad xizmatlari</h3>
+                    <p data-i18n="service5_text">15,000 m² maydondagi zamonaviy omborlarimiz</p>
+                    <a href="#" class="service-link" data-i18n="learn_more">Batafsil <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 data-i18n="service6_title">24/7 mijozlar uchun qo'llab-quvvatlash</h3>
+                    <p data-i18n="service6_text">Har qanday savolingizga javob beramiz</p>
+                    <a href="#" class="service-link" data-i18n="learn_more">Batafsil <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -218,21 +386,138 @@
                 <h2 data-i18n="partners_title">Hamkorlarimiz</h2>
                 <p data-i18n="partners_subtitle">Biz butun dunyo bo'ylab etakchi farmatsevtika kompaniyalari bilan ishlaymiz</p>
             </div>
+
             <div class="partners-slider">
                 <div class="partner-slide">
-                    <img src="images/partner1.png" alt="Partner 1" loading="lazy">
+                    <img src="assets/partners/partner1.png" alt="Partner 1" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="images/partner2.png" alt="Partner 2" loading="lazy">
+                    <img src="assets/partners/partner2.png" alt="Partner 2" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="images/partner3.png" alt="Partner 3" loading="lazy">
+                    <img src="assets/partners/partner3.png" alt="Partner 3" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="images/partner4.png" alt="Partner 4" loading="lazy">
+                    <img src="assets/partners/partner4.png" alt="Partner 4" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="images/partner5.png" alt="Partner 5" loading="lazy">
+                    <img src="assets/partners/partner5.png" alt="Partner 5" loading="lazy">
+                </div>
+                <div class="partner-slide">
+                    <img src="assets/partners/partner6.png" alt="Partner 6" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="locations_title">Bizning joylashuvlar</h2>
+                <p data-i18n="locations_subtitle">Butun O'zbekiston bo'ylab ofis va omborlarimiz</p>
+            </div>
+
+            <div class="map-container">
+                <div class="map" id="uzbekistan-map">
+                    <!-- SVG map of Uzbekistan with interactive regions -->
+                    <img src="assets/uzbekistan-map.svg" alt="Uzbekistan Map" usemap="#regions-map">
+                    <map name="regions-map">
+                        <area shape="circle" coords="150,200,30" href="#" alt="Toshkent" data-region="tashkent">
+                        <area shape="circle" coords="250,300,30" href="#" alt="Samarqand" data-region="samarkand">
+                        <area shape="circle" coords="350,250,30" href="#" alt="Farg'ona" data-region="fergana">
+                        <area shape="circle" coords="400,400,30" href="#" alt="Urganch" data-region="urgench">
+                    </map>
+                </div>
+
+                <div class="locations-info">
+                    <div class="location-card active" data-region="tashkent">
+                        <h3>Toshkent</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Mirzo Ulug'bek, Sayram 7-proyezd, 50-uy</p>
+                        <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
+                        <p><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</p>
+                    </div>
+
+                    <div class="location-card" data-region="samarkand">
+                        <h3>Samarqand</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Yuqori Turkman, O'zbekiston ko'chasi, 158-uy</p>
+                        <p><i class="fas fa-phone"></i> +998 90 657 05 00</p>
+                        <p><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</p>
+                    </div>
+
+                    <div class="location-card" data-region="fergana">
+                        <h3>Farg'ona</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Urta Shura MFY, Charogon ko'chasi, 21-uy</p>
+                        <p><i class="fas fa-phone"></i> +998 90 937 06 04</p>
+                        <p><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</p>
+                    </div>
+
+                    <div class="location-card" data-region="urgench">
+                        <h3>Urganch</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Ashxobod MFY, Sanoatchilar ko'chasi, 12 D-uy</p>
+                        <p><i class="fas fa-phone"></i> +998 90 123 45 68</p>
+                        <p><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="testimonials_title">Mijozlarimiz fikrlari</h2>
+                <p data-i18n="testimonials_subtitle">Bizning mijozlarimiz biz haqimizda nima deyishadi</p>
+            </div>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p data-i18n="testimonial1_text">"BIOTEK FARM bilan 5 yildan beri hamkorlik qilamiz. Har doim sifatli mahsulotlar va ishonchli yetkazib berish tizimi uchun minnatdormiz."</p>
+                        <div class="testimonial-author">
+                            <img src="assets/testimonials/client1.jpg" alt="Client 1">
+                            <div>
+                                <h4>Abdullayev A.</h4>
+                                <span data-i18n="pharmacy_owner">Dorixona egasi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p data-i18n="testimonial2_text">"Yetkazib berish muddatlari juda aniq. Har qanday muammoda 24/7 qo'llab-quvvatlash xizmati mavjud. Haqiqiy professional jamoa!"</p>
+                        <div class="testimonial-author">
+                            <img src="assets/testimonials/client2.jpg" alt="Client 2">
+                            <div>
+                                <h4>Rahimova S.</h4>
+                                <span data-i18n="hospital_director">Shifoxona direktori</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p data-i18n="testimonial3_text">"Xalqaro farmatsevtika kompaniyasi sifatida BIOTEK FARM bilan ishlashdan mamnunmiz. Barcha shartnoma majburiyatlarini vaqtida bajaryapti."</p>
+                        <div class="testimonial-author">
+                            <img src="assets/testimonials/client3.jpg" alt="Client 3">
+                            <div>
+                                <h4>Dr. Müller</h4>
+                                <span data-i18n="international_partner">Xalqaro hamkor</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -245,6 +530,7 @@
                 <h2 data-i18n="contact_title">Biz bilan bog'laning</h2>
                 <p data-i18n="contact_subtitle">Har qanday savol yoki taklif uchun biz bilan bog'laning</p>
             </div>
+
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="info-item">
@@ -253,29 +539,32 @@
                         </div>
                         <div class="info-text">
                             <h3 data-i18n="phone">Telefon</h3>
-                            <a href="tel:+998901234567">+998 90 123 45 67</a>
-                            <a href="tel:+998712345678">+998 71 234 56 78</a>
+                            <a href="tel:+998906570500">+998 90 657 05 00</a>
+                            <a href="tel:+998909370604">+998 90 937 06 04</a>
                         </div>
                     </div>
+
                     <div class="info-item">
                         <div class="info-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="info-text">
                             <h3 data-i18n="email">Elektron pochta</h3>
+                            <a href="mailto:biotek_farm@mail.ru">biotek_farm@mail.ru</a>
                             <a href="mailto:info@biotekpharm.uz">info@biotekpharm.uz</a>
-                            <a href="mailto:sales@biotekpharm.uz">sales@biotekpharm.uz</a>
                         </div>
                     </div>
+
                     <div class="info-item">
                         <div class="info-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="info-text">
-                            <h3 data-i18n="address">Manzil</h3>
-                            <p data-i18n="address_text">Toshkent shahri, Yunusobod tumani, Navoiy ko'chasi 45</p>
+                            <h3 data-i18n="address">Bosh ofis manzili</h3>
+                            <p data-i18n="address_text">O'zbekiston Respublikasi, Samarqand viloyati, Samarqand tumani, Yuqori Turkman mahallasi, O'zbekiston ko'chasi, 158-uy</p>
                         </div>
                     </div>
+
                     <div class="info-item">
                         <div class="info-icon">
                             <i class="fas fa-clock"></i>
@@ -285,33 +574,47 @@
                             <p data-i18n="working_hours_text">Dushanba-Juma: 9:00 - 18:00</p>
                         </div>
                     </div>
+
+                    <div class="social-links">
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
+
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
                             <input type="text" id="name" placeholder=" " required>
                             <label for="name" data-i18n="form_name">Ismingiz</label>
                         </div>
+
                         <div class="form-group">
                             <input type="email" id="email" placeholder=" " required>
                             <label for="email" data-i18n="form_email">Elektron pochta</label>
                         </div>
+
                         <div class="form-group">
                             <input type="tel" id="phone" placeholder=" ">
                             <label for="phone" data-i18n="form_phone">Telefon (ixtiyoriy)</label>
                         </div>
+
                         <div class="form-group">
                             <select id="subject" required>
                                 <option value="" disabled selected data-i18n="form_subject">Mavzu</option>
                                 <option value="sales" data-i18n="sales">Sotuv bo'yicha</option>
                                 <option value="partnership" data-i18n="partnership">Hamkorlik</option>
                                 <option value="info" data-i18n="information">Ma'lumot</option>
+                                <option value="support" data-i18n="support">Qo'llab-quvvatlash</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <textarea id="message" placeholder=" " required></textarea>
-                            <label for="message" data-i18n="form_message">Xabar</label>
+                            <label for="message" data-i18n="form_message">Xabaringiz</label>
                         </div>
+
                         <button type="submit" class="btn btn-primary" data-i18n="form_submit">Xabarni yuborish</button>
                     </form>
                 </div>
@@ -325,9 +628,15 @@
             <div class="footer-grid">
                 <div class="footer-col footer-about">
                     <a href="#" class="logo">
-                        <span class="bio">Bio</span><span class="tek">tek</span><span class="pharm">Pharm</span>
+                        <div class="logo-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">BIOTEK</span>
+                            <span class="logo-sub">PHARM</span>
+                        </div>
                     </a>
-                    <p data-i18n="footer_about">Dori-darmon yetkazib berish sohasida yetakchi kompaniya</p>
+                    <p data-i18n="footer_about">O'zbekiston farmatsevtika bozorining yetakchi distribyutor kompaniyasi</p>
                     <div class="social-links">
                         <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -335,41 +644,58 @@
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
+
                 <div class="footer-col">
                     <h3 data-i18n="footer_links">Tez havolalar</h3>
                     <ul>
                         <li><a href="#home" data-i18n="home">Bosh sahifa</a></li>
-                        <li><a href="#about" data-i18n="about">Kompaniya haqida</a></li>
+                        <li><a href="#about" data-i18n="about">Kompaniya</a></li>
+                        <li><a href="#history" data-i18n="history">Tarix</a></li>
                         <li><a href="#products" data-i18n="products">Mahsulotlar</a></li>
                         <li><a href="#services" data-i18n="services">Xizmatlar</a></li>
                         <li><a href="#contact" data-i18n="contact">Aloqa</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-col">
                     <h3 data-i18n="footer_products">Mahsulotlar</h3>
                     <ul>
                         <li><a href="#" data-i18n="antibiotics">Antibiotiklar</a></li>
-                        <li><a href="#" data-i18n="cardiovascular">Kardiologiya</a></li>
+                        <li><a href="#" data-i18n="cardiovascular">Yurak-damar</a></li>
                         <li><a href="#" data-i18n="neurology">Nevrologiya</a></li>
                         <li><a href="#" data-i18n="oncology">Onkologiya</a></li>
+                        <li><a href="#" data-i18n="vitamins">Vitaminlar</a></li>
                         <li><a href="#" data-i18n="all_products">Barcha mahsulotlar</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-col">
                     <h3 data-i18n="footer_contact">Aloqa</h3>
                     <ul>
-                        <li><i class="fas fa-phone-alt"></i> +998 90 123 45 67</li>
-                        <li><i class="fas fa-envelope"></i> info@biotekpharm.uz</li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span data-i18n="address_text">Toshkent shahri, Yunusobod tumani, Navoiy ko'chasi 45</span></li>
+                        <li><i class="fas fa-phone-alt"></i> +998 90 657 05 00</li>
+                        <li><i class="fas fa-envelope"></i> biotek_farm@mail.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-i18n="address_text">Samarqand, O'zbekiston ko'chasi, 158-uy</span></li>
                     </ul>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> <span class="company">BiotekPharm</span>. <span data-i18n="all_rights">Barcha huquqlar himoyalangan</span></p>
+                <p>&copy; <span id="year"></span> <span class="company">BIOTEK FARM OOO</span>. <span data-i18n="all_rights">Barcha huquqlar himoyalangan</span></p>
+                <div class="footer-links">
+                    <a href="#" data-i18n="privacy_policy">Maxfiylik siyosati</a>
+                    <a href="#" data-i18n="terms">Foydalanish shartlari</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
