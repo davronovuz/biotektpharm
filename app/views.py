@@ -11,7 +11,6 @@ def home(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
-        subject = request.POST.get('subject')
         message = request.POST.get('message')
 
         # Save the contact information to the database
@@ -19,7 +18,6 @@ def home(request):
             name=name,
             email=email,
             phone=phone,
-            subject=subject,
             message=message
         )
         messages.success(request, 'Your message has been sent successfully!')
