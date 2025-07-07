@@ -467,24 +467,32 @@
                 </div>
 
                 <div class="contact-form">
-                    <form id="contactForm">
+                    {% if messages %}
+                    <div class="alert alert-info">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <form id="contactForm" method="POST">
+                        {% csrf_token %}
                         <div class="form-group">
-                            <input type="text" id="name" placeholder=" " required>
+                            <input type="text" id="name" name="name" placeholder=" " required>
                             <label for="name" data-i18n="form_name">Ismingiz</label>
                         </div>
 
                         <div class="form-group">
-                            <input type="email" id="email" placeholder=" " required>
+                            <input type="email" id="email" placeholder=" " name="email" required>
                             <label for="email" data-i18n="form_email">Elektron pochta</label>
                         </div>
 
                         <div class="form-group">
-                            <input type="tel" id="phone" placeholder=" ">
+                            <input type="tel" id="phone" placeholder=" " name="phone">
                             <label for="phone" data-i18n="form_phone">Telefon (ixtiyoriy)</label>
                         </div>
 
                         <div class="form-group">
-                            <select id="subject" required>
+                            <select id="subject" name="subject" required>
                                 <option value="" disabled selected data-i18n="form_subject">Mavzu</option>
                                 <option value="sales" data-i18n="sales">Sotuv bo'yicha</option>
                                 <option value="partnership" data-i18n="partnership">Hamkorlik</option>
