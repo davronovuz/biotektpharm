@@ -122,8 +122,8 @@ USE_TZ = True
 CORS_ALLOW_ALL_ORIGINS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://ittat.uz',
-    'https://www.ittat.uz',
+    'https://biotekpharm.uz',
+    'https://www.biotkepharm.uz',
 ]
 
 CORS_ALLOW_METHODS = [
