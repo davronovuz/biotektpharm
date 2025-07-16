@@ -59,17 +59,7 @@
 }
 
 [data-theme="dark"] {
-  --primary: var(--dark-primary);
-  --primary-dark: var(--dark-primary-dark);
-  --secondary: var(--dark-secondary);
-  --secondary-light: var(--dark-secondary-light);
-  --accent: var(--dark-accent);
-  --light: var(--dark-bg);
-  --dark: var(--dark-text);
-  --text: var(--dark-text);
-  --text-light: var(--dark-text-light);
-  --white: var(--dark-bg);
-  --gray: var(--dark-gray);
+
 }
 
 /* ===== Base Styles ===== */
@@ -503,7 +493,7 @@ section {
 
 /* YANGI Hero Section Stili */
 .hero {
-    background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-image: url('../images/hero_bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Parallax effekt */
@@ -514,23 +504,14 @@ section {
     overflow: hidden;
 }
 
-/* Qorong'u overlay (matn yaxshi ko'rinsin) */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1;
-}
+
 
 .hero .container {
     position: relative;
     z-index: 2;
     max-width: 800px; /* Kontent kengligini chegarash */
 }
+
 
 .hero h1 {
     font-size: 3.5rem;
