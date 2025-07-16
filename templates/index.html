@@ -123,11 +123,7 @@
                 </div>
                 <div class="about-image">
                     <div class="image-frame">
-                        <img src="assets/about-image.jpg" alt="BiotekPharm Team">
-                        <div class="experience-badge">
-                            <span data-count="20">0</span>
-                            <small data-i18n="years_exp">yillik tajriba</small>
-                        </div>
+                        <img src="{% static 'images/bitoek_banner.png' %}" alt="BiotekPharm Team">
                     </div>
                 </div>
             </div>
@@ -191,7 +187,7 @@
     </section>
 
 
-
+<!-- Products Section -->
     <!-- Products Section -->
     <section class="products" id="products">
         <div class="container">
@@ -200,24 +196,32 @@
                 <p data-i18n="products_subtitle">Keng qirrali farmatsevtika mahsulotlari</p>
             </div>
 
-            <div class="product-categories">
-                <button class="category-btn active" data-category="all" data-i18n="all_products">Hammasi</button>
-                <button class="category-btn" data-category="antibiotics" data-i18n="antibiotics">Antibiotiklar</button>
-                <button class="category-btn" data-category="cardiovascular" data-i18n="cardiovascular">Yurak-damar</button>
-                <button class="category-btn" data-category="neurology" data-i18n="neurology">Nevrologiya</button>
-                <button class="category-btn" data-category="oncology" data-i18n="oncology">Onkologiya</button>
-                <button class="category-btn" data-category="vitamins" data-i18n="vitamins">Vitaminlar</button>
-            </div>
 
             <div class="products-grid">
-                <!-- Products will be loaded via JavaScript -->
+              {% for product in products|slice:":6" %}
+                <div class="product-card">
+                  <div class="product-img-wrapper">
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}" class="product-img">
+                  </div>
+                  <div class="product-info">
+                    <span class="product-category">{{ product.category.name }}</span>
+                    <h4 class="product-title">{{ product.title }}</h4>
+                    <p class="product-description">{{ product.description|truncatechars:100 }}</p>
+                  </div>
+                </div>
+              {% endfor %}
             </div>
 
+
             <div class="view-all">
-                <a href="#" class="btn btn-outline" data-i18n="view_all">Barcha mahsulotlarni ko'rish</a>
+                <a href="{% url 'product_list' %}" class="btn btn-outline" data-i18n="view_all">Barcha mahsulotlarni ko'rish</a>
             </div>
         </div>
     </section>
+
+
+
+
 
     <!-- Services Section -->
     <section class="services" id="services">
@@ -289,22 +293,27 @@
 
             <div class="partners-slider">
                 <div class="partner-slide">
-                    <img src="assets/partners/partner1.png" alt="Partner 1" loading="lazy">
+                    <img src="{% static 'images/berlin_chemie.webp' %}" alt="Partner 1" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="assets/partners/partner2.png" alt="Partner 2" loading="lazy">
+                    <img src="{% static 'images/feron.webp' %}" alt="Partner 1" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="assets/partners/partner3.png" alt="Partner 3" loading="lazy">
+                    <img src="{% static 'images/valenta.webp' %}" alt="Partner 1" loading="lazy">                </div>
+                <div class="partner-slide">
+                    <img src="{% static 'images/nijfarm.webp' %}" alt="Partner 1" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="assets/partners/partner4.png" alt="Partner 4" loading="lazy">
+                    <img src="{% static 'images/materia_medica.webp' %}" alt="Partner 1" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="assets/partners/partner5.png" alt="Partner 5" loading="lazy">
+                    <img src="{% static 'images/neure_pharma.webp' %}" alt="Partner 1" loading="lazy">
                 </div>
                 <div class="partner-slide">
-                    <img src="assets/partners/partner6.png" alt="Partner 6" loading="lazy">
+                    <img src="{% static 'images/borimed.webp' %}" alt="Partner 1" loading="lazy">
+                </div>
+                <div class="partner-slide">
+                    <img src="{% static 'images/farmstandart.webp' %}" alt="Partner 1" loading="lazy">
                 </div>
             </div>
         </div>
