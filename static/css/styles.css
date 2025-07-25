@@ -385,46 +385,49 @@ section {
   justify-content: space-between;
   align-items: center;
 }
-
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
+    position: relative;
+    height: 100px;
+    display: flex;
+    align-items: center;
 }
 
 .logo-icon {
-  width: 64px;
-  height: 64px;
-  overflow: hidden;
-  border-radius: 16px;
-  background-color: white;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
+    position: relative;
+    width: 140px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
 }
 
-.logo:hover .logo-icon {
-  transform: scale(1.08);
+.biotek-text {
+    position: absolute;
+    top: 40%;
+    left: 68%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3a86ff; /* Ko'k rang */
+    z-index: 2;
+    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    pointer-events: none;
 }
 
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary, #3a86ff);
-  font-family: 'Segoe UI', sans-serif;
-  letter-spacing: 0.5px;
+/* Responsive moslashuvchanlik */
+@media (max-width: 768px) {
+    .biotek-text {
+        font-size: 1.5rem;
+    }
 }
-
 
 .nav-list {
   display: flex;
