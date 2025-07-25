@@ -505,7 +505,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
 
@@ -519,26 +519,30 @@ section {
 
 /* Sarlavha (h1) – harakatlanuvchi, jonli */
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  animation: pulseText 3s ease-in-out infinite;
+  fon-weight :900;
+  opacity:1;
+  color: white;
+  text-transform: uppercase;
+  animation: pulseText 2s ease-in-out infinite;
 }
 
 /* Sarlavha ichidagi so‘z (span) – bounce effekt */
 .hero h1 span {
   color: #3a86ff;
   animation: bounceText 2s ease-in-out infinite;
+  opacity:1;
 }
 
 /* Subtitle – suzuvchi animatsiya */
 .hero .subtitle {
   font-size: 1.25rem;
   margin-bottom: 2rem;
+  text-transform: uppercase;
+  fon-weight :600;
   color: rgba(255, 255, 255, 0.9);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   animation: floatText 4s ease-in-out infinite;
 }
 
@@ -558,7 +562,7 @@ section {
   }
 
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
 
   .hero .subtitle {
@@ -573,8 +577,8 @@ section {
     opacity: 1;
   }
   50% {
-    transform: scale(1.03);
-    opacity: 0.95;
+    transform: scale(1.9);
+    opacity: 0.98;
   }
 }
 
