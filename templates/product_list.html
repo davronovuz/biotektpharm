@@ -48,25 +48,26 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="{% url 'home' %}" class="logo">
+            <a href="#" class="logo">
                 <div class="logo-icon">
-                    <img src="{% static 'images/logo_biotek.png' %}" alt="logo">
+                    <img src="{% static 'images/LOGO.png' %}" alt="logo">
+                     <div class="biotek-text">BIOTEK</div>
                 </div>
-                <span class="logo-text">BiotekPharm</span>
             </a>
 
             <button id="mobile-menu" class="menu-toggle" aria-label="Toggle menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+
             </button>
 
             <ul class="nav-list">
-                <li><a href="{% url 'home' %}" class="nav-link">Bosh sahifa</a></li>
-                <li><a href="{% url 'home' %}#about" class="nav-link">Kompaniya</a></li>
-                <li><a href="{% url 'home' %}#products" class="nav-link">Mahsulotlar</a></li>
-                <li><a href="{% url 'home' %}#services" class="nav-link">Xizmatlar</a></li>
-                <li><a href="{% url 'home' %}#contact" class="nav-link">Aloqa</a></li>
+                <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
+                <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya</a></li>
+                <li><a href="#history" class="nav-link" data-i18n="history">Tarix</a></li>
+                <li><a href="#products" class="nav-link" data-i18n="products">Mahsulotlar</a></li>
+                <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>
+                <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
+                <li><a href="#locations" class="nav-link" data-i18n="">Manzil</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
             </ul>
         </div>
     </nav>
@@ -118,21 +119,18 @@
         </div>
     </main>
 
-    <!-- Footer -->
+ <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col footer-about">
-                    <a href="#" class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <div class="logo-text">
-                            <span class="logo-main">BIOTEK</span>
-                            <span class="logo-sub">PHARM</span>
+                <div class="footer-cool">
+                    <a href="#" class="logof">
+                        <div class="logof-icon">
+                            <img src="{% static 'images/LOGO.png' %}" alt="logo">
+                             <div class="biotek-text">BIOTEK</div>
                         </div>
                     </a>
-                    <p>O'zbekiston farmatsevtika bozorining yetakchi distribyutor kompaniyasi</p>
+                    <p data-i18n="footer_about">O'zbekiston farmatsevtika bozorining yetakchi distribyutor kompaniyasi</p>
                     <div class="social-links">
                         <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -142,42 +140,44 @@
                 </div>
 
                 <div class="footer-col">
-                    <h3>Tez havolalar</h3>
+                    <h3 data-i18n="footer_links">Tez havolalar</h3>
                     <ul>
-                        <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
-                        <li><a href="{% url 'home' %}#about">Kompaniya</a></li>
-                        <li><a href="{% url 'home' %}#products">Mahsulotlar</a></li>
-                        <li><a href="{% url 'home' %}#services">Xizmatlar</a></li>
-                        <li><a href="{% url 'home' %}#contact">Aloqa</a></li>
+                        <li><a href="#home" data-i18n="home">Bosh sahifa</a></li>
+                        <li><a href="#about" data-i18n="about">Kompaniya</a></li>
+                        <li><a href="#history" data-i18n="history">Tarix</a></li>
+                        <li><a href="#products" data-i18n="products">Mahsulotlar</a></li>
+                        <li><a href="#services" data-i18n="services">Xizmatlar</a></li>
+                        <li><a href="#contact" data-i18n="contact">Aloqa</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
-                    <h3>Mahsulotlar</h3>
+                    <h3 data-i18n="footer_products">Mahsulotlar</h3>
                     <ul>
-                        <li><a href="#">Antibiotiklar</a></li>
-                        <li><a href="#">Yurak-damar</a></li>
-                        <li><a href="#">Nevrologiya</a></li>
-                        <li><a href="#">Onkologiya</a></li>
-                        <li><a href="#">Vitaminlar</a></li>
+                        <li><a href="#" data-i18n="antibiotics">Antibiotiklar</a></li>
+                        <li><a href="#" data-i18n="cardiovascular">Yurak-damar</a></li>
+                        <li><a href="#" data-i18n="neurology">Nevrologiya</a></li>
+                        <li><a href="#" data-i18n="oncology">Onkologiya</a></li>
+                        <li><a href="#" data-i18n="vitamins">Vitaminlar</a></li>
+                        <li><a href="#" data-i18n="all_products">Barcha mahsulotlar</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
-                    <h3>Aloqa</h3>
+                    <h3 data-i18n="footer_contact">Aloqa</h3>
                     <ul>
                         <li><i class="fas fa-phone-alt"></i> +998 90 657 05 00</li>
                         <li><i class="fas fa-envelope"></i> biotek_farm@mail.ru</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Samarqand, O'zbekiston ko'chasi, 158-uy</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-i18n="address_text">Samarqand, O'zbekiston ko'chasi, 158-uy</span></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> <span class="company">BIOTEK FARM OOO</span>. Barcha huquqlar himoyalangan</p>
+                <p>&copy; <span id="year"></span> <span class="company">BIOTEK FARM OOO</span>. <span data-i18n="all_rights">Barcha huquqlar himoyalangan</span></p>
                 <div class="footer-links">
-                    <a href="#">Maxfiylik siyosati</a>
-                    <a href="#">Foydalanish shartlari</a>
+                    <a href="#" data-i18n="privacy_policy">Maxfiylik siyosati</a>
+                    <a href="#" data-i18n="terms">Foydalanish shartlari</a>
                 </div>
             </div>
         </div>

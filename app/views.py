@@ -8,7 +8,7 @@ from .models import Contact,ProductCategory,Product
 
 def home(request):
     categories = ProductCategory.objects.all()
-    products = Product.objects.all()
+    products = Product.objects.all()[:3]
 
     if request.method == 'POST':
         name = request.POST.get('name')

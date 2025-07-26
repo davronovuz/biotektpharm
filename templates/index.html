@@ -65,6 +65,7 @@
                 <li><a href="#products" class="nav-link" data-i18n="products">Mahsulotlar</a></li>
                 <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>
                 <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
+                <li><a href="#locations" class="nav-link" data-i18n="">Manzil</a></li>
                 <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
             </ul>
         </div>
@@ -123,7 +124,7 @@
                 </div>
                 <div class="about-image">
                     <div class="image-frame">
-                        <img src="{% static 'images/LOGO.eps' %}" alt="BiotekPharm Team">
+                        <img src="{% static 'images/rasm_banner.JPG' %}" alt="BiotekPharm Team">
                     </div>
                 </div>
             </div>
@@ -197,20 +198,21 @@
             </div>
 
 
-            <div class="products-grid">
-              {% for product in products|slice:":6" %}
-                <div class="product-card">
-                  <div class="product-img-wrapper">
-                    <img src="{{ product.image.url }}" alt="{{ product.title }}" class="product-img">
-                  </div>
-                  <div class="product-info">
-                    <span class="product-category">{{ product.category.name }}</span>
-                    <h4 class="product-title">{{ product.title }}</h4>
-                    <p class="product-description">{{ product.description|truncatechars:100 }}</p>
-                  </div>
+        <div class="products-list-grid">
+            {% for product in products %}
+            <div class="product-list-card">
+                <div class="product-list-img-container">
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}" class="product-list-img">
                 </div>
-              {% endfor %}
+                <div class="product-list-info">
+                    <span class="product-list-category">{{ product.category.name }}</span>
+                    <h3 class="product-list-title">{{ product.title }}</h3>
+                    <p class="product-list-description">{{ product.description|truncatechars:100 }}</p>
+
+                </div>
             </div>
+            {% endfor %}
+        </div>
 
 
             <div class="view-all">
@@ -328,7 +330,7 @@
     </section>
 
     <!-- Locations Section -->
-    <section class="locations">
+    <section class="locations" id="locations">
         <div class="container">
             <div class="section-header">
                 <h2 data-i18n="locations_title">Bizning joylashuvlar</h2>
@@ -418,7 +420,7 @@
                         </div>
                         <div class="info-text">
                             <h3 data-i18n="address">Bosh ofis manzili</h3>
-                            <p data-i18n="address_text">O'zbekiston Respublikasi, Samarqand viloyati, Samarqand tumani, Yuqori Turkman mahallasi, O'zbekiston ko'chasi, 158-uy</p>
+                            <p data-i18n="address_text">Samarqand viloyati, Samarqand tumani, Yuqori Turkman mahallasi, O'zbekiston ko'chasi, 158-uy</p>
                         </div>
                     </div>
 
@@ -432,12 +434,6 @@
                         </div>
                     </div>
 
-                    <div class="social-links">
-                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
                 </div>
 
                 <div class="contact-form">
@@ -477,20 +473,17 @@
         </div>
     </section>
 
-    <!-- Footer -->
+ <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col footer-about">
-                    <a href="#" class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <div class="logo-text">
-                            <span class="logo-main">BIOTEK</span>
-                            <span class="logo-sub">PHARM</span>
-                        </div>
-                    </a>
+                <div class="footer-col ">
+                <a href="#" class="logof">
+                    <div class="logof-icon">
+                        <img src="{% static 'images/LOGO.png' %}" alt="logo">
+                         <div class="biotek-text">BIOTEK</div>
+                    </div>
+                </a>
                     <p data-i18n="footer_about">O'zbekiston farmatsevtika bozorining yetakchi distribyutor kompaniyasi</p>
                     <div class="social-links">
                         <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>

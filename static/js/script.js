@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
             phone: "Telefon",
             email: "Elektron pochta",
             address: "Manzil",
-            address_text: "Toshkent shahri, Yunusobod tumani, Navoiy ko'chasi 45",
+            address_text: "Samarqand tumani Yuqori Turkman, O'zbekiston ko'chasi, 158-uy",
             working_hours: "Ish vaqti",
             working_hours_text: "Dushanba-Juma: 9:00 - 18:00",
             form_name: "Ismingiz",
