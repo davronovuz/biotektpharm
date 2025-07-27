@@ -48,7 +48,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">
+            <a href="{% url 'home' %}" class="logo">
                 <div class="logo-icon">
                     <img src="{% static 'images/LOGO.png' %}" alt="logo">
                      <div class="biotek-text">BIOTEK</div>
@@ -60,14 +60,14 @@
             </button>
 
             <ul class="nav-list">
-                <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
-                <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya</a></li>
-                <li><a href="#history" class="nav-link" data-i18n="history">Tarix</a></li>
-                <li><a href="#products" class="nav-link" data-i18n="products">Mahsulotlar</a></li>
-                <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>
-                <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
-                <li><a href="#locations" class="nav-link" data-i18n="">Manzil</a></li>
-                <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
+                <li><a href="{% url 'home' %}"  class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
+                <li><a href="{% url 'home' %}"  class="nav-link" data-i18n="about">Kompaniya</a></li>
+                <li><a href="{% url 'home' %}"  class="nav-link" data-i18n="history">Tarix</a></li>
+                <li><a href="{% url 'home' %}"  class="nav-link" data-i18n="products">Mahsulotlar</a></li>
+                <li><a href="{% url 'home' %}"  class="nav-link" data-i18n="services">Xizmatlar</a></li>
+                <li><a href="{% url 'home' %}"  class="nav-link" data-i18n="partners">Hamkorlar</a></li>
+                <li><a href="{% url 'home' %}"  class="nav-link" data-i18n="locations">Manzil</a></li>
+                <li><a href="{% url 'home' %}"  class="nav-link" data-i18n="contact">Aloqa</a></li>
             </ul>
         </div>
     </nav>
@@ -120,16 +120,17 @@
     </main>
 
  <!-- Footer -->
+ <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-cool">
-                    <a href="#" class="logof">
-                        <div class="logof-icon">
-                            <img src="{% static 'images/LOGO.png' %}" alt="logo">
-                             <div class="biotek-text">BIOTEK</div>
-                        </div>
-                    </a>
+                <div class="footer-col ">
+                <a href="#" class="logof">
+                    <div class="logof-icon">
+                        <img src="{% static 'images/LOGO.png' %}" alt="logo">
+                         <div class="biotek-text">BIOTEK</div>
+                    </div>
+                </a>
                     <p data-i18n="footer_about">O'zbekiston farmatsevtika bozorining yetakchi distribyutor kompaniyasi</p>
                     <div class="social-links">
                         <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
@@ -152,18 +153,6 @@
                 </div>
 
                 <div class="footer-col">
-                    <h3 data-i18n="footer_products">Mahsulotlar</h3>
-                    <ul>
-                        <li><a href="#" data-i18n="antibiotics">Antibiotiklar</a></li>
-                        <li><a href="#" data-i18n="cardiovascular">Yurak-damar</a></li>
-                        <li><a href="#" data-i18n="neurology">Nevrologiya</a></li>
-                        <li><a href="#" data-i18n="oncology">Onkologiya</a></li>
-                        <li><a href="#" data-i18n="vitamins">Vitaminlar</a></li>
-                        <li><a href="#" data-i18n="all_products">Barcha mahsulotlar</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
                     <h3 data-i18n="footer_contact">Aloqa</h3>
                     <ul>
                         <li><i class="fas fa-phone-alt"></i> +998 90 657 05 00</li>
@@ -182,7 +171,6 @@
             </div>
         </div>
     </footer>
-
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>

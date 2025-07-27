@@ -65,7 +65,7 @@
                 <li><a href="#products" class="nav-link" data-i18n="products">Mahsulotlar</a></li>
                 <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>
                 <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
-                <li><a href="#locations" class="nav-link" data-i18n="">Manzil</a></li>
+                <li><a href="#locations" class="nav-link" data-i18n="locations">Manzil</a></li>
                 <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
             </ul>
         </div>
@@ -284,28 +284,28 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-headset"></i>
+                    <i class="fas fa-prescription-bottle-alt"></i>
                     </div>
-                    <h3 data-i18n="service6_title">Dorixonalar tarmog'i</h3>
-                    <p data-i18n="service6_text">Samarqand shahrida 15 dan ziyod dorixonalar</p>
+                    <h3 data-i18n="service7_title">Dorixonalar tarmog'i</h3>
+                    <p data-i18n="service7_text">Samarqand shahrida 15 dan ziyod dorixonalar</p>
                 </div>
             </div>
         </div>
     </section>
 
-<section class="partners-banner">
-  <div class="container partners-content">
-    <h2>Bizning Hamkorimiz</h2>
-    <p>Biz ishonchli farmatsevtika sheriklari bilan ishlaymiz</p>
+    <section class="partners-banner" id="partners">
+      <div class="container partners-content">
+          <h2 data-i18n="partners_title">Hamkorlarimiz</h2>
+            <p data-i18n="partners_subtitle">Biz ishonchli farmatsevtika sheriklari bilan ishlaymiz</p>
 
-    <img
-      src="{% static 'images/LOGO_page_1.png' %}"
-      alt="Bizning hamkorlar"
-      class="partners-img"
-      loading="lazy"
-    />
-  </div>
-</section>
+          <img
+          src="{% static 'images/LOGO_page_1.png' %}"
+          alt="Bizning hamkorlar"
+          class="partners-img"
+          loading="lazy"
+        />
+      </div>
+    </section>
 
 
     <!-- Locations Section -->
@@ -329,32 +329,31 @@
                 </div>
 
                 <div class="locations-info">
-                    <div class="location-card active" data-region="tashkent">
-                        <h3>Toshkent</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> Mirzo Ulug'bek, Sayram 7-proyezd, 50-uy</p>
-                        <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
-                        <p><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</p>
+                    <div class="location-card active" data-region="samarkand">
+                        <h3 class="i18n" data-i18n="location_samarkand">Samarqand</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_samarkand">Yuqori Turkman, O'zbekiston ko'chasi, 158-uy</span></p>
+                        <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_samarkand">+998 90 657 05 00</span></p>
+                        <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_samarkand">Dushanba-Juma: 9:00 - 18:00</span></p>
                     </div>
-
-                    <div class="location-card" data-region="samarkand">
-                        <h3>Samarqand</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> Yuqori Turkman, O'zbekiston ko'chasi, 158-uy</p>
-                        <p><i class="fas fa-phone"></i> +998 90 657 05 00</p>
-                        <p><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</p>
+                   <div class="location-card " data-region="tashkent">
+                        <h3 class="i18n" data-i18n="location_tashkent">Toshkent</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_tashkent">Mirzo Ulug'bek, Sayram 7-proyezd, 50-uy</span></p>
+                        <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_tashkent">+998 90 123 45 67</span></p>
+                        <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_tashkent">Dushanba-Juma: 9:00 - 18:00</span></p>
                     </div>
 
                     <div class="location-card" data-region="fergana">
-                        <h3>Farg'ona</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> Urta Shura MFY, Charogon ko'chasi, 21-uy</p>
-                        <p><i class="fas fa-phone"></i> +998 90 937 06 04</p>
-                        <p><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</p>
+                        <h3 class="i18n" data-i18n="location_fergana">Farg'ona</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_fergana">Urta Shura MFY, Charogon ko'chasi, 21-uy</span></p>
+                        <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_fergana">+998 90 937 06 04</span></p>
+                        <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_fergana">Dushanba-Juma: 9:00 - 18:00</span></p>
                     </div>
 
                     <div class="location-card" data-region="urgench">
-                        <h3>Urganch</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> Ashxobod MFY, Sanoatchilar ko'chasi, 12 D-uy</p>
-                        <p><i class="fas fa-phone"></i> +998 90 123 45 68</p>
-                        <p><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</p>
+                        <h3 class="i18n" data-i18n="location_urgench">Urganch</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_urgench">Ashxobod MFY, Sanoatchilar ko'chasi, 12 D-uy</span></p>
+                        <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_urgench">+998 90 123 45 68</span></p>
+                        <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_urgench">Dushanba-Juma: 9:00 - 18:00</span></p>
                     </div>
                 </div>
             </div>
@@ -481,18 +480,6 @@
                         <li><a href="#products" data-i18n="products">Mahsulotlar</a></li>
                         <li><a href="#services" data-i18n="services">Xizmatlar</a></li>
                         <li><a href="#contact" data-i18n="contact">Aloqa</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h3 data-i18n="footer_products">Mahsulotlar</h3>
-                    <ul>
-                        <li><a href="#" data-i18n="antibiotics">Antibiotiklar</a></li>
-                        <li><a href="#" data-i18n="cardiovascular">Yurak-damar</a></li>
-                        <li><a href="#" data-i18n="neurology">Nevrologiya</a></li>
-                        <li><a href="#" data-i18n="oncology">Onkologiya</a></li>
-                        <li><a href="#" data-i18n="vitamins">Vitaminlar</a></li>
-                        <li><a href="#" data-i18n="all_products">Barcha mahsulotlar</a></li>
                     </ul>
                 </div>
 

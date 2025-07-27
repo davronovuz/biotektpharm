@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Language data
     const translations = {
         uz: {
+            history: "Tarix",
             home: "Bosh sahifa",
             about: "Kompaniya",
             products: "Mahsulotlar",
@@ -91,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
             our_products: "Mahsulotlarimiz",
             phone: "Telefon",
             email: "Elektron pochta",
-            address: "Manzil",
+            locations: "Manzillar",
             address_text: "Samarqand tumani Yuqori Turkman, O'zbekiston ko'chasi, 158-uy",
             working_hours: "Ish vaqti",
             working_hours_text: "Dushanba-Juma: 9:00 - 18:00",
@@ -133,13 +134,78 @@ document.addEventListener("DOMContentLoaded", function() {
             service3_text: "Barcha bojxona protseduralarini amalga oshirish",
             service4_title: "Sifat nazorati",
             service4_text: "Har bir partiyani qat'iy sifat nazoratidan o'tkazish",
+            view_all: "Barcha mahsulotlarni ko'rish",
+            service5_title: "Sklad xizmatlari",
+            service5_text: "15,000 m² maydondagi zamonaviy omborlarimiz",
+            service6_title: "24/7 mijozlar uchun qo'llab-quvvatlash",
+            service6_text: "Har qanday savolingizga javob beramiz",
+            service7_title: "Dorixonalar tarmog'i",
+            service7_text: "Samarqand shahrida 15 dan ziyod dorixonalar",
             partners_title: "Hamkorlarimiz",
             partners_subtitle: "Biz butun dunyo bo'ylab etakchi farmatsevtika kompaniyalari bilan ishlaymiz",
             sales: "Sotuv bo'yicha",
             partnership: "Hamkorlik",
-            information: "Ma'lumot"
+            information: "Ma'lumot",
+            mission_title: "Missiyamiz",
+            mission_text: "O'zbekiston aholisiga sifatli va arzon narxdagi dori-darmonlarni yetkazib berish",
+            vision_title: "Ko'zlagan maqsadimiz",
+            vision_text: "Mintaqadagi yirik va ishonchli farmatsevtika distribyutori bo'lish",
+            values_title: "Qadriyatlarimiz",
+            values_text: "Ishonchlilik, sifat, mijozlar uchun qadrlash",
+            about_content_title: "BIOTEK FARM haqida",
+            about_content_text: "2017 yilda tashkil etilgan BIOTEK FARM O'zbekiston farmatsevtika bozorining yetakchi distribyutorlaridan biridir. Biz 5000 dan ortiq dori vositalari, 3200 dan ortiq faol mijozlar va 20 dan ortiq xalqaro hamkorlarga ega bo'lgan ishonchli kompaniyamiz.",
+            history_title: "Bizning tarix",
+            history_subtitle: "20 yillik muvaffaqiyatli safar",
+
+            timeline1_title: "2005-yil Yumax Farm tashkil etildi",
+            timeline1_text: "Samarqandda birinchi dorixonani ochdik",
+
+            timeline2_title: "2012-yil Ulgurji savdoga o'tish",
+            timeline2_text: "4 ta viloyatda ombor va ofislar ochdik",
+
+            timeline3_title: "2017-yil BIOTEK FARM asos solindi",
+            timeline3_text: "Xalqaro distribyutorlik faoliyatini boshladik",
+
+            timeline4_title: "2019-yil MaxMed Group tashkil etildi",
+            timeline4_text: "40 ta malakali xodimli promotsion kompaniya",
+
+            timeline5_title: "2021-2024 -yillar Mintaqaviy kengayish",
+            timeline5_text: "Toshkent, Farg'ona va Urganchda yangi ofislar",
+
+            timeline6_title: "Bugun Yetakchi 10 distribyutor",
+            timeline6_text: "O'zbekistonning yirik farmatsevtika distribyutorlaridan biri",
+            locations_title: "Bizning joylashuvlar",
+            locations_subtitle: "Butun O'zbekiston bo'ylab ofis va omborlarimiz",
+            location_tashkent: "Toshkent",
+            address_tashkent: "Mirzo Ulug'bek, Sayram 7-proyezd, 50-uy",
+            phone_tashkent: "+998 90 123 45 67",
+            hours_tashkent: "Dushanba-Juma: 9:00 - 18:00",
+
+            location_samarkand: "Samarqand",
+            address_samarkand: "Yuqori Turkman, O'zbekiston ko'chasi, 158-uy",
+            phone_samarkand: "+998 90 657 05 00",
+            hours_samarkand: "Dushanba-Juma: 9:00 - 18:00",
+
+            location_fergana: "Farg'ona",
+            address_fergana: "Urta Shura MFY, Charogon ko'chasi, 21-uy",
+            phone_fergana: "+998 90 937 06 04",
+            hours_fergana: "Dushanba-Juma: 9:00 - 18:00",
+
+            location_urgench: "Urganch",
+            address_urgench: "Ashxobod MFY, Sanoatchilar ko'chasi, 12 D-uy",
+            phone_urgench: "+998 90 123 45 68",
+            hours_urgench: "Dushanba-Juma: 9:00 - 18:00",
+            contact_title: "Biz bilan bog'laning",
+            contact_subtitle: "Har qanday savol yoki taklif uchun biz bilan bog'laning",
+            address_text: "Samarqand, Yuqori Turkman, ko'chasi, 158-uy",
+            privacy_policy: "Maxfiylik siyosati",
+            terms: "Foydalanish shartlari"
+
+
         },
         ru: {
+            history: "История",
+            locations: "Филиалы",
             home: "Главная",
             about: "Компания",
             products: "Продукты",
@@ -193,13 +259,81 @@ document.addEventListener("DOMContentLoaded", function() {
             service3_text: "Оформление всех таможенных процедур",
             service4_title: "Контроль качества",
             service4_text: "Строгий контроль качества каждой партии",
+            view_all: "Посмотреть все продукты",
+            service5_title: "Складские услуги",
+            service5_text: "Современные склады площадью 15 000 м²",
+            service6_title: "Поддержка клиентов 24/7",
+            service6_text: "Отвечаем на любые ваши вопросы",
+            service7_title: "Сеть аптек",
+            service7_text: "Более 15 аптек в городе Самарканд",
             partners_title: "Наши партнеры",
             partners_subtitle: "Мы работаем с ведущими фармацевтическими компаниями по всему миру",
             sales: "Продажи",
             partnership: "Партнерство",
-            information: "Информация"
+            information: "Информация",
+            mission_title: "Наша миссия",
+            mission_text: "Обеспечить население Узбекистана качественными и доступными лекарственными средствами",
+            vision_title: "Наше видение",
+            vision_text: "Стать крупнейшим и надежным фармацевтическим дистрибьютором в регионе",
+            values_title: "Наши ценности",
+            values_text: "Надежность, качество, забота о клиентах",
+            about_content_title: "О BIOTEK FARM",
+            about_content_text: "Основанная в 2017 году компания BIOTEK FARM является одним из ведущих дистрибьюторов на фармацевтическом рынке Узбекистана. Мы — надежная компания с более чем 5000 наименований лекарств, 3200 активных клиентов и более 20 международных партнеров.",
+            history_title: "Наша история",
+            history_subtitle: "20 лет успешного пути",
+
+            timeline1_title: "2005 год — Основана Yumax Farm",
+            timeline1_text: "Мы открыли первую аптеку в Самарканде",
+
+            timeline2_title: "2012 год — Переход на оптовую торговлю",
+            timeline2_text: "Открыли склады и офисы в 4 регионах",
+
+            timeline3_title: "2017 год — Основана BIOTEK FARM",
+            timeline3_text: "Начали международную дистрибьюторскую деятельность",
+
+            timeline4_title: "2019 год — Основана MaxMed Group",
+            timeline4_text: "Промоционная компания с 40 квалифицированными сотрудниками",
+
+            timeline5_title: "2021–2024 годы — Региональное расширение",
+            timeline5_text: "Новые офисы в Ташкенте, Фергане и Ургенче",
+
+            timeline6_title: "Сегодня — Топ-10 дистрибьюторов",
+            timeline6_text: "Одна из крупнейших фармацевтических дистрибьюторов в Узбекистане",
+            locations_title: "Наши локации",
+            locations_subtitle: "Офисы и склады по всему Узбекистану",
+            location_tashkent: "Ташкент",
+            address_tashkent: "Мирзо Улугбек, Сайрам 7-проезд, дом 50",
+            phone_tashkent: "+998 90 123 45 67",
+            hours_tashkent: "Понедельник-Пятница: 9:00 - 18:00",
+
+            location_samarkand: "Самарканд",
+            address_samarkand: "Юкори Туркман, улица Узбекистана, дом 158",
+            phone_samarkand: "+998 90 657 05 00",
+            hours_samarkand: "Понедельник-Пятница: 9:00 - 18:00",
+
+            location_fergana: "Фергана",
+            address_fergana: "Урта Шура МФЙ, улица Чарогон, дом 21",
+            phone_fergana: "+998 90 937 06 04",
+            hours_fergana: "Понедельник-Пятница: 9:00 - 18:00",
+
+            location_urgench: "Ургенч",
+            address_urgench: "Ашхабад МФЙ, улица Саночилар, дом 12Д",
+            phone_urgench: "+998 90 123 45 68",
+            hours_urgench: "Понедельник-Пятница: 9:00 - 18:00",
+            contact_title: "Связаться с нами",
+            contact_subtitle: "Свяжитесь с нами по любому вопросу или предложению",
+            address_text: "Самарканд, Юкори Туркман, улица , дом 158",
+            privacy_policy: "Политика конфиденциальности",
+            terms: "Условия использования"
+
+
+
         },
         en: {
+            about_content_title: "О BIOTEK FARM",
+            about_content_text: "Основанная в 2017 году компания BIOTEK FARM является одним из ведущих дистрибьюторов на фармацевтическом рынке Узбекистана. Мы — надежная компания с более чем 5000 наименований лекарств, 3200 активных клиентов и более 20 международных партнеров.",
+            history: "History",
+            locations: "Locations",
             home: "Home",
             about: "Company",
             products: "Products",
@@ -257,7 +391,76 @@ document.addEventListener("DOMContentLoaded", function() {
             partners_subtitle: "We work with leading pharmaceutical companies worldwide",
             sales: "Sales",
             partnership: "Partnership",
-            information: "Information"
+            information: "Information",
+            mission_title: "Our Mission",
+            mission_text: "To provide the population of Uzbekistan with high-quality and affordable medicines",
+            vision_title: "Our Vision",
+            vision_text: "To become a leading and trusted pharmaceutical distributor in the region",
+            values_title: "Our Values",
+            values_text: "Reliability, quality, customer care",
+            about_content_title: "About BIOTEK FARM",
+            about_content_text: "Founded in 2017, BIOTEK FARM is one of the leading distributors in Uzbekistan’s pharmaceutical market. We are a trusted company with over 5,000 medicines, 3,200 active clients, and more than 20 international partners.",
+            history_title: "Our History",
+            history_subtitle: "20 years of successful journey",
+
+            timeline1_title: "2005 — Yumax Farm was founded",
+            timeline1_text: "We opened our first pharmacy in Samarkand",
+
+            timeline2_title: "2012 — Transition to wholesale",
+            timeline2_text: "Opened warehouses and offices in 4 regions",
+
+            timeline3_title: "2017 — BIOTEK FARM was established",
+            timeline3_text: "Started international distribution operations",
+
+            timeline4_title: "2019 — MaxMed Group was established",
+            timeline4_text: "Promotional company with 40 qualified employees",
+
+            timeline5_title: "2021–2024 — Regional expansion",
+            timeline5_text: "New offices in Tashkent, Fergana, and Urgench",
+
+            timeline6_title: "Today — Top 10 Distributor",
+            timeline6_text: "One of the largest pharmaceutical distributors in Uzbekistan",
+            view_all: "View all products",
+
+            service5_title: "Warehouse Services",
+            service5_text: "Modern warehouses covering 15,000 m²",
+
+            service6_title: "24/7 Customer Support",
+            service6_text: "We answer any of your questions",
+
+            service7_title: "Pharmacy Network",
+            service7_text: "Over 15 pharmacies in Samarkand city",
+            locations_title: "Our Locations",
+            locations_subtitle: "Offices and warehouses across Uzbekistan",
+            location_tashkent: "Tashkent",
+            address_tashkent: "Mirzo Ulugbek, Sayram 7th drive, house 50",
+            phone_tashkent: "+998 90 123 45 67",
+            hours_tashkent: "Mon–Fri: 9:00 AM - 6:00 PM",
+
+            location_samarkand: "Samarkand",
+            address_samarkand: "Yuqori Turkman, Uzbekistan street, house 158",
+            phone_samarkand: "+998 90 657 05 00",
+            hours_samarkand: "Mon–Fri: 9:00 AM - 6:00 PM",
+
+            location_fergana: "Fergana",
+            address_fergana: "Urta Shura MFY, Charogon street, house 21",
+            phone_fergana: "+998 90 937 06 04",
+            hours_fergana: "Mon–Fri: 9:00 AM - 6:00 PM",
+
+            location_urgench: "Urgench",
+            address_urgench: "Ashxobod MFY, Sanoatchilar street, house 12 D",
+            phone_urgench: "+998 90 123 45 68",
+            hours_urgench: "Mon–Fri: 9:00 AM - 6:00 PM",
+            contact_title: "Contact Us",
+            contact_subtitle: "Reach out to us for any questions or suggestions",
+            address_text: "Samarkand, Yukori Turkman, Street, House 158",
+            privacy_policy: "Privacy Policy",
+            terms: "Terms of Use"
+
+
+
+
+
         }
     };
 
