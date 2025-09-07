@@ -732,3 +732,267 @@ document.addEventListener("DOMContentLoaded", function() {
     // ===== Current Year =====
     document.getElementById("year").textContent = new Date().getFullYear();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 3D sahna yaratish
+    const container = document.getElementById('3d-map-canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    // Xarita geometriyasi
+    const geometry = new THREE.PlaneGeometry(10, 10);
+    const texture = new THREE.TextureLoader().load("{% static 'images/uz-texture.jpg' %}");
+    const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+    const map = new THREE.Mesh(geometry, material);
+    scene.add(map);
+
+    // Yoritish
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(0, 1, 1);
+    scene.add(directionalLight);
+
+    // Kamera pozitsiyasi
+    camera.position.z = 5;
+
+    // Filiallar joylashuvi
+    const branchPositions = {
+        tashkent: { x: -2, y: 3, z: 0 },
+        samarkand: { x: 1, y: 1, z: 0 },
+        fergana: { x: 3, y: 2, z: 0 },
+        urgench: { x: 2, y: -2, z: 0 }
+    };
+
+    // Filial markerlari
+    Object.keys(branchPositions).forEach(branch => {
+        const markerGeometry = new THREE.SphereGeometry(0.1, 32, 32);
+        const markerMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const marker = new THREE.Mesh(markerGeometry, markerMaterial);
+        marker.position.set(branchPositions[branch].x, branchPositions[branch].y, branchPositions[branch].z);
+        scene.add(marker);
+    });
+
+    // Animatsiya
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    // Filiallarni tanlash
+    document.querySelectorAll('.location-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            const region = this.dataset.region;
+            // Tanlangan filialga animatsiya
+        });
+    });
+
+    // O'lcham o'zgarishiga moslashuv
+    window.addEventListener('resize', function() {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+});
+
+
+// Initialize Google Maps
+function initMap() {
+    // Default to Samarkand coordinates
+    const defaultLocation = { lat: 39.6542, lng: 66.9597 };
+
+    // Create the map
+    const map = new google.maps.Map(document.getElementById("google-map"), {
+        zoom: 12,
+        center: defaultLocation,
+        styles: [
+            {
+                "featureType": "administrative",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#444444"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#f2f2f2"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 45
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#c9e7ff"
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            }
+        ]
+    });
+
+    // Create markers for each location
+    const markers = [];
+    const locationCards = document.querySelectorAll('.location-card');
+
+    locationCards.forEach(card => {
+        const lat = parseFloat(card.dataset.lat);
+        const lng = parseFloat(card.dataset.lng);
+        const region = card.dataset.region;
+
+        const marker = new google.maps.Marker({
+            position: { lat, lng },
+            map: map,
+            title: card.querySelector('h3').textContent,
+            icon: {
+                url: `https://maps.google.com/mapfiles/ms/icons/red-dot.png`,
+                scaledSize: new google.maps.Size(32, 32)
+            }
+        });
+
+        markers.push(marker);
+
+        // Add info window
+        const infoWindow = new google.maps.InfoWindow({
+            content: `
+                <div style="padding: 10px;">
+                    <h3 style="margin: 0 0 5px; color: #3a86ff;">${card.querySelector('h3').textContent}</h3>
+                    <p style="margin: 0 0 5px;"><i class="fas fa-map-marker-alt"></i> ${card.querySelectorAll('p')[0].textContent}</p>
+                    <p style="margin: 0 0 5px;"><i class="fas fa-phone"></i> ${card.querySelectorAll('p')[1].textContent}</p>
+                    <p style="margin: 0;"><i class="fas fa-clock"></i> ${card.querySelectorAll('p')[2].textContent}</p>
+                </div>
+            `
+        });
+
+        marker.addListener('click', () => {
+            infoWindow.open(map, marker);
+            // Highlight corresponding card
+            highlightCard(region);
+        });
+
+        // Card click handler
+        card.addEventListener('click', () => {
+            // Center map on this location
+            map.panTo({ lat, lng });
+            map.setZoom(14);
+
+            // Open info window
+            infoWindow.open(map, marker);
+
+            // Highlight this card
+            highlightCard(region);
+        });
+    });
+
+    // Function to highlight the selected card
+    function highlightCard(region) {
+        locationCards.forEach(card => {
+            card.classList.remove('active');
+            if (card.dataset.region === region) {
+                card.classList.add('active');
+                // Scroll to this card if not fully visible
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+    }
+
+    // Intersection Observer for scroll-triggered map updates
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    const lat = parseFloat(card.dataset.lat);
+                    const lng = parseFloat(card.dataset.lng);
+
+                    // Smoothly pan to this location
+                    map.panTo({ lat, lng });
+
+                    // Highlight this card
+                    highlightCard(card.dataset.region);
+                }
+            });
+        },
+        {
+            threshold: 0.5, // Trigger when 50% of card is visible
+            rootMargin: '0px 0px -50% 0px' // Adjust viewport area
+        }
+    );
+
+    // Observe all location cards
+    locationCards.forEach(card => {
+        observer.observe(card);
+    });
+}
+
+// Load Google Maps API
+function loadGoogleMaps() {
+    const script = document.createElement('script');
+    script.src = https://maps.googleapis.com/maps/api/js?key=AIzaSyBmo3O_UNMmmuyQOL2U4CCO1W2VDCLLqmA&callback=initMap;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+}
+
+// Load the map when the page is ready
+document.addEventListener('DOMContentLoaded', loadGoogleMaps);

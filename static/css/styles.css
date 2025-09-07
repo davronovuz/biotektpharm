@@ -494,116 +494,73 @@ section {
 .menu-toggle.active .bar:nth-child(3) {
   transform: translateY(-9px) rotate(-45deg);
 }
+
 /* === HERO SECTION === */
 .hero {
-  background-image: url('../images/hero_bg.jpg');
+  position: relative;
+  width: 100%;
+  height: 100vh; /* butun ekran */
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 12rem 0;
-  position: relative;
+  color: #fff;
   overflow: hidden;
+  padding: 0 1rem;
 }
 
-/* Overlay (orqa fon ustidan qoramtir qatlam) */
-.hero::before {
-  content: "";
+/* qoramtir qatlam */
+.hero .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0,0,0,0.55);
   z-index: 1;
 }
 
-/* Kontent konteyner */
-.hero .container {
+.hero-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-/* Sarlavha (h1) – harakatlanuvchi, jonli */
 .hero h1 {
-  font-size: 4.5rem;
+  font-size: 3.5rem;
+  font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  fon-weight :900;
-  opacity:1;
-  color: white;
   text-transform: uppercase;
-  animation: pulseText 2s ease-in-out infinite;
+  color: #fff;
+  animation: fadeInDown 1.5s ease forwards;
 }
 
-/* Sarlavha ichidagi so‘z (span) – bounce effekt */
-.hero h1 span {
-  color: #3a86ff;
-  animation: bounceText 2s ease-in-out infinite;
-  opacity:1;
-}
-
-/* Subtitle – suzuvchi animatsiya */
 .hero .subtitle {
   font-size: 1.25rem;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  fon-weight :600;
-  color: rgba(255, 255, 255, 0.9);
-  animation: floatText 4s ease-in-out infinite;
+  color: #f1f1f1;
+  line-height: 1.6;
+  animation: fadeInUp 2s ease forwards;
 }
 
-/* CTA tugmalari joylashuvi */
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
+/* Animatsiyalar */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-50px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* RESPONSIVE USLUBLAR */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .hero {
-    padding: 8rem 0;
-    background-attachment: scroll;
-  }
-
   .hero h1 {
-    font-size: 3.5rem;
+    font-size: 2.2rem;
   }
-
   .hero .subtitle {
     font-size: 1rem;
-  }
-}
-
-/* === ANIMATSIYALAR === */
-@keyframes pulseText {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.9);
-    opacity: 0.98;
-  }
-}
-
-@keyframes bounceText {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes floatText {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
   }
 }
 
@@ -1167,6 +1124,7 @@ section {
 .partners-content p {
   font-size: 1.1rem;
   color: #4b5563; /* gray-600 */
+  margin-bottom: 1rem;
 }
 
 .partners-img {
@@ -1183,64 +1141,83 @@ section {
 
 
 /* ===== Locations Section ===== */
+/* Locations Section Styles */
 .map-container {
-  display: flex;
-  gap: 3rem;
-  align-items: center;
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .map {
-  flex: 1;
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-
-.map img {
-  width: 100%;
-  height: auto;
+    flex: 2;
+    height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .locations-info {
-  flex: 1;
+    flex: 1;
+    overflow-y: auto;
+    max-height: 500px;
+    padding-right: 10px;
 }
 
 .location-card {
-  padding: 1.5rem;
-  border-radius: var(--radius-md);
-  background-color: var(--white);
-  box-shadow: var(--shadow-sm);
-  margin-bottom: 1rem;
-  opacity: 0.7;
-  transition: var(--transition);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+}
+
+.location-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .location-card.active {
-  opacity: 1;
-  box-shadow: var(--shadow-md);
-  border-left: 4px solid var(--primary);
+    border-left: 3px solid #3a86ff;
+    background-color: #f8faff;
+    box-shadow: 0 5px 15px rgba(58, 134, 255, 0.15);
 }
 
 .location-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-  color: var(--primary);
+    color: #3a86ff;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
 }
 
 .location-card p {
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
 }
 
 .location-card i {
-  color: var(--primary);
-  width: 20px;
-  text-align: center;
+    color: #3a86ff;
+    width: 20px;
+    text-align: center;
 }
 
+/* Responsive styles */
+@media (max-width: 768px) {
+    .map-container {
+        flex-direction: column;
+    }
+
+    .map {
+        height: 350px;
+    }
+
+    .locations-info {
+        max-height: none;
+    }
+}
 /* ===== Testimonials Section ===== */
 .testimonials-slider {
   display: flex;

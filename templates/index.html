@@ -12,7 +12,6 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -52,7 +51,6 @@
                 <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
                 <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya</a></li>
                 <li><a href="#history" class="nav-link" data-i18n="history">Tarix</a></li>
-                <li><a href="#products" class="nav-link" data-i18n="products">Mahsulotlar</a></li>
                 <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>
                 <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
                 <li><a href="#locations" class="nav-link" data-i18n="locations">Manzil</a></li>
@@ -61,17 +59,19 @@
         </div>
     </nav>
 
-<!-- Hero Section (YANGI VERSIYA) -->
-<section class="hero" id="home">
-    <div class="hero-particles" id="particles-js"></div>
+<!-- Hero Section -->
+<section class="hero" id="home"
+         style="background-image: url('{{ hero.background.url }}');">
+    <div class="overlay"></div>
     <div class="container">
         <div class="hero-content">
-            <h1 data-i18n="hero_title">Sog'liq uchun <span>ishonchli</span> yechimlar</h1>
-            <p class="subtitle" data-i18n="hero_subtitle">20 yillik tajribaga ega O'zbekistonning yetakchi farmatsevtika distribyutori</p>
+            <h1>{{ hero.title }}</h1>
+            <p class="subtitle">{{ hero.subtitle }}</p>
         </div>
-        <!-- Butilka qismi BUTUNLAY O'CHIRILDI -->
     </div>
 </section>
+
+
 
     <!-- About Section -->
     <section class="about" id="about">
@@ -178,43 +178,6 @@
     </section>
 
 
-<!-- Products Section -->
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="products_title">Mahsulotlarimiz</h2>
-                <p data-i18n="products_subtitle">Keng qirrali farmatsevtika mahsulotlari</p>
-            </div>
-
-
-        <div class="products-list-grid">
-            {% for product in products %}
-            <div class="product-list-card">
-                <div class="product-list-img-container">
-                    <img src="{{ product.image.url }}" alt="{{ product.title }}" class="product-list-img">
-                </div>
-                <div class="product-list-info">
-                    <span class="product-list-category">{{ product.category.name }}</span>
-                    <h3 class="product-list-title">{{ product.title }}</h3>
-                    <p class="product-list-description">{{ product.description|truncatechars:100 }}</p>
-
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-
-            <div class="view-all">
-                <a href="{% url 'product_list' %}" class="btn btn-outline" data-i18n="view_all">Barcha mahsulotlarni ko'rish</a>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
@@ -298,59 +261,50 @@
     </section>
 
 
-    <!-- Locations Section -->
-    <section class="locations" id="locations">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="locations_title">Bizning joylashuvlar</h2>
-                <p data-i18n="locations_subtitle">Butun O'zbekiston bo'ylab ofis va omborlarimiz</p>
+ <section class="locations" id="locations">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-i18n="locations_title">Bizning joylashuvlar</h2>
+            <p data-i18n="locations_subtitle">Butun O'zbekiston bo'ylab ofis va omborlarimiz</p>
+        </div>
+
+        <div class="map-container">
+            <div class="map" id="google-map">
+                <video src="{% static 'images/MAP.mp4' %}" autoplay loop muted style="width: 100%; height: 100%; object-fit: cover;"></video>
             </div>
 
-            <div class="map-container">
-                <div class="map" id="uzbekistan-map">
-                    <!-- SVG map of Uzbekistan with interactive regions -->
-                    <img src="{% static 'images/uz.svg' %}" alt="Uzbekistan Map" usemap="#regions-map">
-                    <map name="regions-map">
-                        <area shape="circle" coords="150,200,30" href="#" alt="Toshkent" data-region="tashkent">
-                        <area shape="circle" coords="250,300,30" href="#" alt="Samarqand" data-region="samarkand">
-                        <area shape="circle" coords="350,250,30" href="#" alt="Farg'ona" data-region="fergana">
-                        <area shape="circle" coords="400,400,30" href="#" alt="Urganch" data-region="urgench">
-                    </map>
+            <div class="locations-info">
+                <div class="location-card active" data-lat="39.6542" data-lng="66.9597" data-region="samarkand">
+                    <h3 class="i18n" data-i18n="location_samarkand">Samarqand</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_samarkand">Yuqori Turkman, O'zbekiston ko'chasi, 158-uy</span></p>
+                    <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_samarkand">+998 90 657 05 00</span></p>
+                    <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_samarkand">Dushanba-Juma: 9:00 - 18:00</span></p>
                 </div>
-
-                <div class="locations-info">
-                    <div class="location-card active" data-region="samarkand">
-                        <h3 class="i18n" data-i18n="location_samarkand">Samarqand</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_samarkand">Yuqori Turkman, O'zbekiston ko'chasi, 158-uy</span></p>
-                        <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_samarkand">+998 90 657 05 00</span></p>
-                        <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_samarkand">Dushanba-Juma: 9:00 - 18:00</span></p>
-                    </div>
-                   <div class="location-card " data-region="tashkent">
-                        <h3 class="i18n" data-i18n="location_tashkent">Toshkent</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_tashkent">Mirzo Ulug'bek, Sayram 7-proyezd, 50-uy</span></p>
-                        <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_tashkent">+998 90 123 45 67</span></p>
-                        <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_tashkent">Dushanba-Juma: 9:00 - 18:00</span></p>
-                    </div>
-
-                    <div class="location-card" data-region="fergana">
-                        <h3 class="i18n" data-i18n="location_fergana">Farg'ona</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_fergana">Urta Shura MFY, Charogon ko'chasi, 21-uy</span></p>
-                        <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_fergana">+998 90 937 06 04</span></p>
-                        <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_fergana">Dushanba-Juma: 9:00 - 18:00</span></p>
-                    </div>
-
-                    <div class="location-card" data-region="urgench">
-                        <h3 class="i18n" data-i18n="location_urgench">Urganch</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_urgench">Ashxobod MFY, Sanoatchilar ko'chasi, 12 D-uy</span></p>
-                        <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_urgench">+998 90 123 45 68</span></p>
-                        <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_urgench">Dushanba-Juma: 9:00 - 18:00</span></p>
-                    </div>
+                <div class="location-card" data-lat="41.3111" data-lng="69.2797" data-region="tashkent">
+                    <h3 class="i18n" data-i18n="location_tashkent">Toshkent</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_tashkent">Mirzo Ulug'bek, Sayram 7-proyezd, 50-uy</span></p>
+                    <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_tashkent">+998 90 123 45 67</span></p>
+                    <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_tashkent">Dushanba-Juma: 9:00 - 18:00</span></p>
+                </div>
+                <div class="location-card" data-lat="40.3864" data-lng="71.7864" data-region="fergana">
+                    <h3 class="i18n" data-i18n="location_fergana">Farg'ona</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_fergana">Urta Shura MFY, Charogon ko'chasi, 21-uy</span></p>
+                    <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_fergana">+998 90 937 06 04</span></p>
+                    <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_fergana">Dushanba-Juma: 9:00 - 18:00</span></p>
+                </div>
+                <div class="location-card" data-lat="41.5347" data-lng="60.6236" data-region="urgench">
+                    <h3 class="i18n" data-i18n="location_urgench">Urganch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span class="i18n" data-i18n="address_urgench">Ashxobod MFY, Sanoatchilar ko'chasi, 12 D-uy</span></p>
+                    <p><i class="fas fa-phone"></i> <span class="i18n" data-i18n="phone_urgench">+998 90 123 45 68</span></p>
+                    <p><i class="fas fa-clock"></i> <span class="i18n" data-i18n="hours_urgench">Dushanba-Juma: 9:00 - 18:00</span></p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
+    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-header">

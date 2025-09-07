@@ -1,6 +1,11 @@
 from django.contrib import admin
-from .models import Contact
-from .models import Product, ProductCategory
+from .models import HeroSection,Contact
+
+@admin.register(HeroSection)
+class HeroSectionAdmin(admin.ModelAdmin):
+    list_display = ("title", "is_active")
+    list_editable = ("is_active",)
+
 
 
 @admin.register(Contact)
@@ -9,17 +14,6 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(ProductCategory)
-class ProductCategoryAdmin(admin.ModelAdmin):
-    list_display = ("name",)
-
-
-
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ("title", "category", "is_featured", "created_at")
-    list_filter = ("category", "is_featured", "created_at")
-    search_fields = ("title", "description")
 
 
 
