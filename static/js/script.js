@@ -70,87 +70,12 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-// ===== LANGUAGE (Navbar variant) =====
 
-// DOM
-const langItem  = document.querySelector('.nav-item.lang');
-const langBtn   = document.getElementById('langBtn');
-const langMenu  = document.getElementById('langMenu');
-const currentEl = document.getElementById('currentLang');
-const flagEl    = langBtn ? langBtn.querySelector('.flag') : null;
-
-// Lang -> flag kodi (CDN uchun)
-function flagCode(lang){
-  if (lang === 'en') return 'gb';   // English uchun GB bayrog‘i
-  return lang;                      // 'uz' -> uz, 'ru' -> ru
-}
-
-// Asosiy o‘zgartirish funksiyasi
-function changeLanguage(lang){
-  if(!translations[lang]) return;
-
-  // 1) html lang attr
-  document.documentElement.lang = lang;
-
-  // 2) tugma yozuvi va bayroq
-  if (currentEl) currentEl.textContent = lang.toUpperCase();
-  if (flagEl) {
-    const code = flagCode(lang);
-    flagEl.src = `https://flagcdn.com/${code}.svg`;
-    flagEl.alt = lang.toUpperCase();
-  }
-
-  // 3) matnlarni yangilash
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key = el.getAttribute('data-i18n');
-    const val = translations[lang][key];
-    if (!val) return;
-    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-      el.placeholder = val;
-    } else {
-      el.innerHTML = val;
-    }
-  });
-
-  // 4) saqlash
-  localStorage.setItem('preferredLang', lang);
-
-  // 5) mahsulot kartalaridagi kategoriya yozuvlarini ham moslash
-  const cur = document.documentElement.lang;
-  document.querySelectorAll('.product-category').forEach(el=>{
-    const k = el.getAttribute('data-i18n');
-    if (translations[cur] && translations[cur][k]) {
-      el.textContent = translations[cur][k];
-    }
-  });
-}
-
-// Dropdown och/yop
-if (langBtn && langItem){
-  langBtn.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    langItem.classList.toggle('open');
-  });
-
-  // Menyudagi tanlashlar
-  if (langMenu){
-    langMenu.querySelectorAll('li').forEach(li=>{
-      li.addEventListener('click', ()=>{
-        const lang = (li.getAttribute('data-lang') || 'uz').toLowerCase();
-        changeLanguage(lang);
-        langItem.classList.remove('open');
-      });
-    });
-  }
-
-  // Tashqariga bosilganda yopish
-  document.addEventListener('click', ()=> langItem.classList.remove('open'));
-}
-
-// Boshlang‘ich til
-const savedLang = (localStorage.getItem('preferredLang') || 'uz').toLowerCase();
-changeLanguage(savedLang);
-
+    // ===== Language Switcher =====
+    const languageSwitcher = document.querySelector(".language-switcher");
+    const selectedLanguage = document.querySelector(".selected-language");
+    const languageDropdown = document.querySelector(".language-dropdown");
+    const currentLang = document.getElementById("current-lang");
 
     // Language data
     const translations = {
