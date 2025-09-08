@@ -75,7 +75,7 @@
 
 
 
-  <!-- About Section -->
+<!-- About Section -->
 <section class="about" id="about">
   <div class="container">
     <div class="section-header">
@@ -86,30 +86,36 @@
     <div class="about-grid">
       {% for f in features %}
         <div class="about-card">
-          <!-- Dumaloq ikon badge -->
+          <!-- Dumaloq icon badge -->
           <div class="card-icon">
-            {% if f.icon_image %}
-              <img src="{{ f.icon_image.url }}" alt="{{ f.title }}">
-            {% elif f.icon_class %}
-              <i class="{{ f.icon_class }}"></i>
+            {% if f.icon_type == 'img' and f.icon_image %}
+              <img src="{{ f.icon_image.url }}" alt="{{ f.title_uz|default:'icon' }}">
             {% else %}
-              <i class="fas fa-circle"></i>
+              <i class="{{ f.fa_class|default:'fas fa-circle' }}"></i>
             {% endif %}
           </div>
 
-          <h3 class="card-title">{{ f.title }}</h3>
-          <p class="card-text">{{ f.text }}</p>
+          <!-- Sarlavha va matn — 3 tilda data-* ga qo'yamiz -->
+          <h3
+            class="card-title i18n-db"
+            data-uz="{{ f.title_uz }}"
+            data-ru="{{ f.title_ru|default:f.title_uz }}"
+            data-en="{{ f.title_en|default:f.title_uz }}"
+          >{{ f.title_uz }}</h3>
 
-          <!-- Katta xira watermark ikon/rasm (figma-style) -->
+          <p
+            class="card-text i18n-db"
+            data-uz="{{ f.text_uz }}"
+            data-ru="{{ f.text_ru|default:f.text_uz }}"
+            data-en="{{ f.text_en|default:f.text_uz }}"
+          >{{ f.text_uz }}</p>
+
+          <!-- Katta, xira watermark (Figma uslubi) -->
           <span class="card-watermark">
-            {% if f.watermark_image %}
-              <img src="{{ f.watermark_image.url }}" alt="">
-            {% elif f.icon_image %}
+            {% if f.icon_type == 'img' and f.icon_image %}
               <img src="{{ f.icon_image.url }}" alt="">
-            {% elif f.icon_class %}
-              <i class="{{ f.icon_class }}"></i>
             {% else %}
-              <i class="fas fa-circle"></i>
+              <i class="{{ f.fa_class|default:'fas fa-circle' }}"></i>
             {% endif %}
           </span>
         </div>
@@ -118,8 +124,10 @@
       {% endfor %}
     </div>
 
+    <!-- sizdagi pastki about-content bo‘lagi o‘z holicha qola beradi -->
   </div>
 </section>
+
 
 
     <!-- History Timeline -->

@@ -249,97 +249,141 @@ section.hero{ padding:0 !important; }
 .hero .subtitle{ font-family:'Montserrat',sans-serif !important; font-weight:500; font-size:clamp(16px, 2.1vw, 20px); line-height:1.65; color:#f2f6ff; max-width:760px; margin:0; }
 @media (max-width:576px){ .hero-content{ margin:0 16px; } .hero h1{ font-size:clamp(28px,9vw,40px);} .hero .subtitle{ font-size:15px; } }
 
-/* ===== ABOUT ===== */
-.about-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; margin-bottom:3rem; }
-.about-card{ padding:2rem; border-radius:var(--radius-md); background:#fff; box-shadow:var(--shadow-sm); transition:var(--transition); text-align:center; }
-.about-card:hover{ transform:translateY(-10px); box-shadow:var(--shadow-lg); }
-.card-icon{ width:70px; height:70px; background:rgba(58,134,255,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; font-size:1.75rem; color:var(--primary); transition:var(--transition); }
-.about-card:hover .card-icon{ background:var(--primary); color:#fff; }
-.about-card h3{ font-size:1.25rem; margin-bottom:1rem; }
-.about-card p{ font-size:.95rem; }
+/* ================================
+   ABOUT section (Figma‑match)
+   Drop this after your variables. Safe overrides only affect .about
+   ================================ */
 
-.about-content{ display:flex; align-items:center; gap:3rem; margin-top:4rem; }
-.about-text{ flex:1; }
-.about-text h3{ font-size:1.75rem; margin-bottom:1.5rem; }
-.about-text p{ margin-bottom:2rem; font-size:1.1rem; }
-.about-image{ flex:1; }
-.image-frame{ position:relative; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-lg); }
-.image-frame img{ width:100%; height:auto; }
-.experience-badge{ position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:var(--accent); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; box-shadow:var(--shadow-lg); }
-.experience-badge span{ font-size:2rem; font-weight:700; }
-.experience-badge small{ font-size:.75rem; }
+/* Wrapper panel */
+.about{
+  background:#f5f7fb;            /* very light gray panel like in Figma */
+  padding-top:72px;
+  padding-bottom:72px;
+  border-radius:14px;             /* soft rounded container */
+}
 
-/* Grid + card (sizdagi bilan bir xil bo‘lsa aynan qoldiring) */
+/* Section header styles inside About only */
+.about .section-header{margin-bottom:36px}
+.about .section-header h2{           /* small overline */
+  font-family: var(--font-primary, "Montserrat", sans-serif);
+  font-weight:600;
+  font-size:15px;
+  letter-spacing:.4px;
+  color:#6b7280;                    /* gray */
+  margin-bottom:10px;
+}
+.about .section-header p{            /* big headline */
+  margin:0 auto;
+  max-width:980px;
+  font-family: var(--font-primary, "Montserrat", sans-serif);
+  font-weight:800;
+  line-height:1.30;
+  color:#111827;
+  font-size:clamp(24px,3.2vw,44px);
+  text-align:center;
+}
+/* Optional brand accent in the headline */
+.about .section-header p .brand,
+.about .section-header p a{
+  color:#1e63ff;
+  text-decoration:none;
+}
+
+/* Grid */
 .about-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
   gap:24px;
-  margin-bottom:48px;
+  margin:22px auto 36px;
 }
+
+/* Card */
 .about-card{
   position:relative;
   overflow:hidden;
-  padding:28px 24px 32px;
-  border-radius:16px;
+  padding:26px 24px 30px;
+  border-radius:20px;
   background:#fff;
-  border:1px solid #edf1f5;
-  box-shadow:0 6px 22px rgba(10,16,26,.06);
-  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  border:1px solid #e9eef5;
+  box-shadow:0 10px 24px rgba(16,24,40,.06);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
   text-align:left;
-  isolation:isolate;
+  isolation:isolate; /* keep watermark behind */
 }
 .about-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 32px rgba(10,16,26,.12);
-  border-color:rgba(58,134,255,.25);
+  transform:translateY(-4px);
+  box-shadow:0 18px 36px rgba(16,24,40,.10);
+  border-color:rgba(30,99,255,.25);
 }
 
-/* Dumaloq badge */
-.card-icon{
-  width:64px; height:64px;
+/* Round icon badge (top-left) */
+.about-card .card-icon{
+  width:64px; height:64px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  border-radius:50%;
-  background:linear-gradient(180deg, rgba(58,134,255,.12), rgba(58,134,255,.06));
-  color:var(--primary);
-  box-shadow:0 8px 18px rgba(58,134,255,.18), inset 0 0 0 6px rgba(58,134,255,.06);
-  font-size:22px;
-  margin-bottom:14px;
+  background:linear-gradient(180deg, rgba(30,99,255,.12), rgba(30,99,255,.06));
+  box-shadow:0 8px 18px rgba(30,99,255,.18), inset 0 0 0 6px rgba(30,99,255,.06);
+  color:#1e63ff;
+  margin:0 0 14px;
 }
+.about-card .card-icon i{ font-size:22px; line-height:1; }
+.about-card .card-icon img{ width:60%; height:60%; object-fit:contain; display:block; }
 
-/* Badge ichida FA ikon yoki rasm bo‘lishi mumkin */
-.card-icon i{ font-size:22px; line-height:1; }
-.card-icon img{
-  width:60%; height:60%; object-fit:contain; display:block; filter:none;
-}
-
-/* Sarlavha/tekst */
-.about-card .card-title{
-  font-family:var(--font-secondary);
+/* Titles & text — use existing h3/p in your HTML */
+.about-card h3{
+  font-family: var(--font-primary, "Montserrat", sans-serif);
   font-weight:700;
-  font-size:clamp(18px,2.2vw,22px);
+  font-size:clamp(18px,2.1vw,22px);
   color:#0f172a;
-  margin:4px 0 10px;
-  letter-spacing:.2px;
+  margin:6px 0 10px;
 }
-.about-card .card-text{
-  font-size:15.5px;
+.about-card p{
+  font-size:16px;
   line-height:1.7;
   color:#475569;
+  margin:0;
 }
 
-/* Figma’dagi katta xira watermark */
-.card-watermark{
+/* Huge faded watermark icon/image (optional) */
+.about-card .card-watermark{
   position:absolute;
-  right:-8px; bottom:-10px;
-  z-index:-1; opacity:.08; line-height:1;
+  right:-6px; bottom:-8px;
+  z-index:-1;
+  opacity:.08;
   transform:rotate(-6deg);
+  line-height:1;
 }
-.card-watermark i{ font-size:clamp(120px,22vw,190px); color:#0b1220; }
-.card-watermark img{
+.about-card .card-watermark i{          /* Font Awesome watermark */
+  font-size:clamp(120px,22vw,190px);
+  color:#0b1220;
+}
+.about-card .card-watermark img{        /* Image/SVG watermark */
   width:clamp(160px,26vw,220px);
-  height:auto; opacity:.10; filter:grayscale(100%);
+  height:auto;
+  filter:grayscale(100%);
+  opacity:.10;
   transform:rotate(-6deg);
 }
+
+/* Side content pair (text + image) under cards) */
+.about-content{ display:flex; align-items:center; gap:32px; margin-top:40px; }
+.about-text{ flex:1; }
+.about-text h3{ font-size:clamp(20px,2.2vw,28px); margin-bottom:16px; font-weight:700; color:#0f172a; }
+.about-text p{ font-size:16.5px; line-height:1.75; color:#4b5563; }
+.about-image{ flex:1; }
+.image-frame{ position:relative; border-radius:16px; overflow:hidden; box-shadow:0 14px 32px rgba(15,23,42,.12); }
+.image-frame img{ width:100%; height:auto; display:block; }
+
+/* Responsive tweaks */
+@media (max-width:992px){
+  .about{ padding-top:60px; padding-bottom:60px; }
+  .about-grid{ grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:18px; }
+  .about-content{ flex-direction:column; }
+}
+@media (max-width:576px){
+  .about{ padding-top:48px; padding-bottom:48px; border-radius:0; }
+  .about-grid{ grid-template-columns:1fr; }
+}
+
 
 
 /* ===== HISTORY (Timeline) ===== */
