@@ -47,6 +47,48 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+
+
+<script>
+(function() {
+  const rows = document.querySelectorAll('.t-row');
+  const timeline = document.getElementById('timeline');
+  const progress = document.getElementById('timelineProgress');
+
+  // Stagger delays
+  rows.forEach((row, i) => {
+    row.style.setProperty('--stagger', (i * 80) + 'ms');
+  });
+
+  // IntersectionObserver for reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in-view');
+    });
+  }, { threshold: 0.25 });
+
+  rows.forEach(r => io.observe(r));
+
+  // Progress line
+  function updateProgress(){
+    if (!timeline) return;
+    const rect = timeline.getBoundingClientRect();
+    const vh = window.innerHeight;
+
+    // how much of the timeline is visible / scrolled
+    const start = Math.max(0, vh - rect.top);             // visible from top
+    const total = rect.height + vh;                        // total travel
+    const ratio = Math.min(1, Math.max(0, start / total));
+
+    progress.style.height = (ratio * rect.height) + 'px';
+  }
+
+  updateProgress();
+  window.addEventListener('scroll', updateProgress, { passive:true });
+  window.addEventListener('resize', updateProgress);
+})();
+</script>
+
     // ===== Active Link Highlighting =====
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-link");

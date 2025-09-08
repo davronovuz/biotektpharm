@@ -133,61 +133,61 @@
 
 
 
-    <!-- History Timeline -->
-    <section class="history" id="history">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="history_title">Bizning tarix</h2>
-                <p data-i18n="history_subtitle">20 yillik muvaffaqiyatli safar</p>
-            </div>
+<!-- ===== HISTORY / TIMELINE ===== -->
+<section class="history" id="history">
+  <div class="container">
 
-            <div class="timeline">
-                <div class="timeline-progress"></div>
+    <!-- Header -->
+    <div class="section-header history-head">
+      <h2 class="i18n" data-i18n="history_title">Bizning tarix</h2>
+      <p class="i18n" data-i18n="history_subtitle">20 yillik muvaffaqiyatli safar</p>
+    </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-i18n="timeline1_title">2005-yil Yumax Farm tashkil etildi</h3>
-                        <p data-i18n="timeline1_text">Samarqandda birinchi dorixonani ochdik</p>
-                    </div>
-                </div>
+    <!-- Timeline rail + progress -->
+    <div class="timeline" id="timeline">
+      <span class="timeline-rail"></span>
+      <span class="timeline-progress" id="timelineProgress"></span>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-i18n="timeline2_title">2012-yil Ulgurji savdoga o'tish</h3>
-                        <p data-i18n="timeline2_text">4 ta viloyatda ombor va ofislar ochdik</p>
-                    </div>
-                </div>
+      {% for item in timeline %}
+      <article class="t-row {% cycle 'left' 'right' %}" data-idx="{{ forloop.counter0 }}">
+        <!-- Card -->
+        <div class="t-card">
+          <div class="t-badge">
+            {% if item.icon_type == 'img' and item.icon_image %}
+              <img src="{{ item.icon_image.url }}" alt="icon">
+            {% else %}
+              <i class="{{ item.fa_class|default:'fa-solid fa-location-dot' }}"></i>
+            {% endif %}
+          </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-i18n="timeline3_title">2017-yil BIOTEK FARM asos solindi</h3>
-                        <p data-i18n="timeline3_text">Xalqaro distribyutorlik faoliyatini boshladik</p>
-                    </div>
-                </div>
+          <div class="t-year">{{ item.year }}</div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-i18n="timeline4_title">2019-yil MaxMed Group tashkil etildi</h3>
-                        <p data-i18n="timeline4_text">40 ta malakali xodimli promotsion kompaniya</p>
-                    </div>
-                </div>
+          <h3 class="t-title i18n-db"
+              data-uz="{{ item.title_uz }}"
+              data-ru="{{ item.title_ru|default:item.title_uz }}"
+              data-en="{{ item.title_en|default:item.title_uz }}">
+            {{ item.title_uz }}
+          </h3>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-i18n="timeline5_title">2021-2024 -yillar Mintaqaviy kengayish</h3>
-                        <p data-i18n="timeline5_text">Toshkent, Farg'ona va Urganchda yangi ofislar</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-i18n="timeline6_title">Bugun Yetakchi 10 distribyutor</h3>
-                        <p data-i18n="timeline6_text">O'zbekistonning yirik farmatsevtika distribyutorlaridan biri</p>
-                    </div>
-                </div>
-            </div>
+          <p class="t-text i18n-db"
+             data-uz="{{ item.text_uz }}"
+             data-ru="{{ item.text_ru|default:item.text_uz }}"
+             data-en="{{ item.text_en|default:item.text_uz }}">
+            {{ item.text_uz }}
+          </p>
         </div>
-    </section>
+
+        {% if item.photo %}
+        <figure class="t-photo">
+          <img src="{{ item.photo.url }}" alt="{{ item.title_uz }}">
+        </figure>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 
 
     <!-- Services Section -->

@@ -1,11 +1,13 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .models import Contact, HeroSection,FeatureCard
+from .models import Contact, HeroSection,FeatureCard, AboutSection, TimelineItem
 
 
 def home(request):
     hero = HeroSection.objects.filter(is_active=True).first()
     features = FeatureCard.objects.filter(is_active=True).order_by('order')
+    about = AboutSection.objects.active().first()  # bo‘lsa – olamiz
+    timeline = TimelineItem.objects.active().order_by("order")
 
     if request.method == 'POST':
         Contact.objects.create(
@@ -19,7 +21,9 @@ def home(request):
 
     context={
         'hero': hero,
-        'features': features
+        'features': features,
+        "about": about,
+        "timeline": timeline,
     }
 
     return render(request, 'index.html', context)
