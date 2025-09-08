@@ -284,13 +284,18 @@ section.hero { padding: 0 !important; }
   margin-bottom:28px;
 }
 
+.about .section-header.about-hero { text-align:center; }
+
 .about-overline{
-  font-family:'Montserrat',sans-serif;
-  font-weight:600;
-  letter-spacing:.02em;
-  font-size:clamp(13px,1.1vw,16px);
-  color:#6b7280;
-  margin-bottom:12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;                 /* semibold */
+  text-transform: uppercase;        /* Figma’dagi kabi */
+  letter-spacing: .12em;            /* kengroq tracking */
+  font-size: 13.5px;                /* ixcham */
+  line-height: 1.1;
+  color: #8A9099;                   /* yumshoq kulrang */
+  opacity: .95;                     /* biroz so‘nuk */
+  margin-bottom: 18px;              /* pastga masofa */
 }
 
 .about-title{
