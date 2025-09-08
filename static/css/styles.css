@@ -362,246 +362,126 @@ section {
   color: var(--primary);
 }
 
-/* ===== Navigation ===== */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 1.5rem 0;
-  background: transparent;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  z-index: 999;
-  transition: var(--transition);
+/* ================================
+   NAVBAR — shaffof/blur + figma hover
+   ================================ */
+.navbar{
+  position: fixed; top:0; left:0; right:0;
+  z-index: 1000;
+  padding: 18px 0;
+  background: transparent !important;   /* doim hero fonini ko‘rsatadi */
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background .25s ease, box-shadow .25s ease, padding .25s ease;
 }
 
-.navbar.scrolled {
-  padding: 1rem 0;
-  box-shadow: var(--shadow-md);
+.navbar .container{
+  display:flex; align-items:center; justify-content:space-between;
 }
 
-.navbar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.logo{ height:64px; display:flex; align-items:center; }
+.logo-icon{ width:auto; height:48px; display:flex; align-items:center; }
+.logo-icon img{ height:100%; width:auto; object-fit:contain; }
+
+.nav-list{ display:flex; gap:1.75rem; align-items:center; }
+.nav-link{
+  position:relative;
+  font-weight:500;
+  color:#eaf1ff !important;             /* oqsimon */
+  padding: .25rem 0;
+  transition: color .2s ease;
 }
-.logo {
-    position: relative;
-    height: 100px;
-    display: flex;
-    align-items: center;
+.nav-link:hover{ color:#ffffff !important; }
+
+/* figma uslubidagi underline */
+.nav-link::after{
+  content:''; position:absolute; left:0; bottom:-6px;
+  width:0; height:2px; background:#64a1ff; border-radius:2px;
+  transition: width .25s ease;
 }
+.nav-link:hover::after, .nav-link.active::after{ width:100%; }
 
-.logo-icon {
-    position: relative;
-    width: 140px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Scroll bo‘lganda: yarim qoramtir fon + blur */
+.navbar.scrolled{
+  background: rgba(10,16,26,.72) !important;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 24px rgba(0,0,0,.18);
+  padding: 12px 0;
 }
+.navbar.scrolled .nav-link{ color:#e6e6e8 !important; }
+.navbar.scrolled .nav-link:hover{ color:#fff !important; }
 
-.logo-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    z-index: 1;
-}
+/* Mobil menyu (drawer) */
+.menu-toggle{ display:none; width:30px; height:22px; border:0; background:none; cursor:pointer; }
+.menu-toggle .bar{ display:block; height:3px; margin:4px 0; background:#fff; border-radius:3px; transition:.25s; }
 
-
-
-
-
-.biotek-text {
-    position: absolute;
-    top: 40%;
-    left: 68%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #3a86ff; /* Ko'k rang */
-    z-index: 2;
-    opacity: 0.9;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    pointer-events: none;
-}
-
-/* Responsive moslashuvchanlik */
-@media (max-width: 768px) {
-    .biotek-text {
-        font-size: 1.5rem;
-    }
+@media (max-width: 992px){
+  .menu-toggle{ display:block; }
+  .nav-list{
+    position: fixed; inset:0 0 0 auto; width:78%; max-width:320px;
+    flex-direction:column; justify-content:center;
+    gap:2rem; padding:0 24px;
+    background: rgba(10,16,26,.92); backdrop-filter: blur(8px);
+    transform: translateX(100%); transition: transform .3s ease;
+  }
+  .nav-list.active{ transform: translateX(0); }
+  .nav-link, .navbar.scrolled .nav-link{ color:#ffffff !important; }
 }
 
-.nav-list {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+/* ================================
+   HERO — chapdan joylashish, tipografiya
+   ================================ */
+section.hero{ padding:0 !important; }          /* default section paddingni o‘chir */
+.hero{
+  position:relative;
+  min-height:100vh;
+  background-size:cover;
+  background-position:center;
+  display:flex; align-items:center;
+  color:#fff; text-align:left;
+  overflow:hidden;
+}
+.hero .overlay{
+  position:absolute; inset:0; background:rgba(0,0,0,.55); z-index:1;
+}
+.hero .container{ position:relative; z-index:2; }
+
+/* chapdan offset — figmadagi kabi biroz ichkaridan */
+.hero-content{
+  max-width: 960px;
+  margin-left: clamp(0rem, 6vw, 120px);
 }
 
-.nav-link {
-  position: relative;
-  font-weight: 500;
-  padding: 0.5rem 0;
-  transition: var(--transition);
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--primary);
-  transition: var(--transition);
-}
-
-.nav-link.active::after,
-.nav-link:hover::after {
-  width: 100%;
-}
-
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 21px;
-  cursor: pointer;
-  z-index: 1001;
-  background: none;
-  border: none;
-  outline: none;
-}
-
-.menu-toggle .bar {
-  width: 100%;
-  height: 3px;
-  background-color: var(--secondary);
-  border-radius: 3px;
-  transition: var(--transition);
-}
-
-.menu-toggle.active .bar:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
-}
-
-.menu-toggle.active .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle.active .bar:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
-}
-
-/* === HERO SECTION === */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* to'liq ekran */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  text-align: left; /* chapdan joylashish */
-  color: #fff;
-  overflow: hidden;
-  padding: 0 1.5rem;
-}
-
-.hero .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-}
-
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
+/* Katta sarlavha (Playfair) */
+.hero h1{
+  font-family: 'Playfair Display', serif !important;
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
+  font-size: clamp(34px, 6vw, 72px);
+  line-height: 1.12;
+  letter-spacing: .2px;
   text-transform: uppercase;
-  color: #fff;
-  animation: fadeInDown 1.5s ease forwards;
+  color:#fff;
+  margin: 0 0 18px 0;
 }
 
-.hero .subtitle {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: #f1f1f1;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  animation: fadeInUp 2s ease forwards;
+/* Kichik matn (Montserrat) */
+.hero .subtitle{
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500;
+  font-size: clamp(16px, 2.1vw, 20px);
+  line-height: 1.65;
+  color:#f2f6ff;
+  max-width: 760px;
+  margin: 0;
 }
 
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
+/* Telefon va past ekranlarda o‘lchamlar */
+@media (max-width: 576px){
+  .hero-content{ margin-left: 16px; margin-right:16px; }
+  .hero h1{ font-size: clamp(28px, 9vw, 40px); }
+  .hero .subtitle{ font-size: 15px; }
 }
 
-.hero-buttons .btn-primary {
-  background-color: #3a86ff;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.hero-buttons .btn-primary:hover {
-  background-color: #2667cc;
-  transform: translateY(-3px);
-}
-
-.hero-buttons .btn-secondary {
-  background-color: transparent;
-  border: 2px solid #3a86ff;
-  color: #3a86ff;
-  padding: 0.75rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.hero-buttons .btn-secondary:hover {
-  background-color: #3a86ff;
-  color: #fff;
-  transform: translateY(-3px);
-}
-
-/* Animatsiyalar */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-50px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(50px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-  .hero .subtitle {
-    font-size: 1rem;
-  }
-  .hero-buttons {
-    flex-direction: column;
-  }
-}
 
 
 
