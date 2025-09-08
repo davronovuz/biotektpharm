@@ -288,10 +288,9 @@ section.hero { padding: 0 !important; }
 
 .about-overline{
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;                 /* semibold */
-  text-transform: uppercase;        /* Figma’dagi kabi */
+  font-weight: 200;                 /* semibold */
   letter-spacing: .12em;            /* kengroq tracking */
-  font-size: 13.5px;                /* ixcham */
+  font-size: 4.5px;                /* ixcham */
   line-height: 1.1;
   color: #8A9099;                   /* yumshoq kulrang */
   opacity: .95;                     /* biroz so‘nuk */
