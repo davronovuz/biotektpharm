@@ -78,14 +78,24 @@
 <!-- About Section -->
 <section class="about" id="about">
   <div class="container">
-    <div class="section-header">
-      <h2 data-i18n="about_title">Kompaniya haqida</h2>
-      <p data-i18n="about_subtitle">Bizning missiya va qadriyatlarimiz</p>
+    <!-- Header (figma-style) -->
+    <div class="section-header about-hero">
+      <div class="about-overline" data-i18n="about_title">Kompaniya haqida</div>
+
+      <h2 class="about-title">
+        <span class="brand-upper">BiotekPharm</span>
+        – bu xalqaro farmatsevtika mahsulotlarini
+      </h2>
+
+      <div class="about-subtitle-strong">
+        yetkazib berish sohasida ishonchli hamkor
+      </div>
     </div>
 
+    <!-- Feature cards (dinamik) -->
     <div class="about-grid">
       {% for f in features %}
-        <div class="about-card">
+        <article class="about-card">
           <!-- Dumaloq icon badge -->
           <div class="card-icon">
             {% if f.icon_type == 'img' and f.icon_image %}
@@ -95,7 +105,7 @@
             {% endif %}
           </div>
 
-          <!-- Sarlavha va matn — 3 tilda data-* ga qo'yamiz -->
+          <!-- Sarlavha/matn (3 tilga tayyor) -->
           <h3
             class="card-title i18n-db"
             data-uz="{{ f.title_uz }}"
@@ -110,7 +120,7 @@
             data-en="{{ f.text_en|default:f.text_uz }}"
           >{{ f.text_uz }}</p>
 
-          <!-- Katta, xira watermark (Figma uslubi) -->
+          <!-- Katta xira watermark (ikon yoki rasm) -->
           <span class="card-watermark">
             {% if f.icon_type == 'img' and f.icon_image %}
               <img src="{{ f.icon_image.url }}" alt="">
@@ -118,15 +128,14 @@
               <i class="{{ f.fa_class|default:'fas fa-circle' }}"></i>
             {% endif %}
           </span>
-        </div>
+        </article>
       {% empty %}
-        <p class="muted">Hozircha ma’lumot yo‘q.</p>
+        <p class="muted empty-state">Hozircha ma’lumot yo‘q.</p>
       {% endfor %}
     </div>
-
-    <!-- sizdagi pastki about-content bo‘lagi o‘z holicha qola beradi -->
   </div>
 </section>
+
 
 
 

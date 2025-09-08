@@ -239,132 +239,104 @@ section { padding: 6rem 0; position: relative; }
 
 
 
-/* ===== HERO ===== */
-section.hero{ padding:0 !important; }
+/* =============================
+   HERO (figma‑match)
+   ============================= */
+section.hero { padding: 0 !important; }
 .hero{ position:relative; min-height:100vh; background-size:cover; background-position:center; display:flex; align-items:center; color:#fff; text-align:left; overflow:hidden; }
-.hero .overlay{ position:absolute; inset:0; background:rgba(0,0,0,.55); z-index:1; }
+.hero .overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.52), rgba(0,0,0,.60)); z-index:1; }
 .hero .container{ position:relative; z-index:2; }
 .hero-content{ max-width:960px; margin-left:clamp(0rem, 6vw, 120px); }
-.hero h1{ font-family:'Playfair Display',serif !important; font-weight:700; font-size:clamp(34px, 6vw, 72px); line-height:1.12; letter-spacing:.2px; text-transform:uppercase; color:#fff; margin:0 0 18px 0; }
-.hero .subtitle{ font-family:'Montserrat',sans-serif !important; font-weight:500; font-size:clamp(16px, 2.1vw, 20px); line-height:1.65; color:#f2f6ff; max-width:760px; margin:0; }
-@media (max-width:576px){ .hero-content{ margin:0 16px; } .hero h1{ font-size:clamp(28px,9vw,40px);} .hero .subtitle{ font-size:15px; } }
-
-/* ================================
-   ABOUT section (Figma‑match)
-   Drop this after your variables. Safe overrides only affect .about
-   ================================ */
-
-/* Wrapper panel */
-.about{
-  background:#f5f7fb;            /* very light gray panel like in Figma */
-  padding-top:72px;
-  padding-bottom:72px;
-  border-radius:14px;             /* soft rounded container */
-}
-
-/* Section header styles inside About only */
-.about .section-header{margin-bottom:36px}
-.about .section-header h2{           /* small overline */
-  font-family: var(--font-primary, "Montserrat", sans-serif);
-  font-weight:600;
-  font-size:15px;
-  letter-spacing:.4px;
-  color:#6b7280;                    /* gray */
-  margin-bottom:10px;
-}
-.about .section-header p{            /* big headline */
-  margin:0 auto;
-  max-width:980px;
-  font-family: var(--font-primary, "Montserrat", sans-serif);
+.hero h1{
+  font-family:'Playfair Display',serif !important;
   font-weight:800;
-  line-height:1.30;
-  color:#111827;
-  font-size:clamp(24px,3.2vw,44px);
-  text-align:center;
+  font-size:clamp(34px, 6vw, 72px);
+  line-height:1.12;
+  letter-spacing:.2px;
+  text-transform:uppercase;
+  color:#fff; margin:0 0 18px 0;
 }
-/* Optional brand accent in the headline */
-.about .section-header p .brand,
-.about .section-header p a{
-  color:#1e63ff;
-  text-decoration:none;
+.hero .subtitle{
+  font-family:'Montserrat',sans-serif !important;
+  font-weight:500;
+  font-size:clamp(16px, 2.1vw, 20px);
+  line-height:1.65; color:#f2f6ff; max-width:760px; margin:0;
 }
-
-/* Grid */
-.about-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
-  gap:24px;
-  margin:22px auto 36px;
+@media (max-width:576px){
+  .hero-content{ margin:0 16px; }
+  .hero h1{ font-size:clamp(28px,9vw,40px);}
+  .hero .subtitle{ font-size:15px; }
 }
 
-/* Card */
+/* =============================
+   ABOUT (figma‑match)
+   ============================= */
+.about{ background:#fafafb; padding:72px 0; }
+
+/* --- Header variant A: enhanced (about-hero) --- */
+.about .section-header.about-hero{ text-align:center; margin-bottom:28px; }
+.about-overline{
+  font-family:'Montserrat',sans-serif; font-weight:600; letter-spacing:.02em;
+  font-size:clamp(13px,1.1vw,16px); color:#6b7280; margin-bottom:12px;
+}
+.about-title{
+  font-family:'Playfair Display',serif; font-weight:800; line-height:1.15;
+  font-size:clamp(28px,3.2vw,44px); color:#111827; margin:0 0 8px 0;
+}
+.about-title::after{ content:""; display:block; width:84px; height:6px; border-radius:6px; background:#3a86ff; margin:12px auto 0; }
+.brand-upper{ color:#2563eb; text-transform:uppercase; letter-spacing:.5px; display:inline-block; }
+.about-subtitle-strong{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:clamp(18px,2.2vw,32px); line-height:1.25; color:#1f2937; margin-top:10px; }
+
+/* --- Header variant B: classic (h2 + p in your current HTML) --- */
+.about .section-header:not(.about-hero){ text-align:center; margin-bottom:36px; }
+.about .section-header:not(.about-hero) h2{
+  font-family:'Montserrat',sans-serif; font-weight:600; font-size:15px;
+  letter-spacing:.4px; color:#6b7280; margin-bottom:10px;
+}
+.about .section-header:not(.about-hero) p{
+  margin:0 auto; max-width:980px; font-family:'Playfair Display',serif; font-weight:800;
+  line-height:1.30; color:#111827; font-size:clamp(24px,3.2vw,44px);
+}
+.about .section-header:not(.about-hero) p .brand{ color:#1e63ff; text-decoration:none; }
+
+/* --- Grid --- */
+.about-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:26px; }
+@media (max-width:1024px){ .about-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .about-grid{ grid-template-columns:1fr; } }
+
+/* --- Card --- */
 .about-card{
-  position:relative;
-  overflow:hidden;
-  padding:26px 24px 30px;
-  border-radius:20px;
-  background:#fff;
-  border:1px solid #e9eef5;
-  box-shadow:0 10px 24px rgba(16,24,40,.06);
-  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-  text-align:left;
-  isolation:isolate; /* keep watermark behind */
+  position:relative; overflow:hidden; padding:28px 24px 32px; border-radius:20px; background:#fff;
+  border:1px solid #e9eef5; box-shadow:0 10px 24px rgba(16,24,40,.06);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease; text-align:left; isolation:isolate;
 }
-.about-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 18px 36px rgba(16,24,40,.10);
-  border-color:rgba(30,99,255,.25);
-}
+.about-card:hover{ transform:translateY(-4px); box-shadow:0 18px 36px rgba(16,24,40,.10); border-color:rgba(30,99,255,.25); }
 
-/* Round icon badge (top-left) */
+/* Icon badge */
 .about-card .card-icon{
-  width:64px; height:64px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
+  width:68px; height:68px; border-radius:50%; display:flex; align-items:center; justify-content:center;
   background:linear-gradient(180deg, rgba(30,99,255,.12), rgba(30,99,255,.06));
   box-shadow:0 8px 18px rgba(30,99,255,.18), inset 0 0 0 6px rgba(30,99,255,.06);
-  color:#1e63ff;
-  margin:0 0 14px;
+  color:#1e63ff; margin:0 0 14px; font-size:22px;
 }
 .about-card .card-icon i{ font-size:22px; line-height:1; }
 .about-card .card-icon img{ width:60%; height:60%; object-fit:contain; display:block; }
 
-/* Titles & text — use existing h3/p in your HTML */
-.about-card h3{
-  font-family: var(--font-primary, "Montserrat", sans-serif);
-  font-weight:700;
-  font-size:clamp(18px,2.1vw,22px);
-  color:#0f172a;
-  margin:6px 0 10px;
+/* Titles & text */
+.about-card .card-title, .about-card h3{
+  font-family:'Playfair Display',serif; font-weight:800; font-size:clamp(20px,2.1vw,26px);
+  color:#0f172a; margin:6px 0 10px; letter-spacing:.2px;
 }
-.about-card p{
-  font-size:16px;
-  line-height:1.7;
-  color:#475569;
-  margin:0;
-}
+.about-card .card-text, .about-card p{ font-family:'Montserrat',sans-serif; font-weight:500; font-size:16px; line-height:1.7; color:#475569; margin:0; }
 
-/* Huge faded watermark icon/image (optional) */
+/* Watermark */
 .about-card .card-watermark{
-  position:absolute;
-  right:-6px; bottom:-8px;
-  z-index:-1;
-  opacity:.08;
-  transform:rotate(-6deg);
-  line-height:1;
+  position:absolute; right:-6px; bottom:-8px; z-index:-1; opacity:.08; transform:rotate(-6deg); line-height:1; pointer-events:none;
 }
-.about-card .card-watermark i{          /* Font Awesome watermark */
-  font-size:clamp(120px,22vw,190px);
-  color:#0b1220;
-}
-.about-card .card-watermark img{        /* Image/SVG watermark */
-  width:clamp(160px,26vw,220px);
-  height:auto;
-  filter:grayscale(100%);
-  opacity:.10;
-  transform:rotate(-6deg);
-}
+.about-card .card-watermark i{ font-size:clamp(120px,22vw,190px); color:#0b1220; }
+.about-card .card-watermark img{ width:clamp(160px,26vw,220px); height:auto; filter:grayscale(100%); opacity:.10; transform:rotate(-6deg); }
 
-/* Side content pair (text + image) under cards) */
+/* Side content (optional) */
 .about-content{ display:flex; align-items:center; gap:32px; margin-top:40px; }
 .about-text{ flex:1; }
 .about-text h3{ font-size:clamp(20px,2.2vw,28px); margin-bottom:16px; font-weight:700; color:#0f172a; }
@@ -373,15 +345,13 @@ section.hero{ padding:0 !important; }
 .image-frame{ position:relative; border-radius:16px; overflow:hidden; box-shadow:0 14px 32px rgba(15,23,42,.12); }
 .image-frame img{ width:100%; height:auto; display:block; }
 
-/* Responsive tweaks */
+/* Responsive spacing */
 @media (max-width:992px){
-  .about{ padding-top:60px; padding-bottom:60px; }
-  .about-grid{ grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:18px; }
+  .about{ padding:60px 0; }
   .about-content{ flex-direction:column; }
 }
 @media (max-width:576px){
-  .about{ padding-top:48px; padding-bottom:48px; border-radius:0; }
-  .about-grid{ grid-template-columns:1fr; }
+  .about{ padding:48px 0; }
 }
 
 
