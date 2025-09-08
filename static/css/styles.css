@@ -151,6 +151,9 @@ section { padding: 6rem 0; position: relative; }
 .nav-link::after{ content:''; position:absolute; left:0; bottom:-6px; width:0; height:2px; background:#64a1ff; border-radius:2px; transition:width .25s ease; }
 .nav-link:hover::after, .nav-link.active::after{ width:100%; }
 
+
+
+
 /* Scrolled state */
 .navbar.scrolled{ background:rgba(10,16,26,.72) !important; backdrop-filter:blur(6px); box-shadow:0 6px 24px rgba(0,0,0,.18); padding:12px 0; }
 .navbar.scrolled .nav-link{ color:#e6e6e8 !important; }
@@ -167,6 +170,74 @@ section { padding: 6rem 0; position: relative; }
   .nav-list.active{ transform:translateX(0); }
   .nav-link, .navbar.scrolled .nav-link{ color:#ffffff !important; }
 }
+
+
+/* --- LOGO proporsiya figma --- */
+.logo { display:flex; align-items:center; height:64px; }
+.logo .logo-icon img{ height:38px; width:auto; display:block; }
+
+/* --- LANGUAGE: nav item ichida --- */
+.nav-item.lang{ position:relative; }
+
+.lang-btn{
+  display:flex; align-items:center; gap:.5rem;
+  padding:.35rem .75rem; border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#eaf1ff; cursor:pointer;
+  transition:background .2s, border-color .2s, color .2s;
+}
+
+/* scroll bo‘lganda ham nav bilan mos */
+.navbar.scrolled .lang-btn{
+  border-color:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.10);
+  color:#f5f7ff;
+}
+
+.lang-btn:hover{ background:rgba(255,255,255,.12); color:#fff; }
+
+.flag{ width:18px; height:18px; border-radius:50%; object-fit:cover; }
+
+/* kichkina pastga o‘qcha */
+.chevron{
+  width:8px; height:8px;
+  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
+  transform:rotate(45deg); opacity:.9;
+}
+
+/* dropdown menyu */
+.lang-menu{
+  position:absolute; top:120%; right:0; min-width:180px; padding:.4rem;
+  background:rgba(15,22,34,.96); backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.12); border-radius:12px;
+  box-shadow:0 12px 30px rgba(0,0,0,.28);
+  list-style:none; opacity:0; visibility:hidden; transform:translateY(-6px);
+  transition:opacity .18s, transform .18s;
+  z-index:1001;
+}
+.lang-menu li{
+  display:flex; align-items:center; gap:.6rem;
+  padding:.55rem .7rem; color:#eaf1ff; border-radius:8px; cursor:pointer;
+}
+.lang-menu li:hover{ background:rgba(255,255,255,.08); }
+.lang-menu li img{ width:18px; height:18px; border-radius:50%; }
+
+.nav-item.lang.open .lang-menu{ opacity:1; visibility:visible; transform:translateY(0); }
+
+/* mobil ko‘rinishda ham chiroyli turishi uchun */
+@media (max-width: 992px){
+  .lang-btn{ background:rgba(255,255,255,.10); }
+  .nav-item.lang .lang-menu{ position:fixed; right:16px; bottom:16px; top:auto; }
+}
+
+
+
+
+
+
+
+
 
 /* ===== HERO ===== */
 section.hero{ padding:0 !important; }
@@ -382,17 +453,4 @@ section.hero{ padding:0 !important; }
   .footer-bottom{ flex-direction:column; gap:1rem; text-align:center; }
 }
 
-/* =========================================================
-   JS HOOKS REQUIRED (put in script.js):
-   1) Add/remove .scrolled on .navbar after 10px scroll
-   2) Toggle .nav-list.active on #mobile-menu click
-========================================================= */
-/* Example (for reference only):
-window.addEventListener('scroll',()=>{
-  const nav=document.querySelector('.navbar');
-  if(window.scrollY>10){ nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
-});
-const btn=document.getElementById('mobile-menu');
-const list=document.querySelector('.nav-list');
-btn && btn.addEventListener('click',()=> list.classList.toggle('active'));
-*/
+

@@ -20,18 +20,7 @@
 </head>
 <body>
 
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <div class="selected-language">
-            <span id="current-lang">UZ</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-        <ul class="language-dropdown">
-            <li data-lang="uz"><i class="fas fa-language"></i> Oʻzbekcha</li>
-            <li data-lang="ru"><i class="fas fa-language"></i> Русский</li>
-            <li data-lang="en"><i class="fas fa-language"></i> English</li>
-        </ul>
-    </div>
+
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -42,10 +31,10 @@
                      <div class="biotek-text">BIOTEK</div>
                 </div>
             </a>
-
             <button id="mobile-menu" class="menu-toggle" aria-label="Toggle menu">
-
+              <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </button>
+
 
             <ul class="nav-list">
                 <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
@@ -55,6 +44,19 @@
                 <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
                 <li><a href="#locations" class="nav-link" data-i18n="locations">Manzil</a></li>
                 <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
+                <li class="nav-item lang">
+                  <button id="langBtn" class="lang-btn" aria-expanded="false">
+                    <img src="https://flagcdn.com/uz.svg" alt="UZ" class="flag">
+                    <span id="currentLang">UZ</span>
+                    <i class="chevron"></i>
+                  </button>
+                  <ul id="langMenu" class="lang-menu">
+                    <li data-lang="uz"><img src="https://flagcdn.com/uz.svg" alt=""> Oʻzbekcha</li>
+                    <li data-lang="ru"><img src="https://flagcdn.com/ru.svg" alt=""> Русский</li>
+                    <li data-lang="en"><img src="https://flagcdn.com/gb.svg" alt=""> English</li>
+                  </ul>
+                </li>
+
             </ul>
         </div>
     </nav>

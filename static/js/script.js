@@ -985,6 +985,19 @@ function initMap() {
     });
 }
 
+
+
+
+
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('.navbar');
+  if(window.scrollY>10){ nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+});
+const btn=document.getElementById('mobile-menu');
+const list=document.querySelector('.nav-list');
+btn && btn.addEventListener('click',()=> list.classList.toggle('active'));
+
+
 // Load Google Maps API
 function loadGoogleMaps() {
     const script = document.createElement('script');
