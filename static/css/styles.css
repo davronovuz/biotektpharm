@@ -269,6 +269,79 @@ section.hero{ padding:0 !important; }
 .experience-badge span{ font-size:2rem; font-weight:700; }
 .experience-badge small{ font-size:.75rem; }
 
+/* Grid + card (sizdagi bilan bir xil bo‘lsa aynan qoldiring) */
+.about-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:24px;
+  margin-bottom:48px;
+}
+.about-card{
+  position:relative;
+  overflow:hidden;
+  padding:28px 24px 32px;
+  border-radius:16px;
+  background:#fff;
+  border:1px solid #edf1f5;
+  box-shadow:0 6px 22px rgba(10,16,26,.06);
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  text-align:left;
+  isolation:isolate;
+}
+.about-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 32px rgba(10,16,26,.12);
+  border-color:rgba(58,134,255,.25);
+}
+
+/* Dumaloq badge */
+.card-icon{
+  width:64px; height:64px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%;
+  background:linear-gradient(180deg, rgba(58,134,255,.12), rgba(58,134,255,.06));
+  color:var(--primary);
+  box-shadow:0 8px 18px rgba(58,134,255,.18), inset 0 0 0 6px rgba(58,134,255,.06);
+  font-size:22px;
+  margin-bottom:14px;
+}
+
+/* Badge ichida FA ikon yoki rasm bo‘lishi mumkin */
+.card-icon i{ font-size:22px; line-height:1; }
+.card-icon img{
+  width:60%; height:60%; object-fit:contain; display:block; filter:none;
+}
+
+/* Sarlavha/tekst */
+.about-card .card-title{
+  font-family:var(--font-secondary);
+  font-weight:700;
+  font-size:clamp(18px,2.2vw,22px);
+  color:#0f172a;
+  margin:4px 0 10px;
+  letter-spacing:.2px;
+}
+.about-card .card-text{
+  font-size:15.5px;
+  line-height:1.7;
+  color:#475569;
+}
+
+/* Figma’dagi katta xira watermark */
+.card-watermark{
+  position:absolute;
+  right:-8px; bottom:-10px;
+  z-index:-1; opacity:.08; line-height:1;
+  transform:rotate(-6deg);
+}
+.card-watermark i{ font-size:clamp(120px,22vw,190px); color:#0b1220; }
+.card-watermark img{
+  width:clamp(160px,26vw,220px);
+  height:auto; opacity:.10; filter:grayscale(100%);
+  transform:rotate(-6deg);
+}
+
+
 /* ===== HISTORY (Timeline) ===== */
 .history{ padding:8rem 0; background:#f9f9f9; }
 .section-header{ text-align:center; margin-bottom:4rem; opacity:0; animation:fadeUp 1s ease-out .2s forwards; }

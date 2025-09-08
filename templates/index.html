@@ -75,53 +75,52 @@
 
 
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="about_title">Kompaniya haqida</h2>
-                <p data-i18n="about_subtitle">Bizning missiya va qadriyatlarimiz</p>
-            </div>
+  <!-- About Section -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-header">
+      <h2 data-i18n="about_title">Kompaniya haqida</h2>
+      <p data-i18n="about_subtitle">Bizning missiya va qadriyatlarimiz</p>
+    </div>
 
-            <div class="about-grid">
-                <div class="about-card">
-                    <div class="card-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3 data-i18n="mission_title">Missiyamiz</h3>
-                    <p data-i18n="mission_text">O'zbekiston aholisiga sifatli va arzon narxdagi dori-darmonlarni yetkazib berish</p>
-                </div>
+    <div class="about-grid">
+      {% for f in features %}
+        <div class="about-card">
+          <!-- Dumaloq ikon badge -->
+          <div class="card-icon">
+            {% if f.icon_image %}
+              <img src="{{ f.icon_image.url }}" alt="{{ f.title }}">
+            {% elif f.icon_class %}
+              <i class="{{ f.icon_class }}"></i>
+            {% else %}
+              <i class="fas fa-circle"></i>
+            {% endif %}
+          </div>
 
-                <div class="about-card">
-                    <div class="card-icon">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <h3 data-i18n="vision_title">Ko'zlagan maqsadimiz</h3>
-                    <p data-i18n="vision_text">Mintaqadagi  yirik va ishonchli farmatsevtika distribyutori bo'lish</p>
-                </div>
+          <h3 class="card-title">{{ f.title }}</h3>
+          <p class="card-text">{{ f.text }}</p>
 
-                <div class="about-card">
-                    <div class="card-icon">
-                        <i class="fas fa-hand-holding-heart"></i>
-                    </div>
-                    <h3 data-i18n="values_title">Qadriyatlarimiz</h3>
-                    <p data-i18n="values_text">Ishonchlilik, sifat, mijozlar uchun qadrlash</p>
-                </div>
-            </div>
-
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 data-i18n="about_content_title">BIOTEK FARM haqida</h3>
-                    <p data-i18n="about_content_text">2017 yilda tashkil etilgan BIOTEK FARM O'zbekiston farmatsevtika bozorining yetakchi distribyutorlaridan biridir. Biz 5000 dan ortiq dori vositalari, 3200 dan ortiq faol mijozlar va 20 dan ortiq xalqaro hamkorlarga ega bo'lgan ishonchli kompaniyamiz.</p>
-                </div>
-                <div class="about-image">
-                    <div class="image-frame">
-                        <img src="{% static 'images/rasm_banner.JPG' %}" alt="BiotekPharm Team">
-                    </div>
-                </div>
-            </div>
+          <!-- Katta xira watermark ikon/rasm (figma-style) -->
+          <span class="card-watermark">
+            {% if f.watermark_image %}
+              <img src="{{ f.watermark_image.url }}" alt="">
+            {% elif f.icon_image %}
+              <img src="{{ f.icon_image.url }}" alt="">
+            {% elif f.icon_class %}
+              <i class="{{ f.icon_class }}"></i>
+            {% else %}
+              <i class="fas fa-circle"></i>
+            {% endif %}
+          </span>
         </div>
-    </section>
+      {% empty %}
+        <p class="muted">Hozircha ma’lumot yo‘q.</p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
 
     <!-- History Timeline -->
     <section class="history" id="history">
