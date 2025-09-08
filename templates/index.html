@@ -79,14 +79,16 @@
 <section class="about" id="about">
   <div class="container">
     <!-- Header (figma-style) -->
-    <div class="section-header about-hero">
-      <div class="about-overline" data-i18n="about_title">Kompaniya haqida</div>
+    <div class="section-header about-head">
+      <h2 class="about-overline" data-i18n="about_title">Kompaniya haqida</h2>
 
-      <h2 class="about-title">
-        <span class="brand-upper">BiotekPharm</span>
+      <!-- 1-qatorda katta sarlavha, BIOTEKPHARM UPPERCASE -->
+      <h3 class="about-title">
+        <span class="brand-upper">BIOTEKPHARM</span>
         – bu xalqaro farmatsevtika mahsulotlarini
-      </h2>
+      </h3>
 
+      <!-- 2-qatorda kuchli subtitle -->
       <div class="about-subtitle-strong">
         yetkazib berish sohasida ishonchli hamkor
       </div>
@@ -96,16 +98,7 @@
     <div class="about-grid">
       {% for f in features %}
         <article class="about-card">
-          <!-- Dumaloq icon badge -->
-          <div class="card-icon">
-            {% if f.icon_type == 'img' and f.icon_image %}
-              <img src="{{ f.icon_image.url }}" alt="{{ f.title_uz|default:'icon' }}">
-            {% else %}
-              <i class="{{ f.fa_class|default:'fas fa-circle' }}"></i>
-            {% endif %}
-          </div>
-
-          <!-- Sarlavha/matn (3 tilga tayyor) -->
+          <!-- Sarlavha / matn (3 til uchun data-*) -->
           <h3
             class="card-title i18n-db"
             data-uz="{{ f.title_uz }}"
@@ -135,6 +128,7 @@
     </div>
   </div>
 </section>
+
 
 
 
