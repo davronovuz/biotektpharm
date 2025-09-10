@@ -376,134 +376,120 @@ section.hero{padding:0!important}
 
 /* ===== Footer ===== */
 /* ==== FOOTER (Figma-match dark) =================================== */
+/* ===== FOOTER — FIGMA BLUE THEME (drop-in override) ===================== */
+/* HTML o'zgarmaydi: <footer class="footer"> ... */
+
 .footer{
-  position:relative;
-  background:#232734;            /* chuqur kulrang */
-  color:#e8ecf6;
-  padding:72px 0 28px;
+  position: relative;
+  color:#fff;
+  background: linear-gradient(180deg,#0f7edd 0%, #0c6fd1 55%, #0a62c4 100%);
+  padding: 56px 0 22px;
+  border:0;
   overflow:hidden;
 }
 
-/* yuqoridagi ko‘k aksent chiziq */
+/* Figma: to'lqinli “lines” overlay */
 .footer::before{
-  content:"";
-  position:absolute; top:0; left:0; right:0; height:6px;
-  background:linear-gradient(90deg,#3a86ff 0%, #6aa3ff 60%, #3a86ff 100%);
-  opacity:.95;
-}
-
-/* fon bezak: yengil to‘lqinlar + nur spot (figma feel) */
-.footer::after{
   content:"";
   position:absolute; inset:0;
   background:
-    radial-gradient(1000px 300px at 70% 10%, rgba(58,134,255,.12), transparent 60%),
     url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='300' viewBox='0 0 1200 300' fill='none'>\
-<path d='M0 150 C200 220 360 60 560 130 C760 200 920 120 1200 200' stroke='%235C7DFF' stroke-opacity='.18' stroke-width='3' fill='none'/>\
-<path d='M0 210 C220 280 360 120 560 190 C760 260 920 180 1200 260' stroke='%235C7DFF' stroke-opacity='.10' stroke-width='2' fill='none'/>\
-</svg>") center/cover no-repeat;
-  opacity:.22;
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 360' preserveAspectRatio='none'>\
+  <defs>\
+    <linearGradient id='g' x1='0' x2='1' y1='0' y2='0'>\
+      <stop offset='0' stop-color='white' stop-opacity='.15'/>\
+      <stop offset='1' stop-color='white' stop-opacity='.05'/>\
+    </linearGradient>\
+  </defs>\
+  <path d='M-40 90 C220 10 380 160 620 100 C860 40 1040 130 1480 40' fill='none' stroke='url(#g)' stroke-width='3'/>\
+  <path d='M-40 170 C240 90 380 250 620 190 C860 130 1040 220 1480 130' fill='none' stroke='url(#g)' stroke-width='3'/>\
+  <path d='M-40 250 C240 170 380 330 620 270 C860 210 1040 300 1480 210' fill='none' stroke='url(#g)' stroke-width='3'/>\
+</svg>") center/1600px 360px no-repeat;
+  opacity:.9;
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
+
+/* ichkarida yana engil “mist” spot – figmadagi yumshoqlik */
+.footer::after{
+  content:"";
+  position:absolute; inset:-10% -20% 0 -20%;
+  background: radial-gradient(600px 220px at 70% 0%, rgba(255,255,255,.18), transparent 65%);
   pointer-events:none;
 }
 
-/* layout */
-.footer .footer-grid{
+/* Grid – figmadagi uchta ustun */
+.footer-grid{
   display:grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-columns: 1.3fr 1fr 1fr;
   gap:48px;
-  position:relative; z-index:1;
+  margin-bottom:28px;
 }
-@media (max-width: 980px){
-  .footer .footer-grid{ grid-template-columns:1fr; gap:36px; }
-}
+@media (max-width: 980px){ .footer-grid{ grid-template-columns:1fr; gap:28px; } }
 
-/* chap ustun: logo + tagline + social */
+/* Chap: logo + tagline */
 .logof{ height:auto; display:block; }
-.logof-icon{ width:auto; height:auto; }
-.logof-icon img{
-  width:240px; height:auto; object-fit:contain; display:block;
-  filter:drop-shadow(0 4px 12px rgba(0,0,0,.25));
-}
-
-/* taglayn */
+.logof-icon img{ width:240px; height:auto; object-fit:contain; display:block; }
 .footer-col > p{
-  margin:18px 0 22px;
-  color:#b8c0d6;
+  margin:18px 0 16px;
   font-size:1.05rem;
-  max-width:520px;
+  color:#eaf2ff;
+  opacity:.95;
 }
 
-/* social ikonlar (dumaloq shisha) */
+/* Social — oq doira, ozgina shadow */
 .social-links{ display:flex; gap:14px; }
 .social-links a{
-  width:40px; height:40px;
+  width:40px; height:40px; border-radius:50%;
   display:inline-flex; align-items:center; justify-content:center;
-  border-radius:50%;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.08);
-  color:#e8ecf6;
-  box-shadow:0 6px 16px rgba(0,0,0,.25), inset 0 0 0 6px rgba(255,255,255,.04);
-  transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+  background:#fff; color:#0b65c0;
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+  transition:transform .18s ease, box-shadow .18s ease, color .18s ease;
 }
-.social-links a:hover{
-  transform:translateY(-3px);
-  background:rgba(58,134,255,.18);
-  border-color:rgba(58,134,255,.35);
-  color:#ffffff;
-}
+.social-links a:hover{ transform:translateY(-3px); box-shadow:0 10px 26px rgba(0,0,0,.24); color:#084da4; }
 
-/* sarlavha (Playfair + pastki chiziq gradient) */
+/* Sarlavhalar — oq, ingichka pastki chiziq */
 .footer-col h3{
   font-family:'Playfair Display',serif;
-  font-weight:800; letter-spacing:.2px;
-  font-size:1.6rem;
-  color:#f7f9ff;
-  margin:0 0 18px;
-  padding:0;
-  position:relative;
+  font-weight:800; color:#fff;
+  font-size:1.45rem; margin:0 0 12px;
+  position:relative; padding-bottom:8px;
 }
 .footer-col h3::after{
-  content:""; display:block; width:72px; height:3px; margin-top:10px;
-  background:linear-gradient(90deg,#4f8cff,#7fb0ff);
-  border-radius:3px;
-  box-shadow:0 4px 12px rgba(79,140,255,.45);
+  content:""; position:absolute; left:0; bottom:0; width:72px; height:2px;
+  background:rgba(255,255,255,.7);
+  border-radius:2px;
 }
 
-/* havolalar ro'yxati */
-.footer-col ul{ list-style:none; padding:0; margin:0; display:grid; gap:14px; }
+/* Havolalar – to'liq oq, hoverda biroz yorqinlik */
+.footer-col ul{ list-style:none; padding:0; margin:0; display:grid; gap:12px; }
 .footer-col ul li{ margin:0; }
 .footer-col ul li a{
-  font-size:1rem; font-weight:500;
-  color:#cdd6ea; text-decoration:none;
-  transition:color .18s ease, transform .18s ease;
+  color:#ffffff; text-decoration:none; font-weight:500; opacity:.92;
+  transition:opacity .16s ease, transform .16s ease;
 }
-.footer-col ul li a:hover{ color:#9ec1ff; transform:translateX(4px); }
+.footer-col ul li a:hover{ opacity:1; transform:translateX(4px); }
 
-/* kontakt itemlarida piktogramma kapsulalari */
+/* Kontakt — ikon kapsula (oq kontur) */
 .footer-col ul li i{
-  width:28px; height:28px; border-radius:8px; flex:0 0 28px;
+  width:28px; height:28px; border-radius:8px; margin-right:10px;
   display:inline-flex; align-items:center; justify-content:center;
-  margin-right:12px;
-  background:linear-gradient(180deg, rgba(79,140,255,.18), rgba(79,140,255,.08));
-  color:#98b6ff;
-  box-shadow:inset 0 0 0 6px rgba(79,140,255,.06);
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);
 }
 
-/* pastki panel */
+/* Pastki chiziq va siyosat havolalari */
 .footer-bottom{
-  margin-top:48px;
-  padding-top:18px;
-  border-top:1px solid rgba(255,255,255,.08);
-  font-size:.98rem;
-  color:#b8c0d6;
-  display:flex; justify-content:space-between; align-items:center; gap:16px;
-  position:relative; z-index:1;
+  margin-top:16px; padding-top:16px;
+  border-top:1px solid rgba(255,255,255,.35);
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  color:#eaf2ff; opacity:.95; font-size:.98rem;
 }
 .footer-bottom .company{ color:#fff; font-weight:700; }
-.footer-links{ display:flex; gap:18px; }
-.footer-links a{ color:#cdd6ea; text-decoration:none; transition:color .18s ease; }
-.footer-links a:hover{ color:#9ec1ff; }
+.footer-links{ display:flex; gap:24px; }
+.footer-links a{ color:#ffffff; opacity:.9; text-decoration:none; }
+.footer-links a:hover{ opacity:1; }
 
 @media (max-width:700px){
   .footer-bottom{ flex-direction:column; text-align:center; }
@@ -535,3 +521,4 @@ section.hero{padding:0!important}
   .footer-grid{gap:2rem}
   .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
 }
+
