@@ -312,127 +312,191 @@
   })();
 
   // ---------- Google Maps: lazy load when #locations appears ----------
-  (() => {
-    const mapHost = $('#google-map');
-    const locationsSection = $('#locations');
-    if (!mapHost || !locationsSection) return;
+/* === LOCATIONS v3 — PNG sahna uchun pro interaktiv JS === */
+(() => {
+  const stage = document.querySelector('.locations-v3 .loc-stage');
+  if (!stage) return;
 
-    const initMap = () => {
-      // already initialized?
-      if (mapHost.dataset.mapInited === '1') return;
-      mapHost.dataset.mapInited = '1';
+  const pins = Array.from(stage.querySelectorAll('.pin'));
+  const card = stage.querySelector('.loc-card');
+  if (!pins.length || !card) return;
 
-      const defaultLocation = { lat: 39.6542, lng: 66.9597 }; // Samarkand
-      const map = new google.maps.Map(mapHost, {
-        zoom: 12,
-        center: defaultLocation,
-        styles: [
-          { featureType: 'poi', elementType: 'all', stylers: [{ visibility: 'off' }] },
-          { featureType: 'road', elementType: 'all', stylers: [{ saturation: -100 }, { lightness: 45 }] },
-          { featureType: 'water', elementType: 'all', stylers: [{ color: '#c9e7ff' }, { visibility: 'on' }] },
-        ],
-        disableDefaultUI: false,
-      });
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const cards = $$('.location-card');
-      const windows = [];
+  // UI elements inside card
+  const cityEl  = card.querySelector('.loc-card__city');
+  const elAddr  = card.querySelector('.js-address');
+  const elPhone = card.querySelector('.js-phone');
+  const elHours = card.querySelector('.js-hours');
+  const openEl  = card.querySelector('#openBadge');
+  const dirBtn  = card.querySelector('#dirBtn');
+  const copyBtn = card.querySelector('#copyAddr');
+  const shareBtn= card.querySelector('#shareAddr');
 
-      const highlightCard = (region) => {
-        cards.forEach((c) => c.classList.toggle('active', c.dataset.region === region));
-      };
-
-      cards.forEach((card) => {
-        const lat = parseFloat(card.dataset.lat);
-        const lng = parseFloat(card.dataset.lng);
-        const title = card.querySelector('h3')?.textContent || '';
-
-        const marker = new google.maps.Marker({
-          position: { lat, lng },
-          map,
-          title,
-          // NOTE: customize marker if needed
-        });
-
-        const info = new google.maps.InfoWindow({
-          content: `
-            <div style="padding:10px;max-width:260px">
-              <h3 style="margin:0 0 6px;color:#3a86ff;">${title}</h3>
-              <p style="margin:0 0 5px;">${card.querySelectorAll('p')[0]?.textContent || ''}</p>
-              <p style="margin:0 0 5px;">${card.querySelectorAll('p')[1]?.textContent || ''}</p>
-              <p style="margin:0;">${card.querySelectorAll('p')[2]?.textContent || ''}</p>
-            </div>`,
-        });
-        windows.push(info);
-
-        marker.addListener('click', () => {
-          windows.forEach((w) => w.close());
-          info.open(map, marker);
-          map.panTo(marker.getPosition());
-          map.setZoom(14);
-          highlightCard(card.dataset.region);
-        });
-
-        on(card, 'click', () => {
-          windows.forEach((w) => w.close());
-          info.open(map, marker);
-          map.panTo({ lat, lng });
-          map.setZoom(14);
-          highlightCard(card.dataset.region);
-        });
-      });
-
-      // Bonus: pan to card in view (nice on scroll)
-      if ('IntersectionObserver' in window) {
-        const obs = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((e) => {
-              if (!e.isIntersecting) return;
-              const lat = parseFloat(e.target.dataset.lat);
-              const lng = parseFloat(e.target.dataset.lng);
-              map.panTo({ lat, lng });
-              highlightCard(e.target.dataset.region);
-            });
-          },
-          { threshold: 0.5, rootMargin: '0px 0px -50% 0px' }
-        );
-        $$('.location-card').forEach((c) => obs.observe(c));
-      }
-    };
-
-    const loadGoogleMaps = () => {
-      if (window.google && window.google.maps) {
-        initMap();
-        return;
-      }
-      const apiKey =
-        document.documentElement.dataset.gmapsKey || // <html data-gmaps-key="...">
-        'YOUR_GOOGLE_MAPS_API_KEY'; // fallback — almashtiring
-
-      const s = document.createElement('script');
-      s.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
-      s.async = true;
-      s.defer = true;
-      s.onload = initMap;
-      document.head.appendChild(s);
-    };
-
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (!e.isIntersecting) return;
-            loadGoogleMaps();
-            io.disconnect(); // load once
-          });
-        },
-        { threshold: 0.15 }
-      );
-      io.observe(locationsSection);
-    } else {
-      // no IO support: load immediately
-      loadGoogleMaps();
+  // Ma'lumotlar (backend bilan sinxron kodingiz bo'yicha)
+  const DATA = {
+    samarqand: {
+      city: "Samarqand",
+      address: "Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy",
+      phone: "+998 90 657 05 00",
+      hours: "Dushanba–Juma: 9:00 – 18:00",
+      lat: 39.6542, lng: 66.9597
+    },
+    tashkent: {
+      city: "Toshkent",
+      address: "Mirzo Ulug'bek tumani, Sayram 7-proyezd, 50-uy",
+      phone: "+998 90 123 45 67",
+      hours: "Dushanba–Juma: 9:00 – 18:00",
+      lat: 41.2995, lng: 69.2401
+    },
+    fergana: {
+      city: "Fargʻona",
+      address: "Urta Shura MFY, Charogon ko'chasi, 21-uy",
+      phone: "+998 90 937 06 04",
+      hours: "Dushanba–Juma: 9:00 – 18:00",
+      lat: 40.3880, lng: 71.7870
+    },
+    xorazm: {
+      city: "Xorazm",
+      address: "Sanoatchilar ko'chasi, 12D-uy",
+      phone: "+998 90 657 05 00",
+      hours: "Dushanba–Juma: 9:00 – 18:00",
+      lat: 41.3565, lng: 60.8567
     }
-  })();
+  };
+
+  /* ---------- Helpers ---------- */
+  const $on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
+
+  // 9:00–18:00 ichidami? (oddiy versiya)
+  const isOpenNow = () => {
+    const d = new Date();
+    const h = d.getHours() + d.getMinutes()/60;
+    return h >= 9 && h <= 18; // kerak bo‘lsa backenddan keladigan jadvalga moslashtiring
+  };
+
+  const updateOpenBadge = () => {
+    const open = isOpenNow();
+    openEl.textContent = open ? 'Open' : 'Closed';
+    openEl.classList.toggle('is-closed', !open);
+  };
+
+  const updateDirections = (lat, lng) => {
+    if (!dirBtn) return;
+    dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+  };
+
+  // Kartani aktiv pin koordinatalariga “langar” qilish (desktop),
+  // mobil’da esa CSS qoidasiga ko‘ra pastda dok bo‘ladi.
+  const placeCard = (pin) => {
+    if (!pin) return;
+    card.style.setProperty('--cx', pin.style.getPropertyValue('--x') || '50%');
+    card.style.setProperty('--cy', pin.style.getPropertyValue('--y') || '50%');
+  };
+
+  const fillCard = (key) => {
+    const d = DATA[key];
+    if (!d) return;
+    cityEl.textContent  = d.city;
+    elAddr.textContent  = d.address;
+    elPhone.textContent = d.phone;
+    elHours.textContent = d.hours;
+    updateOpenBadge();
+    updateDirections(d.lat, d.lng);
+  };
+
+  const setPressed = (hit) => {
+    pins.forEach(p => p.setAttribute('aria-pressed', (p === hit) ? 'true' : 'false'));
+  };
+
+  let activeKey = null;
+  const activate = (key, pushHash = true) => {
+    const pin = pins.find(p => p.dataset.region === key) || pins[0];
+    if (!pin) return;
+    activeKey = pin.dataset.region;
+    pins.forEach(p => p.classList.toggle('is-active', p === pin));
+    setPressed(pin);
+    fillCard(activeKey);
+    placeCard(pin);
+    card.classList.add('show');
+
+    if (pushHash) {
+      const url = new URL(location.href);
+      url.searchParams.set('loc', activeKey); // ?loc=samarqand
+      history.replaceState(null, '', url);
+    }
+  };
+
+  // Deep-link: ?loc=... yoki #loc=...
+  const getInitialKey = () => {
+    const url = new URL(location.href);
+    const qp = url.searchParams.get('loc');
+    if (qp && DATA[qp]) return qp;
+    const hash = (location.hash || '').toLowerCase();
+    const m = hash.match(/loc[-=](\w+)/);
+    if (m && DATA[m[1]]) return m[1];
+    return (pins[0] && pins[0].dataset.region) || 'samarqand';
+  };
+
+  /* ---------- Init ---------- */
+  activate(getInitialKey(), false);
+
+  // Interaktivlik: click/tap + klaviatura
+  pins.forEach(p => {
+    $on(p, 'click', () => { activate(p.dataset.region); stopRotate(); });
+    $on(p, 'keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); p.click(); }
+    });
+  });
+
+  // Copy / Share
+  $on(copyBtn, 'click', async () => {
+    try {
+      await navigator.clipboard?.writeText(`${cityEl.textContent}: ${elAddr.textContent}`);
+      copyBtn.classList.add('is-ok'); setTimeout(()=>copyBtn.classList.remove('is-ok'), 800);
+    } catch {}
+  });
+
+  $on(shareBtn, 'click', async () => {
+    const title = cityEl.textContent.trim();
+    const text  = `${title}: ${elAddr.textContent.trim()} — ${elPhone.textContent.trim()}`;
+    const url = new URL(location.href);
+    url.searchParams.set('loc', activeKey || 'samarqand');
+    if (navigator.share) {
+      try { await navigator.share({ title, text, url: url.toString() }); } catch {}
+    } else {
+      try { await navigator.clipboard?.writeText(url.toString()); } catch {}
+    }
+  });
+
+  // Auto-rotate (reduce-motion bo‘lsa yoqilmaydi)
+  let rotTimer = null;
+  const next = () => {
+    const i = pins.findIndex(p => p.dataset.region === activeKey);
+    const n = pins[(i + 1) % pins.length];
+    activate(n.dataset.region);
+  };
+  const startRotate = () => { if (!isReducedMotion && !rotTimer) rotTimer = setInterval(next, 6000); };
+  const stopRotate  = () => { if (rotTimer) { clearInterval(rotTimer); rotTimer = null; } };
+
+  startRotate();
+  $on(stage, 'pointerenter', stopRotate);
+  $on(stage, 'pointerleave', startRotate);
+
+  // Resize’da kartani joyini yangilash (pin o‘zgarmasa ham)
+  const onResize = () => {
+    const pin = pins.find(p => p.dataset.region === activeKey) || pins[0];
+    placeCard(pin);
+  };
+  window.addEventListener('resize', onResize);
+
+  // Sahifada yuqoriga qaytganda yoki visibility o‘zgarganda auto-rotate optimizatsiya
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopRotate();
+    else startRotate();
+  });
+})();
+
 
   // ---------- Safety: disable animations for reduced motion ----------
   if (isReducedMotion) {
@@ -441,141 +505,3 @@
 })();
 
 
-// === LOCATIONS v3 (PNG bilan) ===
-(() => {
-  const stage = document.querySelector('.locations-v3 .loc-stage');
-  if (!stage) return;
-
-  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const pins = Array.from(stage.querySelectorAll('.pin'));
-  const card = stage.querySelector('.loc-card');
-  const cityEl = card.querySelector('.loc-card__city');
-  const elAddr = card.querySelector('.js-address');
-  const elPhone = card.querySelector('.js-phone');
-  const elHours = card.querySelector('.js-hours');
-  const openEl = document.getElementById('openBadge');
-  const dirBtn = document.getElementById('dirBtn');
-
-  // Ma'lumotlar (kerak bo‘lsa backenddan to‘ldiring)
-  const DATA = {
-    samarqand: {
-      city: "Samarqand",
-      address: "Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy",
-      phone: "+998 90 657 05 00",
-      hours: "Dushanba–Juma: 9:00 – 18:00",
-      lat: 39.6542, lng: 66.9597,
-    },
-    tashkent: {
-      city: "Toshkent",
-      address: "Mirzo Ulug'bek tumani, Sayram 7-proyezd, 50-uy",
-      phone: "+998 90 123 45 67",
-      hours: "Dushanba–Juma: 9:00 – 18:00",
-      lat: 41.2995, lng: 69.2401,
-    },
-    fergana: {
-      city: "Fargʻona",
-      address: "Urta Shura MFY, Charogon ko'chasi, 21-uy",
-      phone: "+998 90 937 06 04",
-      hours: "Dushanba–Juma: 9:00 – 18:00",
-      lat: 40.3880, lng: 71.7870,
-    },
-    xorazm: {
-      city: "Xorazm",
-      address: "Sanoatchilar ko'chasi, 12D-uy",
-      phone: "+998 90 657 05 00",
-      hours: "Dushanba–Juma: 9:00 – 18:00",
-      lat: 41.3565, lng: 60.8567,
-    },
-  };
-
-  // Hozir ochiqmi? (soddalashtirilgan)
-  function isOpen(hoursStr){
-    // agar format doimiy bo‘lsa, quydagicha qattiq belgilash mumkin
-    const now = new Date();
-    const h = now.getHours() + now.getMinutes()/60;
-    const open = 9, close = 18; // haftalik bir xil deb faraz
-    return h >= open && h <= close;
-  }
-
-  function updateOpenBadge(hoursStr){
-    const open = isOpen(hoursStr);
-    openEl.textContent = open ? 'Open' : 'Closed';
-    openEl.classList.toggle('is-closed', !open);
-  }
-
-  function updateDirections(region){
-    const d = DATA[region]; if (!d) return;
-    dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${d.lat},${d.lng}`;
-  }
-
-  function placeCard(pin) {
-    const x = pin.style.getPropertyValue('--x') || '50%';
-    const y = pin.style.getPropertyValue('--y') || '50%';
-    card.style.setProperty('--cx', x);
-    card.style.setProperty('--cy', y);
-  }
-
-  function fillCard(region) {
-    const d = DATA[region]; if (!d) return;
-    cityEl.textContent = d.city;
-    elAddr.textContent = d.address;
-    elPhone.textContent = d.phone;
-    elHours.textContent = d.hours;
-    updateOpenBadge(d.hours);
-    updateDirections(region);
-  }
-
-  function activate(region) {
-    const pin = pins.find(p => p.dataset.region === region);
-    if (!pin) return;
-    pins.forEach(p => {
-      const active = p === pin;
-      p.classList.toggle('is-active', active);
-      p.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    fillCard(region);
-    placeCard(pin);
-    card.classList.add('show');
-  }
-
-  // Boshlang‘ich holat
-  const first = pins.find(p => p.classList.contains('is-active')) || pins[0];
-  pins.forEach(p => p.setAttribute('aria-pressed', p === first ? 'true' : 'false'));
-  activate(first.dataset.region);
-
-  // Interaktivlik
-  pins.forEach(p => {
-    p.addEventListener('click', () => { activate(p.dataset.region); stopRotate(); });
-    p.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); p.click(); }
-    });
-  });
-
-  // Copy / Share
-  const $ = (s, r=document) => r.querySelector(s);
-  const on = (el, ev, fn) => el && el.addEventListener(ev, fn);
-  on($('#copyAddr'), 'click', async () => {
-    try{ await navigator.clipboard?.writeText(elAddr.textContent.trim()); }catch{}
-  });
-  on($('#shareAddr'), 'click', async () => {
-    const city = cityEl.textContent.trim();
-    const txt = `${city}: ${elAddr.textContent.trim()} — ${elPhone.textContent.trim()}`;
-    if (navigator.share){ try{ await navigator.share({ title: city, text: txt }); }catch{} }
-  });
-
-  // Auto-rotate (reduce-motion hurmati)
-  let idx = pins.indexOf(first);
-  let rotTimer = null;
-  const next = () => { idx = (idx + 1) % pins.length; activate(pins[idx].dataset.region); };
-  const startRotate = () => { if (!isReducedMotion) rotTimer = setInterval(next, 6000); };
-  const stopRotate  = () => { if (rotTimer) { clearInterval(rotTimer); rotTimer = null; } };
-  startRotate();
-  stage.addEventListener('pointerenter', stopRotate);
-  stage.addEventListener('pointerleave', startRotate);
-
-  // Re-center on resize
-  window.addEventListener('resize', () => {
-    const active = pins.find(p => p.classList.contains('is-active'));
-    active && placeCard(active);
-  });
-})();

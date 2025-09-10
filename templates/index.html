@@ -305,39 +305,47 @@
 
 
 
-<!-- Locations Section (v3, PNG 1536×1024 ga mos) -->
-<section class="locations-v3" id="locations">
+<!-- Locations Section -->
+<!-- LOCATIONS (FIGMA-MATCH) -->
+<section id="locations" class="locations-v3" aria-labelledby="loc-title">
   <div class="container">
     <div class="loc-head">
       <p class="loc-kicker" data-i18n="locations_subtitle">
         Butun Oʻzbekiston boʻylab ofis va omborlarimiz
       </p>
-      <h2 class="loc-title" data-i18n="locations_title">Bizning joylashuvlar</h2>
+      <h2 id="loc-title" class="loc-title" data-i18n="locations_title">
+        Bizning joylashuvlar
+      </h2>
     </div>
 
     <div class="loc-stage" aria-label="Uzbekistan map">
-      <!-- Yengil fon pattern -->
+      <!-- fon pattern (ixtiyoriy) -->
       <div class="hex-bg" aria-hidden="true"></div>
 
-      <!-- RASM: siz yuborgan rasmcha.png -->
-      <img class="uz-map" src="{% static 'images/rasmcha.png' %}" alt="Uzbekistan" loading="lazy">
+      <!-- Xarita PNG (figmadagi rasm) -->
+      <img
+        src="{% static 'images/rasmcha.png' %}"
+        alt="Oʻzbekiston xaritasi"
+        class="uz-map"
+        loading="lazy"
+      />
 
-      <!-- ROUTES: 1536×1024 koordinatalarga mos -->
-      <svg class="loc-routes" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <!-- Samarqand -> Toshkent -->
-        <path class="route" d="M799,650 C952,610 1106,551 1229,512" />
-        <!-- Samarqand -> Farg‘ona -->
-        <path class="route" d="M806,670 C983,709 1106,670 1321,670" />
-        <!-- Samarqand -> Xorazm -->
-        <path class="route" d="M783,660 C645,650 507,610 338,571" />
+      <!-- Yo‘laklar (svg) -->
+      <svg class="loc-routes" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <!-- Samarqand → Toshkent -->
+        <path class="route" d="M520,330 C640,300 720,280 800,260" />
+        <!-- Samarqand → Farg‘ona -->
+        <path class="route" d="M525,340 C640,360 740,345 880,345" />
+        <!-- Samarqand → Xorazm -->
+        <path class="route" d="M510,335 C420,330 330,312 220,292" />
       </svg>
 
-      <!-- PINLAR: PNG ga nozik moslangan koordinatalar -->
-      <button class="pin is-active" data-region="samarqand" style="--x:52%; --y:65%;" aria-pressed="true">
+      <!-- PINLAR (koordinata foizda, PNGga mos) -->
+      <button class="pin is-active" data-region="samarqand" style="--x:52%; --y:64%;" aria-pressed="true">
         <span class="pin-dot"></span><span class="pin-label">Samarqand</span>
       </button>
 
-      <button class="pin" data-region="tashkent" style="--x:79%; --y:34%;" aria-pressed="false">
+      <button class="pin" data-region="tashkent" style="--x:79%; --y:35%;" aria-pressed="false">
         <span class="pin-dot"></span><span class="pin-label">Toshkent</span>
       </button>
 
@@ -345,22 +353,33 @@
         <span class="pin-dot"></span><span class="pin-label">Fargʻona</span>
       </button>
 
-      <button class="pin" data-region="xorazm" style="--x:18%; --y:39%;" aria-pressed="false">
+      <button class="pin" data-region="xorazm" style="--x:18%; --y:40%;" aria-pressed="false">
         <span class="pin-dot"></span><span class="pin-label">Xorazm</span>
       </button>
 
-      <!-- INFO KARTA -->
+      <!-- INFO-KARTA -->
       <aside class="loc-card" role="dialog" aria-live="polite">
         <div class="loc-card__inner">
           <div class="loc-card__row">
             <h3 class="loc-card__city">Samarqand</h3>
             <span class="badge-open" id="openBadge">Open</span>
           </div>
+
           <ul class="loc-card__list">
-            <li><i class="fa-solid fa-location-dot"></i> <span class="js-address">Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy</span></li>
-            <li><i class="fa-solid fa-phone"></i> <span class="js-phone">+998 90 657 05 00</span></li>
-            <li><i class="fa-regular fa-clock"></i> <span class="js-hours">Dushanba–Juma: 9:00 – 18:00</span></li>
+            <li>
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <span class="js-address">Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+              <span class="js-phone">+998 90 657 05 00</span>
+            </li>
+            <li>
+              <i class="fa-regular fa-clock" aria-hidden="true"></i>
+              <span class="js-hours">Dushanba–Juma: 9:00 – 18:00</span>
+            </li>
           </ul>
+
           <div class="loc-actions">
             <button class="btn-outline" id="copyAddr" type="button">Copy</button>
             <button class="btn-outline" id="shareAddr" type="button">Share</button>
