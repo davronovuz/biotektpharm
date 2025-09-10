@@ -133,60 +133,80 @@
 
 
 
-<!-- ===== HISTORY / TIMELINE ===== -->
-<section class="history" id="history">
-  <div class="container">
+<!-- ================= ABOUT INTRO (figma) ================= -->
+<section class="intro-hero">
+  <div class="container intro-wrap">
+    {% if intro and intro.photo %}
+      <figure class="intro-media">
+        <img src="{{ intro.photo.url }}" alt="{{ intro.title_uz }}" loading="lazy">
+      </figure>
+    {% endif %}
 
-    <!-- Header -->
-    <div class="section-header history-head">
-      <h2 class="i18n" data-i18n="history_title">Bizning tarix</h2>
-      <p class="i18n" data-i18n="history_subtitle">20 yillik muvaffaqiyatli safar</p>
-    </div>
+    <div class="intro-copy">
+      <h2 class="intro-title i18n-db"
+          data-uz="{{ intro.title_uz }}"
+          data-ru="{{ intro.title_ru|default:intro.title_uz }}"
+          data-en="{{ intro.title_en|default:intro.title_uz }}">
+        {{ intro.title_uz }}
+      </h2>
 
-    <!-- Timeline rail + progress -->
-    <div class="timeline" id="timeline">
-      <span class="timeline-rail"></span>
-      <span class="timeline-progress" id="timelineProgress"></span>
-
-      {% for item in timeline %}
-      <article class="t-row {% cycle 'left' 'right' %}" data-idx="{{ forloop.counter0 }}">
-        <!-- Card -->
-        <div class="t-card">
-          <div class="t-badge">
-            {% if item.icon_type == 'img' and item.icon_image %}
-              <img src="{{ item.icon_image.url }}" alt="icon">
-            {% else %}
-              <i class="{{ item.fa_class|default:'fa-solid fa-location-dot' }}"></i>
-            {% endif %}
-          </div>
-
-          <div class="t-year">{{ item.year }}</div>
-
-          <h3 class="t-title i18n-db"
-              data-uz="{{ item.title_uz }}"
-              data-ru="{{ item.title_ru|default:item.title_uz }}"
-              data-en="{{ item.title_en|default:item.title_uz }}">
-            {{ item.title_uz }}
-          </h3>
-
-          <p class="t-text i18n-db"
-             data-uz="{{ item.text_uz }}"
-             data-ru="{{ item.text_ru|default:item.text_uz }}"
-             data-en="{{ item.text_en|default:item.text_uz }}">
-            {{ item.text_uz }}
-          </p>
-        </div>
-
-        {% if item.photo %}
-        <figure class="t-photo">
-          <img src="{{ item.photo.url }}" alt="{{ item.title_uz }}">
-        </figure>
-        {% endif %}
-      </article>
-      {% endfor %}
+      <p class="intro-text i18n-db"
+         data-uz="{{ intro.text_uz }}"
+         data-ru="{{ intro.text_ru|default:intro.text_uz }}"
+         data-en="{{ intro.text_en|default:intro.text_uz }}">
+        {{ intro.text_uz }}
+      </p>
     </div>
   </div>
 </section>
+
+<!-- ================= HISTORY CARDS (figma) ================= -->
+<section class="history-cards" id="history-figma">
+  <div class="container">
+    <h3 class="history-kicker i18n" data-i18n="history_title">Bizning tarix</h3>
+
+    {% for h in history_cards %}
+      <article class="h-item {% cycle 'left' 'right' %}" style="--d: {{ forloop.counter0|add:'1' }}00ms">
+        <div class="h-copy">
+          {% if h.year %}
+            <div class="h-year">{{ h.year }}</div>
+          {% endif %}
+
+          <div class="h-icon">
+            {% if h.has_icon_img %}
+              <img src="{{ h.icon_image.url }}" alt="" loading="lazy">
+            {% else %}
+              <i class="{{ h.fa_class|default:'fa-solid fa-circle' }}"></i>
+            {% endif %}
+          </div>
+
+          <h4 class="h-title i18n-db"
+              data-uz="{{ h.title_uz }}"
+              data-ru="{{ h.title_ru|default:h.title_uz }}"
+              data-en="{{ h.title_en|default:h.title_uz }}">
+            {{ h.title_uz }}
+          </h4>
+
+          <p class="h-text i18n-db"
+             data-uz="{{ h.text_uz }}"
+             data-ru="{{ h.text_ru|default:h.text_uz }}"
+             data-en="{{ h.text_en|default:h.text_uz }}">
+            {{ h.text_uz }}
+          </p>
+        </div>
+
+        {% if h.photo %}
+          <figure class="h-media">
+            <img src="{{ h.photo.url }}" alt="{{ h.title_uz }}" loading="lazy">
+          </figure>
+        {% endif %}
+      </article>
+    {% empty %}
+      <p class="muted">Hozircha tarixiy kartalar yo‘q.</p>
+    {% endfor %}
+  </div>
+</section>
+
 
 
 

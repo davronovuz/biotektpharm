@@ -24,7 +24,7 @@ class FeatureCardAdmin(admin.ModelAdmin):
 
 
 from django.contrib import admin
-from .models import AboutSection, TimelineItem
+from .models import AboutSection
 
 
 @admin.register(AboutSection)
@@ -57,22 +57,31 @@ class AboutSectionAdmin(admin.ModelAdmin):
         return super().has_add_permission(request)
 
 
-@admin.register(TimelineItem)
-class TimelineItemAdmin(admin.ModelAdmin):
-    list_display = ( "year", "title_uz", "is_active")
+# apps/about/admin.py
+from django.contrib import admin
+from .models import CompanyIntro, HistoryCard
+
+@admin.register(CompanyIntro)
+class CompanyIntroAdmin(admin.ModelAdmin):
+    list_display = ("title_uz", "is_active")
     list_editable = ("is_active",)
-    list_filter = ("is_active",)
-    search_fields = ("year", "title_uz", "text_uz")
-    readonly_fields = ()
     fieldsets = (
-        ("Ko‘rinish", {
-            "fields": ("is_active", "order")
-        }),
-        ("Asosiy", {
-            "fields": ("year", "title_uz", "title_ru", "title_en", "text_uz", "text_ru", "text_en")
-        }),
-        ("Rasmlar / ikonkalar", {
-            "fields": ("photo", "icon_type", "fa_class", "icon_image")
-        }),
+        (None, {"fields": ("is_active",)}),
+        ("Sarlavha", {"fields": ("title_uz","title_ru","title_en")}),
+        ("Matn", {"fields": ("text_uz","text_ru","text_en")}),
+        ("Rasm", {"fields": ("photo",)}),
     )
-    save_on_top = True
+
+@admin.register(HistoryCard)
+class HistoryCardAdmin(admin.ModelAdmin):
+    list_display = ("order","year","title_uz","is_active")
+    search_fields = ("title_uz","year")
+    list_filter = ("is_active",)
+    fieldsets = (
+        (None, {"fields": ("is_active","order","year")}),
+        ("Sarlavha", {"fields": ("title_uz","title_ru","title_en")}),
+        ("Matn", {"fields": ("text_uz","text_ru","text_en")}),
+        ("Ikon", {"fields": ("icon_type","fa_class","icon_image")}),
+        ("Rasm", {"fields": ("photo",)}),
+    )
+

@@ -100,57 +100,65 @@ class AboutSection(models.Model):
         return f"AboutSection: {self.overline_uz or 'About'}"
 
 
-class TimelineItem(models.Model):
-    """
-    “Bizning tarix” – yil + sarlavha + matn + rasm + ikon (ixtiyoriy)
-    """
-    ICON_FA = 'fa'
-    ICON_IMG = 'img'
-    ICON_CHOICES = [
-        (ICON_FA, "Font Awesome class"),
-        (ICON_IMG, "Image/SVG upload"),
-    ]
+# apps/about/models.py
 
-    year = models.CharField(max_length=20, help_text="Masalan: 2005-yil / 2012-yil / Bugun")
-    title_uz = models.CharField(max_length=180)
-    title_ru = models.CharField(max_length=180, blank=True, default="")
-    title_en = models.CharField(max_length=180, blank=True, default="")
 
-    text_uz = models.TextField(blank=True, default="")
-    text_ru = models.TextField(blank=True, default="")
-    text_en = models.TextField(blank=True, default="")
+ICON_TYPES = (
+    ("fa", "Font Awesome class"),
+    ("img", "Image file"),
+)
 
-    # Katta rasm (cardning o‘ng tomoni)
-    photo = models.ImageField(upload_to=upload_timeline, blank=True, null=True)
-
-    # Kichik badge/ikon
-    icon_type = models.CharField(max_length=3, choices=ICON_CHOICES, default=ICON_FA)
-    fa_class = models.CharField(
-        max_length=64,
-        blank=True,
-        help_text="Masalan: 'fa-solid fa-store' yoki 'fas fa-box-open'"
-    )
-    icon_image = models.ImageField(upload_to="timeline/icons/", blank=True, null=True)
-
-    order = models.PositiveIntegerField(default=0, help_text="Kartalar tartibi (kichik – birinchi)")
+class CompanyIntro(models.Model):
+    # Tepadagi “BIOTEK PHARM haqida” qismi (1 dona yozuv)
+    title_uz = models.CharField(max_length=200, default="BIOTEK PHARM haqida")
+    title_ru = models.CharField(max_length=200, blank=True, null=True)
+    title_en = models.CharField(max_length=200, blank=True, null=True)
+    text_uz = models.TextField()
+    text_ru = models.TextField(blank=True, null=True)
+    text_en = models.TextField(blank=True, null=True)
+    photo = models.ImageField(upload_to="about/", blank=True, null=True)  # chapdagi katta rasm
     is_active = models.BooleanField(default=True)
 
-    objects = ActiveQuerySet.as_manager()
+    class Meta:
+        verbose_name = "Kompaniya intro"
+        verbose_name_plural = "Kompaniya intro"
+
+    def __str__(self):
+        return self.title_uz
+
+
+class HistoryCard(models.Model):
+    # “Bizning tarix” bo‘limidagi kartalar (istalgancha)
+    order = models.PositiveIntegerField(default=0, help_text="Sort tartibi")
+    year = models.CharField(max_length=32, blank=True, help_text="Masalan: 2005-yil")
+    title_uz = models.CharField(max_length=250)
+    title_ru = models.CharField(max_length=250, blank=True, null=True)
+    title_en = models.CharField(max_length=250, blank=True, null=True)
+    text_uz = models.TextField(blank=True, null=True)
+    text_ru = models.TextField(blank=True, null=True)
+    text_en = models.TextField(blank=True, null=True)
+
+    icon_type = models.CharField(max_length=3, choices=ICON_TYPES, default="fa")
+    fa_class = models.CharField(
+        max_length=100, blank=True, null=True, help_text="fa-solid fa-hospital-alt"
+    )
+    icon_image = models.ImageField(upload_to="icons/", blank=True, null=True)
+
+    photo = models.ImageField(upload_to="history/", blank=True, null=True)  # o‘ng/chapdagi rasm
+    is_active = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ["order", "id"]
-        verbose_name = "Timeline (tarix) elementi"
-        verbose_name_plural = "Timeline (tarix) elementlari"
+        ordering = ["order"]
+        verbose_name = "Tarix kartasi"
+        verbose_name_plural = "Tarix kartalari"
 
     def __str__(self):
         return f"{self.year} — {self.title_uz[:40]}"
 
-    # Qulay localize helper (template’da ham ishlatish mumkin)
-    def get_title(self, lang="uz"):
-        return getattr(self, f"title_{lang}", None) or self.title_uz
+    @property
+    def has_icon_img(self):
+        return self.icon_type == "img" and self.icon_image
 
-    def get_text(self, lang="uz"):
-        return getattr(self, f"text_{lang}", None) or self.text_uz
 
 
 
