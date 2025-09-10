@@ -767,6 +767,12 @@ section.hero { padding: 0 !important; }
 .history-cards{ padding:42px 0 60px; background:#fcfcfd; }
 .history-kicker{ font-size:clamp(22px,2.4vw,30px); font-weight:800; color:#0f172a; margin:0 0 12px; }
 
+/* JS bo'lmasa ham ko'rinsin; JS bo'lganda animatsiya ishlaydi */
+.h-item{ opacity:1; transform:none; }
+.js-ready .h-item{ opacity:0; transform:translateY(28px) scale(.98); }
+.js-ready .h-item.in-view{ opacity:1; transform:none; }
+
+
 .h-item{
   --gap: 36px;
   display:grid;

@@ -8,6 +8,11 @@
    - Optional: Back-to-top, Preloader guard, Year setter
 */
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('js-ready');
+});
+
 (() => {
   // ===== Helpers =====
   const $ = (s, r = document) => r.querySelector(s);
