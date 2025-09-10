@@ -813,3 +813,124 @@ section.hero { padding: 0 !important; }
 @media (prefers-reduced-motion: reduce){
   .h-item, .h-item.in-view .h-media img{ transition:none; animation:none; }
 }
+
+
+/* ===== XIZMATLAR (venta-feel) ===== */
+.svc-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:22px;
+}
+@media (max-width:1024px){ .svc-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .svc-grid{ grid-template-columns:1fr; } }
+
+.svc-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid #e9eef5;
+  padding:22px 22px 26px;
+  box-shadow:0 10px 24px rgba(16,24,40,.06);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  will-change: transform, box-shadow;
+}
+.svc-card:hover{
+  transform: translateY(-4px);
+  box-shadow:0 18px 36px rgba(16,24,40,.10);
+  border-color: rgba(30,99,255,.25);
+}
+
+.svc-icon{
+  width:56px; height:56px; border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(180deg, rgba(37,99,235,.12), rgba(37,99,235,.05));
+  box-shadow:0 6px 16px rgba(37,99,235,.18), inset 0 0 0 6px rgba(37,99,235,.06);
+  color:#2563eb; margin-bottom:12px; flex-shrink:0;
+}
+.svc-icon i{ font-size:20px; }
+.svc-icon img{ width:62%; height:62%; object-fit:contain; }
+
+.svc-title{
+  font-family:'Playfair Display', serif;
+  font-weight:800; color:#0f172a;
+  font-size:clamp(18px,2.1vw,24px);
+  margin:6px 0 8px;
+}
+.svc-text{ color:#475569; line-height:1.7; margin:0; }
+
+/* watermark */
+.svc-watermark{
+  position:absolute; right:-8px; bottom:-10px; z-index:-1;
+  opacity:.08; transform: rotate(-6deg);
+  pointer-events:none; line-height:1;
+}
+.svc-watermark i{ font-size:160px; color:#0b1220; }
+.svc-watermark img{ width:200px; height:auto; filter:grayscale(100%); opacity:.12; transform:rotate(-6deg); }
+
+/* ===== HAMKORLAR (VENTA social projects uslubida) ===== */
+.partners{ background:#f7f8fb; padding:56px 0; }
+.partners-row{
+  display:grid; gap:16px; margin-bottom:16px;
+  opacity:0; transform:translateY(24px) scale(.98);
+  transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1);
+  will-change: transform, opacity;
+}
+.partners-row.in-view{ opacity:1; transform:translateY(0) scale(1); }
+
+.partners-row--xl{ grid-template-columns:repeat(4, 1fr); }
+.partners-row--md{ grid-template-columns:repeat(6, 1fr); }
+.partners-row--sm{ grid-template-columns:repeat(8, 1fr); }
+
+@media (max-width:1200px){
+  .partners-row--xl{ grid-template-columns:repeat(3,1fr); }
+  .partners-row--md{ grid-template-columns:repeat(4,1fr); }
+  .partners-row--sm{ grid-template-columns:repeat(6,1fr); }
+}
+@media (max-width:900px){
+  .partners-row--xl{ grid-template-columns:repeat(2,1fr); }
+  .partners-row--md{ grid-template-columns:repeat(3,1fr); }
+  .partners-row--sm{ grid-template-columns:repeat(4,1fr); }
+}
+@media (max-width:600px){
+  .partners-row--xl{ grid-template-columns:repeat(2,1fr); }
+  .partners-row--md{ grid-template-columns:repeat(2,1fr); }
+  .partners-row--sm{ grid-template-columns:repeat(3,1fr); }
+}
+
+.partner-card{
+  position:relative; display:flex; align-items:center; justify-content:center;
+  height:92px; border-radius:14px;
+  background:#fff; border:1px solid #e9eef5;
+  box-shadow:0 6px 18px rgba(16,24,40,.06);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, filter .25s ease;
+  overflow:hidden;
+}
+.partner-card:focus{ outline:3px solid rgba(58,134,255,.35); outline-offset:2px; }
+.partner-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 30px rgba(16,24,40,.10);
+  border-color:rgba(58,134,255,.28);
+}
+.partner-logo{ width:78%; max-width:220px; display:flex; align-items:center; justify-content:center; }
+.partner-logo img{
+  max-width:100%; max-height:56px; object-fit:contain;
+  filter: grayscale(100%) contrast(1.05) brightness(.94);
+  transition: filter .25s ease, transform .25s ease;
+  transform: translateZ(0);
+}
+.partner-card:hover .partner-logo img{
+  filter:none;
+  transform:scale(1.03);
+}
+
+/* ixtiyoriy pastki note (hover’da ko‘rinadigan yengil overlay) */
+.partner-note{
+  position:absolute; left:10px; right:10px; bottom:10px;
+  background:rgba(10,16,26,.65); color:#f6f9ff;
+  font-size:12.5px; padding:6px 10px; border-radius:10px;
+  opacity:0; transform:translateY(8px);
+  transition:opacity .22s ease, transform .22s ease;
+  text-align:center;
+}
+.partner-card:hover .partner-note{ opacity:1; transform:translateY(0); }

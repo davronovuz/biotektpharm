@@ -208,89 +208,101 @@
 </section>
 
 
-
-
     <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="services_title">Xizmatlarimiz</h2>
-                <p data-i18n="services_subtitle">Biz mijozlarimizga qanday xizmat ko'rsatamiz</p>
-            </div>
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <h2>Xizmatlarimiz</h2>
+      <p>Biz taklif qiladigan asosiy xizmatlar</p>
+    </div>
 
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-passport"></i>
-                    </div>
-                    <h3 data-i18n="service1_title">Mahsulot ro'yxatdan o'tkazish</h3>
-                    <p data-i18n="service1_text">Mahsulotlarni mahalliy va xalqaro bozorlarda ro'yxatdan o'tkazish</p>
-                </div>
+    <div class="svc-grid">
+      {% for s in service_cards %}
+        <article class="svc-card">
+          <div class="svc-icon">
+            {% if s.icon_type == 'img' and s.icon_image %}
+              <img src="{{ s.icon_image.url }}" alt="">
+            {% else %}
+              <i class="{{ s.fa_class|default:'fa-solid fa-circle' }}"></i>
+            {% endif %}
+          </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <h3 data-i18n="service2_title">Logistika xizmatlari</h3>
-                    <p data-i18n="service2_text">Harorat nazorati ostida xavfsiz yetkazib berish</p>
-                </div>
+          <h3 class="svc-title">
+            {{ s.title_uz }}
+          </h3>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3 data-i18n="service3_title">Bojxona rasmiylashtirish</h3>
-                    <p data-i18n="service3_text">Barcha bojxona protseduralarini amalga oshirish</p>
-                </div>
+          {% if s.text_uz %}
+            <p class="svc-text">{{ s.text_uz }}</p>
+          {% endif %}
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                    <h3 data-i18n="service4_title">Sifat nazorati</h3>
-                    <p data-i18n="service4_text">Har bir partiyani qat'iy sifat nazoratidan o'tkazish</p>
-                </div>
+          <!-- katta xira watermark (venta uslubida) -->
+          <span class="svc-watermark" aria-hidden="true">
+            {% if s.icon_type == 'img' and s.icon_image %}
+              <img src="{{ s.icon_image.url }}" alt="">
+            {% else %}
+              <i class="{{ s.fa_class|default:'fa-solid fa-circle' }}"></i>
+            {% endif %}
+          </span>
+        </article>
+      {% empty %}
+        <p class="muted">Hozircha xizmatlar kiritilmagan.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-warehouse"></i>
-                    </div>
-                    <h3 data-i18n="service5_title">Sklad xizmatlari</h3>
-                    <p data-i18n="service5_text">15,000 m² maydondagi zamonaviy omborlarimiz</p>
-                </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3 data-i18n="service6_title">24/7 mijozlar uchun qo'llab-quvvatlash</h3>
-                    <p data-i18n="service6_text">Har qanday savolingizga javob beramiz</p>
-                </div>
+<section class="partners" id="partners">
+  <div class="container">
+    <div class="section-header">
+      <h2>Hamkorlarimiz</h2>
+      <p>Biz bilan hamkorlik qilayotgan kompaniyalar</p>
+    </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                    <i class="fas fa-prescription-bottle-alt"></i>
-                    </div>
-                    <h3 data-i18n="service7_title">Dorixonalar tarmog'i</h3>
-                    <p data-i18n="service7_text">Samarqand shahrida 15 dan ziyod dorixonalar</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- 1-qator (katta kartalar) -->
+    <div class="partners-row partners-row--xl">
+      {% for p in partner_cards|slice:":6" %}
+        <a class="partner-card" href="{{ p.url|default:'#' }}" {% if p.url %}target="_blank" rel="noopener"{% endif %}>
+          <div class="partner-logo">
+            <img loading="lazy" src="{{ p.logo.url }}" alt="{{ p.name_uz }}">
+          </div>
+          {% if p.note_uz %}
+            <div class="partner-note">{{ p.note_uz }}</div>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
 
-    <section class="partners-banner" id="partners">
-      <div class="container partners-content">
-          <h2 data-i18n="partners_title">Hamkorlarimiz</h2>
-            <p data-i18n="partners_subtitle">Biz ishonchli farmatsevtika sheriklari bilan ishlaymiz</p>
+    <!-- 2-qator (ko‘proq kartalar, ko‘chma animatsiya) -->
+    <div class="partners-row partners-row--md">
+      {% for p in partner_cards|slice:"6:18" %}
+        <a class="partner-card" href="{{ p.url|default:'#' }}" {% if p.url %}target="_blank" rel="noopener"{% endif %}>
+          <div class="partner-logo">
+            <img loading="lazy" src="{{ p.logo.url }}" alt="{{ p.name_uz }}">
+          </div>
+          {% if p.note_uz %}
+            <div class="partner-note">{{ p.note_uz }}</div>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
 
-          <img
-          src="{% static 'images/LOGO_page_1.png' %}"
-          alt="Bizning hamkorlar"
-          class="partners-img"
-          loading="lazy"
-        />
-      </div>
-    </section>
+    <!-- 3-qator (qolgani) -->
+    <div class="partners-row partners-row--sm">
+      {% for p in partner_cards|slice:"18:" %}
+        <a class="partner-card" href="{{ p.url|default:'#' }}" {% if p.url %}target="_blank" rel="noopener"{% endif %}>
+          <div class="partner-logo">
+            <img loading="lazy" src="{{ p.logo.url }}" alt="{{ p.name_uz }}">
+          </div>
+          {% if p.note_uz %}
+            <div class="partner-note">{{ p.note_uz }}</div>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 
 
  <section class="locations" id="locations">

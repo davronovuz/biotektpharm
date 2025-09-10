@@ -342,3 +342,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   rows.forEach(r=>io.observe(r));
 })();
+
+
+
+/* ===== Partners rows: reveal on scroll (VENTA-feel) ===== */
+(() => {
+  const rows = document.querySelectorAll('.partners-row');
+  if (!rows.length || !('IntersectionObserver' in window)) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+  rows.forEach(r => io.observe(r));
+})();
