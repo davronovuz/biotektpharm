@@ -439,3 +439,102 @@
     document.body.classList.add('reduce-motion');
   }
 })();
+
+
+// === Locations v2 ===
+(() => {
+  const stage = document.querySelector('.locations-v2 .loc-stage');
+  if (!stage) return;
+
+  const pins = Array.from(stage.querySelectorAll('.pin'));
+  const card = stage.querySelector('.loc-card');
+  const cityEl = card.querySelector('.loc-card__city');
+  const elAddr = card.querySelector('.js-address');
+  const elPhone = card.querySelector('.js-phone');
+  const elHours = card.querySelector('.js-hours');
+
+  // Ma'lumotlar (kerak bo'lsa back-end dan to'ldiring)
+  const DATA = {
+    samarqand: {
+      city: "Samarqand",
+      address: "Yuqori Turkman, O'zbekiston ko'chasi, 158-uy",
+      phone: "+998 90 657 05 00",
+      hours: "Dushanba–Juma: 9:00 – 18:00",
+    },
+    tashkent: {
+      city: "Toshkent",
+      address: "Mirzo Ulug'bek, Sayram 7-proyezd, 50-uy",
+      phone: "+998 90 123 45 67",
+      hours: "Dushanba–Juma: 9:00 – 18:00",
+    },
+    fergana: {
+      city: "Farg‘ona",
+      address: "Urta Shura MFY, Charogon ko'chasi, 21-uy",
+      phone: "+998 90 937 06 04",
+      hours: "Dushanba–Juma: 9:00 – 18:00",
+    },
+    xorazm: {
+      city: "Xorazm",
+      address: "Ashxobod MFY, Sanoatchilar ko'chasi, 12 D-uy",
+      phone: "+998 90 657 05 00",
+      hours: "Dushanba–Juma: 9:00 – 18:00",
+    },
+  };
+
+  // Card'ni pin atrofida joylashtirish (desktop)
+  function placeCard(pin) {
+    const x = pin.style.getPropertyValue('--x') || '50%';
+    const y = pin.style.getPropertyValue('--y') || '50%';
+    card.style.setProperty('--cx', x);
+    card.style.setProperty('--cy', y);
+  }
+
+  function fillCard(region) {
+    const d = DATA[region];
+    if (!d) return;
+    cityEl.textContent = d.city;
+    elAddr.textContent = d.address;
+    elPhone.textContent = d.phone;
+    elHours.textContent = d.hours;
+  }
+
+  function activate(region) {
+    const pin = pins.find(p => p.dataset.region === region);
+    if (!pin) return;
+    pins.forEach(p => p.classList.toggle('is-active', p === pin));
+    fillCard(region);
+    placeCard(pin);
+    card.classList.add('show');
+  }
+
+  // Init (first active)
+  const first = pins.find(p => p.classList.contains('is-active')) || pins[0];
+  activate(first.dataset.region);
+
+  // Interactions
+  pins.forEach(p => {
+    p.addEventListener('click', () => {
+      activate(p.dataset.region);
+      stopRotate(); // user interaction -> pause auto-rotate
+    });
+  });
+
+  // Auto-rotate
+  let idx = pins.indexOf(first);
+  let rotTimer = null;
+  const next = () => {
+    idx = (idx + 1) % pins.length;
+    activate(pins[idx].dataset.region);
+  };
+  const startRotate = () => { rotTimer = setInterval(next, 6000); };
+  const stopRotate = () => { if (rotTimer) { clearInterval(rotTimer); rotTimer = null; } };
+  startRotate();
+  stage.addEventListener('pointerenter', stopRotate);
+  stage.addEventListener('pointerleave', startRotate);
+
+  // Re-center on resize
+  window.addEventListener('resize', () => {
+    const active = pins.find(p => p.classList.contains('is-active'));
+    active && placeCard(active);
+  });
+})();
