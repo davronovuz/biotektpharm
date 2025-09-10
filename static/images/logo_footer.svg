@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 320">
+  <defs>
+    <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e73be; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a90e2; stop-opacity:1" />
+    </linearGradient>
+    <style>
+      .blue { fill:#5B84FF; }
+      .green{ fill:#25B14A; }
+      .white{ fill:#FFFFFF; }
+      .biotek{ fill:#FFFFFF; font:700 140px/1.1 'Montserrat', 'Segoe UI', Arial, sans-serif; letter-spacing:2px; }
+      .pharm{ fill:#FFFFFF; font:800 84px/1 'Montserrat', 'Segoe UI', Arial, sans-serif; letter-spacing:22px; }
+    </style>
+    <clipPath id="circle">
+      <circle cx="160" cy="160" r="120"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background rectangle with gradient -->
+  <rect x="0" y="0" width="1100" height="320" fill="url(#footerGradient)" />
+
+  <!-- Logo -->
+  <g transform="translate(0,0)">
+    <circle cx="160" cy="160" r="120" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <g clip-path="url(#circle)">
+      <rect class="blue" x="40" y="40" width="240" height="120"/>
+      <rect class="green" x="40" y="160" width="240" height="120"/>
+      <rect class="white" x="40" y="144" width="240" height="32"/>
+      <polyline fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"
+        points="
+          48,160 78,160
+          92,130 108,190 122,160 138,160
+          160,120 176,200 192,160 210,160
+          232,145 248,175 270,160
+        "/>
+    </g>
+  </g>
+
+  <!-- Text -->
+  <text class="biotek" x="360" y="132">BIOTEK</text>
+  <line x1="360" y1="170" x2="1060" y2="170" stroke="#FFFFFF" stroke-width="6"/>
+  <text class="pharm" x="360" y="260">PHARM</text>
+</svg>
