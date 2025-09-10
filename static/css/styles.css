@@ -610,3 +610,129 @@ section.hero { padding: 0 !important; }
 }
 
 
+/* =============================== */
+/* NAVBAR UPGRADE PATCH (drop-in)  */
+/* =============================== */
+
+/* 1) Glass / blur navbar (fallback bilan) */
+.navbar{
+  background: transparent !important;
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background .25s ease, box-shadow .25s ease, padding .25s ease;
+}
+.navbar.scrolled{
+  background: rgba(10,16,26,.72) !important;
+  backdrop-filter: blur(12px) saturate(170%);
+  -webkit-backdrop-filter: blur(12px) saturate(170%);
+  box-shadow: 0 6px 24px rgba(0,0,0,.18);
+  padding: 12px 0;
+}
+/* Fallback: brauzer blur'ni qo'llamasa */
+@supports not ((backdrop-filter: blur(1px))){
+  .navbar{ background: rgba(10,16,26,.88) !important; }
+}
+
+/* 2) Linklarni o‘qiladigan va kreativ qilish */
+.nav-list{ display:flex; gap:1.75rem; align-items:center; }
+
+.nav-link{
+  position: relative;
+  display: inline-block;
+  padding: .45rem .75rem;              /* ichki bo'shliq */
+  border-radius: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,.92) !important;
+  text-shadow: 0 0 1px rgba(0,0,0,.35), 0 1px 8px rgba(0,0,0,.20);
+  -webkit-font-smoothing: antialiased;
+  transition: color .18s ease, transform .18s ease;
+}
+
+/* Juda yengil kontur (Safari/Chromium qo'llab-quvvatlaganda) */
+@supports (-webkit-text-stroke: 1px black){
+  .nav-link{ -webkit-text-stroke: .25px rgba(0,0,0,.30); }
+}
+
+/* Glass “pill” fon — hover/active paytida */
+.nav-link::before{
+  content:"";
+  position:absolute; inset:-2px;
+  z-index:-1;
+  border-radius:14px;
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+  transform: scale(.92);
+  opacity: 0;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.nav-link:hover::before,
+.nav-link.active::before{
+  opacity:1;
+  transform: scale(1);
+}
+
+/* Tiniq gradient underline */
+.nav-link::after{
+  content:'';
+  position:absolute;
+  left:10px; right:10px; bottom:-8px;
+  height:2px; border-radius:2px;
+  background: linear-gradient(90deg,#9ec1ff,#64a1ff);
+  box-shadow: 0 2px 8px rgba(100,161,255,.35);
+  transform: scaleX(0);
+  transform-origin:center;
+  transition: transform .22s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after{ transform: scaleX(1); }
+
+/* Scrolled holatda to'liq oq rang + kuchli kontrast */
+.navbar.scrolled .nav-link{
+  color:#f7f9ff !important;
+  text-shadow: 0 0 1px rgba(0,0,0,.28), 0 1px 6px rgba(0,0,0,.18);
+}
+.navbar.scrolled .nav-link::before{
+  background: rgba(255,255,255,.08);
+}
+
+/* Language chip scrolled holatda mos bo'lsin */
+.navbar.scrolled .lang-btn{
+  border-color:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.10);
+  color:#f5f7ff;
+}
+
+/* 3) Mobile — dark panel ichida linklar aniq ko'rinsin */
+@media (max-width: 992px){
+  .nav-list{
+    position:fixed; inset:0 0 0 auto;
+    width:78%; max-width:320px; height:100vh;
+    flex-direction:column; justify-content:center;
+    gap:2rem; padding:0 24px;
+    background:rgba(10,16,26,.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transform:translateX(100%);
+    transition:transform .3s ease;
+    box-shadow:-5px 0 15px rgba(0,0,0,.15);
+  }
+  .nav-list.active{ transform:translateX(0); }
+  .nav-link, .navbar.scrolled .nav-link{
+    color:#ffffff !important;
+    text-shadow: none;
+    -webkit-text-stroke: 0;
+  }
+  .nav-link::before{ background:rgba(255,255,255,.10); }
+  .nav-link::after{ bottom:-6px; }
+}
+
+/* 4) Transparency’ni kamaytiradigan foydalanuvchilar uchun */
+@media (prefers-reduced-transparency: reduce){
+  .nav-link::before{
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    background:rgba(255,255,255,.10);
+  }
+}
