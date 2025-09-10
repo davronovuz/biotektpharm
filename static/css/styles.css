@@ -312,6 +312,61 @@ section.hero{padding:0!important}
   .loc-card__inner{ width:min(560px,94vw); }
 }
 
+/* ===== LOCATIONS v3 — PNG(1536×1024) GA MOS OVERRIDE ===== */
+
+/* Sahna: yengilroq soya + tiniq fon */
+.locations-v3 .loc-stage{
+  box-shadow: 0 6px 18px rgba(16,24,40,.04) !important;
+  background: linear-gradient(180deg,#eef3ff,#edf2ff) !important;
+}
+
+/* Pattern biroz xira */
+.locations-v3 .hex-bg{
+  opacity: .35 !important;
+  filter: blur(.3px) !important;
+}
+
+/* PNG xarita:
+   - kattaroq (Figma'ga yaqin)
+   - biroz pastroqda (pastki qism to‘liq ko‘rinsin)
+   - SOYA yo‘q
+   - screen blend: PNG’dagi qora fon “yo‘qoladi”, ko‘k halo chiroyli qoladi */
+.locations-v3 .uz-map{
+  top: 60% !important;                 /* 58% → 60% */
+  width: min(1200px,96%) !important;   /* 980px → 1200px */
+  filter: none !important;             /* drop-shadow ni o‘chir */
+  mix-blend-mode: screen;              /* qora fonni yutadi */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Yo‘laklar: silliq, soyasiz (figma’dagi kabi) */
+.locations-v3 .route{
+  stroke: #ffffff !important;
+  stroke-width: 8 !important;          /* biroz qalinroq */
+  filter: none !important;             /* chiziqda soya yo‘q */
+  opacity: .96 !important;
+}
+
+/* Pin/label soyasi yumshoqroq */
+.locations-v3 .pin .pin-label{
+  box-shadow: 0 8px 18px rgba(31,102,255,.14) !important;
+}
+.locations-v3 .pin .pin-dot{
+  box-shadow: 0 3px 10px rgba(0,0,0,.08), inset 0 0 0 10px #eaf1ff !important;
+}
+
+/* Info-card: mayin soya + yengil chegara */
+.locations-v3 .loc-card__inner{
+  box-shadow: 0 10px 24px rgba(16,24,40,.10) !important;
+  border: 1px solid #e7efff !important;
+}
+
+/* Radiusga urilmasin — chekka hududlarda klip bo‘lmasin */
+@media (min-width: 781px){
+  .locations-v3 .loc-stage{ padding: 8px 8px 16px !important; }
+}
+
+
 
 
 /* ===== Contact ===== */

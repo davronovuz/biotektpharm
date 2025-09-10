@@ -305,7 +305,7 @@
 
 
 
-<!-- Locations Section -->
+<!-- Locations Section (v3, PNG 1536×1024 ga mos) -->
 <section class="locations-v3" id="locations">
   <div class="container">
     <div class="loc-head">
@@ -316,25 +316,28 @@
     </div>
 
     <div class="loc-stage" aria-label="Uzbekistan map">
-      <!-- Yumshoq fon pattern -->
+      <!-- Yengil fon pattern -->
       <div class="hex-bg" aria-hidden="true"></div>
 
-      <!-- RASM: sizdagi PNG (nisbat o‘zgarmaydi) -->
+      <!-- RASM: siz yuborgan rasmcha.png -->
       <img class="uz-map" src="{% static 'images/rasmcha.png' %}" alt="Uzbekistan" loading="lazy">
 
-      <!-- Harakatli yo‘laklar (rasm ustida) -->
-      <svg class="loc-routes" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <path class="route" d="M520,330 C620,310 720,280 800,260"/>
-        <path class="route" d="M525,340 C640,360 720,340 860,340"/>
-        <path class="route" d="M510,335 C420,330 330,310 220,290"/>
+      <!-- ROUTES: 1536×1024 koordinatalarga mos -->
+      <svg class="loc-routes" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <!-- Samarqand -> Toshkent -->
+        <path class="route" d="M799,650 C952,610 1106,551 1229,512" />
+        <!-- Samarqand -> Farg‘ona -->
+        <path class="route" d="M806,670 C983,709 1106,670 1321,670" />
+        <!-- Samarqand -> Xorazm -->
+        <path class="route" d="M783,660 C645,650 507,610 338,571" />
       </svg>
 
-      <!-- PINLAR: koordinata foizlarda (PNGga moslab) -->
-      <button class="pin is-active" data-region="samarqand" style="--x:52%; --y:64%;" aria-pressed="true">
+      <!-- PINLAR: PNG ga nozik moslangan koordinatalar -->
+      <button class="pin is-active" data-region="samarqand" style="--x:52%; --y:65%;" aria-pressed="true">
         <span class="pin-dot"></span><span class="pin-label">Samarqand</span>
       </button>
 
-      <button class="pin" data-region="tashkent" style="--x:79%; --y:35%;" aria-pressed="false">
+      <button class="pin" data-region="tashkent" style="--x:79%; --y:34%;" aria-pressed="false">
         <span class="pin-dot"></span><span class="pin-label">Toshkent</span>
       </button>
 
@@ -342,7 +345,7 @@
         <span class="pin-dot"></span><span class="pin-label">Fargʻona</span>
       </button>
 
-      <button class="pin" data-region="xorazm" style="--x:18%; --y:40%;" aria-pressed="false">
+      <button class="pin" data-region="xorazm" style="--x:18%; --y:39%;" aria-pressed="false">
         <span class="pin-dot"></span><span class="pin-label">Xorazm</span>
       </button>
 
@@ -368,6 +371,7 @@
     </div>
   </div>
 </section>
+
 
 
 
