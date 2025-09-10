@@ -441,47 +441,73 @@
 })();
 
 
-// === Locations v2 ===
+// === LOCATIONS v3 (PNG bilan) ===
 (() => {
-  const stage = document.querySelector('.locations-v2 .loc-stage');
+  const stage = document.querySelector('.locations-v3 .loc-stage');
   if (!stage) return;
 
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const pins = Array.from(stage.querySelectorAll('.pin'));
   const card = stage.querySelector('.loc-card');
   const cityEl = card.querySelector('.loc-card__city');
   const elAddr = card.querySelector('.js-address');
   const elPhone = card.querySelector('.js-phone');
   const elHours = card.querySelector('.js-hours');
+  const openEl = document.getElementById('openBadge');
+  const dirBtn = document.getElementById('dirBtn');
 
-  // Ma'lumotlar (kerak bo'lsa back-end dan to'ldiring)
+  // Ma'lumotlar (kerak bo‘lsa backenddan to‘ldiring)
   const DATA = {
     samarqand: {
       city: "Samarqand",
-      address: "Yuqori Turkman, O'zbekiston ko'chasi, 158-uy",
+      address: "Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy",
       phone: "+998 90 657 05 00",
       hours: "Dushanba–Juma: 9:00 – 18:00",
+      lat: 39.6542, lng: 66.9597,
     },
     tashkent: {
       city: "Toshkent",
-      address: "Mirzo Ulug'bek, Sayram 7-proyezd, 50-uy",
+      address: "Mirzo Ulug'bek tumani, Sayram 7-proyezd, 50-uy",
       phone: "+998 90 123 45 67",
       hours: "Dushanba–Juma: 9:00 – 18:00",
+      lat: 41.2995, lng: 69.2401,
     },
     fergana: {
-      city: "Farg‘ona",
+      city: "Fargʻona",
       address: "Urta Shura MFY, Charogon ko'chasi, 21-uy",
       phone: "+998 90 937 06 04",
       hours: "Dushanba–Juma: 9:00 – 18:00",
+      lat: 40.3880, lng: 71.7870,
     },
     xorazm: {
       city: "Xorazm",
-      address: "Ashxobod MFY, Sanoatchilar ko'chasi, 12 D-uy",
+      address: "Sanoatchilar ko'chasi, 12D-uy",
       phone: "+998 90 657 05 00",
       hours: "Dushanba–Juma: 9:00 – 18:00",
+      lat: 41.3565, lng: 60.8567,
     },
   };
 
-  // Card'ni pin atrofida joylashtirish (desktop)
+  // Hozir ochiqmi? (soddalashtirilgan)
+  function isOpen(hoursStr){
+    // agar format doimiy bo‘lsa, quydagicha qattiq belgilash mumkin
+    const now = new Date();
+    const h = now.getHours() + now.getMinutes()/60;
+    const open = 9, close = 18; // haftalik bir xil deb faraz
+    return h >= open && h <= close;
+  }
+
+  function updateOpenBadge(hoursStr){
+    const open = isOpen(hoursStr);
+    openEl.textContent = open ? 'Open' : 'Closed';
+    openEl.classList.toggle('is-closed', !open);
+  }
+
+  function updateDirections(region){
+    const d = DATA[region]; if (!d) return;
+    dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${d.lat},${d.lng}`;
+  }
+
   function placeCard(pin) {
     const x = pin.style.getPropertyValue('--x') || '50%';
     const y = pin.style.getPropertyValue('--y') || '50%';
@@ -490,44 +516,59 @@
   }
 
   function fillCard(region) {
-    const d = DATA[region];
-    if (!d) return;
+    const d = DATA[region]; if (!d) return;
     cityEl.textContent = d.city;
     elAddr.textContent = d.address;
     elPhone.textContent = d.phone;
     elHours.textContent = d.hours;
+    updateOpenBadge(d.hours);
+    updateDirections(region);
   }
 
   function activate(region) {
     const pin = pins.find(p => p.dataset.region === region);
     if (!pin) return;
-    pins.forEach(p => p.classList.toggle('is-active', p === pin));
+    pins.forEach(p => {
+      const active = p === pin;
+      p.classList.toggle('is-active', active);
+      p.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
     fillCard(region);
     placeCard(pin);
     card.classList.add('show');
   }
 
-  // Init (first active)
+  // Boshlang‘ich holat
   const first = pins.find(p => p.classList.contains('is-active')) || pins[0];
+  pins.forEach(p => p.setAttribute('aria-pressed', p === first ? 'true' : 'false'));
   activate(first.dataset.region);
 
-  // Interactions
+  // Interaktivlik
   pins.forEach(p => {
-    p.addEventListener('click', () => {
-      activate(p.dataset.region);
-      stopRotate(); // user interaction -> pause auto-rotate
+    p.addEventListener('click', () => { activate(p.dataset.region); stopRotate(); });
+    p.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); p.click(); }
     });
   });
 
-  // Auto-rotate
+  // Copy / Share
+  const $ = (s, r=document) => r.querySelector(s);
+  const on = (el, ev, fn) => el && el.addEventListener(ev, fn);
+  on($('#copyAddr'), 'click', async () => {
+    try{ await navigator.clipboard?.writeText(elAddr.textContent.trim()); }catch{}
+  });
+  on($('#shareAddr'), 'click', async () => {
+    const city = cityEl.textContent.trim();
+    const txt = `${city}: ${elAddr.textContent.trim()} — ${elPhone.textContent.trim()}`;
+    if (navigator.share){ try{ await navigator.share({ title: city, text: txt }); }catch{} }
+  });
+
+  // Auto-rotate (reduce-motion hurmati)
   let idx = pins.indexOf(first);
   let rotTimer = null;
-  const next = () => {
-    idx = (idx + 1) % pins.length;
-    activate(pins[idx].dataset.region);
-  };
-  const startRotate = () => { rotTimer = setInterval(next, 6000); };
-  const stopRotate = () => { if (rotTimer) { clearInterval(rotTimer); rotTimer = null; } };
+  const next = () => { idx = (idx + 1) % pins.length; activate(pins[idx].dataset.region); };
+  const startRotate = () => { if (!isReducedMotion) rotTimer = setInterval(next, 6000); };
+  const stopRotate  = () => { if (rotTimer) { clearInterval(rotTimer); rotTimer = null; } };
   startRotate();
   stage.addEventListener('pointerenter', stopRotate);
   stage.addEventListener('pointerleave', startRotate);

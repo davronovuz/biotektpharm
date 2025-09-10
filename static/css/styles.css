@@ -201,112 +201,117 @@ section.hero{padding:0!important}
 .partner-card:hover .partner-note{opacity:1;transform:translateY(0)}
 
 /* ===== Locations ===== */
-/* === LOCATIONS v2 (Figma-like) === */
-.locations-v2{ padding:60px 0; position:relative; background:#e9effb; }
-.locations-v2 .loc-head{ text-align:center; margin-bottom:20px; }
+/* ===== LOCATIONS v3 (PNG bilan premium dizayn) ===== */
+.locations-v3{ padding:60px 0; background:#e9effb; position:relative; }
+.locations-v3 .loc-head{ text-align:center; margin-bottom:20px; }
 .loc-kicker{ color:#6b7280; margin:0 0 6px; }
-.loc-title{
-  font-family:'Playfair Display',serif; font-weight:800;
-  color:#2563eb; font-size:clamp(28px,3.4vw,44px); margin:0;
+.loc-title{ font-family:'Playfair Display',serif; font-weight:800; color:#2563eb; font-size:clamp(28px,3.4vw,44px); margin:0; }
+
+/* Sahna konteyneri */
+.loc-stage{
+  position:relative; overflow:hidden; border-radius:24px;
+  background:linear-gradient(180deg,#edf3ff,#eaf1ff);
+  box-shadow:0 12px 36px rgba(16,24,40,.08);
+  min-height:520px; isolation:isolate;
 }
 
-/* STAGE */
-.loc-stage{
-  position:relative; overflow:hidden;
-  border-radius:20px; background:linear-gradient(180deg,#ebf2ff,#e8f0ff);
-  box-shadow:0 10px 30px rgba(0,0,0,.06);
-  min-height:520px;
-}
+/* Fon pattern (yengil) */
 .hex-bg{
   position:absolute; inset:-10% -10% -10% -10%;
   background-image:
     radial-gradient(circle at 22px 22px, rgba(37,99,235,.08) 2px, transparent 2.4px),
     radial-gradient(circle at 0 0, rgba(37,99,235,.06) 2px, transparent 2.4px);
   background-size: 64px 64px, 64px 64px;
-  filter: blur(0.2px);
-  pointer-events:none;
+  filter: blur(.2px); pointer-events:none; z-index:0;
 }
+
+/* PNG xarita — markaziy joylashuv */
 .uz-map{
   position:absolute; left:50%; top:58%; transform:translate(-50%,-50%);
   width:min(980px,94%); height:auto; z-index:1;
   filter: drop-shadow(0 18px 28px rgba(37,99,235,.15));
 }
 
-/* ROUTES */
-.loc-routes{
-  position:absolute; inset:0; z-index:2; pointer-events:none;
-}
+/* Harakatli yo‘laklar (rasm ustida) */
+.loc-routes{ position:absolute; inset:0; z-index:2; pointer-events:none; }
 .route{
-  fill:none; stroke:#ffffff; stroke-width:6;
-  stroke-linecap:round; stroke-dasharray:8 12;
-  filter: drop-shadow(0 2px 6px rgba(37,99,235,.28));
-  animation: dash 2.8s linear infinite;
+  fill:none; stroke:#ffffff; stroke-width:6; stroke-linecap:round; stroke-dasharray:8 12;
+  filter: drop-shadow(0 2px 6px rgba(31,102,255,.28));
+  animation:dash 2.8s linear infinite;
 }
-@keyframes dash{
-  to{ stroke-dashoffset:-400; }
-}
+@keyframes dash{ to{ stroke-dashoffset:-400; } }
+.reduce-motion .route{ animation:none !important; }
 
-/* PINS */
+/* Pinlar (kapsula label bilan) */
 .pin{
   --x:50%; --y:50%;
-  position:absolute; left:var(--x); top:var(--y);
-  transform:translate(-50%,-100%); z-index:3;
-  background:transparent; border:0; cursor:pointer; outline:none;
+  position:absolute; left:var(--x); top:var(--y); transform:translate(-50%,-100%);
+  z-index:3; background:transparent; border:0; cursor:pointer; outline:none; touch-action:manipulation;
 }
+.pin::before{ content:""; position:absolute; left:50%; top:0; transform:translate(-50%,-50%); width:54px; height:54px; border-radius:50%; }
 .pin .pin-dot{
-  width:28px; height:28px; border-radius:50%;
-  background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.10), inset 0 0 0 10px #e6f0ff;
-  display:block; position:relative;
+  width:28px; height:28px; border-radius:50%; background:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.10), inset 0 0 0 10px #e6f0ff; display:block; position:relative;
 }
 .pin .pin-dot::after{
-  content:""; position:absolute; inset:6px; border-radius:50%;
-  background:#1f66ff;
+  content:""; position:absolute; inset:6px; border-radius:50%; background:#1f66ff; transition:background .2s ease, transform .12s ease;
 }
 .pin .pin-label{
-  position:absolute; left:50%; top:34px; transform:translateX(-50%);
-  background:#fff; color:#1f66ff; font-weight:600;
-  border-radius:10px; padding:6px 10px; white-space:nowrap;
-  box-shadow:0 8px 20px rgba(31,102,255,.20);
+  position:absolute; left:50%; top:36px; transform:translateX(-50%);
+  background:#fff; color:#1f66ff; font-weight:700; letter-spacing:.1px;
+  border-radius:12px; padding:7px 12px; white-space:nowrap; font-size:14px;
+  box-shadow:0 10px 22px rgba(31,102,255,.20);
 }
-.pin.is-active .pin-dot::after{ background:#2563eb; }
-.pin:focus-visible .pin-label{ outline:3px solid rgba(31,102,255,.35); }
+.pin.is-active .pin-dot::after{ background:#2563eb; transform:scale(1.05); }
+.pin:focus-visible .pin-label{ outline:3px solid rgba(31,102,255,.28); outline-offset:2px; }
 
-/* INFO CARD */
+/* Info karta (pin atrofida chiqadi) */
 .loc-card{
-  --cx: 52%; --cy: 64%; /* JS o'zgartiradi */
-  position:absolute; z-index:4;
-  left:var(--cx); top:var(--cy);
-  transform: translate(calc(-50% + 0px), calc(-110% - 18px)) scale(.98);
+  --cx:52%; --cy:64%; /* JS yangilaydi */
+  position:absolute; z-index:4; left:var(--cx); top:var(--cy);
+  transform:translate(calc(-50%), calc(-110% - 18px)) scale(.98);
   opacity:0; pointer-events:none;
-  transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
 }
-.loc-card.show{
-  opacity:1; transform: translate(calc(-50% + 0px), calc(-110% - 18px)) scale(1);
-  pointer-events:auto;
-}
+.loc-card.show{ opacity:1; transform:translate(calc(-50%), calc(-110% - 18px)) scale(1); pointer-events:auto; }
+
 .loc-card__inner{
-  width:min(520px,90vw);
-  background:#fff; border-radius:18px;
-  box-shadow:0 22px 40px rgba(16,24,40,.18);
-  border:1px solid #e4edff; padding:18px 18px 14px;
+  width:min(520px,90vw); background:#fff; border-radius:18px;
+  box-shadow:0 22px 40px rgba(16,24,40,.18); border:1px solid #e4edff; padding:18px 18px 14px;
 }
-.loc-card__city{
-  font-family:'Montserrat',sans-serif; font-weight:800; color:#1f1f29; margin:0 0 10px;
-}
-.loc-card__list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; color:#111827; }
+.loc-card__row{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.loc-card__city{ font-family:'Montserrat',sans-serif; font-weight:800; color:#111827; margin:0; }
+.loc-card__list{ list-style:none; padding:0; margin:12px 0 0; display:flex; flex-direction:column; gap:10px; color:#111827; }
 .loc-card__list i{ color:#1f66ff; width:18px; margin-right:8px; }
 .loc-card__list li{ display:flex; align-items:flex-start; }
 .loc-card__list span{ line-height:1.45; }
 
-/* MOBILE tweaks */
-@media (max-width: 780px){
+/* “Open/Closed” ko‘rsatkich */
+.badge-open{
+  display:inline-flex; align-items:center; gap:6px; padding:4px 9px; border-radius:999px;
+  background:#e8f5e9; color:#1e7a35; font-weight:800; font-size:12.5px; letter-spacing:.2px;
+}
+.badge-open::before{ content:""; width:8px; height:8px; border-radius:50%; background:#16a34a; box-shadow:0 0 0 6px rgba(22,163,74,.12); }
+.badge-open.is-closed{ background:#fff1f2; color:#b91c1c; }
+.badge-open.is-closed::before{ background:#ef4444; box-shadow:0 0 0 6px rgba(239,68,68,.12); }
+
+/* Action tugmalar */
+.loc-actions{ display:flex; align-items:center; gap:10px; margin-top:12px; }
+.loc-actions .btn-outline{
+  background:#fff; color:#2563eb; border:1px solid #dbe7ff; padding:8px 12px; border-radius:12px;
+  font-weight:700; transition:transform .12s ease, box-shadow .12s ease, border-color .15s ease;
+}
+.loc-actions .btn-outline:hover{ transform:translateY(-1px); box-shadow:0 8px 20px rgba(37,99,235,.15); border-color:#bfd0ff; }
+
+/* Mobil joylashuv */
+@media (max-width:780px){
   .uz-map{ top:60%; width:100%; }
-  .pin .pin-label{ font-size:12px; padding:5px 8px; }
-  .pin .pin-dot{ width:30px; height:30px; }
+  .pin .pin-label{ top:34px; font-size:12.5px; padding:6px 9px; }
   .loc-card{ left:50%; top:auto; bottom:16px; transform:translate(-50%,0) scale(.98); }
   .loc-card.show{ transform:translate(-50%,0) scale(1); }
   .loc-card__inner{ width:min(560px,94vw); }
 }
+
 
 
 /* ===== Contact ===== */

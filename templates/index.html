@@ -306,61 +306,69 @@
 
 
 <!-- Locations Section -->
-    <section class="locations-v2" id="locations">
+<section class="locations-v3" id="locations">
   <div class="container">
     <div class="loc-head">
-      <p class="loc-kicker" data-i18n="locations_subtitle">Butun O'zbekiston bo'ylab ofis va omborlarimiz</p>
+      <p class="loc-kicker" data-i18n="locations_subtitle">
+        Butun Oʻzbekiston boʻylab ofis va omborlarimiz
+      </p>
       <h2 class="loc-title" data-i18n="locations_title">Bizning joylashuvlar</h2>
     </div>
 
     <div class="loc-stage" aria-label="Uzbekistan map">
-      <!-- Hex bg pattern -->
+      <!-- Yumshoq fon pattern -->
       <div class="hex-bg" aria-hidden="true"></div>
 
-      <!-- MAP layer (o'zingizning rasm/SVG manzilingizga almashtiring) -->
+      <!-- RASM: sizdagi PNG (nisbat o‘zgarmaydi) -->
       <img class="uz-map" src="{% static 'images/rasmcha.png' %}" alt="Uzbekistan" loading="lazy">
 
-      <!-- ROUTES (dashed paths) -->
+      <!-- Harakatli yo‘laklar (rasm ustida) -->
       <svg class="loc-routes" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <!-- Samarqand -> Toshkent -->
-        <path class="route" d="M520,330 C620,310 720,280 800,260" />
-        <!-- Samarqand -> Farg'ona -->
-        <path class="route" d="M525,340 C640,360 720,340 860,340" />
-        <!-- Samarqand -> Xorazm -->
-        <path class="route" d="M510,335 C420,330 330,310 220,290" />
+        <path class="route" d="M520,330 C620,310 720,280 800,260"/>
+        <path class="route" d="M525,340 C640,360 720,340 860,340"/>
+        <path class="route" d="M510,335 C420,330 330,310 220,290"/>
       </svg>
 
-      <!-- PINS (x,y foizda; kerak bo’lsa nozik sozlang) -->
+      <!-- PINLAR: koordinata foizlarda (PNGga moslab) -->
       <button class="pin is-active" data-region="samarqand" style="--x:52%; --y:64%;" aria-pressed="true">
         <span class="pin-dot"></span><span class="pin-label">Samarqand</span>
       </button>
 
-      <button class="pin" data-region="tashkent" style="--x:79%; --y:35%;">
+      <button class="pin" data-region="tashkent" style="--x:79%; --y:35%;" aria-pressed="false">
         <span class="pin-dot"></span><span class="pin-label">Toshkent</span>
       </button>
 
-      <button class="pin" data-region="fergana" style="--x:88%; --y:52%;">
-        <span class="pin-dot"></span><span class="pin-label">Farg‘ona</span>
+      <button class="pin" data-region="fergana" style="--x:88%; --y:52%;" aria-pressed="false">
+        <span class="pin-dot"></span><span class="pin-label">Fargʻona</span>
       </button>
 
-      <button class="pin" data-region="xorazm" style="--x:18%; --y:40%;">
+      <button class="pin" data-region="xorazm" style="--x:18%; --y:40%;" aria-pressed="false">
         <span class="pin-dot"></span><span class="pin-label">Xorazm</span>
       </button>
 
-      <!-- INFO CARD (JS bilan kontent almashtiriladi) -->
+      <!-- INFO KARTA -->
       <aside class="loc-card" role="dialog" aria-live="polite">
         <div class="loc-card__inner">
-          <h3 class="loc-card__city">Samarqand</h3>
+          <div class="loc-card__row">
+            <h3 class="loc-card__city">Samarqand</h3>
+            <span class="badge-open" id="openBadge">Open</span>
+          </div>
           <ul class="loc-card__list">
-            <li><i class="fa-solid fa-location-dot"></i> <span class="js-address">Yuqori Turkman, O'zbekiston ko'chasi, 158-uy</span></li>
+            <li><i class="fa-solid fa-location-dot"></i> <span class="js-address">Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy</span></li>
             <li><i class="fa-solid fa-phone"></i> <span class="js-phone">+998 90 657 05 00</span></li>
             <li><i class="fa-regular fa-clock"></i> <span class="js-hours">Dushanba–Juma: 9:00 – 18:00</span></li>
           </ul>
+          <div class="loc-actions">
+            <button class="btn-outline" id="copyAddr" type="button">Copy</button>
+            <button class="btn-outline" id="shareAddr" type="button">Share</button>
+            <a class="btn btn-primary" id="dirBtn" target="_blank" rel="noopener">Yo‘lni ko‘rsat</a>
+          </div>
         </div>
       </aside>
     </div>
   </div>
 </section>
+
 
 
 
