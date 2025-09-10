@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .models import Contact, HeroSection,FeatureCard, AboutSection,CompanyIntro,HistoryCard
+from .models import Contact, HeroSection,FeatureCard, AboutSection,CompanyIntro,HistoryCard,ServiceCard,PartnerCard
 
 
 def home(request):
@@ -9,6 +9,8 @@ def home(request):
     about = AboutSection.objects.active().first()  # bo‘lsa – olamiz
     intro = CompanyIntro.objects.filter(is_active=True).first()
     history_cards = HistoryCard.objects.filter(is_active=True).order_by("order")
+    service_cards = ServiceCard.objects.filter(is_active=True).order_by("order")
+    partner_cards = PartnerCard.objects.filter(is_active=True).order_by("order")
 
     if request.method == 'POST':
         Contact.objects.create(
@@ -26,6 +28,8 @@ def home(request):
         "about": about,
         "intro": intro,
         "history_cards": history_cards,
+        "service_cards": service_cards,
+        "partner_cards": partner_cards,
     }
 
     return render(request, 'index.html', context)

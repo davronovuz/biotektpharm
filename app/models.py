@@ -164,6 +164,77 @@ class HistoryCard(models.Model):
 
 
 
+ICON_TYPE = (
+    ("fa", "Font Awesome class orqali"),
+    ("img", "Rasm (PNG/SVG) orqali"),
+)
+
+class ServiceCard(models.Model):
+    """Xizmatlar kartkasi (figmadagi 6 ta blok)"""
+    is_active   = models.BooleanField(default=True, help_text="Ko‘rsatish/berkitish")
+    order       = models.PositiveIntegerField(default=1, help_text="Tartib raqami (1,2,3...) — kichik raqam oldin chiqadi")
+
+    # Matnlar (3 til)
+    title_uz    = models.CharField(max_length=120)
+    title_ru    = models.CharField(max_length=120, blank=True)
+    title_en    = models.CharField(max_length=120, blank=True)
+
+    text_uz     = models.CharField(max_length=250, blank=True)
+    text_ru     = models.CharField(max_length=250, blank=True)
+    text_en     = models.CharField(max_length=250, blank=True)
+
+    # Ikon (venta uslubidagi watermark uchun)
+    icon_type   = models.CharField(max_length=3, choices=ICON_TYPE, default="fa",
+                                   help_text="Belgi qaysi ko‘rinishda bo‘lsin")
+    fa_class    = models.CharField(
+        max_length=80, blank=True,
+        help_text="Masalan: <b>fa-solid fa-truck</b> yoki <b>fas fa-warehouse</b>. "
+                  "Agar rasm ishlatsangiz — bo‘sh qoldiring."
+    )
+    icon_image  = models.ImageField(
+        upload_to="services/icons/", blank=True, null=True,
+        help_text="PNG/SVG 256×256 atrofida, fon shaffof bo‘lsa yaxshi."
+    )
+
+    class Meta:
+        ordering = ("order",)
+        verbose_name = "Xizmat kartkasi"
+        verbose_name_plural = "Xizmat kartkalari"
+
+    def __str__(self):
+        return f"{self.order}. {self.title_uz or 'Xizmat'}"
+
+
+class PartnerCard(models.Model):
+    """Hamkorlar logotiplari (grid + animatsiya)"""
+    is_active   = models.BooleanField(default=True, help_text="Ko‘rsatish/berkitish")
+    order       = models.PositiveIntegerField(default=1, help_text="Tartib raqami (1,2,3...) — kichik raqam oldin chiqadi")
+
+    name_uz     = models.CharField("Nomi (UZ)", max_length=120)
+    name_ru     = models.CharField("Nomi (RU)", max_length=120, blank=True)
+    name_en     = models.CharField("Nomi (EN)", max_length=120, blank=True)
+
+    logo        = models.ImageField(
+        upload_to="partners/logos/",
+        help_text="Hamkor logotipi (SVG yoki PNG, eng yaxshi: 320×160, fon shaffof)."
+    )
+    url         = models.URLField("Havola", blank=True,
+                                  help_text="Hamkor vebsayti (ixtiyoriy). http(s) bilan.")
+    # ixtiyoriy: kalta izoh
+    note_uz     = models.CharField(max_length=160, blank=True, help_text="Ixtiyoriy qisqa izoh")
+    note_ru     = models.CharField(max_length=160, blank=True)
+    note_en     = models.CharField(max_length=160, blank=True)
+
+    class Meta:
+        ordering = ("order",)
+        verbose_name = "Hamkor"
+        verbose_name_plural = "Hamkorlar"
+
+    def __str__(self):
+        return f"{self.order}. {self.name_uz}"
+
+
+
 
 
 
