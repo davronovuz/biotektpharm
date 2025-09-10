@@ -349,95 +349,99 @@
 
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="contact_title">Biz bilan bog'laning</h2>
-                <p data-i18n="contact_subtitle">Har qanday savol yoki taklif uchun biz bilan bog'laning</p>
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-shell">
+      <div class="contact-head">
+        <h2 class="contact-title" data-i18n="contact_title">Biz bilan bog'laning</h2>
+        <p class="contact-sub" data-i18n="contact_subtitle">
+          Har qanday savol yoki taklif uchun biz bilan bog'laning
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- LEFT: FORM -->
+        <div class="contact-form-card">
+          {% if messages %}
+          <div class="alert alert-info">
+            {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+          </div>
+          {% endif %}
+
+          <form id="contactForm" method="POST" novalidate>
+            {% csrf_token %}
+
+            <!-- Name -->
+            <div class="form-group with-icon">
+              <span class="fg-icon"><i class="fa-regular fa-user"></i></span>
+              <input type="text" id="name" name="name" placeholder=" " required>
+              <label for="name" data-i18n="form_name">Ism</label>
+              <small class="error-msg" data-i18n="err_name">Ism kiriting</small>
             </div>
 
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="info-text">
-                            <h3 data-i18n="phone">Telefon</h3>
-                            <a href="tel:+998906570500">+998 90 657 05 00</a>
-                            <a href="tel:+998909370604">+998 90 937 06 04</a>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="info-text">
-                            <h3 data-i18n="email">Elektron pochta</h3>
-                            <a href="mailto:biotek_farm@mail.ru">biotek_farm@mail.ru</a>
-                            <a href="mailto:info@biotekpharm.uz">info@biotekpharm.uz</a>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="info-text">
-                            <h3 data-i18n="address">Bosh ofis manzili</h3>
-                            <p data-i18n="address_text">Samarqand viloyati, Samarqand tumani, Yuqori Turkman mahallasi, O'zbekiston ko'chasi, 158-uy</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="info-text">
-                            <h3 data-i18n="working_hours">Ish vaqti</h3>
-                            <p data-i18n="working_hours_text">Dushanba-Juma: 9:00 - 18:00</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="contact-form">
-                    {% if messages %}
-                    <div class="alert alert-info">
-                        {% for message in messages %}
-                            <p>{{ message }}</p>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    <form id="contactForm" method="POST">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder=" " required>
-                            <label for="name" data-i18n="form_name">Ismingiz</label>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="email" id="email" placeholder=" " name="email" required>
-                            <label for="email" data-i18n="form_email">Elektron pochta</label>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="tel" id="phone" placeholder=" " name="phone">
-                            <label for="phone" data-i18n="form_phone">Telefon (ixtiyoriy)</label>
-                        </div>
-
-                        <div class="form-group">
-                            <textarea id="message" placeholder=" " name="message" required ></textarea>
-                            <label for="message" data-i18n="form_message">Xabaringiz</label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" data-i18n="form_submit">Xabarni yuborish</button>
-                    </form>
-                </div>
+            <!-- Email -->
+            <div class="form-group with-icon">
+              <span class="fg-icon"><i class="fa-regular fa-envelope"></i></span>
+              <input type="email" id="email" name="email" placeholder=" " required>
+              <label for="email" data-i18n="form_email">E-mail</label>
+              <small class="error-msg" data-i18n="err_email">To‘g‘ri e-mail kiriting</small>
             </div>
+
+            <!-- Phone (optional) -->
+            <div class="form-group with-icon">
+              <span class="fg-icon"><i class="fa-solid fa-phone"></i></span>
+              <input type="tel" id="phone" name="phone" placeholder=" +998">
+              <label for="phone" data-i18n="form_phone">Telefon (ixtiyoriy)</label>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <textarea id="message" name="message" placeholder=" " required></textarea>
+              <label for="message" data-i18n="form_message">Xabar</label>
+              <small class="error-msg" data-i18n="err_msg">Xabarni yozing</small>
+            </div>
+
+            <button type="submit" class="btn btn-cta" data-i18n="form_submit">Yuborish</button>
+          </form>
         </div>
-    </section>
+
+        <!-- RIGHT: INFO -->
+        <aside class="contact-info-card">
+          <h3 class="info-title" data-i18n="contact_side_title">Aloqa</h3>
+
+          <ul class="info-list">
+            <li class="info-row">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <div>+998 90 657 05 00</div>
+                <div>+998 90 937 06 04</div>
+              </div>
+            </li>
+
+            <li class="info-row">
+              <i class="fa-regular fa-envelope"></i>
+              <div>
+                <div>biotek_farm@mail.ru</div>
+                <div>info@biotekpharm.uz</div>
+              </div>
+            </li>
+
+            <li class="info-row">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>Samarqand, Yuqori Turkman, ko'chasi, 158-uy</div>
+            </li>
+
+            <li class="info-row">
+              <i class="fa-regular fa-clock"></i>
+              <div>Dushanba–Juma: 9:00 – 18:00</div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
 
  <!-- Footer -->
     <footer class="footer">
