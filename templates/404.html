@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 — BIOTEKPHARM</title>
+<link rel="icon" href="/static/img/favicon.png">
+<style>
+  :root{
+    --primary:#3a86ff; --primary-dark:#2667cc;
+    --bg1:#0b1220; --bg2:#0e1630;
+    --text:#eaf2ff; --muted:#9fb2d9;
+    --glass:rgba(255,255,255,.06);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Montserrat,Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 700px at 70% -10%, rgba(58,134,255,.35), transparent 60%),
+      radial-gradient(800px 500px at 0% 100%, rgba(12,117,209,.28), transparent 55%),
+      linear-gradient(180deg,var(--bg1),var(--bg2));
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* ===== stage ===== */
+  .stage{position:relative;min-height:100%;display:grid;place-items:center;padding:24px}
+  /* faint grid */
+  .grid{
+    position:absolute; inset:-20% -20% -20% -20%; pointer-events:none; opacity:.12;
+    background-image:
+      linear-gradient(0deg, #fff 1px, transparent 1px),
+      linear-gradient(90deg, #fff 1px, transparent 1px);
+    background-size: 40px 40px;
+    filter:contrast(105%) saturate(110%);
+  }
+
+  /* center card */
+  .card{
+    position:relative; isolation:isolate;
+    width:min(900px,92vw);
+    border-radius:22px;
+    border:1px solid rgba(255,255,255,.10);
+    background:linear-gradient(180deg,var(--glass),rgba(255,255,255,.04));
+    backdrop-filter:blur(10px) saturate(150%); -webkit-backdrop-filter:blur(10px) saturate(150%);
+    box-shadow:0 22px 44px rgba(7,15,30,.5);
+    display:grid; place-items:center; gap:22px;
+    padding:clamp(36px,6vw,72px) 24px;
+  }
+
+  /* animated ring behind number */
+  .ring{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    --s:280px;
+    width:var(--s); height:var(--s); border-radius:50%;
+    background:conic-gradient(from 0deg, #9bc1ff 0%, #3a86ff 35%, #2667cc 55%, #9bc1ff 100%);
+    filter:blur(20px) saturate(120%);
+    opacity:.18;
+    animation:spin 10s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* big 404 */
+  .code{
+    position:relative; z-index:1;
+    font-family:"Playfair Display",serif;
+    font-weight:900; line-height:1;
+    letter-spacing:1px;
+    font-size:clamp(110px,22vw,220px);
+    background:linear-gradient(180deg,#eaf2ff 0%,#aecdff 60%,#6fa4ff 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 14px 48px rgba(58,134,255,.45);
+  }
+
+  /* only one CTA */
+  .cta{
+    position:relative; z-index:1;
+    display:inline-block; padding:14px 22px; border-radius:14px; font-weight:800;
+    color:#fff; background:var(--primary);
+    box-shadow:0 14px 30px rgba(58,134,255,.30);
+    transition:transform .15s ease, box-shadow .15s ease, background .2s ease;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(58,134,255,.36);background:var(--primary-dark)}
+
+  /* minimal brand strip (top) */
+  .brandbar{
+    position:absolute; top:16px; left:50%; transform:translateX(-50%);
+    width:min(1100px,92vw); display:flex; align-items:center; justify-content:space-between;
+    gap:12px; color:var(--muted); font-weight:700; letter-spacing:.2px;
+    opacity:.9;
+  }
+  .brand{display:flex; align-items:center; gap:10px}
+  .dot{width:10px;height:10px;border-radius:50%;background:#9bc1ff;box-shadow:0 0 0 6px rgba(155,193,255,.12)}
+
+  /* pill micro-illustrations */
+  .pill{position:absolute; width:54px; height:20px; border-radius:12px; transform:rotate(-18deg); opacity:.9}
+  .pill::before,.pill::after{content:""; position:absolute; inset:0; border-radius:12px}
+  .pill::before{background:linear-gradient(90deg,#fff 0 50%, #d9e7ff 50% 100%); box-shadow:inset -2px 0 0 rgba(0,0,0,.06)}
+  .pill::after {inset:2px 2px 2px 2px; border-radius:10px; background:linear-gradient(90deg,#6aa6ff 0 50%, #3a86ff 50% 100%); mix-blend-mode:overlay; opacity:.9}
+  .p1{top:8%; left:64%}
+  .p2{bottom:10%; right:12%; transform:rotate(16deg)}
+  .p3{top:42%; right:8%; transform:rotate(8deg); width:44px; height:16px; opacity:.75}
+
+  /* footer mini */
+  footer{
+    position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+    color:var(--muted); font-size:14px; opacity:.9;
+  }
+
+  /* responsive ring size */
+  @media (max-width:560px){ .ring{--s:220px} }
+</style>
+</head>
+<body>
+  <div class="stage" aria-label="404 page">
+    <div class="grid" aria-hidden="true"></div>
+
+    <!-- top minimalist brand strip -->
+    <div class="brandbar" aria-hidden="true">
+      <div class="brand"><span class="dot"></span> <span>BIOTEKPHARM</span></div>
+      <div>404</div>
+    </div>
+
+    <!-- center card -->
+    <div class="card">
+      <div class="ring" aria-hidden="true"></div>
+      <div class="pill p1" aria-hidden="true"></div>
+      <div class="pill p2" aria-hidden="true"></div>
+      <div class="pill p3" aria-hidden="true"></div>
+
+      <div class="code" aria-label="404">404</div>
+      <a class="cta" href="/">Bosh sahifa</a>
+    </div>
+
+    <footer>© <span id="y"></span> BIOTEKPHARM</footer>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
