@@ -504,3 +504,139 @@
 })();
 
 
+
+/* =============================================================
+   PARTNERS — Flip/Reveal Interactions (mouse + touch + a11y)
+   Drop-in module. No HTML changes required.
+   Works with existing markup:
+   <a class="partner-card"><div class="partner-logo">..</div><div class="partner-note">..</div></a>
+
+   Behaviour
+   - Desktop (mouse): hover reveals back (note). Leaving restores.
+   - Touch: first tap reveals, second tap follows link (or Enter/Space).
+   - Keyboard: Enter/Space toggles reveal; Esc closes. Focus-visible styles keep UX clear.
+   - Outside click closes any open card. Reduced-motion respected via CSS.
+
+   CSS hooks you can style (already used below via classList):
+   .partner-card.is-hover  // when pointer is mouse and hovered
+   .partner-card.is-open   // when revealed (touch/keyboard)
+   .partner-card.is-armed  // after first tap; next activates link
+
+   Minimal CSS idea (NOT injected here):
+     .partner-card { perspective: 1000px }
+     .partner-card .partner-logo, .partner-card .partner-note { backface-visibility:hidden; transform-style:preserve-3d }
+     .partner-card .partner-note { opacity:0; transform:rotateY(-15deg) translateY(8px) }
+     .partner-card.is-hover .partner-note,
+     .partner-card.is-open  .partner-note { opacity:1; transform:none }
+     .partner-card.is-hover .partner-logo,
+     .partner-card.is-open  .partner-logo { opacity:.06; filter:grayscale(100%) }
+============================================================= */
+
+(function PartnersFlipModule(){
+  const qs  = (s, r=document) => r.querySelector(s);
+  const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+  const init = () => {
+    const cards = qsa('.partner-card');
+    if (!cards.length) return;
+
+    const isMouse = (e) => e.pointerType === 'mouse' || e.type === 'mouseenter' || e.type === 'mouseleave';
+
+    // Close all helper
+    const closeAll = (except=null) => {
+      cards.forEach(c => { if (c !== except) { c.classList.remove('is-open','is-armed','is-hover'); c.setAttribute('aria-expanded','false'); } });
+    };
+
+    cards.forEach((card) => {
+      // ARIA / keyboard affordances
+      card.setAttribute('role','button');
+      card.setAttribute('tabindex','0');
+      card.setAttribute('aria-expanded','false');
+
+      const href   = card.getAttribute('href');
+      const target = card.getAttribute('target');
+
+      const open = (byUser=true) => {
+        card.classList.add('is-open');
+        if (byUser) card.classList.add('is-armed');
+        card.setAttribute('aria-expanded','true');
+      };
+      const close = () => {
+        card.classList.remove('is-open','is-armed');
+        card.setAttribute('aria-expanded','false');
+      };
+      const follow = () => {
+        if (!href || href === '#') return;
+        if (target === '_blank') window.open(href, '_blank', 'noopener');
+        else window.location.href = href;
+      };
+
+      // Hover (desktop)
+      card.addEventListener('pointerenter', (e) => {
+        if (!isMouse(e)) return;
+        card.classList.add('is-hover');
+      });
+      card.addEventListener('pointerleave', (e) => {
+        if (!isMouse(e)) return;
+        card.classList.remove('is-hover');
+        close();
+      });
+
+      // Touch: first tap reveal, second tap follow
+      card.addEventListener('pointerdown', (e) => {
+        if (isMouse(e)) return; // let click/hover handle desktop
+        // If already armed -> let click handler follow, but prevent focus flicker
+        if (!card.classList.contains('is-armed')) {
+          e.preventDefault(); // stop immediate navigation on anchors
+          closeAll(card);
+          open(true);
+        }
+      }, { passive:false });
+
+      card.addEventListener('click', (e) => {
+        // On touch, second tap should follow; on desktop, default link click works
+        if (card.classList.contains('is-armed')) {
+          e.preventDefault();
+          follow();
+        }
+      });
+
+      // Keyboard support
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (card.classList.contains('is-open')) {
+            // if already open, follow on second press
+            follow();
+          } else {
+            closeAll(card);
+            open(true);
+          }
+        } else if (e.key === 'Escape') {
+          close();
+        }
+      });
+
+      // For accessibility: close when focus moves away
+      card.addEventListener('blur', (/*e*/)=>{
+        // Delay to allow focus to move inside if there were interactive children
+        setTimeout(()=>{ if (!card.matches(':focus')) close(); }, 0);
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      const hit = e.target.closest('.partner-card');
+      if (!hit) closeAll();
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+
+
