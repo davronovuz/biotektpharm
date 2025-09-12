@@ -237,26 +237,25 @@
   applyTranslations(savedLang);
 
   // ---------- History cards: reveal (default visible; animate only if .js-ready) ----------
-  (() => {
-    const rows = $$('.h-item');
-    if (!rows.length || !('IntersectionObserver' in window)) return;
+// HISTORY: reveal (in-view) — minimal
+(() => {
+  const rows = document.querySelectorAll('.h-item');
+  if (!rows.length || !('IntersectionObserver' in window)) return;
 
-    // stagger delays (cap to 400ms)
-    rows.forEach((row, i) => (row.style.transitionDelay = `${Math.min(i * 90, 400)}ms`));
+  const io = new IntersectionObserver((ents) => {
+    ents.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          e.target.classList.add('in-view');
-          io.unobserve(e.target);
-        });
-      },
-      { threshold: 0.18, rootMargin: '0px 0px -10% 0px' }
-    );
+  rows.forEach((r, i) => {
+    r.style.transitionDelay = `${Math.min(i * 90, 360)}ms`;
+    io.observe(r);
+  });
+})();
 
-    rows.forEach((r) => io.observe(r));
-  })();
 
   // ---------- Partners rows: reveal (default visible; animate with .js-ready) ----------
   (() => {

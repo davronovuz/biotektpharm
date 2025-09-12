@@ -610,35 +610,56 @@ section.hero{padding:0!important}
 }
 
 
-/* === HISTORY FORCE OVERRIDE — paste at the VERY END === */
+/* === HISTORY – FIXED LAYOUT (card LEFT, image RIGHT) + reveal === */
 .history-cards .h-item{
   display:grid !important;
-  grid-template-columns: 1fr 1.15fr !important;
-  grid-template-areas: "copy media" !important;
+  grid-template-columns: 1fr 1.12fr !important;
+  grid-template-areas: "copy media" !important; /* hamma itemlarda bir xil */
   align-items:center !important;
+  gap:36px !important;
 }
 
-.history-cards .h-item.right,
-.history-cards .h-item:nth-child(even){
-  grid-template-areas: "media copy" !important;
-}
-
-.history-cards .h-copy{ grid-area: copy !important; }
+.history-cards .h-copy{  grid-area: copy  !important; }
 .history-cards .h-media{ grid-area: media !important; }
 
+/* .right yoki :nth-child(even) tasirini BEKOR qilamiz */
+.history-cards .h-item.right,
+.history-cards .h-item:nth-child(even){
+  grid-template-areas: "copy media" !important;
+}
+
+/* Rasm ko‘rinishi */
 .history-cards .h-media img{
   width:100% !important;
   aspect-ratio:16/9 !important;
   object-fit:cover !important;
   border-radius:18px !important;
+  box-shadow:0 18px 40px rgba(15,23,42,.12);
 }
 
-/* mobile stack */
+/* === Scroll reveal (chapdan/ongdan kirish) === */
+.js-ready .h-item .h-copy{  opacity:0; transform:translateX(-28px); }
+.js-ready .h-item .h-media{ opacity:0; transform:translateX( 28px); }
+
+.js-ready .h-item.in-view .h-copy,
+.js-ready .h-item.in-view .h-media{
+  opacity:1; transform:translateX(0);
+  transition: transform .7s cubic-bezier(.2,.7,.2,1), opacity .55s ease;
+}
+
+/* Mobil: ustma-ust (avval rasm, keyin card) */
 @media (max-width:1000px){
   .history-cards .h-item{
     grid-template-columns:1fr !important;
     grid-template-areas:
       "media"
       "copy" !important;
+    gap:18px !important;
   }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .js-ready .h-item .h-copy,
+  .js-ready .h-item .h-media{ opacity:1; transform:none; transition:none !important; }
 }
