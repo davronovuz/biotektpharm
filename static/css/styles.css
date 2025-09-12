@@ -141,23 +141,110 @@ section.hero{padding:0!important}
 @media (max-width:900px){.intro-wrap{grid-template-columns:1fr}}
 
 /* ===== History Cards ===== */
-.history-cards{padding:42px 0 60px;background:#fcfcfd}
-.history-kicker{font-size:clamp(22px,2.4vw,30px);font-weight:800;color:#0f172a;margin:0 0 12px}
-.h-item{--gap:36px;display:grid;grid-template-columns:1fr 1.15fr;gap:var(--gap);align-items:center;margin:26px 0 40px}
-.js-ready .h-item{opacity:0;transform:translateY(28px) scale(.98);transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s ease;will-change:transform,opacity}
-.js-ready .h-item.in-view{opacity:1;transform:translateY(0) scale(1)}
-.h-item.left .h-copy{order:1}.h-item.left .h-media{order:2}
-.h-item.right .h-copy{order:2}.h-item.right .h-media{order:1}
-.h-copy{background:#fff;border:1px solid #edf1f6;border-radius:18px;padding:22px;box-shadow:0 10px 24px rgba(16,24,40,.06)}
-.h-year{font-weight:700;color:#2563eb;margin-bottom:6px}
-.h-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(37,99,235,.12),rgba(37,99,235,.05));box-shadow:0 6px 16px rgba(37,99,235,.18),inset 0 0 0 6px rgba(37,99,235,.06);color:#2563eb;margin-bottom:12px}
-.h-title{font-family:'Playfair Display',serif;font-weight:800;color:#111827;font-size:clamp(18px,2.2vw,26px);margin:4px 0 8px}
-.h-text{color:#475569;line-height:1.7;margin:0}
-.h-media img{width:100%;height:auto;border-radius:18px;box-shadow:0 18px 40px rgba(15,23,42,.12)}
-.js-ready .h-item.in-view .h-media img{animation:floatUp .9s cubic-bezier(.2,.7,.2,1) both}
-@keyframes floatUp{from{transform:translateY(14px);opacity:.85}to{transform:translateY(0);opacity:1}}
-@media (max-width:1000px){.h-item{grid-template-columns:1fr}.h-item.right .h-copy,.h-item.right .h-media{order:unset}}
-@media (prefers-reduced-motion:reduce){.js-ready .h-item,.js-ready .h-item.in-view .h-media img{transition:none;animation:none}}
+/* ===== HISTORY CARDS (Figma-match • grid-areas • reveal + parallax) ===== */
+.history-cards{
+  padding:42px 0 60px;
+  background:#fcfcfd;
+}
+.history-kicker{
+  font-size:clamp(22px,2.4vw,30px);
+  font-weight:800;
+  color:#0f172a;
+  margin:0 0 12px;
+}
+
+/* Layout: matn chap, rasm o‘ng (grid-areas) */
+.h-item{
+  --gap:36px;
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  grid-template-areas:"copy media";
+  gap:var(--gap);
+  align-items:center;
+  margin:26px 0 40px;
+}
+.h-copy  { grid-area:copy; }
+.h-media { grid-area:media; }
+
+/* Juft kartalarda almashtiramiz (rasm chap, matn o‘ng) */
+.h-item.right{ grid-template-areas:"media copy"; }
+
+/* Card (matn tomoni) */
+.h-copy{
+  background:#fff;
+  border:1px solid #edf1f6;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 10px 24px rgba(16,24,40,.06);
+  max-width:720px;
+}
+.h-year{ font-weight:700; color:#2563eb; margin-bottom:6px; }
+.h-icon{
+  width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,rgba(37,99,235,.12),rgba(37,99,235,.05));
+  box-shadow:0 6px 16px rgba(37,99,235,.18), inset 0 0 0 6px rgba(37,99,235,.06);
+  color:#2563eb; margin-bottom:12px;
+}
+.h-title{
+  font-family:'Playfair Display',serif;
+  font-weight:800; color:#111827;
+  font-size:clamp(18px,2.2vw,26px);
+  margin:4px 0 8px;
+}
+.h-text{ color:#475569; line-height:1.7; margin:0; }
+
+/* Media (rasm tomoni) + parallax uchun o‘zgaruvchi */
+.h-media{
+  will-change:transform;
+  transform:translateY(var(--py,0));
+}
+.h-media img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 18px 40px rgba(15,23,42,.12);
+}
+
+/* ===== Reveal animations (js-ready bo‘lganda) ===== */
+.js-ready .h-item .h-copy,
+.js-ready .h-item .h-media{
+  opacity:0;
+  transform:translateY(18px) scale(.98);
+}
+.js-ready .h-item.in-view .h-copy,
+.js-ready .h-item.in-view .h-media{
+  opacity:1;
+  transform:translateY(var(--py,0)) scale(1);
+  transition:transform .7s cubic-bezier(.2,.7,.2,1), opacity .6s ease;
+}
+
+/* Yonlama “slide” hissi (chap/ong variantlar) */
+.js-ready .h-item.left  .h-copy { transform:translate(-18px,18px) scale(.98); }
+.js-ready .h-item.left  .h-media{ transform:translate( 18px,18px) scale(.98); }
+.js-ready .h-item.right .h-copy { transform:translate( 18px,18px) scale(.98); }
+.js-ready .h-item.right .h-media{ transform:translate(-18px,18px) scale(.98); }
+
+/* Mobil: ustma-ust — rasm yuqorida, matn pastda */
+@media (max-width:1000px){
+  .h-item{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "media"
+      "copy";
+  }
+}
+
+/* Accessibility: harakatni kamaytirish */
+@media (prefers-reduced-motion:reduce){
+  .js-ready .h-item .h-copy,
+  .js-ready .h-item .h-media{
+    opacity:1; transform:none; transition:none !important;
+  }
+  .h-media{ transform:none !important; }
+}
+
 
 /* ===== Services ===== */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
