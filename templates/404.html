@@ -1,141 +1,127 @@
 <!doctype html>
 <html lang="uz">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>404 — BIOTEKPHARM</title>
-<link rel="icon" href="/static/img/favicon.png">
-<style>
-  :root{
-    --primary:#3a86ff; --primary-dark:#2667cc;
-    --bg1:#0b1220; --bg2:#0e1630;
-    --text:#eaf2ff; --muted:#9fb2d9;
-    --glass:rgba(255,255,255,.06);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Montserrat,Arial,sans-serif;
-    color:var(--text);
-    background:
-      radial-gradient(1200px 700px at 70% -10%, rgba(58,134,255,.35), transparent 60%),
-      radial-gradient(800px 500px at 0% 100%, rgba(12,117,209,.28), transparent 55%),
-      linear-gradient(180deg,var(--bg1),var(--bg2));
-    overflow:hidden;
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 — Topilmadi · BIOTEKPHARM</title>
+  <style>
+    :root{
+      --brand:#3a86ff;           /* primary */
+      --brand-dark:#0b2a5a;      /* deep navy */
+      --brand-mid:#12356e;       /* card bg */
+      --text:#e9f1ff;
+      --muted:#b9c7e6;
+      --btn:#1c6bff;
+      --btn-hover:#1357d6;
+    }
 
-  /* ===== stage ===== */
-  .stage{position:relative;min-height:100%;display:grid;place-items:center;padding:24px}
-  /* faint grid */
-  .grid{
-    position:absolute; inset:-20% -20% -20% -20%; pointer-events:none; opacity:.12;
-    background-image:
-      linear-gradient(0deg, #fff 1px, transparent 1px),
-      linear-gradient(90deg, #fff 1px, transparent 1px);
-    background-size: 40px 40px;
-    filter:contrast(105%) saturate(110%);
-  }
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background:radial-gradient(1200px 700px at 20% -10%, rgba(58,134,255,.22), transparent 60%),
+                 radial-gradient(900px 600px at 90% 10%, rgba(93,169,255,.15), transparent 55%),
+                 radial-gradient(1000px 800px at 50% 120%, rgba(23,36,80,.85), rgba(9,17,38,1));
+      min-height:100%;
+      display:grid;place-items:center;
+      overflow:hidden;
+    }
 
-  /* center card */
-  .card{
-    position:relative; isolation:isolate;
-    width:min(900px,92vw);
-    border-radius:22px;
-    border:1px solid rgba(255,255,255,.10);
-    background:linear-gradient(180deg,var(--glass),rgba(255,255,255,.04));
-    backdrop-filter:blur(10px) saturate(150%); -webkit-backdrop-filter:blur(10px) saturate(150%);
-    box-shadow:0 22px 44px rgba(7,15,30,.5);
-    display:grid; place-items:center; gap:22px;
-    padding:clamp(36px,6vw,72px) 24px;
-  }
+    /* Soft noise for texture (no grid) */
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.06;mix-blend-mode:soft-light;background-image:url('data:image/svg+xml;utf8,\
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">\
+        <filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" stitchTiles="stitch"/></filter>\
+        <rect width="100" height="100" filter="url(%23n)" opacity=".6"/>\
+      </svg>');background-size:300px 300px}
 
-  /* animated ring behind number */
-  .ring{
-    position:absolute; inset:0; z-index:0; pointer-events:none;
-    --s:280px;
-    width:var(--s); height:var(--s); border-radius:50%;
-    background:conic-gradient(from 0deg, #9bc1ff 0%, #3a86ff 35%, #2667cc 55%, #9bc1ff 100%);
-    filter:blur(20px) saturate(120%);
-    opacity:.18;
-    animation:spin 10s linear infinite;
-  }
-  @keyframes spin{to{transform:rotate(360deg)}}
+    /* Main card */
+    .card{
+      --radius:28px;
+      width:min(1100px,94vw);
+      border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(18,36,78,.85), rgba(12,27,60,.9));
+      border:1px solid rgba(129,170,255,.18);
+      box-shadow: 0 20px 60px rgba(3,12,38,.55), inset 0 1px 0 rgba(255,255,255,.06);
+      padding: clamp(28px,6vw,64px) clamp(24px,5vw,72px);
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+      text-align:center;
+    }
 
-  /* big 404 */
-  .code{
-    position:relative; z-index:1;
-    font-family:"Playfair Display",serif;
-    font-weight:900; line-height:1;
-    letter-spacing:1px;
-    font-size:clamp(110px,22vw,220px);
-    background:linear-gradient(180deg,#eaf2ff 0%,#aecdff 60%,#6fa4ff 100%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    text-shadow:0 14px 48px rgba(58,134,255,.45);
-  }
+    /* Aurora sheen inside card */
+    .card::before{
+      content:"";position:absolute;inset:-20% -10% auto -10%;height:70%;z-index:-1;pointer-events:none;
+      background:radial-gradient(600px 300px at 30% 10%, rgba(96,158,255,.22), transparent 55%),
+                 radial-gradient(480px 260px at 70% 20%, rgba(58,134,255,.18), transparent 60%);
+      filter:blur(6px);
+    }
 
-  /* only one CTA */
-  .cta{
-    position:relative; z-index:1;
-    display:inline-block; padding:14px 22px; border-radius:14px; font-weight:800;
-    color:#fff; background:var(--primary);
-    box-shadow:0 14px 30px rgba(58,134,255,.30);
-    transition:transform .15s ease, box-shadow .15s ease, background .2s ease;
-  }
-  .cta:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(58,134,255,.36);background:var(--primary-dark)}
+    .code{font-weight:800;letter-spacing:2px;font-family:"Playfair Display", ui-serif, Georgia, serif;
+      font-size: clamp(80px, 16vw, 220px);
+      line-height: 1; color:#cfe0ff;
+      text-shadow:0 14px 40px rgba(27,86,220,.25), 0 2px 0 rgba(255,255,255,.06);
+      margin-bottom: clamp(18px,2.5vw,28px);
+    }
 
-  /* minimal brand strip (top) */
-  .brandbar{
-    position:absolute; top:16px; left:50%; transform:translateX(-50%);
-    width:min(1100px,92vw); display:flex; align-items:center; justify-content:space-between;
-    gap:12px; color:var(--muted); font-weight:700; letter-spacing:.2px;
-    opacity:.9;
-  }
-  .brand{display:flex; align-items:center; gap:10px}
-  .dot{width:10px;height:10px;border-radius:50%;background:#9bc1ff;box-shadow:0 0 0 6px rgba(155,193,255,.12)}
+    .actions{display:flex;justify-content:center}
+    .btn{
+      appearance:none;border:0;cursor:pointer;user-select:none;
+      padding:14px 22px;border-radius:14px;font-weight:800;font-size:1rem;
+      color:#fff;background:linear-gradient(180deg,var(--btn),#1650c4);
+      box-shadow:0 10px 28px rgba(26,98,255,.28), inset 0 1px 0 rgba(255,255,255,.2);
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      text-decoration:none;display:inline-flex;align-items:center;gap:10px
+    }
+    .btn:hover{transform:translateY(-2px);background:linear-gradient(180deg,var(--btn-hover),#0f48bb);box-shadow:0 16px 36px rgba(26,98,255,.35)}
+    .btn:active{transform:none}
 
-  /* pill micro-illustrations */
-  .pill{position:absolute; width:54px; height:20px; border-radius:12px; transform:rotate(-18deg); opacity:.9}
-  .pill::before,.pill::after{content:""; position:absolute; inset:0; border-radius:12px}
-  .pill::before{background:linear-gradient(90deg,#fff 0 50%, #d9e7ff 50% 100%); box-shadow:inset -2px 0 0 rgba(0,0,0,.06)}
-  .pill::after {inset:2px 2px 2px 2px; border-radius:10px; background:linear-gradient(90deg,#6aa6ff 0 50%, #3a86ff 50% 100%); mix-blend-mode:overlay; opacity:.9}
-  .p1{top:8%; left:64%}
-  .p2{bottom:10%; right:12%; transform:rotate(16deg)}
-  .p3{top:42%; right:8%; transform:rotate(8deg); width:44px; height:16px; opacity:.75}
+    /* Pills (minimal) */
+    .pill{position:absolute;width:56px;height:22px;border-radius:40px;background:linear-gradient(180deg,#0e2a64,#071b46);box-shadow:0 6px 16px rgba(0,0,0,.35);opacity:.9}
+    .pill::before{content:"";position:absolute;inset:0;border-radius:40px;mask:linear-gradient(90deg,black 55%,transparent 0);background:linear-gradient(180deg,#fff,#cfe3ff)}
+    .pill.p1{top:36px;right:14%;transform:rotate(-18deg)}
+    .pill.p2{bottom:30px;left:18%;transform:rotate(22deg)}
+    .pill.p3{bottom:80px;right:24%;transform:rotate(12deg)}
 
-  /* footer mini */
-  footer{
-    position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
-    color:var(--muted); font-size:14px; opacity:.9;
-  }
+    /* Minimal top-left brand dot + name */
+    .brand{position:fixed;left:18px;top:14px;display:flex;align-items:center;gap:10px;font-weight:800;color:#cfe0ff;opacity:.95}
+    .brand::before{content:"";width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #cfe6ff, #7db3ff 55%, #2a63d8 70%);box-shadow:0 0 12px rgba(122,175,255,.85)}
 
-  /* responsive ring size */
-  @media (max-width:560px){ .ring{--s:220px} }
-</style>
+    /* Minimal page tag top-right */
+    .tag{position:fixed;right:18px;top:14px;color:#a8b8da;font-weight:700;opacity:.7}
+
+    /* Footer */
+    .foot{position:fixed;left:0;right:0;bottom:16px;text-align:center;color:#9db1d6;font-size:.95rem}
+
+    @media (max-width:560px){
+      .pill{display:none}
+    }
+  </style>
 </head>
 <body>
-  <div class="stage" aria-label="404 page">
-    <div class="grid" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
-    <!-- top minimalist brand strip -->
-    <div class="brandbar" aria-hidden="true">
-      <div class="brand"><span class="dot"></span> <span>BIOTEKPHARM</span></div>
-      <div>404</div>
+  <div class="brand">BIOTEKPHARM</div>
+  <div class="tag">404</div>
+
+  <main class="card" role="main" aria-labelledby="e404">
+    <span class="pill p1" aria-hidden="true"></span>
+    <span class="pill p2" aria-hidden="true"></span>
+    <span class="pill p3" aria-hidden="true"></span>
+
+    <h1 id="e404" class="code">404</h1>
+
+    <div class="actions">
+      <a href="/" class="btn" aria-label="Bosh sahifaga qaytish">Bosh sahifa</a>
     </div>
+  </main>
 
-    <!-- center card -->
-    <div class="card">
-      <div class="ring" aria-hidden="true"></div>
-      <div class="pill p1" aria-hidden="true"></div>
-      <div class="pill p2" aria-hidden="true"></div>
-      <div class="pill p3" aria-hidden="true"></div>
+  <footer class="foot">© <span id="year"></span> BIOTEKPHARM</footer>
 
-      <div class="code" aria-label="404">404</div>
-      <a class="cta" href="/">Bosh sahifa</a>
-    </div>
-
-    <footer>© <span id="y"></span> BIOTEKPHARM</footer>
-  </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

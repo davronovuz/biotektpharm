@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@%7i$i3dj7_%%0oyf19_g&pyeyn-+0mjv+u*0jwz0@cm4infu3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -57,6 +58,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -95,19 +97,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Til kodlari va nomlari
-LANGUAGES = [
-    ('uz', 'O\'zbekcha'),
-    ('ru', 'Русский'),
-    ('en', 'English'),
-]
-
-# Tarjima fayllari saqlanadigan papka
-LOCALE_PATHS = [
-    BASE_DIR / 'locale',  # loyiha ildizidagi 'locale' papkasi
-]
-
 LANGUAGE_CODE = 'uz'
+LANGUAGES = [
+    ('uz', "O'zbekcha"),
+    ('ru', "Русский"),
+    ('en', "English"),
+]
+LOCALE_PATHS = [ BASE_DIR / 'locale' ]
+
 
 TIME_ZONE = 'Asia/Tashkent'
 
