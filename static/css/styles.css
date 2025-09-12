@@ -609,3 +609,36 @@ section.hero{padding:0!important}
   .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
 }
 
+
+/* === HISTORY FORCE OVERRIDE — paste at the VERY END === */
+.history-cards .h-item{
+  display:grid !important;
+  grid-template-columns: 1fr 1.15fr !important;
+  grid-template-areas: "copy media" !important;
+  align-items:center !important;
+}
+
+.history-cards .h-item.right,
+.history-cards .h-item:nth-child(even){
+  grid-template-areas: "media copy" !important;
+}
+
+.history-cards .h-copy{ grid-area: copy !important; }
+.history-cards .h-media{ grid-area: media !important; }
+
+.history-cards .h-media img{
+  width:100% !important;
+  aspect-ratio:16/9 !important;
+  object-fit:cover !important;
+  border-radius:18px !important;
+}
+
+/* mobile stack */
+@media (max-width:1000px){
+  .history-cards .h-item{
+    grid-template-columns:1fr !important;
+    grid-template-areas:
+      "media"
+      "copy" !important;
+  }
+}
