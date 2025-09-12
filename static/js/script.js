@@ -640,3 +640,51 @@
 
 
 
+/* === PARTNERS: hover/tap flip + a11y (HTML o'zgarmaydi) === */
+(() => {
+  const cards = Array.from(document.querySelectorAll('.partner-card'));
+  if (!cards.length) return;
+
+  const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  const closeAll = () => cards.forEach(c => c.classList.remove('is-open','is-armed','is-hover'));
+  const openCard = (c) => { closeAll(); c.classList.add('is-open'); };
+
+  cards.forEach(card => {
+    card.setAttribute('tabindex','0');
+
+    // Desktop — hover
+    card.addEventListener('mouseenter', () => { if (!isTouch) card.classList.add('is-hover'); });
+    card.addEventListener('mouseleave', () => card.classList.remove('is-hover'));
+
+    // Mobile — 1-tap ochish, 2-tap linkka o'tish
+    card.addEventListener('click', (e) => {
+      if (!isTouch) return;           // desktopda oddiy link
+      if (!card.classList.contains('is-open')) {
+        e.preventDefault();
+        openCard(card);
+        card.classList.add('is-armed');
+      } else if (card.classList.contains('is-armed')) {
+        card.classList.remove('is-armed'); // nav’ga ruxsat
+      }
+    });
+
+    // Klaviatura
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (!card.classList.contains('is-open')) openCard(card);
+        else if (card.href) window.location.assign(card.href);
+      }
+      if (e.key === 'Escape') closeAll();
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.partner-card')) closeAll();
+  }, true);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) closeAll();
+  });
+})();
+
