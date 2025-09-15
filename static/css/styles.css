@@ -185,6 +185,32 @@ section{padding:6rem 0;position:relative}
   .hero h1{ font-size: 34px !important; line-height: 44px !important; }
   .hero .subtitle{ font-size: 16px !important; line-height: 24px !important; }
 }
+/* === HERO — wrap muammosini tuzatish (A+B) === */
+
+/* A) Matn ustunini kengaytirish: 1–7 (oldin 1–6 edi) */
+.hero-content{
+  grid-column: 1 / span 7;     /* kerak bo‘lsa 1 / span 8 qilib ko‘ring */
+  max-width: 880px;            /* 720px o‘rniga — sarlavha uchun kengroq joy */
+}
+
+/* B) Sarlavhani fluid qilish: katta ekranda 70, kichrayganda silliq pasayadi */
+.hero h1{
+  font-size: clamp(44px, 5.6vw, 70px) !important;
+  line-height: clamp(56px, 7.4vw, 94px) !important;  /* proporsiyani saqlaydi */
+  margin-bottom: 16px !important;
+  /* ixtiyoriy: harflar oralig‘ini ozgina siqish uchun quyidagini yoqishingiz mumkin */
+  /* letter-spacing: -0.2px !important; */
+}
+
+/* Lead matnni ham bitta satrga yaqinroq ushlash uchun kenglik */
+.hero .subtitle{
+  max-width: 860px;
+}
+
+/* Agar hanuz ko‘p bo‘linib ketsa — yanada kengaytirish varianti */
+@media (min-width: 1280px){
+  .hero-content{ grid-column: 1 / span 8; max-width: 980px; }
+}
 
 
 /* ===== About ===== */
