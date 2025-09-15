@@ -27,42 +27,87 @@
 
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">
-                <div class="logo-icon">
-                    <img src="{% static 'images/logos_navs.jpg' %}" alt="logo">
-                </div>
-            </a>
-            <button id="mobile-menu" class="menu-toggle" aria-label="Toggle menu">
-              <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
+<!--    <nav class="navbar">-->
+<!--        <div class="container">-->
+<!--            <a href="#" class="logo">-->
+<!--                <div class="logo-icon">-->
+<!--                    <img src="{% static 'images/logos_navs.jpg' %}" alt="logo">-->
+<!--                </div>-->
+<!--            </a>-->
+<!--            <button id="mobile-menu" class="menu-toggle" aria-label="Toggle menu">-->
+<!--              <span class="bar"></span><span class="bar"></span><span class="bar"></span>-->
+<!--            </button>-->
 
 
-            <ul class="nav-list">
-                <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
-                <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya</a></li>
-                <li><a href="#history-figma" class="nav-link" data-i18n="history">Tarix</a></li>
-                <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>
-                <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
-                <li><a href="#locations" class="nav-link" data-i18n="locations">Manzil</a></li>
-                <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
-                <li class="nav-item lang">
-                  <button id="langBtn" class="lang-btn" aria-expanded="false">
-                    <img src="https://flagcdn.com/uz.svg" alt="UZ" class="flag">
-                    <span id="currentLang">UZ</span>
-                    <i class="chevron"></i>
-                  </button>
-                  <ul id="langMenu" class="lang-menu">
-                    <li data-lang="uz"><img src="https://flagcdn.com/uz.svg" alt=""> Oʻzbekcha</li>
-                    <li data-lang="ru"><img src="https://flagcdn.com/ru.svg" alt=""> Русский</li>
-                    <li data-lang="en"><img src="https://flagcdn.com/gb.svg" alt=""> English</li>
-                  </ul>
-                </li>
+<!--            <ul class="nav-list">-->
+<!--                <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>-->
+<!--                <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya</a></li>-->
+<!--                <li><a href="#history-figma" class="nav-link" data-i18n="history">Tarix</a></li>-->
+<!--                <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>-->
+<!--                <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>-->
+<!--                <li><a href="#locations" class="nav-link" data-i18n="locations">Manzil</a></li>-->
+<!--                <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>-->
+<!--                <li class="nav-item lang">-->
+<!--                  <button id="langBtn" class="lang-btn" aria-expanded="false">-->
+<!--                    <img src="https://flagcdn.com/uz.svg" alt="UZ" class="flag">-->
+<!--                    <span id="currentLang">UZ</span>-->
+<!--                    <i class="chevron"></i>-->
+<!--                  </button>-->
+<!--                  <ul id="langMenu" class="lang-menu">-->
+<!--                    <li data-lang="uz"><img src="https://flagcdn.com/uz.svg" alt=""> Oʻzbekcha</li>-->
+<!--                    <li data-lang="ru"><img src="https://flagcdn.com/ru.svg" alt=""> Русский</li>-->
+<!--                    <li data-lang="en"><img src="https://flagcdn.com/gb.svg" alt=""> English</li>-->
+<!--                  </ul>-->
+<!--                </li>-->
 
-            </ul>
-        </div>
-    </nav>
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </nav>-->
+
+    <!-- Navigation -->
+
+<nav class="navbar">
+  <div class="container">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <!-- JPG o‘rniga SVG -->
+        <img
+          src="{% static 'images/biotek-logo.svg' %}"
+          alt="BIOTEK PHARM"
+          height="40"
+          decoding="async"
+          fetchpriority="high">
+      </div>
+    </a>
+
+    <button id="mobile-menu" class="menu-toggle" aria-label="Toggle menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <ul class="nav-list">
+      <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>
+      <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya</a></li>
+      <li><a href="#history-figma" class="nav-link" data-i18n="history">Tarix</a></li>
+      <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>
+      <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
+      <li><a href="#locations" class="nav-link" data-i18n="locations">Manzil</a></li>
+      <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
+      <li class="nav-item lang">
+        <button id="langBtn" class="lang-btn" aria-expanded="false">
+          <img src="https://flagcdn.com/uz.svg" alt="UZ" class="flag">
+          <span id="currentLang">UZ</span>
+          <i class="chevron"></i>
+        </button>
+        <ul id="langMenu" class="lang-menu">
+          <li data-lang="uz"><img src="https://flagcdn.com/uz.svg" alt=""> Oʻzbekcha</li>
+          <li data-lang="ru"><img src="https://flagcdn.com/ru.svg" alt=""> Русский</li>
+          <li data-lang="en"><img src="https://flagcdn.com/gb.svg" alt=""> English</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 
 <!-- Hero Section -->
 <section class="hero" id="home"
