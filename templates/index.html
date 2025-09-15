@@ -362,7 +362,92 @@
 
 
 
-<!-- Locations Section -->
+<!--&lt;!&ndash; Locations Section &ndash;&gt;-->
+<!--&lt;!&ndash; LOCATIONS (FIGMA-MATCH) &ndash;&gt;-->
+<!--<section id="locations" class="locations-v3" aria-labelledby="loc-title">-->
+<!--  <div class="container">-->
+<!--    <div class="loc-head">-->
+<!--      <p class="loc-kicker" data-i18n="locations_subtitle">-->
+<!--        Butun Oʻzbekiston boʻylab ofis va omborlarimiz-->
+<!--      </p>-->
+<!--      <h2 id="loc-title" class="loc-title" data-i18n="locations_title">-->
+<!--        Bizning joylashuvlar-->
+<!--      </h2>-->
+<!--    </div>-->
+
+<!--    <div class="loc-stage" aria-label="Uzbekistan map">-->
+<!--      &lt;!&ndash; fon pattern (ixtiyoriy) &ndash;&gt;-->
+<!--      <div class="hex-bg" aria-hidden="true"></div>-->
+
+<!--      &lt;!&ndash; Xarita PNG (figmadagi rasm) &ndash;&gt;-->
+<!--      <img-->
+<!--        src="{% static 'images/rasmcha.png' %}"-->
+<!--        alt="Oʻzbekiston xaritasi"-->
+<!--        class="uz-map"-->
+<!--        loading="lazy"-->
+<!--      />-->
+
+<!--      &lt;!&ndash; Yo‘laklar (svg) &ndash;&gt;-->
+<!--      <svg class="loc-routes" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">-->
+<!--        &lt;!&ndash; Samarqand → Toshkent &ndash;&gt;-->
+<!--        <path class="route" d="M520,330 C640,300 720,280 800,260" />-->
+<!--        &lt;!&ndash; Samarqand → Farg‘ona &ndash;&gt;-->
+<!--        <path class="route" d="M525,340 C640,360 740,345 880,345" />-->
+<!--        &lt;!&ndash; Samarqand → Xorazm &ndash;&gt;-->
+<!--        <path class="route" d="M510,335 C420,330 330,312 220,292" />-->
+<!--      </svg>-->
+
+<!--      &lt;!&ndash; PINLAR (koordinata foizda, PNGga mos) &ndash;&gt;-->
+<!--      <button class="pin is-active" data-region="samarqand" style="&#45;&#45;x:52%; &#45;&#45;y:64%;" aria-pressed="true">-->
+<!--        <span class="pin-dot"></span><span class="pin-label">Samarqand</span>-->
+<!--      </button>-->
+
+<!--      <button class="pin" data-region="tashkent" style="&#45;&#45;x:79%; &#45;&#45;y:35%;" aria-pressed="false">-->
+<!--        <span class="pin-dot"></span><span class="pin-label">Toshkent</span>-->
+<!--      </button>-->
+
+<!--      <button class="pin" data-region="fergana" style="&#45;&#45;x:88%; &#45;&#45;y:52%;" aria-pressed="false">-->
+<!--        <span class="pin-dot"></span><span class="pin-label">Fargʻona</span>-->
+<!--      </button>-->
+
+<!--      <button class="pin" data-region="xorazm" style="&#45;&#45;x:18%; &#45;&#45;y:40%;" aria-pressed="false">-->
+<!--        <span class="pin-dot"></span><span class="pin-label">Xorazm</span>-->
+<!--      </button>-->
+
+<!--      &lt;!&ndash; INFO-KARTA &ndash;&gt;-->
+<!--      <aside class="loc-card" role="dialog" aria-live="polite">-->
+<!--        <div class="loc-card__inner">-->
+<!--          <div class="loc-card__row">-->
+<!--            <h3 class="loc-card__city">Samarqand</h3>-->
+<!--            <span class="badge-open" id="openBadge">Open</span>-->
+<!--          </div>-->
+
+<!--          <ul class="loc-card__list">-->
+<!--            <li>-->
+<!--              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>-->
+<!--              <span class="js-address">Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy</span>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <i class="fa-solid fa-phone" aria-hidden="true"></i>-->
+<!--              <span class="js-phone">+998 90 657 05 00</span>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <i class="fa-regular fa-clock" aria-hidden="true"></i>-->
+<!--              <span class="js-hours">Dushanba–Juma: 9:00 – 18:00</span>-->
+<!--            </li>-->
+<!--          </ul>-->
+
+<!--          <div class="loc-actions">-->
+<!--            <button class="btn-outline" id="copyAddr" type="button">Copy</button>-->
+<!--            <button class="btn-outline" id="shareAddr" type="button">Share</button>-->
+<!--            <a class="btn btn-primary" id="dirBtn" target="_blank" rel="noopener">Yo‘lni ko‘rsat</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </aside>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
 <!-- LOCATIONS (FIGMA-MATCH) -->
 <section id="locations" class="locations-v3" aria-labelledby="loc-title">
   <div class="container">
@@ -376,10 +461,14 @@
     </div>
 
     <div class="loc-stage" aria-label="Uzbekistan map">
-      <!-- fon pattern (ixtiyoriy) -->
-      <div class="hex-bg" aria-hidden="true"></div>
+      <!-- Orqa fon: Figma hex pattern -->
+      <div
+        class="hex-bg"
+        aria-hidden="true"
+        style="--hex-bg: url('{% static 'images/rasmchaa.png' %}');"
+      ></div>
 
-      <!-- Xarita PNG (figmadagi rasm) -->
+      <!-- Xaritamiz (PNG/SVG) -->
       <img
         src="{% static 'images/rasmcha.png' %}"
         alt="Oʻzbekiston xaritasi"
@@ -387,17 +476,14 @@
         loading="lazy"
       />
 
-      <!-- Yo‘laklar (svg) -->
+      <!-- Yo‘laklar (SVG) -->
       <svg class="loc-routes" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <!-- Samarqand → Toshkent -->
         <path class="route" d="M520,330 C640,300 720,280 800,260" />
-        <!-- Samarqand → Farg‘ona -->
         <path class="route" d="M525,340 C640,360 740,345 880,345" />
-        <!-- Samarqand → Xorazm -->
         <path class="route" d="M510,335 C420,330 330,312 220,292" />
       </svg>
 
-      <!-- PINLAR (koordinata foizda, PNGga mos) -->
+      <!-- PINLAR (prosent koordinata) -->
       <button class="pin is-active" data-region="samarqand" style="--x:52%; --y:64%;" aria-pressed="true">
         <span class="pin-dot"></span><span class="pin-label">Samarqand</span>
       </button>
@@ -415,7 +501,7 @@
       </button>
 
       <!-- INFO-KARTA -->
-      <aside class="loc-card" role="dialog" aria-live="polite">
+      <aside class="loc-card show" role="dialog" aria-live="polite">
         <div class="loc-card__inner">
           <div class="loc-card__row">
             <h3 class="loc-card__city">Samarqand</h3>
@@ -447,7 +533,6 @@
     </div>
   </div>
 </section>
-
 
 
 
