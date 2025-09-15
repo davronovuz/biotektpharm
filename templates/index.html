@@ -447,33 +447,30 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</section>-->
-
-<!-- LOCATIONS (FIGMA-MATCH) -->
+    <!-- LOCATIONS (FIGMA-MATCH) -->
 <section id="locations" class="locations-v3" aria-labelledby="loc-title">
   <div class="container">
-    <div class="loc-head">
+    <header class="loc-head">
       <p class="loc-kicker" data-i18n="locations_subtitle">
         Butun Oʻzbekiston boʻylab ofis va omborlarimiz
       </p>
       <h2 id="loc-title" class="loc-title" data-i18n="locations_title">
         Bizning joylashuvlar
       </h2>
-    </div>
+    </header>
 
-    <div class="loc-stage" aria-label="Uzbekistan map">
-      <!-- Orqa fon: Figma hex pattern -->
-      <div
-        class="hex-bg"
-        aria-hidden="true"
-        style="--hex-bg: url('{% static 'images/rasmchaa.png' %}');"
-      ></div>
+    <div class="loc-stage" role="img" aria-label="Oʻzbekiston xaritasi va ofis joylashuvlari">
+      <!-- Orqa fon: Figma pattern -->
+      <div class="hex-bg" aria-hidden="true"
+           style="--hex-bg: url('{% static "images/rasmchaa.png" %}');"></div>
 
-      <!-- Xaritamiz (PNG/SVG) -->
+      <!-- Xarita (rasm) -->
       <img
         src="{% static 'images/rasmcha.png' %}"
         alt="Oʻzbekiston xaritasi"
         class="uz-map"
         loading="lazy"
+        decoding="async"
       />
 
       <!-- Yo‘laklar (SVG) -->
@@ -483,43 +480,77 @@
         <path class="route" d="M510,335 C420,330 330,312 220,292" />
       </svg>
 
-      <!-- PINLAR (prosent koordinata) -->
-      <button class="pin is-active" data-region="samarqand" style="--x:52%; --y:64%;" aria-pressed="true">
-        <span class="pin-dot"></span><span class="pin-label">Samarqand</span>
-      </button>
+      <!-- PINLAR (koordinata %) -->
+      <div class="pins" role="list">
+        <button class="pin is-active"
+                role="listitem"
+                data-region="samarqand"
+                data-address="Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy"
+                data-phone="+998 90 657 05 00"
+                data-hours="Dushanba–Juma: 9:00–18:00"
+                style="--x:52%; --y:64%;"
+                aria-pressed="true">
+          <span class="pin-dot" aria-hidden="true"></span>
+          <span class="pin-label">Samarqand</span>
+        </button>
 
-      <button class="pin" data-region="tashkent" style="--x:79%; --y:35%;" aria-pressed="false">
-        <span class="pin-dot"></span><span class="pin-label">Toshkent</span>
-      </button>
+        <button class="pin"
+                role="listitem"
+                data-region="tashkent"
+                data-address="Toshkent sh., Yakkasaroy t., Shota Rustaveli ko‘chasi, 12"
+                data-phone="+998 71 200 00 00"
+                data-hours="Dushanba–Juma: 9:00–18:00"
+                style="--x:79%; --y:35%;"
+                aria-pressed="false">
+          <span class="pin-dot" aria-hidden="true"></span>
+          <span class="pin-label">Toshkent</span>
+        </button>
 
-      <button class="pin" data-region="fergana" style="--x:88%; --y:52%;" aria-pressed="false">
-        <span class="pin-dot"></span><span class="pin-label">Fargʻona</span>
-      </button>
+        <button class="pin"
+                role="listitem"
+                data-region="fergana"
+                data-address="Fargʻona sh., Mustaqillik ko‘chasi, 45"
+                data-phone="+998 73 300 00 00"
+                data-hours="Dushanba–Juma: 9:00–18:00"
+                style="--x:88%; --y:52%;"
+                aria-pressed="false">
+          <span class="pin-dot" aria-hidden="true"></span>
+          <span class="pin-label">Fargʻona</span>
+        </button>
 
-      <button class="pin" data-region="xorazm" style="--x:18%; --y:40%;" aria-pressed="false">
-        <span class="pin-dot"></span><span class="pin-label">Xorazm</span>
-      </button>
+        <button class="pin"
+                role="listitem"
+                data-region="xorazm"
+                data-address="Xiva sh., Bog‘cha ko‘chasi, 7"
+                data-phone="+998 62 220 00 00"
+                data-hours="Dushanba–Juma: 9:00–18:00"
+                style="--x:18%; --y:40%;"
+                aria-pressed="false">
+          <span class="pin-dot" aria-hidden="true"></span>
+          <span class="pin-label">Xorazm</span>
+        </button>
+      </div>
 
       <!-- INFO-KARTA -->
-      <aside class="loc-card show" role="dialog" aria-live="polite">
+      <aside class="loc-card show" role="dialog" aria-live="polite" aria-label="Manzil kartasi">
         <div class="loc-card__inner">
           <div class="loc-card__row">
-            <h3 class="loc-card__city">Samarqand</h3>
+            <h3 class="loc-card__city" id="locCity">Samarqand</h3>
             <span class="badge-open" id="openBadge">Open</span>
           </div>
 
           <ul class="loc-card__list">
             <li>
               <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-              <span class="js-address">Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy</span>
+              <span class="js-address" id="locAddress">Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy</span>
             </li>
             <li>
               <i class="fa-solid fa-phone" aria-hidden="true"></i>
-              <span class="js-phone">+998 90 657 05 00</span>
+              <a class="js-phone" id="locPhone" href="tel:+998906570500">+998 90 657 05 00</a>
             </li>
             <li>
               <i class="fa-regular fa-clock" aria-hidden="true"></i>
-              <span class="js-hours">Dushanba–Juma: 9:00 – 18:00</span>
+              <span class="js-hours" id="locHours">Dushanba–Juma: 9:00–18:00</span>
             </li>
           </ul>
 

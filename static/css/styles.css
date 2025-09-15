@@ -678,75 +678,91 @@ section{padding:6rem 0;position:relative}
 @media (max-width:600px){.partner-note{width:92%;font-size:13px}}
 
 
-
 /* ===== Locations ===== */
+:root{
+  --loc-bg1:#eff4ff;
+  --loc-bg2:#eaf1ff;
+  --loc-primary:#2563eb;
+  --loc-primary-strong:#1f66ff;
+  --loc-text:#0f172a;
+  --loc-muted:#6b7280;
+  --loc-white:#fff;
+  --loc-border:#e4edff;
+  --loc-card-shadow:0 22px 44px rgba(16,24,40,.16);
+  --loc-pin-ring:#e6f0ff;
+}
+
 .locations-v3{padding:60px 0;background:#e9effb;position:relative}
 .locations-v3 .loc-head{text-align:center;margin-bottom:22px}
-.loc-kicker{color:#6b7280;margin:0 0 6px}
-.loc-title{font-family:var(--font-secondary);font-weight:800;color:#2563eb;font-size:clamp(28px,3.4vw,44px);margin:0}
+.loc-kicker{color:var(--loc-muted);margin:0 0 6px}
+.loc-title{
+  font-family:var(--font-secondary);
+  font-weight:800;color:var(--loc-primary);
+  font-size:clamp(28px,3.4vw,44px);margin:0
+}
 
 /* Sahna */
 .loc-stage{
   position:relative; isolation:isolate; overflow:hidden;
   border-radius:24px; min-height:560px;
-  background:linear-gradient(180deg,#eff4ff,#eaf1ff);
-  box-shadow:none; /* panelga umumiy shadow bermaymiz */
+  background:linear-gradient(180deg,var(--loc-bg1),var(--loc-bg2));
 }
 
 /* Hexagon orqa fon (rasm) */
 .hex-bg{
   position:absolute; inset:-6% -6% -6% -6%; z-index:0; pointer-events:none;
-  background-image: var(--hex-bg);      /* Django’dan inline keldi */
-  background-size: cover;               /* rasm joyida qalsin */
-  background-position: center;
-  opacity:.55;                         /* figmadagi kabi yengil */
-  filter: none;
+  background-image: var(--hex-bg);
+  background-size: cover; background-position: center;
+  opacity:.55;
 }
 
-/* Panel ustidan yengil gradient – nur effekti */
+/* Yengil gradient – nur effekti */
 .loc-stage::after{
   content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
   background:radial-gradient(120% 120% at 50% 40%,transparent 55%,rgba(18,24,40,.05) 100%);
 }
 
-/* Xarita rasm(i) */
+/* Xarita */
 .uz-map{
   position:absolute; left:50%; top:60%; transform:translate(-50%,-50%);
   width:min(1100px,95%); height:auto; z-index:1;
-  image-rendering:auto; filter:none; box-shadow:none;
 }
-@media (max-height:760px){.uz-map{top:58%}}
 
-/* Yo‘laklar — Figma: tekis oq dash, shadowsiz */
+/* Yo‘laklar */
 .loc-routes{position:absolute; inset:0; z-index:2; pointer-events:none}
 .route{
-  fill:none; stroke:#fff; stroke-width:8; stroke-linecap:round;
-  stroke-dasharray:10 14; filter:none !important;
+  fill:none; stroke:var(--loc-white); stroke-width:8; stroke-linecap:round;
+  stroke-dasharray:10 14;
   animation:dash 3s linear infinite;
 }
 @keyframes dash{to{stroke-dashoffset:-420}}
 @media (prefers-reduced-motion:reduce){.route{animation:none}}
 
-/* PIN */
-.pin{--x:50%;--y:50%; position:absolute; left:var(--x); top:var(--y);
-  transform:translate(-50%,-100%); z-index:3; border:0; background:transparent;
-  cursor:pointer; outline:0; touch-action:manipulation;
+/* Pinlar */
+.pins{position:relative; z-index:3}
+.pin{
+  --x:50%;--y:50%;
+  position:absolute; left:var(--x); top:var(--y);
+  transform:translate(-50%,-100%);
+  border:0; background:transparent; cursor:pointer; outline:0;
 }
 .pin .pin-dot{
-  width:30px;height:30px;border-radius:50%;background:#fff;display:block;
-  position:relative; box-shadow:inset 0 0 0 10px #e6f0ff; /* ichki ko‘k halqa */
+  width:30px;height:30px;border-radius:50%;background:var(--loc-white);display:block;position:relative;
+  box-shadow:inset 0 0 0 10px var(--loc-pin-ring);
 }
 .pin .pin-dot::after{
   content:""; position:absolute; inset:6px; border-radius:50%;
-  background:#1f66ff; transition:transform .14s ease, background .14s ease;
+  background:var(--loc-primary-strong);
+  transition:transform .14s ease, background .14s ease;
 }
 .pin .pin-label{
   position:absolute; left:50%; top:38px; transform:translateX(-50%);
-  background:#fff; color:#1f66ff; font-weight:800; letter-spacing:.1px;
-  border-radius:12px; padding:7px 12px; font-size:14px; white-space:nowrap;
-  box-shadow:0 10px 22px rgba(31,102,255,.14); /* yumshoq, figma vibe */
+  background:var(--loc-white); color:var(--loc-primary-strong);
+  font-weight:800; letter-spacing:.1px; border-radius:12px;
+  padding:7px 12px; font-size:14px; white-space:nowrap;
+  box-shadow:0 10px 22px rgba(31,102,255,.14);
 }
-.pin.is-active .pin-dot::after{transform:scale(1.08); background:#2563eb}
+.pin.is-active .pin-dot::after{transform:scale(1.08); background:var(--loc-primary)}
 .pin:focus-visible .pin-label{outline:3px solid rgba(31,102,255,.24); outline-offset:2px}
 
 /* Info-karta */
@@ -757,41 +773,52 @@ section{padding:6rem 0;position:relative}
   opacity:0; pointer-events:none;
   transition:transform .32s cubic-bezier(.2,.7,.2,1), opacity .2s ease;
 }
-.loc-card.show{opacity:1; pointer-events:auto; transform:translate(-50%,calc(-100% - 22px)) scale(1)}
+.loc-card.show{
+  opacity:1; pointer-events:auto;
+  transform:translate(-50%,calc(-100% - 22px)) scale(1)
+}
 .loc-card__inner{
-  width:min(520px,92vw); background:#fff; border:1px solid #e4edff;
-  border-radius:18px; padding:18px 18px 14px;
-  box-shadow:0 22px 44px rgba(16,24,40,.16);
+  width:min(520px,92vw); background:var(--loc-white);
+  border:1px solid var(--loc-border); border-radius:18px; padding:18px 18px 14px;
+  box-shadow:var(--loc-card-shadow);
 }
 .loc-card__row{display:flex; align-items:center; justify-content:space-between; gap:12px}
-.loc-card__city{font:800 20px/1.2 var(--font-primary); color:#0f172a; margin:0}
-.loc-card__list{display:flex; flex-direction:column; gap:10px; margin:12px 0 0; color:#0f172a}
-.loc-card__list i{color:#1f66ff; width:18px; margin-right:8px}
+.loc-card__city{font:800 20px/1.2 var(--font-primary); color:var(--loc-text); margin:0}
+.loc-card__list{display:flex; flex-direction:column; gap:10px; margin:12px 0 0; color:var(--loc-text)}
+.loc-card__list i{color:var(--loc-primary-strong); width:18px; margin-right:8px}
 .loc-card__list li{display:flex; align-items:flex-start}
 .loc-card__list span{line-height:1.45}
-.badge-open{display:inline-flex; align-items:center; gap:6px; padding:4px 9px;
-  border-radius:999px; background:#e8f5e9; color:#1e7a35; font-weight:800; font-size:12.5px}
-.badge-open::before{content:""; width:8px; height:8px; border-radius:50%; background:#16a34a; box-shadow:0 0 0 6px rgba(22,163,74,.12)}
+.badge-open{
+  display:inline-flex; align-items:center; gap:6px; padding:4px 9px;
+  border-radius:999px; background:#e8f5e9; color:#1e7a35; font-weight:800; font-size:12.5px
+}
+.badge-open::before{
+  content:""; width:8px; height:8px; border-radius:50%; background:#16a34a;
+  box-shadow:0 0 0 6px rgba(22,163,74,.12)
+}
 .badge-open.is-closed{background:#fff1f2; color:#b91c1c}
 .badge-open.is-closed::before{background:#ef4444; box-shadow:0 0 0 6px rgba(239,68,68,.12)}
 .loc-actions{display:flex; align-items:center; gap:10px; margin-top:12px}
 .loc-actions .btn-outline{
-  background:#fff; color:#2563eb; border:1px solid #dbe7ff;
+  background:var(--loc-white); color:var(--loc-primary); border:1px solid #dbe7ff;
   padding:8px 12px; border-radius:12px; font-weight:800;
   transition:transform .12s ease, box-shadow .12s ease, border-color .15s ease;
 }
 .loc-actions .btn-outline:hover{transform:translateY(-1px); box-shadow:0 8px 20px rgba(37,99,235,.15); border-color:#bfd0ff}
 
-/* Responsiv qayta joylashuv */
-@media (max-width:960px){.loc-stage{min-height:540px}.uz-map{top:60%; width:100%}}
+/* Responsiv */
+@media (max-width:960px){
+  .loc-stage{min-height:540px}
+  .uz-map{top:60%; width:100%}
+}
 @media (max-width:780px){
   .pin .pin-label{top:34px; font-size:12.5px; padding:6px 9px}
   .loc-card{left:50%; top:auto; bottom:16px; transform:translate(-50%,0) scale(.98)}
   .loc-card.show{transform:translate(-50%,0) scale(1)}
   .loc-card__inner{width:min(560px,94vw)}
 }
-
 .locations-v3 .loc-head + .loc-stage{margin-top:8px}
+
 
 
 

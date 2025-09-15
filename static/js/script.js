@@ -559,3 +559,121 @@
     if (!hit) closeAll();
   });
 })();
+
+
+
+<script>
+  (function () {
+    const $ = (s, r=document) => r.querySelector(s);
+    const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+    const pins = $$('.pin');
+    const card = $('.loc-card');
+    const cityEl = $('#locCity');
+    const addrEl = $('#locAddress');
+    const phoneEl = $('#locPhone');
+    const hoursEl = $('#locHours');
+    const badge = $('#openBadge');
+    const btnCopy = $('#copyAddr');
+    const btnShare = $('#shareAddr');
+    const btnDir = $('#dirBtn');
+
+    // Initial: build directions link from address
+    function setDirectionsLink(address) {
+      const q = encodeURIComponent(address);
+      btnDir.href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+    }
+
+    function setPhoneHref(phoneText){
+      // Normalize to digits for tel:
+      const tel = phoneText.replace(/[^\d+]/g,'');
+      phoneEl.href = `tel:${tel}`;
+    }
+
+    function isOpenNow(hoursText){
+      // Juda oddiy tekshiruv: 9:00–18:00 oralig‘ida ochiq (brauzer lokal vaqti bo‘yicha)
+      const match = hoursText.match(/(\d{1,2}):?(\d{2})?\s*[\u2013\-]\s*(\d{1,2}):?(\d{2})?/);
+      if(!match) return true; // aniqlanmasa — Open
+      const now = new Date();
+      const startH = parseInt(match[1],10);
+      const startM = parseInt(match[2] || '0',10);
+      const endH   = parseInt(match[3],10);
+      const endM   = parseInt(match[4] || '0',10);
+
+      const start = new Date(now); start.setHours(startH, startM, 0, 0);
+      const end   = new Date(now); end.setHours(endH,   endM,   0, 0);
+      return now >= start && now <= end;
+    }
+
+    function updateBadge(open){
+      badge.textContent = open ? 'Open' : 'Closed';
+      badge.classList.toggle('is-closed', !open);
+    }
+
+    function activatePin(pin){
+      pins.forEach(p => { p.classList.remove('is-active'); p.setAttribute('aria-pressed','false'); });
+      pin.classList.add('is-active');
+      pin.setAttribute('aria-pressed','true');
+
+      const city = pin.querySelector('.pin-label')?.textContent?.trim() || pin.dataset.region;
+      const address = pin.dataset.address || addrEl.textContent.trim();
+      const phone = pin.dataset.phone || phoneEl.textContent.trim();
+      const hours = pin.dataset.hours || hoursEl.textContent.trim();
+
+      cityEl.textContent = city;
+      addrEl.textContent = address;
+      phoneEl.textContent = phone;
+      hoursEl.textContent = hours;
+
+      setPhoneHref(phone);
+      setDirectionsLink(address);
+      updateBadge(isOpenNow(hours));
+
+      // kartani pin markaziga yaqinlashtirish (CSS custom props)
+      const styles = getComputedStyle(pin);
+      const x = styles.getPropertyValue('--x').trim();
+      const y = styles.getPropertyValue('--y').trim();
+      card.style.setProperty('--cx', x || '50%');
+      card.style.setProperty('--cy', y || '50%');
+      card.classList.add('show');
+    }
+
+    pins.forEach(pin => pin.addEventListener('click', () => activatePin(pin)));
+    pins.forEach(pin => pin.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activatePin(pin); }
+    }));
+
+    // Copy address
+    btnCopy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(addrEl.textContent.trim());
+        btnCopy.textContent = 'Copied!';
+        setTimeout(() => btnCopy.textContent = 'Copy', 1200);
+      } catch {
+        alert('Clipboard ruxsat berilmadi.');
+      }
+    });
+
+    // Share API (fallback URL copy)
+    btnShare.addEventListener('click', async () => {
+      const title = `Manzil — ${cityEl.textContent}`;
+      const text = `${cityEl.textContent}: ${addrEl.textContent}`;
+      const url = btnDir.href;
+      if (navigator.share) {
+        try { await navigator.share({ title, text, url }); } catch {}
+      } else {
+        try {
+          await navigator.clipboard.writeText(`${title}\n${text}\n${url}`);
+          btnShare.textContent = 'Link Copied!';
+          setTimeout(() => btnShare.textContent = 'Share', 1200);
+        } catch {
+          alert(url);
+        }
+      }
+    });
+
+    // Init (faol pin)
+    const active = $('.pin.is-active') || pins[0];
+    if(active) activatePin(active);
+  })();
+</script>
