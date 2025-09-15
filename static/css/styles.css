@@ -662,6 +662,7 @@ section{padding:6rem 0;position:relative}
   color: #0868B4;                   /* figmadagi ko‘k */
   margin: 0 0 12px;
 }
+
 .services .section-header p{
   /* Biz taklif qiladigan asosiy xizmatlar */
   font-family: "SF Pro Display", system-ui, -apple-system, "Inter", "Segoe UI", Arial, sans-serif;
@@ -671,6 +672,11 @@ section{padding:6rem 0;position:relative}
   letter-spacing: 0;
   color: #475467;
   margin: 0;
+  text-align: center;
+}
+
+.services .section-header p{
+  margin: 5px auto;             /* ixtiyoriy: p’ni ham markazga “blok” sifatida */
 }
 
 /* Grid */
