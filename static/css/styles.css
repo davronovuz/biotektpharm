@@ -109,23 +109,138 @@ section.hero{padding:0!important}
 @media (max-width:576px){.hero-content{margin:0 16px}.hero h1{font-size:clamp(28px,9vw,40px)}.hero .subtitle{font-size:15px}}
 
 /* ===== About ===== */
-.about{background:#fafafb;padding:72px 0}
-.about .section-header.about-head{text-align:center;margin-bottom:28px}
-.about-overline{font-family:'Montserrat',sans-serif;font-weight:200;letter-spacing:.12em;font-size:4.5px;line-height:1.1;color:#8A9099;opacity:.95;margin-bottom:18px}
-.about-title{font-family:'Playfair Display',serif;font-weight:800;line-height:1.15;font-size:clamp(28px,3.2vw,44px);color:#111827;margin:0 0 8px}
-.about-title::after{content:"";display:block;width:84px;height:6px;border-radius:6px;background:#3a86ff;margin:12px auto 0}
-.brand-upper{color:#2563eb;text-transform:uppercase;letter-spacing:.5px;display:inline-block}
-.about-subtitle-strong{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(18px,2.2vw,32px);line-height:1.25;color:#1f2937;margin-top:10px}
-.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:26px}
-@media (max-width:1024px){.about-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:640px){.about-grid{grid-template-columns:1fr}}
-.about-card{position:relative;overflow:hidden;padding:28px 24px 32px;border-radius:20px;background:#fff;border:1px solid #e9eef5;box-shadow:0 10px 24px rgba(16,24,40,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;text-align:left;isolation:isolate}
-.about-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(16,24,40,.10);border-color:rgba(30,99,255,.25)}
-.about-card .card-title{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(20px,2.1vw,26px);color:#0f172a;margin:6px 0 10px;letter-spacing:.2px}
-.about-card .card-text{font-family:'Montserrat',sans-serif;font-weight:500;font-size:16px;line-height:1.7;color:#475569;margin:0}
-.about-card .card-watermark{position:absolute;right:-6px;bottom:-8px;z-index:-1;opacity:.08;transform:rotate(-6deg);line-height:1;pointer-events:none}
-.about-card .card-watermark i{font-size:clamp(120px,22vw,190px);color:#0b1220}
-.about-card .card-watermark img{width:clamp(160px,26vw,220px);height:auto;filter:grayscale(100%);opacity:.10;transform:rotate(-6deg)}
+/* ===== About (Figma 1:1) ===== */
+.about{
+  background:#fafafb;
+  padding:72px 0;
+}
+.about .section-header.about-head{
+  text-align:center;
+  margin-bottom:28px;
+}
+
+/* Overline: "Kompaniya haqida" — 20/32, Medium */
+.about-overline{
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+  font-weight:500;
+  font-size:20px;
+  line-height:32px;          /* 160×32 */
+  letter-spacing:0;
+  color:#98A2B3;             /* figmadagi och kulrang */
+  opacity:1;
+  margin:0 0 12px;
+}
+
+/* 1-qator katta sarlavha — 36/36, Semibold */
+.about-title{
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+  font-weight:600;           /* Semibold */
+  font-size:36px;
+  line-height:1;             /* 100% */
+  letter-spacing:0;
+  color:#121926;
+  margin:0 0 8px;
+}
+.brand-upper{
+  color:#1f66ff;             /* BiotekPharm rangi */
+  text-transform:none;       /* Figma’da UPPERCASE emas bo‘lsa — qoldiring */
+  letter-spacing:0.0px;
+  display:inline;
+}
+
+/* 2-qator: kuchli subtitle (28/40) */
+.about-subtitle-strong{
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+  font-weight:600;           /* Semibold */
+  font-size:28px;
+  line-height:40px;
+  letter-spacing:0;
+  color:#121926;
+  margin:6px 0 12px;
+}
+
+/* === Cards grid === */
+.about-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  margin-top:18px;
+}
+@media (max-width:1024px){ .about-grid{ grid-template-columns:repeat(2,1fr) } }
+@media (max-width:640px){  .about-grid{ grid-template-columns:1fr } }
+
+/* Card */
+.about-card{
+  position:relative;
+  overflow:hidden;
+  padding:24px 22px 26px;
+  border-radius:20px;
+  background:#fff;
+  border:1px solid #E9EEF5;
+  box-shadow:0 10px 22px rgba(16,24,40,.06);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  text-align:left;
+  isolation:isolate;
+}
+.about-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 32px rgba(16,24,40,.10);
+  border-color:rgba(31,102,255,.22);
+}
+
+/* Card title & text */
+.about-card .card-title{
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+  font-weight:700;
+  font-size:22px;
+  line-height:30px;
+  color:#0F172A;
+  margin:0 0 8px;
+  letter-spacing:.2px;
+}
+.about-card .card-text{
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+  font-weight:400;
+  font-size:16px;
+  line-height:26px;
+  color:#475569;
+  margin:0;
+}
+
+/* Watermark (ko‘rinishi yaxshilandi) */
+.about-card .card-watermark{
+  position:absolute;
+  right:-6px;
+  bottom:-8px;
+  z-index:-1;
+  line-height:1;
+  pointer-events:none;
+  opacity:.12;                 /* .08 -> .12: aniqroq ko‘rinadi */
+  transform:rotate(-6deg);
+}
+.about-card .card-watermark i{
+  font-size:clamp(140px,22vw,200px);
+  color:#0B1220;
+}
+.about-card .card-watermark img{
+  width:clamp(180px,26vw,240px);
+  height:auto;
+  object-fit:contain;
+  filter:grayscale(100%);
+  opacity:.12;
+  transform:rotate(-6deg);
+}
+
+/* Responsive type tweaks */
+@media (max-width:900px){
+  .about-title{ font-size:32px }
+  .about-subtitle-strong{ font-size:24px; line-height:34px }
+}
+@media (max-width:640px){
+  .about-overline{ font-size:18px; line-height:28px }
+  .about-title{ font-size:28px }
+  .about-subtitle-strong{ font-size:20px; line-height:30px }
+}
 
 /* =========================================================
    ABOUT — Figma 1:1 (intro-hero)
