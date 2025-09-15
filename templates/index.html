@@ -135,33 +135,42 @@
 
 
 
-
 <!-- ================= ABOUT INTRO (figma) ================= -->
-<section class="intro-hero">
-  <div class="container intro-wrap">
-    {% if intro and intro.photo %}
-      <figure class="intro-media">
-        <img src="{{ intro.photo.url }}" alt="{{ intro.title_uz }}" loading="lazy">
-      </figure>
-    {% endif %}
+<section class="intro-hero" id="about-figma">
+  <div class="container">
+    <div class="intro-box">
+      <!-- Chip title (border ustida) -->
+      <div class="intro-chip">
+        <span class="brand">BIOTEK PHARM</span> <span class="muted">haqida</span>
+      </div>
 
-    <div class="intro-copy">
-      <h2 class="intro-title i18n-db"
-          data-uz="{{ intro.title_uz }}"
-          data-ru="{{ intro.title_ru|default:intro.title_uz }}"
-          data-en="{{ intro.title_en|default:intro.title_uz }}">
-        {{ intro.title_uz }}
-      </h2>
+      <div class="intro-wrap">
+        {% if intro and intro.photo %}
+          <figure class="intro-media">
+            <img src="{{ intro.photo.url }}" alt="{{ intro.title_uz }}" loading="lazy" decoding="async">
+          </figure>
+        {% endif %}
 
-      <p class="intro-text i18n-db"
-         data-uz="{{ intro.text_uz }}"
-         data-ru="{{ intro.text_ru|default:intro.text_uz }}"
-         data-en="{{ intro.text_en|default:intro.text_uz }}">
-        {{ intro.text_uz }}
-      </p>
+        <div class="intro-copy">
+          <h2 class="intro-title i18n-db"
+              data-uz="{{ intro.title_uz }}"
+              data-ru="{{ intro.title_ru|default:intro.title_uz }}"
+              data-en="{{ intro.title_en|default:intro.title_uz }}">
+            {{ intro.title_uz }}
+          </h2>
+
+          <p class="intro-text i18n-db"
+             data-uz="{{ intro.text_uz }}"
+             data-ru="{{ intro.text_ru|default:intro.text_uz }}"
+             data-en="{{ intro.text_en|default:intro.text_uz }}">
+            {{ intro.text_uz }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
 
 <!-- ================= HISTORY CARDS (figma) ================= -->
 <section class="history-cards" id="history-figma">

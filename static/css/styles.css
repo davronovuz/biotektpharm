@@ -127,13 +127,77 @@ section.hero{padding:0!important}
 .about-card .card-watermark i{font-size:clamp(120px,22vw,190px);color:#0b1220}
 .about-card .card-watermark img{width:clamp(160px,26vw,220px);height:auto;filter:grayscale(100%);opacity:.10;transform:rotate(-6deg)}
 
-/* ===== About Intro ===== */
+/* ===== About Intro — Figma-match (chip + ramka + 2 ustun) ===== */
 .intro-hero{background:#f7f8fb;padding:48px 0 28px}
-.intro-wrap{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:28px}
-.intro-media img{width:100%;height:auto;border-radius:20px;box-shadow:0 18px 40px rgba(15,23,42,.12)}
-.intro-title{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(22px,2.2vw,30px);color:#0f172a;margin:0 0 10px}
-.intro-text{font-size:16px;line-height:1.75;color:#374151;margin:0}
-@media (max-width:900px){.intro-wrap{grid-template-columns:1fr}}
+.intro-hero .container{max-width:1200px}
+
+.intro-box{
+  position:relative;
+  border:1.5px solid #1f66ff;     /* Figma ko'k ramka */
+  border-radius:16px;
+  padding:18px 18px 22px;         /* ichki padding */
+  background:#fff0;               /* fon ko'rinmaydi (section fonidan foydalanadi) */
+}
+
+/* Chip title — ramka ustida markazda */
+.intro-chip{
+  position:absolute;
+  left:50%; top:-18px; transform:translateX(-50%);
+  background:#f7f8fb;             /* chip tagi section foniga mos */
+  padding:4px 14px;
+  border-radius:8px;
+  line-height:56px;
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+  font-weight:600; font-size:44px; letter-spacing:0;
+  white-space:nowrap;
+}
+.intro-chip .brand{color:#1f66ff; text-transform:uppercase}
+.intro-chip .muted{color:#121926}
+
+/* 2 ustunli layout */
+.intro-wrap{
+  display:grid;
+  grid-template-columns: 1.05fr 1fr;   /* rasm : matn nisbati */
+  align-items:center;
+  gap:24px;                             /* rasm ↔ matn */
+  margin-top:18px;
+}
+
+/* Rasm */
+.intro-media img{
+  width:100%; height:auto;
+  border-radius:16px;
+  object-fit:cover;
+  box-shadow:none;                      /* figmada soyasiz */
+}
+
+/* Sarlavha (ichki h2 — kontent uchun, chipdan alohida) */
+.intro-title{
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif !important;
+  font-weight:600; font-size:44px; line-height:56px; letter-spacing:0;
+  color:#121926; margin:0 0 6px;
+}
+
+/* Paragraf — Figma: 28/40 Medium */
+.intro-text{
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+  font-weight:500; font-size:28px; line-height:40px; letter-spacing:0;
+  color:#121926; margin:0;
+  max-width:590px;                     /* Inspect: 590×240 Hug */
+}
+
+/* Responsiv */
+@media (max-width:1000px){
+  .intro-wrap{grid-template-columns:1fr; gap:16px}
+  .intro-chip{font-size:38px; line-height:48px}
+}
+@media (max-width:640px){
+  .intro-chip{font-size:30px; line-height:40px; top:-14px}
+  .intro-title{font-size:30px; line-height:40px}
+  .intro-text{font-size:18px; line-height:28px; max-width:100%}
+}
+
+
 
 /* =========================================================
    HISTORY (Figma-match, 1:1) — drop-in replacement
