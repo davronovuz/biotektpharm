@@ -135,38 +135,173 @@ section.hero{padding:0!important}
 .intro-text{font-size:16px;line-height:1.75;color:#374151;margin:0}
 @media (max-width:900px){.intro-wrap{grid-template-columns:1fr}}
 
-/* ===== HISTORY — card LEFT, image RIGHT (strict) ===== */
-.history-cards{padding:42px 0 60px;background:#fcfcfd}
-.history-kicker{font-size:clamp(22px,2.4vw,30px);font-weight:800;color:#0f172a;margin:0 0 12px}
+/* =========================================================
+   HISTORY (Figma-match, 1:1) — drop-in replacement
+   HTML: #history-figma .history-cards / .h-item / .h-copy / .h-media
+========================================================= */
 
-.h-item{--gap:36px;display:grid;grid-template-columns:1fr 1.15fr;grid-template-areas:"copy media";gap:var(--gap);align-items:center;margin:26px 0 40px}
-.h-copy{grid-area:copy;background:#fff;border:1px solid #edf1f6;border-radius:18px;padding:22px;box-shadow:0 10px 24px rgba(16,24,40,.06);max-width:720px}
-.h-media{grid-area:media;will-change:transform;transform:translateY(var(--py,0))}
-.h-media img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:18px;box-shadow:0 18px 40px rgba(15,23,42,.12)}
-.h-year{font-weight:700;color:#2563eb;margin-bottom:6px}
-.h-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(37,99,235,.12),rgba(37,99,235,.05));box-shadow:0 6px 16px rgba(37,99,235,.18),inset 0 0 0 6px rgba(37,99,235,.06);color:#2563eb;margin-bottom:12px}
-.h-title{font-family:'Playfair Display',serif;font-weight:800;color:#111827;font-size:clamp(18px,2.2vw,26px);margin:4px 0 8px}
-.h-text{color:#475569;line-height:1.7;margin:0}
+/* --- Local tokens (faqat shu bo‘lim uchun) --- */
+.history-cards{
+  /* ranglar */
+  --his-heading:#121926;        /* H3 rang — Figma */
+  --his-text:#5F6B7A;           /* ikkilamchi matn (kerak bo‘lsa almashtirasiz) */
+  --his-primary:#2563EB;        /* "yil" va ikon aksent */
+  --his-year-bg:#EAF2FF;        /* yil badji (engil ko‘k) */
+  --his-surface:transparent;    /* chap blok card emas! */
 
-/* Force all rows same order (disable alternate layout) */
-.h-item.right,.h-item:nth-child(even){grid-template-areas:"copy media"}
+  /* tipografiya */
+  --his-h3-fs:44px;             /* H3 size — Figma */
+  --his-h3-lh:56px;             /* H3 line-height — Figma */
+  --his-h3-fw:600;              /* Semibold — Figma */
+  --his-p-fs:16px;
+  --his-p-lh:28px;
 
-/* Reveal on scroll */
-.js-ready .h-item .h-copy{opacity:0;transform:translateX(-28px)}
-.js-ready .h-item .h-media{opacity:0;transform:translateX(28px)}
-.js-ready .h-item.in-view .h-copy,.js-ready .h-item.in-view .h-media{opacity:1;transform:translateX(0);transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .55s ease}
+  /* layout */
+  --his-maxw:1200px;            /* container kenglik */
+  --his-col-gap:40px;           /* chap ↔ o‘ng ustun oralig‘i */
+  --his-row-gap:40px;           /* itemlar orasidagi masofa */
+  --his-copy-maxw:593px;        /* Figma’da ko‘ringan matn kengligi */
+  --his-img-width:540px;        /* o‘ng rasm kengligi (layout gridga moslab) */
+  --his-img-radius:18px;
 
-/* Mobile stack: image first, then copy */
+  /* badge va ikon */
+  --his-year-fs:14px;
+  --his-year-fw:700;
+  --his-year-pad:6px 10px;
+  --his-year-radius:10px;
+
+  --his-ic-size:44px;
+  --his-ic-radius:12px;
+
+  padding:42px 0 60px;
+  background:transparent;
+}
+.history-cards .container{max-width:var(--his-maxw)}
+
+/* bo‘lim sarlavhasi (ixtiyoriy) */
+.history-cards .history-kicker{
+  margin:0 0 12px;
+  color:var(--his-heading);
+  font:700 clamp(28px,3vw,40px)/1.15 "SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+}
+
+/* --- Item grid: chap matn / o‘ng rasm --- */
+.history-cards .h-item{
+  display:grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,var(--his-img-width));
+  grid-template-areas: "copy media";
+  align-items:center;
+  column-gap:var(--his-col-gap);
+  row-gap:var(--his-row-gap);
+  margin:26px 0 0;
+}
+
+/* chap blok — KARTOCHKA EMAS */
+.history-cards .h-copy{
+  grid-area:copy;
+  background:var(--his-surface) !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  max-width:var(--his-copy-maxw);
+}
+
+/* "yil" badji (matn ko‘k, fon engil) */
+.history-cards .h-year{
+  display:inline-block;
+  font:var(--his-year-fw) var(--his-year-fs)/1 "SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+  color:var(--his-primary);
+  background:var(--his-year-bg);
+  border-radius:var(--his-year-radius);
+  padding:var(--his-year-pad);
+  letter-spacing:0;
+  margin:0 0 8px;
+}
+
+/* kichik ikonli kvadrat */
+.history-cards .h-icon{
+  width:var(--his-ic-size);
+  height:var(--his-ic-size);
+  border-radius:var(--his-ic-radius);
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg, rgba(37,99,235,.12), rgba(37,99,235,.05));
+  box-shadow:0 8px 18px rgba(37,99,235,.20);
+  color:var(--his-primary);
+  margin:0 0 12px;
+}
+.history-cards .h-icon i{font-size:18px;line-height:1}
+.history-cards .h-icon img{max-width:22px;max-height:22px;object-fit:contain}
+
+/* Sarlavha — Figma raqamlari bilan */
+.history-cards .h-title{
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif !important;
+  font-weight:var(--his-h3-fw) !important;
+  font-size:var(--his-h3-fs) !important;
+  line-height:var(--his-h3-lh) !important;
+  letter-spacing:0 !important;
+  color:var(--his-heading) !important;
+  margin:0 0 8px !important;  /* badge ↔ title oralig‘i */
+}
+
+/* Tavsif matni */
+.history-cards .h-text{
+  margin:0;
+  color:var(--his-text);
+  font:400 var(--his-p-fs)/var(--his-p-lh) "SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+}
+
+/* o‘ng media (rasm) */
+.history-cards .h-media{grid-area:media}
+.history-cards .h-media img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-radius:var(--his-img-radius);
+  /* Figma’da yaqqol soyasiz ko‘rinadi; engil depth xohlasangiz on qiling */
+  box-shadow:none;
+}
+
+/* Hech qachon "right" ga almashmasin (figmada hammasi bir xil tartib) */
+.history-cards .h-item.right,
+.history-cards .h-item:nth-child(even){
+  grid-template-areas:"copy media";
+}
+
+/* --- Responsiv --- */
+@media (max-width:1100px){
+  .history-cards{
+    --his-img-width:520px;
+    --his-col-gap:32px;
+  }
+}
 @media (max-width:1000px){
-  .h-item{grid-template-columns:1fr;grid-template-areas:"media" "copy";gap:18px}
+  .history-cards .h-item{
+    grid-template-columns:1fr;
+    grid-template-areas:"media" "copy";
+    row-gap:18px;
+  }
+  .history-cards{
+    --his-h3-fs:38px;
+    --his-h3-lh:48px;
+  }
+}
+@media (max-width:640px){
+  .history-cards{
+    --his-h3-fs:28px;
+    --his-h3-lh:38px;
+    --his-p-fs:15px;
+    --his-p-lh:24px;
+    --his-col-gap:18px;
+    --his-row-gap:28px;
+    --his-ic-size:40px;
+  }
 }
 
-/* Reduce motion */
+/* --- Reduce motion --- */
 @media (prefers-reduced-motion:reduce){
-  .js-ready .h-item .h-copy,
-  .js-ready .h-item .h-media{opacity:1;transform:none;transition:none!important}
-  .h-media{transform:none!important}
+  .history-cards *{transition:none!important;animation:none!important}
 }
+
 
 /* ===== Services ===== */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
