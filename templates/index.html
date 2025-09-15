@@ -544,56 +544,72 @@
 </section>
 
 
- <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col ">
-                <a href="#" class="logof">
-                    <div class="logof-icon">
-                        <img src="{% static 'images/logo_footer.svg' %}" alt="logo">
-                    </div>
-                </a>
-                    <p data-i18n="footer_about">O'zbekiston farmatsevtika bozorining yetakchi distribyutor kompaniyasi</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
 
-                <div class="footer-col">
-                    <h3 data-i18n="footer_links">Tez havolalar</h3>
-                    <ul>
-                        <li><a href="#home" data-i18n="home">Bosh sahifa</a></li>
-                        <li><a href="#about" data-i18n="about">Kompaniya</a></li>
-                        <li><a href="#history" data-i18n="history">Tarix</a></li>
-                        <li><a href="#products" data-i18n="products">Mahsulotlar</a></li>
-                        <li><a href="#services" data-i18n="services">Xizmatlar</a></li>
-                        <li><a href="#contact" data-i18n="contact">Aloqa</a></li>
-                    </ul>
-                </div>
+<!-- Footer -->
+<footer class="footer"
+        style="--footer-wave: url('{% static 'images/footer-wave.png' %}');">
 
-                <div class="footer-col">
-                    <h3 data-i18n="footer_contact">Aloqa</h3>
-                    <ul>
-                        <li><i class="fas fa-phone-alt"></i> +998 90 657 05 00</li>
-                        <li><i class="fas fa-envelope"></i> biotek_farm@mail.ru</li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span data-i18n="address_text">Samarqand, O'zbekiston ko'chasi, 158-uy</span></li>
-                    </ul>
-                </div>
-            </div>
+  <div class="container">
+    <div class="footer-grid">
 
-            <div class="footer-bottom">
-                <p><span class="company">&copy; 2025 BIOTEK FARM OOO Barcha huquqlar himoyalangan</span></p>
-                <div class="footer-links">
-                    <a href="#" data-i18n="privacy_policy">Maxfiylik siyosati</a>
-                    <a href="#" data-i18n="terms">Foydalanish shartlari</a>
-                </div>
-            </div>
+      <!-- Logo + slogan + social -->
+      <div class="footer-col">
+        <a href="/" class="logof" aria-label="Biotek Pharm">
+          <div class="logof-icon">
+            <!-- JPG/PNG o‘rniga SVG logo -->
+            <img src="{% static 'images/biotek-logo.svg' %}" alt="BIOTEK PHARM" height="48" decoding="async">
+          </div>
+        </a>
+        <p data-i18n="footer_about">
+          O'zbekiston farmatsevtika bozorining yetakchi distribyutor kompaniyasi
+        </p>
+
+        <div class="social-links">
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
-    </footer>
+      </div>
+
+      <!-- Tez havolalar -->
+      <div class="footer-col">
+        <h3 data-i18n="footer_links">Tez havolalar</h3>
+        <ul>
+          <li><a href="#home" data-i18n="home">Bosh sahifa</a></li>
+          <li><a href="#about" data-i18n="about">Kompaniya</a></li>
+          <li><a href="#history-figma" data-i18n="history">Tarix</a></li>
+          <li><a href="#products" data-i18n="products">Mahsulotlar</a></li>
+          <li><a href="#services" data-i18n="services">Xizmatlar</a></li>
+          <li><a href="#contact" data-i18n="contact">Aloqa</a></li>
+        </ul>
+      </div>
+
+      <!-- Aloqa -->
+      <div class="footer-col">
+        <h3 data-i18n="footer_contact">Aloqa</h3>
+        <ul>
+          <li><i class="fas fa-phone-alt"></i> +998 90 657 05 00</li>
+          <li><i class="fas fa-envelope"></i> biotek_farm@mail.ru</li>
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            <span data-i18n="address_text">Samarqand, O'zbekiston ko'chasi, 158-uy</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p><span class="company">&copy; 2025 BIOTEK FARM OOO Barcha huquqlar himoyalangan</span></p>
+      <div class="footer-links">
+        <a href="#" data-i18n="privacy_policy">Maxfiylik siyosati</a>
+        <a href="#" data-i18n="terms">Foydalanish shartlari</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top" aria-label="Back to top">
