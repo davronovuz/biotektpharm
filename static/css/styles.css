@@ -638,18 +638,155 @@ section{padding:6rem 0;position:relative}
 }
 
 
-/* ===== Services ===== */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-@media (max-width:1024px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:640px){.svc-grid{grid-template-columns:1fr}}
-.svc-card{position:relative;overflow:hidden;border-radius:18px;background:#fff;border:1px solid #e9eef5;padding:22px 22px 26px;box-shadow:0 10px 24px rgba(16,24,40,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-.svc-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(16,24,40,.10);border-color:rgba(30,99,255,.25)}
-.svc-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(37,99,235,.12),rgba(37,99,235,.05));box-shadow:0 6px 16px rgba(37,99,235,.18),inset 0 0 0 6px rgba(37,99,235,.06);color:#2563eb;margin-bottom:12px}
-.svc-title{font-family:'Playfair Display',serif;font-weight:800;color:#0f172a;font-size:clamp(18px,2.1vw,24px);margin:6px 0 8px}
-.svc-text{color:#475569;line-height:1.7;margin:0}
-.svc-watermark{position:absolute;right:-8px;bottom:-10px;z-index:-1;opacity:.08;transform:rotate(-6deg);pointer-events:none}
-.svc-watermark i{font-size:160px;color:#0b1220}
-.svc-watermark img{width:200px;height:auto;filter:grayscale(100%);opacity:.12;transform:rotate(-6deg)}
+/* =======================
+   Services (FIGMA-MATCH)
+   ======================= */
+
+.services{
+  padding: 56px 0 72px;
+  background: #F6F8FD; /* figmadagi yengil fon */
+}
+
+/* Header */
+.services .section-header{
+  text-align: center;
+  margin-bottom: 28px;
+}
+.services .section-header h2{
+  /* Xizmatlarimiz */
+  font-family: "SF Pro Display", system-ui, -apple-system, "Inter", "Segoe UI", Arial, sans-serif;
+  font-weight: 600;                 /* Semibold */
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1;
+  letter-spacing: 0;
+  color: #0868B4;                   /* figmadagi ko‘k */
+  margin: 0 0 12px;
+}
+.services .section-header p{
+  /* Biz taklif qiladigan asosiy xizmatlar */
+  font-family: "SF Pro Display", system-ui, -apple-system, "Inter", "Segoe UI", Arial, sans-serif;
+  font-weight: 500;                 /* Medium */
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 32px;
+  letter-spacing: 0;
+  color: #475467;
+  margin: 0;
+}
+
+/* Grid */
+.svc-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 22px;
+}
+@media (max-width: 1024px){
+  .svc-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px){
+  .svc-grid{ grid-template-columns: 1fr; }
+}
+
+/* Card */
+.svc-card{
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #FFFFFF;
+  border: 1px solid #E7EEF7;                  /* yengil kontur */
+  padding: 22px 22px 26px;
+  box-shadow: 0 10px 28px rgba(16,24,40,.06);  /* yumshoq soyabon */
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.svc-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(16,24,40,.10);
+  border-color: rgba(31,102,255,.22);
+}
+
+/* Icon tile — DOIMIY ko‘rinadi */
+.svc-icon{
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #EDF3FF;                      /* yengil ko‘k fon */
+  box-shadow: inset 0 0 0 6px rgba(37,99,235,.06);
+  color: #2563EB;                           /* ikon rangi */
+  margin-bottom: 14px;
+  transition: transform .18s ease;
+}
+.svc-card:hover .svc-icon{ transform: translateY(-2px); }
+
+/* Har qanday eski qoidalarni bekor qilish (ikon har doim ko‘rinsin) */
+.svc-card .svc-icon,
+.svc-card .svc-icon i,
+.svc-card .svc-icon img{
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.svc-icon i{
+  font-size: 22px;            /* Font Awesome belgisi */
+  line-height: 1;
+}
+.svc-icon img{
+  max-width: 28px;
+  max-height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Title & text */
+.svc-title{
+  font-family: "SF Pro Display", system-ui, -apple-system, "Inter", "Segoe UI", Arial, sans-serif;
+  font-weight: 700; /* bold ko‘rinish figmada aniqroq */
+  font-size: clamp(18px, 2.2vw, 26px);
+  line-height: 1.25;
+  color: #0F172A;
+  margin: 4px 0 8px;
+}
+.svc-text{
+  font-family: "SF Pro Display", system-ui, -apple-system, "Inter", "Segoe UI", Arial, sans-serif;
+  font-weight: 500;
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Watermark (katta xira ikon) */
+.svc-watermark{
+  position: absolute;
+  right: -8px;
+  bottom: -10px;
+  z-index: 0;                 /* kontent ostida turadi */
+  opacity: .08;
+  transform: rotate(-6deg);
+  pointer-events: none;
+}
+.svc-watermark i{
+  font-size: 160px;           /* FA uchun */
+  color: #0B1220;
+}
+.svc-watermark img{
+  width: 200px;
+  height: auto;
+  filter: grayscale(100%);
+  opacity: .12;
+  transform: rotate(-6deg);
+}
+
+/* Kontent watermark ustida tursin */
+.svc-card > *:not(.svc-watermark){
+  position: relative;
+  z-index: 1;
+}
+
 
 /* ===== PARTNERS — Flip/Door hover & tap ===== */
 .partners{background:#f7f8fb;padding:56px 0}
