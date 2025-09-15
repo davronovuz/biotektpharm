@@ -127,74 +127,108 @@ section.hero{padding:0!important}
 .about-card .card-watermark i{font-size:clamp(120px,22vw,190px);color:#0b1220}
 .about-card .card-watermark img{width:clamp(160px,26vw,220px);height:auto;filter:grayscale(100%);opacity:.10;transform:rotate(-6deg)}
 
-/* ===== About Intro — Figma-match (chip + ramka + 2 ustun) ===== */
-.intro-hero{background:#f7f8fb;padding:48px 0 28px}
-.intro-hero .container{max-width:1200px}
+/* =========================================================
+   ABOUT — Figma 1:1 (intro-hero)
+   HTML varianti:
+   - Sizda bor: .intro-hero > .container > .intro-wrap (figure + copy)
+   - Agar "chip" sarlavhani qo‘ysangiz: .intro-box > .intro-chip + .intro-wrap
+========================================================= */
 
+/* --- Section --- */
+.intro-hero{
+  background:#f7f8fb;
+  padding:36px 0 18px;
+}
+.intro-hero .container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 1.5rem;
+}
+
+/* --- Optional wrapper (agar ishlatgan bo‘lsangiz) ---
+   Border/box ishlatilmaydi; shunchaki bo‘sh konteyner */
 .intro-box{
   position:relative;
-  border:1.5px solid #1f66ff;     /* Figma ko'k ramka */
-  border-radius:16px;
-  padding:18px 18px 22px;         /* ichki padding */
-  background:#fff0;               /* fon ko'rinmaydi (section fonidan foydalanadi) */
+  border:none;
+  border-radius:0;
+  padding:0;
+  background:transparent;
 }
 
-/* Chip title — ramka ustida markazda */
+/* --- CHIP TITLE (tavsiya etiladi) ---
+   <div class="intro-chip"><span class="brand">BIOTEK PHARM</span> <span class="muted">haqida</span></div>
+   Bo‘lmasa, pastda .intro-title stylini ishlatamiz */
 .intro-chip{
-  position:absolute;
-  left:50%; top:-18px; transform:translateX(-50%);
-  background:#f7f8fb;             /* chip tagi section foniga mos */
-  padding:4px 14px;
-  border-radius:8px;
-  line-height:56px;
+  display:block;
+  text-align:center;
+  margin:0 0 16px;
+  background:transparent;
+  padding:0;
   font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
-  font-weight:600; font-size:44px; letter-spacing:0;
-  white-space:nowrap;
+  font-weight:600;
+  font-size:44px;
+  line-height:56px;
+  letter-spacing:0;
+  white-space:normal;
 }
-.intro-chip .brand{color:#1f66ff; text-transform:uppercase}
-.intro-chip .muted{color:#121926}
+.intro-chip .brand{ color:#1f66ff; text-transform:uppercase; }
+.intro-chip .muted{ color:#121926; }
 
-/* 2 ustunli layout */
+/* --- Grid layout: chap rasm / o‘ng matn --- */
 .intro-wrap{
   display:grid;
   grid-template-columns: 1.05fr 1fr;   /* rasm : matn nisbati */
   align-items:center;
-  gap:24px;                             /* rasm ↔ matn */
-  margin-top:18px;
+  gap:24px;                             /* rasm ↔ matn oralig‘i */
 }
 
-/* Rasm */
+/* --- Media --- */
 .intro-media img{
-  width:100%; height:auto;
-  border-radius:16px;
+  width:100%;
+  height:auto;
   object-fit:cover;
-  box-shadow:none;                      /* figmada soyasiz */
+  border-radius:16px;                   /* Figma yumaloqlik */
+  box-shadow:none;                      /* soyasiz */
+  display:block;
 }
 
-/* Sarlavha (ichki h2 — kontent uchun, chipdan alohida) */
-.intro-title{
-  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif !important;
-  font-weight:600; font-size:44px; line-height:56px; letter-spacing:0;
-  color:#121926; margin:0 0 6px;
+/* --- Title (fallback) ---
+   Agar .intro-chip ishlatsa­ngiz, ichki H2’ni ko‘rsatmaslik uchun quyidagisini yoqib qo‘ying.
+   Aks holda, .intro-title aynan shu tipografiya bilan ko‘rinadi. */
+.intro-copy .intro-title{
+  font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
+  font-weight:600;
+  font-size:44px;
+  line-height:56px;
+  letter-spacing:0;
+  color:#121926;
+  margin:0 0 6px;
+  text-align:left;
+  display:none; /* chip ishlatilganda; agar chip bo‘lmasa -> bu qatorni olib tashlang */
 }
 
-/* Paragraf — Figma: 28/40 Medium */
+/* --- Paragraph --- */
 .intro-text{
   font-family:"SF Pro Display","SF Pro Text",-apple-system,system-ui,sans-serif;
-  font-weight:500; font-size:28px; line-height:40px; letter-spacing:0;
-  color:#121926; margin:0;
-  max-width:590px;                     /* Inspect: 590×240 Hug */
+  font-weight:500;                      /* Medium */
+  font-size:28px;
+  line-height:40px;
+  letter-spacing:0;
+  color:#121926;
+  margin:0;
+  max-width:590px;                      /* Inspect: 590×240 Hug */
 }
 
-/* Responsiv */
+/* --- Responsiv --- */
 @media (max-width:1000px){
-  .intro-wrap{grid-template-columns:1fr; gap:16px}
-  .intro-chip{font-size:38px; line-height:48px}
+  .intro-wrap{ grid-template-columns:1fr; gap:16px; }
+  .intro-chip{ font-size:38px; line-height:48px; margin-bottom:12px; }
+  .intro-copy .intro-title{ font-size:38px; line-height:48px; }
 }
 @media (max-width:640px){
-  .intro-chip{font-size:30px; line-height:40px; top:-14px}
-  .intro-title{font-size:30px; line-height:40px}
-  .intro-text{font-size:18px; line-height:28px; max-width:100%}
+  .intro-chip{ font-size:30px; line-height:40px; }
+  .intro-copy .intro-title{ font-size:30px; line-height:40px; }
+  .intro-text{ font-size:18px; line-height:28px; max-width:100%; }
 }
 
 
