@@ -299,12 +299,14 @@
   })();
 
 
-
-
+/* ================= LOCATIONS — SVG module ================= */
 (() => {
-  const svg   = document.querySelector('.loc-canvas');
-  const stage = document.querySelector('.loc-stage');
-  const card  = document.querySelector('.loc-card');
+  const scope = document.querySelector('.locations-v3');
+  if (!scope) return;
+
+  const svg   = scope.querySelector('.loc-canvas');
+  const stage = scope.querySelector('.loc-stage');
+  const card  = scope.querySelector('.loc-card');
   if (!svg || !card) return;
 
   const pins  = Array.from(svg.querySelectorAll('.pin'));
@@ -333,10 +335,10 @@
     if (dirBtn) dirBtn.href=`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
   }
 
-  // Pin markazidan karta joyini hisoblash
+  // Pin markazidan karta joyini hisoblash (responsive)
   function placeCardByPin(pinG){
     const pt = svg.createSVGPoint(); pt.x=0; pt.y=0;
-    const scr = pt.matrixTransform(pinG.getScreenCTM());       // ekran koordinatasi
+    const scr = pt.matrixTransform(pinG.getScreenCTM()); // ekran koordinatasi
     const r   = stage.getBoundingClientRect();
     const cx  = ((scr.x - r.left)/r.width)*100;
     const cy  = ((scr.y - r.top)/r.height)*100;
@@ -410,7 +412,7 @@
   stage.addEventListener('pointerenter', stopRotate);
   stage.addEventListener('pointerleave', startRotate);
 
-  // (ixtiyoriy) Shift+click – koordinata helper (console’da chiqadi)
+  // (ixtiyoriy) Shift+click — koordinata topish (console)
   svg.addEventListener('click', (e)=>{
     if(!e.shiftKey) return;
     const pt = svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY;
@@ -418,6 +420,7 @@
     console.log('SVG coords:', Math.round(v.x), Math.round(v.y));
   });
 })();
+
 
 
 

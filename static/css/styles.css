@@ -971,64 +971,70 @@ section{padding:6rem 0;position:relative}
 
 
 
-/* Section + full-bleed molecule background */
+/* ================= LOCATIONS — scoped styles ================= */
 .locations-v3{position:relative;padding:60px 0;background:#e9effb;overflow:hidden}
 .locations-v3::before{
   content:"";position:absolute;inset:0;z-index:0;opacity:.42;
   background-image:var(--hex-bg);background-size:cover;background-position:center;background-repeat:no-repeat;
 }
 .locations-v3 .loc-head{position:relative;z-index:1;text-align:center;margin-bottom:22px}
-.loc-kicker{color:#6b7280;margin:0 0 6px}
-.loc-title{font-family:var(--font-secondary);font-weight:800;color:#2563eb;font-size:clamp(28px,3.4vw,44px);margin:0}
+.locations-v3 .loc-kicker{color:#6b7280;margin:0 0 6px}
+.locations-v3 .loc-title{font-family:var(--font-secondary, 'Playfair Display', serif);font-weight:800;color:#2563eb;font-size:clamp(28px,3.4vw,44px);margin:0}
 
 /* Stage panel */
-.loc-stage{position:relative;z-index:1;isolation:isolate;overflow:hidden;border-radius:24px;min-height:560px;
-  background:linear-gradient(180deg,#eff4ff,#eaf1ff)}
-.loc-stage::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(120% 120% at 50% 40%,transparent 55%,rgba(18,24,40,.05) 100%)}
+.locations-v3 .loc-stage{
+  position:relative;z-index:1;isolation:isolate;overflow:hidden;border-radius:24px;min-height:560px;
+  background:linear-gradient(180deg,#eff4ff,#eaf1ff)
+}
+.locations-v3 .loc-stage::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 120% at 50% 40%,transparent 55%,rgba(18,24,40,.05) 100%)
+}
 
-.loc-canvas{position:relative;z-index:2;width:100%;height:auto;display:block}
+.locations-v3 .loc-canvas{position:relative;z-index:2;width:100%;height:auto;display:block}
 
 /* Routes (dashed) */
-.route{
+.locations-v3 .route{
   fill:none;stroke:#fff;stroke-width:8;stroke-linecap:round;stroke-dasharray:12 16;
-  animation:routeDash 3.2s linear infinite;filter:drop-shadow(0 2px 0 rgba(0,0,0,.05))
+  animation:locRouteDash 3.2s linear infinite;filter:drop-shadow(0 2px 0 rgba(0,0,0,.05))
 }
-@keyframes routeDash{to{stroke-dashoffset:-420}}
-@media (prefers-reduced-motion:reduce){.route{animation:none}}
+@keyframes locRouteDash{to{stroke-dashoffset:-420}}
+@media (prefers-reduced-motion:reduce){.locations-v3 .route{animation:none}}
 
-/* Pins — teardrop + ring + core (figma-ish) */
-.pin{cursor:pointer;filter:drop-shadow(0 10px 22px rgba(31,102,255,.18));
-  transform-origin:center;animation:pinBreathe 2.4s ease-in-out infinite}
-@keyframes pinBreathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.03)}}
-.pin-mark .drop{fill:#fff}
-.pin-mark .ring{fill:none;stroke:#1f66ff;stroke-width:4}
-.pin-mark .core{fill:#1f66ff}
-.pin.is-active .core{fill:#2563eb}.pin.is-active .ring{stroke:#2563eb}
+/* Pins (teardrop marker) */
+.locations-v3 .pin{cursor:pointer;filter:drop-shadow(0 10px 22px rgba(31,102,255,.18));
+  transform-origin:center;animation:locPinBreathe 2.4s ease-in-out infinite}
+@keyframes locPinBreathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.03)}}
+.locations-v3 .pin-mark .drop{fill:#fff}
+.locations-v3 .pin-mark .ring{fill:none;stroke:#1f66ff;stroke-width:4}
+.locations-v3 .pin-mark .core{fill:#1f66ff}
+.locations-v3 .pin.is-active .core{fill:#2563eb}.locations-v3 .pin.is-active .ring{stroke:#2563eb}
 
-/* Label pill under pins */
-.badge-bg{fill:#fff;stroke:#dbe7ff;stroke-width:1}
-.badge-txt{font:800 12px/1 Inter,system-ui,Arial;fill:#1f66ff}
+/* Label pill */
+.locations-v3 .badge-bg{fill:#fff;stroke:#dbe7ff;stroke-width:1}
+.locations-v3 .badge-txt{font:800 12px/1 Inter,system-ui,Arial;fill:#1f66ff}
 
-/* Info card anchors to pin center via CSS vars set by JS */
-.loc-card{--cx:52%;--cy:64%;position:absolute;left:var(--cx);top:var(--cy);
+/* Info card (pin markaziga JS bilan langarlanadi) */
+.locations-v3 .loc-card{--cx:52%;--cy:64%;position:absolute;left:var(--cx);top:var(--cy);
   transform:translate(-50%,calc(-100% - 20px));z-index:3}
-.loc-card__inner{width:min(520px,92vw);background:#fff;border:1px solid #e4edff;border-radius:18px;padding:18px 18px 14px;
-  box-shadow:0 22px 44px rgba(16,24,40,.16)}
-.loc-card__row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.loc-card__city{font:800 20px/1.2 var(--font-primary,Inter);color:#0f172a;margin:0}
-.loc-card__list{display:flex;flex-direction:column;gap:10px;margin:12px 0 0;color:#0f172a}
-.loc-card__list i{color:#1f66ff;width:18px;margin-right:8px}
-.loc-actions{display:flex;align-items:center;gap:10px;margin-top:12px}
-.btn-outline{background:#fff;color:#2563eb;border:1px solid #dbe7ff;padding:8px 12px;border-radius:12px;font-weight:800}
-.btn-outline:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(37,99,235,.15);border-color:#bfd0ff}
-.badge-open{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;background:#e8f5e9;color:#1e7a35;font-weight:800;font-size:12.5px}
-.badge-open::before{content:"";width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 6px rgba(22,163,74,.12)}
-.badge-open.is-closed{background:#fff1f2;color:#b91c1c}.badge-open.is-closed::before{background:#ef4444;box-shadow:0 0 0 6px rgba(239,68,68,.12)}
+.locations-v3 .loc-card__inner{
+  width:min(520px,92vw);background:#fff;border:1px solid #e4edff;border-radius:18px;padding:18px 18px 14px;
+  box-shadow:0 22px 44px rgba(16,24,40,.16)
+}
+.locations-v3 .loc-card__row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.locations-v3 .loc-card__city{font:800 20px/1.2 var(--font-primary,'Montserrat',sans-serif);color:#0f172a;margin:0}
+.locations-v3 .loc-card__list{display:flex;flex-direction:column;gap:10px;margin:12px 0 0;color:#0f172a}
+.locations-v3 .loc-card__list i{color:#1f66ff;width:18px;margin-right:8px}
+.locations-v3 .loc-actions{display:flex;align-items:center;gap:10px;margin-top:12px}
+.locations-v3 .btn-outline{background:#fff;color:#2563eb;border:1px solid #dbe7ff;padding:8px 12px;border-radius:12px;font-weight:800}
+.locations-v3 .btn-outline:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(37,99,235,.15);border-color:#bfd0ff}
+.locations-v3 .badge-open{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;background:#e8f5e9;color:#1e7a35;font-weight:800;font-size:12.5px}
+.locations-v3 .badge-open::before{content:"";width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 6px rgba(22,163,74,.12)}
+.locations-v3 .badge-open.is-closed{background:#fff1f2;color:#b91c1c}.locations-v3 .badge-open.is-closed::before{background:#ef4444;box-shadow:0 0 0 6px rgba(239,68,68,.12)}
 
-@media (max-width:960px){.loc-stage{min-height:540px}}
+@media (max-width:960px){.locations-v3 .loc-stage{min-height:540px}}
 @media (max-width:780px){
-  .loc-card{left:50%;top:auto;bottom:16px;transform:translate(-50%,0)}
+  .locations-v3 .loc-card{left:50%;top:auto;bottom:16px;transform:translate(-50%,0)}
 }
 .locations-v3 .loc-head + .loc-stage{margin-top:8px}
 

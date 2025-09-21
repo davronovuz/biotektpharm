@@ -362,9 +362,7 @@
 </section>
 
 
-
-
-    <!-- LOCATIONS (FIGMA-MATCH) -->
+    <!-- =================== LOCATIONS (FIGMA 1:1) =================== -->
 <section id="locations" class="locations-v3"
          style="--hex-bg: url('{% static 'images/rasmchaa.png' %}');"
          aria-labelledby="loc-title">
@@ -375,26 +373,26 @@
     </header>
 
     <div class="loc-stage" role="img" aria-label="Oʻzbekiston xaritasi va joylashuvlar">
-      <!-- Yagona SVG canvas: xarita + yo‘lak + pinlar -->
-      <svg class="loc-canvas" viewBox="0 0 1152 768" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="false">
-        <!-- Xarita: siz qo‘ygan PNG -->
+      <!-- Bitta SVG canvas: xarita PNG + yo‘lak + pinlar -->
+      <svg class="loc-canvas" viewBox="0 0 1152 768" preserveAspectRatio="xMidYMid meet" role="img">
+        <!-- Xarita (siz bergan PNG) -->
         <image href="{% static 'images/rasmcha.png' %}" x="0" y="0" width="1152" height="768" />
 
-        <!-- Yo‘laklar (figma vibe) -->
-        <g id="routes">
+        <!-- Yo‘laklar -->
+        <g id="routes" aria-hidden="true">
           <!-- Xorazm → Samarqand -->
-          <path class="route" d="M320,470 C440,430 520,410 600,490" />
+          <path class="route" d="M300,475 C430,430 510,420 598,492" />
           <!-- Samarqand → Toshkent -->
-          <path class="route" d="M600,490 C700,430 780,380 865,360" />
+          <path class="route" d="M598,492 C705,430 785,385 865,360" />
           <!-- Toshkent → Fargʻona -->
-          <path class="route" d="M865,360 C905,365 945,390 995,430" />
+          <path class="route" d="M865,360 C905,365 942,385 995,430" />
         </g>
 
         <!-- Pinlar (teardrop + ring + label) -->
         <g id="pins">
           <!-- Xorazm -->
           <g class="pin" tabindex="0" role="button" aria-label="Xorazm"
-             transform="translate(320,470)"
+             transform="translate(300,475)"
              data-city="Xorazm"
              data-address="Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy"
              data-phone="+998 90 657 05 00"
@@ -406,14 +404,14 @@
               <circle class="core" r="5"  cy="-6"/>
             </g>
             <g class="badge" transform="translate(0,30)">
-              <rect class="badge-bg" x="-40" y="-12" width="80" height="24" rx="10"/>
+              <rect class="badge-bg" x="-36" y="-12" width="72" height="24" rx="10"/>
               <text class="badge-txt" x="0" y="6" text-anchor="middle">Xorazm</text>
             </g>
           </g>
 
-          <!-- Samarqand -->
+          <!-- Samarqand (default active) -->
           <g class="pin is-active" tabindex="0" role="button" aria-label="Samarqand"
-             transform="translate(600,490)"
+             transform="translate(598,492)"
              data-city="Samarqand"
              data-address="Registon ko‘chasi, 12"
              data-phone="+998 90 600 00 00"
@@ -470,8 +468,8 @@
         </g>
       </svg>
 
-      <!-- Info-karta (sizdagi markup saqlanadi) -->
-      <aside class="loc-card show" role="dialog" aria-live="polite" aria-label="Manzil kartasi">
+      <!-- Info-karta -->
+      <aside class="loc-card" role="dialog" aria-live="polite" aria-label="Manzil kartasi">
         <div class="loc-card__inner">
           <div class="loc-card__row">
             <h3 class="loc-card__city" id="locCity">Samarqand</h3>
@@ -492,6 +490,7 @@
     </div>
   </div>
 </section>
+
 
 
 
