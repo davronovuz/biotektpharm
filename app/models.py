@@ -1,13 +1,35 @@
 from django.db import models
 
+
+
+
+class ActiveQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(is_active=True)
+
+
 class HeroSection(models.Model):
-    title = models.CharField(max_length=255, verbose_name="Sarlavha")
-    subtitle = models.TextField(verbose_name="Quyi matn")
-    background = models.ImageField(upload_to="hero/", verbose_name="Fon rasmi")
-    is_active = models.BooleanField(default=True)
+
+    title_uz    = models.CharField(max_length=255, verbose_name="Sarlavha (UZ)")
+    title_ru    = models.CharField(max_length=255, blank=True, default="", verbose_name="Sarlavha (RU)")
+    title_en    = models.CharField(max_length=255, blank=True, default="", verbose_name="Sarlavha (EN)")
+
+    subtitle_uz = models.TextField(blank=True, default="", verbose_name="Quyi matn (UZ)")
+    subtitle_ru = models.TextField(blank=True, default="", verbose_name="Quyi matn (RU)")
+    subtitle_en = models.TextField(blank=True, default="", verbose_name="Quyi matn (EN)")
+
+    background  = models.ImageField(upload_to="hero/", verbose_name="Fon rasmi")
+    is_active   = models.BooleanField(default=True)
+
+    objects = ActiveQuerySet.as_manager()
 
     def __str__(self):
-        return self.title
+        # tilga qaramay admin ro‘yxatda ko‘rinsin
+        return self.title_uz or self.title_ru or self.title_en or "Hero"
+
+    class Meta:
+        verbose_name = "Hero bo‘limi"
+        verbose_name_plural = "Hero bo‘limi"
 
 
 

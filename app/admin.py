@@ -1,10 +1,18 @@
 from django.contrib import admin
 from .models import HeroSection,Contact,FeatureCard
 
+
+
 @admin.register(HeroSection)
 class HeroSectionAdmin(admin.ModelAdmin):
-    list_display = ("title", "is_active")
-    list_editable = ("is_active",)
+    list_display = ("__str__", "is_active")
+    list_filter  = ("is_active",)
+    fieldsets = (
+        ("UZ", {"fields": ("title_uz", "subtitle_uz")}),
+        ("RU", {"fields": ("title_ru", "subtitle_ru")}),
+        ("EN", {"fields": ("title_en", "subtitle_en")}),
+        ("Media & Status", {"fields": ("background", "is_active")}),
+    )
 
 
 

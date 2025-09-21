@@ -1,76 +1,34 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="uz" >
+<html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BiotekPharm - Farmatsevtika Yetakchisi</title>
-    <meta name="description" content="BiotekPharm - O'zbekistonda farmatsevtika sohasining yetakchi distribyutor kompaniyasi">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="__title">BiotekPharm - Farmatsevtika Yetakchisi</title>
+  <meta name="description" content="BiotekPharm - O'zbekistonda farmatsevtika sohasining yetakchi distribyutor kompaniyasi">
 
-    <!-- Favicon -->
-    <link rel="icon" href="assets/favicon.ico">
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      referrerpolicy="no-referrer" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
-
-
-    <!-- Navigation -->
-<!--    <nav class="navbar">-->
-<!--        <div class="container">-->
-<!--            <a href="#" class="logo">-->
-<!--                <div class="logo-icon">-->
-<!--                    <img src="{% static 'images/logos_navs.jpg' %}" alt="logo">-->
-<!--                </div>-->
-<!--            </a>-->
-<!--            <button id="mobile-menu" class="menu-toggle" aria-label="Toggle menu">-->
-<!--              <span class="bar"></span><span class="bar"></span><span class="bar"></span>-->
-<!--            </button>-->
-
-
-<!--            <ul class="nav-list">-->
-<!--                <li><a href="#home" class="nav-link active" data-i18n="home">Bosh sahifa</a></li>-->
-<!--                <li><a href="#about" class="nav-link" data-i18n="about">Kompaniya</a></li>-->
-<!--                <li><a href="#history-figma" class="nav-link" data-i18n="history">Tarix</a></li>-->
-<!--                <li><a href="#services" class="nav-link" data-i18n="services">Xizmatlar</a></li>-->
-<!--                <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>-->
-<!--                <li><a href="#locations" class="nav-link" data-i18n="locations">Manzil</a></li>-->
-<!--                <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>-->
-<!--                <li class="nav-item lang">-->
-<!--                  <button id="langBtn" class="lang-btn" aria-expanded="false">-->
-<!--                    <img src="https://flagcdn.com/uz.svg" alt="UZ" class="flag">-->
-<!--                    <span id="currentLang">UZ</span>-->
-<!--                    <i class="chevron"></i>-->
-<!--                  </button>-->
-<!--                  <ul id="langMenu" class="lang-menu">-->
-<!--                    <li data-lang="uz"><img src="https://flagcdn.com/uz.svg" alt=""> Oʻzbekcha</li>-->
-<!--                    <li data-lang="ru"><img src="https://flagcdn.com/ru.svg" alt=""> Русский</li>-->
-<!--                    <li data-lang="en"><img src="https://flagcdn.com/gb.svg" alt=""> English</li>-->
-<!--                  </ul>-->
-<!--                </li>-->
-
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </nav>-->
-
-    <!-- Navigation -->
-
+<!-- Navigation -->
 <nav class="navbar">
   <div class="container">
     <a href="#" class="logo">
       <div class="logo-icon">
-        <!-- JPG o‘rniga SVG -->
         <img
           src="{% static 'images/biotek-logo.svg' %}"
           alt="BIOTEK PHARM"
@@ -92,6 +50,7 @@
       <li><a href="#partners" class="nav-link" data-i18n="partners">Hamkorlar</a></li>
       <li><a href="#locations" class="nav-link" data-i18n="locations">Manzil</a></li>
       <li><a href="#contact" class="nav-link" data-i18n="contact">Aloqa</a></li>
+
       <li class="nav-item lang">
         <button id="langBtn" class="lang-btn" aria-expanded="false">
           <img src="https://flagcdn.com/uz.svg" alt="UZ" class="flag">
@@ -108,45 +67,68 @@
   </div>
 </nav>
 
-
-<!-- Hero Section -->
+{% if hero %}
 <section class="hero" id="home"
-         style="background-image: url('{{ hero.background.url }}');">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="hero-content">
-            <h1>{{ hero.title }}</h1>
-            <p class="subtitle">{{ hero.subtitle }}</p>
-        </div>
-    </div>
-</section>
+         {% if hero.background %}style="background-image: url('{{ hero.background.url }}');"{% endif %}>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <!-- Title (UZ/RU/EN) -->
+      <h1 class="i18n-db"
+          data-uz="{{ hero.title_uz }}"
+          data-ru="{% firstof hero.title_ru hero.title_uz %}"
+          data-en="{% firstof hero.title_en hero.title_uz %}">
+        {% firstof hero.title_uz hero.title_ru hero.title_en %}
+      </h1>
 
+      <!-- Subtitle (UZ/RU/EN) -->
+      <p class="subtitle i18n-db"
+         data-uz="{{ hero.subtitle_uz }}"
+         data-ru="{% firstof hero.subtitle_ru hero.subtitle_uz %}"
+         data-en="{% firstof hero.subtitle_en hero.subtitle_uz %}">
+        {% firstof hero.subtitle_uz hero.subtitle_ru hero.subtitle_en %}
+      </p>
+    </div>
+  </div>
+</section>
+{% else %}
+<!-- fallback: hero yo‘q bo‘lsa -->
+<section class="hero">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <h1 data-i18n="__title">BiotekPharm - Farmatsevtika Yetakchisi</h1>
+      <p class="subtitle i18n-db"
+         data-uz="O'zbekistonda farmatsevtika distsributsiyasi"
+         data-ru="Фармацевтическая дистрибуция в Узбекистане"
+         data-en="Pharmaceutical distribution in Uzbekistan">
+        O'zbekistonda farmatsevtika distsributsiyasi
+      </p>
+    </div>
+  </div>
+</section>
+{% endif %}
 
 
 <!-- About Section -->
 <section class="about" id="about">
   <div class="container">
-    <!-- Header (figma-style) -->
     <div class="section-header about-head">
       <h2 class="about-overline" data-i18n="about_title">Kompaniya haqida</h2>
 
-      <!-- 1-qatorda katta sarlavha, BIOTEKPHARM UPPERCASE -->
       <h3 class="about-title">
         <span class="brand-upper">BIOTEKPHARM</span>
         – bu xalqaro farmatsevtika mahsulotlarini
       </h3>
 
-      <!-- 2-qatorda kuchli subtitle -->
       <div class="about-subtitle-strong">
         yetkazib berish sohasida ishonchli hamkor
       </div>
     </div>
 
-    <!-- Feature cards (dinamik) -->
     <div class="about-grid">
       {% for f in features %}
         <article class="about-card">
-          <!-- Sarlavha / matn (3 til uchun data-*) -->
           <h3
             class="card-title i18n-db"
             data-uz="{{ f.title_uz }}"
@@ -161,7 +143,6 @@
             data-en="{{ f.text_en|default:f.text_uz }}"
           >{{ f.text_uz }}</p>
 
-          <!-- Katta xira watermark (ikon yoki rasm) -->
           <span class="card-watermark">
             {% if f.icon_type == 'img' and f.icon_image %}
               <img src="{{ f.icon_image.url }}" alt="">
@@ -177,14 +158,10 @@
   </div>
 </section>
 
-
-
-
-<!-- ================= ABOUT INTRO (figma) ================= -->
+<!-- ABOUT INTRO -->
 <section class="intro-hero" id="about-figma">
   <div class="container">
     <div class="intro-box">
-      <!-- Chip title (border ustida) -->
       <div class="intro-chip">
         <span class="brand">BIOTEK PHARM</span> <span class="muted">haqida</span>
       </div>
@@ -216,11 +193,10 @@
   </div>
 </section>
 
-
-<!-- ================= HISTORY CARDS (figma) ================= -->
+<!-- HISTORY CARDS -->
 <section class="history-cards" id="history-figma">
   <div class="container">
-    <h3 class="history-kicker i18n" data-i18n="history_title">Bizning tarix</h3>
+    <h3 class="history-kicker" data-i18n="history_title">Bizning tarix</h3>
 
     {% for h in history_cards %}
       <article class="h-item {% cycle 'left' 'right' %}" style="--d: {{ forloop.counter0|add:'1' }}00ms">
@@ -264,14 +240,23 @@
   </div>
 </section>
 
-
-    <!-- Services Section -->
+<!-- Services Section -->
 <section class="services" id="services">
   <div class="container">
     <div class="section-header">
-      <p>Biz taklif qiladigan asosiy xizmatlar</p>
-      <h2>Xizmatlarimiz</h2>
+      <p class="i18n-db"
+         data-uz="Biz taklif qiladigan asosiy xizmatlar"
+         data-ru="Наши ключевые услуги"
+         data-en="Our key services">
+        Biz taklif qiladigan asosiy xizmatlar
+      </p>
 
+      <h2 class="i18n-db"
+         data-uz="Xizmatlarimiz"
+         data-ru="Наши услуги"
+         data-en="Our Services">
+        Xizmatlarimiz
+      </h2>
     </div>
 
     <div class="svc-grid">
@@ -285,15 +270,22 @@
             {% endif %}
           </div>
 
-          <h3 class="svc-title">
+          <h3 class="svc-title i18n-db"
+              data-uz="{{ s.title_uz }}"
+              data-ru="{{ s.title_ru|default:s.title_uz }}"
+              data-en="{{ s.title_en|default:s.title_uz }}">
             {{ s.title_uz }}
           </h3>
 
-          {% if s.text_uz %}
-            <p class="svc-text">{{ s.text_uz }}</p>
+          {% if s.text_uz or s.text_ru or s.text_en %}
+            <p class="svc-text i18n-db"
+               data-uz="{{ s.text_uz }}"
+               data-ru="{{ s.text_ru|default:s.text_uz }}"
+               data-en="{{ s.text_en|default:s.text_uz }}">
+              {{ s.text_uz }}
+            </p>
           {% endif %}
 
-          <!-- katta xira watermark (venta uslubida) -->
           <span class="svc-watermark" aria-hidden="true">
             {% if s.icon_type == 'img' and s.icon_image %}
               <img src="{{ s.icon_image.url }}" alt="">
@@ -309,51 +301,74 @@
   </div>
 </section>
 
-
+<!-- PARTNERS -->
 <section class="partners" id="partners">
   <div class="container">
     <div class="section-header">
-      <p>Biz butun dunyo bo'ylab yetakchi kompaniyalar bilan ishlaymiz</p>
-      <h2>Hamkorlarimiz</h2>
+      <p class="i18n-db"
+         data-uz="Biz butun dunyo bo'ylab yetakchi kompaniyalar bilan ishlaymiz"
+         data-ru="Мы работаем с ведущими компаниями по всему миру"
+         data-en="We work with leading companies worldwide">
+        Biz butun dunyo bo'ylab yetakchi kompaniyalar bilan ishlaymiz
+      </p>
+
+      <h2 class="i18n-db"
+         data-uz="Hamkorlarimiz"
+         data-ru="Наши партнёры"
+         data-en="Our Partners">
+        Hamkorlarimiz
+      </h2>
     </div>
 
-    <!-- 1-qator (katta kartalar) -->
     <div class="partners-row partners-row--xl">
       {% for p in partner_cards|slice:":6" %}
         <a class="partner-card" href="{{ p.url|default:'#' }}" {% if p.url %}target="_blank" rel="noopener"{% endif %}>
           <div class="partner-logo">
             <img loading="lazy" src="{{ p.logo.url }}" alt="{{ p.name_uz }}">
           </div>
-          {% if p.note_uz %}
-            <div class="partner-note">{{ p.note_uz }}</div>
+          {% if p.note_uz or p.note_ru or p.note_en %}
+            <div class="partner-note i18n-db"
+                 data-uz="{{ p.note_uz }}"
+                 data-ru="{{ p.note_ru|default:p.note_uz }}"
+                 data-en="{{ p.note_en|default:p.note_uz }}">
+              {{ p.note_uz }}
+            </div>
           {% endif %}
         </a>
       {% endfor %}
     </div>
 
-    <!-- 2-qator (ko‘proq kartalar, ko‘chma animatsiya) -->
     <div class="partners-row partners-row--md">
       {% for p in partner_cards|slice:"6:18" %}
         <a class="partner-card" href="{{ p.url|default:'#' }}" {% if p.url %}target="_blank" rel="noopener"{% endif %}>
           <div class="partner-logo">
             <img loading="lazy" src="{{ p.logo.url }}" alt="{{ p.name_uz }}">
           </div>
-          {% if p.note_uz %}
-            <div class="partner-note">{{ p.note_uz }}</div>
+          {% if p.note_uz or p.note_ru or p.note_en %}
+            <div class="partner-note i18n-db"
+                 data-uz="{{ p.note_uz }}"
+                 data-ru="{{ p.note_ru|default:p.note_uz }}"
+                 data-en="{{ p.note_en|default:p.note_uz }}">
+              {{ p.note_uz }}
+            </div>
           {% endif %}
         </a>
       {% endfor %}
     </div>
 
-    <!-- 3-qator (qolgani) -->
     <div class="partners-row partners-row--sm">
       {% for p in partner_cards|slice:"18:" %}
         <a class="partner-card" href="{{ p.url|default:'#' }}" {% if p.url %}target="_blank" rel="noopener"{% endif %}>
           <div class="partner-logo">
             <img loading="lazy" src="{{ p.logo.url }}" alt="{{ p.name_uz }}">
           </div>
-          {% if p.note_uz %}
-            <div class="partner-note">{{ p.note_uz }}</div>
+          {% if p.note_uz or p.note_ru or p.note_en %}
+            <div class="partner-note i18n-db"
+                 data-uz="{{ p.note_uz }}"
+                 data-ru="{{ p.note_ru|default:p.note_uz }}"
+                 data-en="{{ p.note_en|default:p.note_uz }}">
+              {{ p.note_uz }}
+            </div>
           {% endif %}
         </a>
       {% endfor %}
@@ -361,22 +376,23 @@
   </div>
 </section>
 
-
-<!-- =================== LOCATIONS (Figma 1:1) =================== -->
+<!-- LOCATIONS -->
 <section id="locations" class="locations-v3"
          style="--hex-bg: url('{% static 'images/rasmchaa.png' %}');"
          aria-labelledby="loc-title">
   <div class="container">
     <header class="loc-head">
-      <p class="loc-kicker">Butun Oʻzbekiston boʻylab ofis va omborlarimiz</p>
-      <h2 id="loc-title" class="loc-title">Bizning joylashuvlar</h2>
+      <p class="loc-kicker" data-i18n="locations_kicker">
+        Butun Oʻzbekiston boʻylab ofis va omborlarimiz
+      </p>
+      <h2 id="loc-title" class="loc-title" data-i18n="locations_title">
+        Bizning joylashuvlar
+      </h2>
     </header>
 
     <div class="loc-stage" role="img" aria-label="Oʻzbekiston xaritasi va joylashuvlar">
-      <!-- Bitta SVG: xarita PNG + yo‘laklar + pinlar -->
       <svg class="loc-canvas" viewBox="0 0 1152 768" preserveAspectRatio="xMidYMid meet" role="img">
         <defs>
-          <!-- Pin va badge soyasi -->
           <filter id="pinShadow" x="-50%" y="-50%" width="200%" height="200%">
             <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="rgba(31,102,255,.25)"/>
           </filter>
@@ -385,22 +401,15 @@
           </filter>
         </defs>
 
-        <!-- Xarita PNG -->
         <image href="{% static 'images/rasmcha.png' %}" x="0" y="0" width="1152" height="768" />
 
-        <!-- Yo‘laklar (figma uslubidagi oq dashed chiziqlar) -->
         <g id="routes" aria-hidden="true">
-          <!-- Xorazm → Samarqand -->
           <path class="route" d="M315,480 C470,450 555,475 650,540" />
-          <!-- Samarqand → Toshkent -->
           <path class="route" d="M650,540 C735,485 800,440 865,365" />
-          <!-- Toshkent → Fargʻona -->
           <path class="route" d="M865,365 C900,375 940,400 1015,450" />
         </g>
 
-        <!-- Pinlar -->
         <g id="pins">
-          <!-- Xorazm (default active) -->
           <g class="pin is-active" tabindex="0" role="button" aria-label="Xorazm"
              transform="translate(315,480)"
              data-city="Xorazm"
@@ -409,7 +418,6 @@
              data-hours="Dushanba–Juma: 9:00 – 18:00"
              data-lat="41.3565" data-lng="60.8567">
             <g class="pin-mark" filter="url(#pinShadow)">
-              <!-- Teardrop -->
               <path class="drop" d="M0,-24 C-11,-24 -19,-15 -19,-4 C-19,9 -6,19 0,28 C6,19 19,9 19,-4 C19,-15 11,-24 0,-24 Z"/>
               <circle class="ring" r="11" cy="-7"/>
               <circle class="core" r="5"  cy="-7"/>
@@ -420,7 +428,6 @@
             </g>
           </g>
 
-          <!-- Samarqand -->
           <g class="pin" tabindex="0" role="button" aria-label="Samarqand"
              transform="translate(650,540)"
              data-city="Samarqand"
@@ -439,7 +446,6 @@
             </g>
           </g>
 
-          <!-- Toshkent -->
           <g class="pin" tabindex="0" role="button" aria-label="Toshkent"
              transform="translate(865,365)"
              data-city="Toshkent"
@@ -458,7 +464,6 @@
             </g>
           </g>
 
-          <!-- Fargʻona -->
           <g class="pin" tabindex="0" role="button" aria-label="Fargʻona"
              transform="translate(1015,450)"
              data-city="Fargʻona"
@@ -479,7 +484,7 @@
         </g>
       </svg>
 
-      <!-- Info-karta (pin bosilganda o‘zgartiriladi) -->
+      <!-- Info-karta -->
       <aside class="loc-card" role="dialog" aria-live="polite" aria-label="Manzil kartasi">
         <div class="loc-card__inner">
           <div class="loc-card__row">
@@ -492,9 +497,9 @@
             <li><i class="fa-regular fa-clock"></i> <span id="locHours">Dushanba–Juma: 9:00 – 18:00</span></li>
           </ul>
           <div class="loc-actions">
-            <button class="btn-outline" id="copyAddr" type="button">Copy</button>
-            <button class="btn-outline" id="shareAddr" type="button">Share</button>
-            <a class="btn btn-primary" id="dirBtn" target="_blank" rel="noopener">Yo‘lni ko‘rsat</a>
+            <button class="btn-outline" id="copyAddr" type="button" data-i18n="loc_copy">Copy</button>
+            <button class="btn-outline" id="shareAddr" type="button" data-i18n="loc_share">Share</button>
+            <a class="btn btn-primary" id="dirBtn" target="_blank" rel="noopener" data-i18n="loc_route">Yo‘lni ko‘rsat</a>
           </div>
         </div>
       </aside>
@@ -502,13 +507,7 @@
   </div>
 </section>
 
-
-
-
-
-
-
-    <!-- Contact Section -->
+<!-- Contact Section -->
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-shell">
@@ -531,27 +530,23 @@
           <form id="contactForm" method="POST" novalidate>
             {% csrf_token %}
 
-            <!-- Name -->
             <div class="form-group with-icon">
               <input type="text" id="name" name="name" placeholder=" " required>
               <label for="name" data-i18n="form_name">Ism</label>
               <small class="error-msg" data-i18n="err_name">Ism kiriting</small>
             </div>
 
-            <!-- Email -->
             <div class="form-group with-icon">
               <input type="email" id="email" name="email" placeholder=" " required>
               <label for="email" data-i18n="form_email">E-mail</label>
               <small class="error-msg" data-i18n="err_email">To‘g‘ri e-mail kiriting</small>
             </div>
 
-            <!-- Phone (optional) -->
             <div class="form-group with-icon">
               <input type="tel" id="phone" name="phone" placeholder=" +998">
               <label for="phone" data-i18n="form_phone">Telefon (ixtiyoriy)</label>
             </div>
 
-            <!-- Message -->
             <div class="form-group">
               <textarea id="message" name="message" placeholder=" " required></textarea>
               <label for="message" data-i18n="form_message">Xabar</label>
@@ -585,12 +580,17 @@
 
             <li class="info-row">
               <i class="fa-solid fa-location-dot"></i>
-              <div>Samarqand, Yuqori Turkman, ko'chasi, 158-uy</div>
+              <div data-i18n="address_text">Samarqand, O'zbekiston ko'chasi, 158-uy</div>
             </li>
 
             <li class="info-row">
               <i class="fa-regular fa-clock"></i>
-              <div>Dushanba–Juma: 9:00 – 18:00</div>
+              <div class="i18n-db"
+                   data-uz="Dushanba–Juma: 9:00 – 18:00"
+                   data-ru="Понедельник–Пятница: 9:00 – 18:00"
+                   data-en="Mon–Fri: 9:00 – 18:00">
+                Dushanba–Juma: 9:00 – 18:00
+              </div>
             </li>
           </ul>
         </aside>
@@ -599,8 +599,6 @@
   </div>
 </section>
 
-
-
 <!-- Footer -->
 <footer class="footer"
         style="--footer-wave: url('{% static 'images/footer-wave.png' %}');">
@@ -608,11 +606,9 @@
   <div class="container">
     <div class="footer-grid">
 
-      <!-- Logo + slogan + social -->
       <div class="footer-col">
         <a href="/" class="logof" aria-label="Biotek Pharm">
           <div class="logof-icon">
-            <!-- JPG/PNG o‘rniga SVG logo -->
             <img src="{% static 'images/biotek-logo-footer.svg' %}" alt="BIOTEK PHARM" height="48" decoding="async">
           </div>
         </a>
@@ -628,7 +624,6 @@
         </div>
       </div>
 
-      <!-- Tez havolalar -->
       <div class="footer-col">
         <h3 data-i18n="footer_links">Tez havolalar</h3>
         <ul>
@@ -641,7 +636,6 @@
         </ul>
       </div>
 
-      <!-- Aloqa -->
       <div class="footer-col">
         <h3 data-i18n="footer_contact">Aloqa</h3>
         <ul>
@@ -657,7 +651,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p><span class="company">&copy; 2025 BIOTEK FARM OOO Barcha huquqlar himoyalangan</span></p>
+      <p><span class="company">&copy; <span id="year">2025</span> BIOTEK FARM OOO Barcha huquqlar himoyalangan</span></p>
       <div class="footer-links">
         <a href="#" data-i18n="privacy_policy">Maxfiylik siyosati</a>
         <a href="#" data-i18n="terms">Foydalanish shartlari</a>
@@ -666,14 +660,26 @@
   </div>
 </footer>
 
+<!-- Back to Top Button -->
+<a href="#" class="back-to-top" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</a>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+<!-- JS libs -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="{% static 'js/script.js' %}"></script>
+<!-- (ixtiyoriy) Server tilini localStorage ga bir marta yozish -->
+<script>
+  (function(){
+    var serverLang = "{{ LANGUAGE_CODE|default:'uz' }}";
+    if (!localStorage.getItem('preferredLang')) {
+      localStorage.setItem('preferredLang', serverLang);
+    }
+    document.documentElement.setAttribute('lang', localStorage.getItem('preferredLang') || 'uz');
+  })();
+</script>
+
+<!-- Main JS -->
+<script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
