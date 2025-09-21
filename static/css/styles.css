@@ -822,7 +822,11 @@ section{padding:6rem 0;position:relative}
   line-height:32px;
   letter-spacing:0;
   color:#475467;
-  margin:0;
+  margin: 5px auto;
+}
+
+.partners .section-header p{
+  margin: 5px auto;             /* ixtiyoriy: p’ni ham markazga “blok” sifatida */
 }
 
 /* Rows (siz bergan grid sinflari) */
