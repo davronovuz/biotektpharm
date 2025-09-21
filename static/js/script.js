@@ -299,7 +299,8 @@
   })();
 
 
-/* ================= LOCATIONS — SVG module ================= */
+
+/* ============== LOCATIONS — interaktiv modul ============== */
 (() => {
   const scope = document.querySelector('.locations-v3');
   if (!scope) return;
@@ -323,22 +324,18 @@
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function isOpenNow(){
-    const d=new Date(); const h=d.getHours()+d.getMinutes()/60; return h>=9 && h<=18;
-  }
+  function isOpenNow(){ const d=new Date(); const h=d.getHours()+d.getMinutes()/60; return h>=9 && h<=18; }
   function updateOpenBadge(){
-    const open = isOpenNow();
-    openEl.textContent = open ? 'Open' : 'Closed';
-    openEl.classList.toggle('is-closed', !open);
+    const ok = isOpenNow();
+    openEl.textContent = ok ? 'Open' : 'Closed';
+    openEl.classList.toggle('is-closed', !ok);
   }
-  function updateDirections(lat,lng){
-    if (dirBtn) dirBtn.href=`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-  }
+  function updateDirections(lat,lng){ if (dirBtn) dirBtn.href=`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`; }
 
-  // Pin markazidan karta joyini hisoblash (responsive)
+  // pinning card
   function placeCardByPin(pinG){
     const pt = svg.createSVGPoint(); pt.x=0; pt.y=0;
-    const scr = pt.matrixTransform(pinG.getScreenCTM()); // ekran koordinatasi
+    const scr = pt.matrixTransform(pinG.getScreenCTM());
     const r   = stage.getBoundingClientRect();
     const cx  = ((scr.x - r.left)/r.width)*100;
     const cy  = ((scr.y - r.top)/r.height)*100;
@@ -347,79 +344,83 @@
   }
 
   let activePin = null;
-  function activate(pin, pushState=true){
+  function activate(pin, push=true){
     if (!pin) return;
     activePin = pin;
-    pins.forEach(p=>p.classList.toggle('is-active', p===pin));
+    pins.forEach(p => p.classList.toggle('is-active', p===pin));
 
-    // Kartadagi matnlar
-    const city  = pin.dataset.city   || '';
-    const addr  = pin.dataset.address|| '';
-    const phone = pin.dataset.phone  || '';
-    const hours = pin.dataset.hours  || '';
-    const lat   = pin.dataset.lat    || '';
-    const lng   = pin.dataset.lng    || '';
+    const city  = pin.dataset.city || '';
+    const addr  = pin.dataset.address || '';
+    const phone = pin.dataset.phone || '';
+    const hours = pin.dataset.hours || '';
+    const lat   = pin.dataset.lat   || '';
+    const lng   = pin.dataset.lng   || '';
 
-    cityEl.textContent = city;
-    addrEl.textContent = addr;
-    phoneEl.textContent= phone;
-    phoneEl.href = 'tel:' + phone.replace(/\s+/g,'');
+    cityEl.textContent  = city;
+    addrEl.textContent  = addr;
+    phoneEl.textContent = phone;
+    phoneEl.href        = phone ? 'tel:' + phone.replace(/\s+/g,'') : '#';
     hoursEl.textContent = hours;
     updateOpenBadge();
     updateDirections(lat,lng);
-
     placeCardByPin(pin);
 
-    if (pushState){
-      const url=new URL(location.href); url.searchParams.set('loc', (city||'').toLowerCase());
+    if (push){
+      const url=new URL(location.href);
+      url.searchParams.set('loc', city.toLowerCase());
       history.replaceState(null,'',url);
     }
   }
 
-  // Interaktivlik
+  // event bindings
   pins.forEach(pin=>{
-    pin.addEventListener('click', ()=>{ activate(pin); stopRotate(); });
-    pin.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pin.click(); }});
+    pin.addEventListener('click', () => { activate(pin); stopRotate(); });
+    pin.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pin.click(); }
+    });
   });
 
-  // Boshlang‘ich aktiv pin
+  // initial pin (first or .is-active)
   activate(svg.querySelector('.pin.is-active') || pins[0], false);
 
-  // O‘lcham o‘zgarsa – kartani qayta joyla
-  window.addEventListener('resize', ()=>{ if(activePin) placeCardByPin(activePin); });
+  // reposition card on resize
+  window.addEventListener('resize', () => { if (activePin) placeCardByPin(activePin); });
 
-  // Copy / Share
-  copyBtn?.addEventListener('click', async ()=>{
-    try{ await navigator.clipboard?.writeText(`${cityEl.textContent}: ${addrEl.textContent}`); }catch(e){}
+  // copy/share
+  copyBtn?.addEventListener('click', async () => {
+    try { await navigator.clipboard?.writeText(`${cityEl.textContent}: ${addrEl.textContent}`); } catch(e){}
   });
-  shareBtn?.addEventListener('click', async ()=>{
+  shareBtn?.addEventListener('click', async () => {
     const url = new URL(location.href);
-    if (navigator.share){
-      try{ await navigator.share({title: cityEl.textContent, text: `${addrEl.textContent} — ${phoneEl.textContent}`, url: url.toString()}); }catch(e){}
+    if (navigator.share) {
+      try { await navigator.share({ title: cityEl.textContent, text: `${addrEl.textContent} — ${phoneEl.textContent}`, url: url.toString() }); } catch(e){}
     } else {
-      try{ await navigator.clipboard?.writeText(url.toString()); }catch(e){}
+      try { await navigator.clipboard?.writeText(url.toString()); } catch(e){}
     }
   });
 
-  // Auto-rotate (hoverda pauza)
-  let timer=null;
-  const next=()=>{
-    const i=pins.indexOf(activePin); const n=pins[(i+1)%pins.length]; activate(n,false);
+  // Auto-rotate pins (skip if reduced motion)
+  let timer = null;
+  const nextPin = () => {
+    const i = pins.indexOf(activePin);
+    const next = pins[(i + 1) % pins.length];
+    activate(next, false);
   };
-  function startRotate(){ if(!prefersReduced && !timer) timer=setInterval(next,6000); }
+  function startRotate(){ if(!prefersReduced && !timer) timer=setInterval(nextPin, 6000); }
   function stopRotate(){ if(timer){ clearInterval(timer); timer=null; } }
   startRotate();
   stage.addEventListener('pointerenter', stopRotate);
   stage.addEventListener('pointerleave', startRotate);
 
-  // (ixtiyoriy) Shift+click — koordinata topish (console)
-  svg.addEventListener('click', (e)=>{
-    if(!e.shiftKey) return;
-    const pt = svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY;
-    const v = pt.matrixTransform(svg.getScreenCTM().inverse());
+  // Shift+click helper: log SVG coords to console
+  svg.addEventListener('click', (e) => {
+    if (!e.shiftKey) return;
+    const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    const v  = pt.matrixTransform(svg.getScreenCTM().inverse());
     console.log('SVG coords:', Math.round(v.x), Math.round(v.y));
   });
 })();
+
 
 
 
