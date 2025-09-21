@@ -298,185 +298,128 @@
     on(window, 'resize', updateProgressThrottled);
   })();
 
-  // ---------- LOCATIONS v3 — PNG sahna (pins + info card) ----------
-  (() => {
-    const stage = document.querySelector('.locations-v3 .loc-stage');
-    if (!stage) return;
 
-    const pins = Array.from(stage.querySelectorAll('.pin'));
-    const card = stage.querySelector('.loc-card');
-    if (!pins.length || !card) return;
 
-    const isRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // UI elements inside card
-    const cityEl  = card.querySelector('.loc-card__city');
-    const elAddr  = card.querySelector('.js-address');
-    const elPhone = card.querySelector('.js-phone');
-    const elHours = card.querySelector('.js-hours');
-    const openEl  = card.querySelector('#openBadge');
-    const dirBtn  = card.querySelector('#dirBtn');
-    const copyBtn = card.querySelector('#copyAddr');
-    const shareBtn= card.querySelector('#shareAddr');
+(() => {
+  const svg   = document.querySelector('.loc-canvas');
+  const stage = document.querySelector('.loc-stage');
+  const card  = document.querySelector('.loc-card');
+  if (!svg || !card) return;
 
-    // Data (sample — backendga moslashtiring)
-    const DATA = {
-      samarqand: {
-        city: "Samarqand",
-        address: "Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy",
-        phone: "+998 90 657 05 00",
-        hours: "Dushanba–Juma: 9:00 – 18:00",
-        lat: 39.6542, lng: 66.9597
-      },
-      tashkent: {
-        city: "Toshkent",
-        address: "Mirzo Ulug'bek tumani, Sayram 7-proyezd, 50-uy",
-        phone: "+998 90 123 45 67",
-        hours: "Dushanba–Juma: 9:00 – 18:00",
-        lat: 41.2995, lng: 69.2401
-      },
-      fergana: {
-        city: "Fargʻona",
-        address: "Urta Shura MFY, Charogon ko'chasi, 21-uy",
-        phone: "+998 90 937 06 04",
-        hours: "Dushanba–Juma: 9:00 – 18:00",
-        lat: 40.3880, lng: 71.7870
-      },
-      xorazm: {
-        city: "Xorazm",
-        address: "Sanoatchilar ko'chasi, 12D-uy",
-        phone: "+998 90 657 05 00",
-        hours: "Dushanba–Juma: 9:00 – 18:00",
-        lat: 41.3565, lng: 60.8567
-      }
-    };
+  const pins  = Array.from(svg.querySelectorAll('.pin'));
+  if (!pins.length) return;
 
-    const $on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
+  const cityEl  = document.getElementById('locCity');
+  const addrEl  = document.getElementById('locAddress');
+  const phoneEl = document.getElementById('locPhone');
+  const hoursEl = document.getElementById('locHours');
+  const openEl  = document.getElementById('openBadge');
+  const dirBtn  = document.getElementById('dirBtn');
+  const copyBtn = document.getElementById('copyAddr');
+  const shareBtn= document.getElementById('shareAddr');
 
-    const isOpenNow = () => {
-      const d = new Date();
-      const h = d.getHours() + d.getMinutes()/60;
-      return h >= 9 && h <= 18;
-    };
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const updateOpenBadge = () => {
-      if (!openEl) return;
-      const open = isOpenNow();
-      openEl.textContent = open ? 'Open' : 'Closed';
-      openEl.classList.toggle('is-closed', !open);
-    };
+  function isOpenNow(){
+    const d=new Date(); const h=d.getHours()+d.getMinutes()/60; return h>=9 && h<=18;
+  }
+  function updateOpenBadge(){
+    const open = isOpenNow();
+    openEl.textContent = open ? 'Open' : 'Closed';
+    openEl.classList.toggle('is-closed', !open);
+  }
+  function updateDirections(lat,lng){
+    if (dirBtn) dirBtn.href=`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+  }
 
-    const updateDirections = (lat, lng) => {
-      if (!dirBtn) return;
-      dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-    };
+  // Pin markazidan karta joyini hisoblash
+  function placeCardByPin(pinG){
+    const pt = svg.createSVGPoint(); pt.x=0; pt.y=0;
+    const scr = pt.matrixTransform(pinG.getScreenCTM());       // ekran koordinatasi
+    const r   = stage.getBoundingClientRect();
+    const cx  = ((scr.x - r.left)/r.width)*100;
+    const cy  = ((scr.y - r.top)/r.height)*100;
+    card.style.setProperty('--cx', cx + '%');
+    card.style.setProperty('--cy', cy + '%');
+  }
 
-    const placeCard = (pin) => {
-      if (!pin) return;
-      card.style.setProperty('--cx', pin.style.getPropertyValue('--x') || '50%');
-      card.style.setProperty('--cy', pin.style.getPropertyValue('--y') || '50%');
-    };
+  let activePin = null;
+  function activate(pin, pushState=true){
+    if (!pin) return;
+    activePin = pin;
+    pins.forEach(p=>p.classList.toggle('is-active', p===pin));
 
-    const fillCard = (key) => {
-      const d = DATA[key];
-      if (!d) return;
-      cityEl && (cityEl.textContent = d.city);
-      elAddr && (elAddr.textContent = d.address);
-      elPhone && (elPhone.textContent = d.phone);
-      elHours && (elHours.textContent = d.hours);
-      updateOpenBadge();
-      updateDirections(d.lat, d.lng);
-    };
+    // Kartadagi matnlar
+    const city  = pin.dataset.city   || '';
+    const addr  = pin.dataset.address|| '';
+    const phone = pin.dataset.phone  || '';
+    const hours = pin.dataset.hours  || '';
+    const lat   = pin.dataset.lat    || '';
+    const lng   = pin.dataset.lng    || '';
 
-    const setPressed = (hit) => {
-      pins.forEach(p => p.setAttribute('aria-pressed', (p === hit) ? 'true' : 'false'));
-    };
+    cityEl.textContent = city;
+    addrEl.textContent = addr;
+    phoneEl.textContent= phone;
+    phoneEl.href = 'tel:' + phone.replace(/\s+/g,'');
+    hoursEl.textContent = hours;
+    updateOpenBadge();
+    updateDirections(lat,lng);
 
-    let activeKey = null;
-    const activate = (key, pushHash = true) => {
-      const pin = pins.find(p => p.dataset.region === key) || pins[0];
-      if (!pin) return;
-      activeKey = pin.dataset.region;
-      pins.forEach(p => p.classList.toggle('is-active', p === pin));
-      setPressed(pin);
-      fillCard(activeKey);
-      placeCard(pin);
-      card.classList.add('show');
+    placeCardByPin(pin);
 
-      if (pushHash) {
-        const url = new URL(location.href);
-        url.searchParams.set('loc', activeKey); // ?loc=samarqand
-        history.replaceState(null, '', url);
-      }
-    };
+    if (pushState){
+      const url=new URL(location.href); url.searchParams.set('loc', (city||'').toLowerCase());
+      history.replaceState(null,'',url);
+    }
+  }
 
-    const getInitialKey = () => {
-      const url = new URL(location.href);
-      const qp = url.searchParams.get('loc');
-      if (qp && DATA[qp]) return qp;
-      const hash = (location.hash || '').toLowerCase();
-      const m = hash.match(/loc[-=](\w+)/);
-      if (m && DATA[m[1]]) return m[1];
-      return (pins[0] && pins[0].dataset.region) || 'samarqand';
-    };
+  // Interaktivlik
+  pins.forEach(pin=>{
+    pin.addEventListener('click', ()=>{ activate(pin); stopRotate(); });
+    pin.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pin.click(); }});
+  });
 
-    // Init
-    activate(getInitialKey(), false);
+  // Boshlang‘ich aktiv pin
+  activate(svg.querySelector('.pin.is-active') || pins[0], false);
 
-    // Interactions
-    pins.forEach(p => {
-      $on(p, 'click', () => { activate(p.dataset.region); stopRotate(); });
-      $on(p, 'keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); p.click(); }
-      });
-    });
+  // O‘lcham o‘zgarsa – kartani qayta joyla
+  window.addEventListener('resize', ()=>{ if(activePin) placeCardByPin(activePin); });
 
-    // Copy / Share
-    $on(copyBtn, 'click', async () => {
-      try {
-        await navigator.clipboard?.writeText(`${cityEl?.textContent || ''}: ${elAddr?.textContent || ''}`);
-        copyBtn.classList.add('is-ok'); setTimeout(()=>copyBtn.classList.remove('is-ok'), 800);
-      } catch {}
-    });
+  // Copy / Share
+  copyBtn?.addEventListener('click', async ()=>{
+    try{ await navigator.clipboard?.writeText(`${cityEl.textContent}: ${addrEl.textContent}`); }catch(e){}
+  });
+  shareBtn?.addEventListener('click', async ()=>{
+    const url = new URL(location.href);
+    if (navigator.share){
+      try{ await navigator.share({title: cityEl.textContent, text: `${addrEl.textContent} — ${phoneEl.textContent}`, url: url.toString()}); }catch(e){}
+    } else {
+      try{ await navigator.clipboard?.writeText(url.toString()); }catch(e){}
+    }
+  });
 
-    $on(shareBtn, 'click', async () => {
-      const title = (cityEl?.textContent || '').trim();
-      const text  = `${title}: ${(elAddr?.textContent || '').trim()} — ${(elPhone?.textContent || '').trim()}`;
-      const url = new URL(location.href);
-      url.searchParams.set('loc', activeKey || 'samarqand');
-      if (navigator.share) {
-        try { await navigator.share({ title, text, url: url.toString() }); } catch {}
-      } else {
-        try { await navigator.clipboard?.writeText(url.toString()); } catch {}
-      }
-    });
+  // Auto-rotate (hoverda pauza)
+  let timer=null;
+  const next=()=>{
+    const i=pins.indexOf(activePin); const n=pins[(i+1)%pins.length]; activate(n,false);
+  };
+  function startRotate(){ if(!prefersReduced && !timer) timer=setInterval(next,6000); }
+  function stopRotate(){ if(timer){ clearInterval(timer); timer=null; } }
+  startRotate();
+  stage.addEventListener('pointerenter', stopRotate);
+  stage.addEventListener('pointerleave', startRotate);
 
-    // Auto-rotate (skip if reduced motion)
-    let rotTimer = null;
-    const next = () => {
-      const i = pins.findIndex(p => p.dataset.region === activeKey);
-      const n = pins[(i + 1) % pins.length];
-      activate(n.dataset.region);
-    };
-    const startRotate = () => { if (!isRM && !rotTimer) rotTimer = setInterval(next, 6000); };
-    const stopRotate  = () => { if (rotTimer) { clearInterval(rotTimer); rotTimer = null; } };
+  // (ixtiyoriy) Shift+click – koordinata helper (console’da chiqadi)
+  svg.addEventListener('click', (e)=>{
+    if(!e.shiftKey) return;
+    const pt = svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY;
+    const v = pt.matrixTransform(svg.getScreenCTM().inverse());
+    console.log('SVG coords:', Math.round(v.x), Math.round(v.y));
+  });
+})();
 
-    startRotate();
-    $on(stage, 'pointerenter', stopRotate);
-    $on(stage, 'pointerleave', startRotate);
 
-    // Keep card anchored on resize
-    const onResize = () => {
-      const pin = pins.find(p => p.dataset.region === activeKey) || pins[0];
-      placeCard(pin);
-    };
-    window.addEventListener('resize', onResize);
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stopRotate();
-      else startRotate();
-    });
-  })();
 
   // ---------- Reduced motion flag ----------
   if (isReducedMotion) document.body.classList.add('reduce-motion');

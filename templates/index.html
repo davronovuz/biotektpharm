@@ -313,8 +313,8 @@
 <section class="partners" id="partners">
   <div class="container">
     <div class="section-header">
+      <p>Biz butun dunyo bo'ylab yetakchi kompaniyalar bilan ishlaymiz</p>
       <h2>Hamkorlarimiz</h2>
-      <p>Biz bilan hamkorlik qilayotgan kompaniyalar</p>
     </div>
 
     <!-- 1-qator (katta kartalar) -->
@@ -365,112 +365,123 @@
 
 
     <!-- LOCATIONS (FIGMA-MATCH) -->
-<section id="locations" class="locations-v3" aria-labelledby="loc-title">
+<section id="locations" class="locations-v3"
+         style="--hex-bg: url('{% static 'images/rasmchaa.png' %}');"
+         aria-labelledby="loc-title">
   <div class="container">
     <header class="loc-head">
-      <p class="loc-kicker" data-i18n="locations_subtitle">
-        Butun Oʻzbekiston boʻylab ofis va omborlarimiz
-      </p>
-      <h2 id="loc-title" class="loc-title" data-i18n="locations_title">
-        Bizning joylashuvlar
-      </h2>
+      <p class="loc-kicker">Butun Oʻzbekiston boʻylab ofis va omborlarimiz</p>
+      <h2 id="loc-title" class="loc-title">Bizning joylashuvlar</h2>
     </header>
 
-    <div class="loc-stage" role="img" aria-label="Oʻzbekiston xaritasi va ofis joylashuvlari">
-      <!-- Orqa fon: Figma pattern -->
-      <div class="hex-bg" aria-hidden="true"
-           style="--hex-bg: url('{% static "images/rasmchaa.png" %}');"></div>
+    <div class="loc-stage" role="img" aria-label="Oʻzbekiston xaritasi va joylashuvlar">
+      <!-- Yagona SVG canvas: xarita + yo‘lak + pinlar -->
+      <svg class="loc-canvas" viewBox="0 0 1152 768" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="false">
+        <!-- Xarita: siz qo‘ygan PNG -->
+        <image href="{% static 'images/rasmcha.png' %}" x="0" y="0" width="1152" height="768" />
 
-      <!-- Xarita (rasm) -->
-      <img
-        src="{% static 'images/rasmcha.png' %}"
-        alt="Oʻzbekiston xaritasi"
-        class="uz-map"
-        loading="lazy"
-        decoding="async"
-      />
+        <!-- Yo‘laklar (figma vibe) -->
+        <g id="routes">
+          <!-- Xorazm → Samarqand -->
+          <path class="route" d="M320,470 C440,430 520,410 600,490" />
+          <!-- Samarqand → Toshkent -->
+          <path class="route" d="M600,490 C700,430 780,380 865,360" />
+          <!-- Toshkent → Fargʻona -->
+          <path class="route" d="M865,360 C905,365 945,390 995,430" />
+        </g>
 
-      <!-- Yo‘laklar (SVG) -->
-      <svg class="loc-routes" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <path class="route" d="M520,330 C640,300 720,280 800,260" />
-        <path class="route" d="M525,340 C640,360 740,345 880,345" />
-        <path class="route" d="M510,335 C420,330 330,312 220,292" />
+        <!-- Pinlar (teardrop + ring + label) -->
+        <g id="pins">
+          <!-- Xorazm -->
+          <g class="pin" tabindex="0" role="button" aria-label="Xorazm"
+             transform="translate(320,470)"
+             data-city="Xorazm"
+             data-address="Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy"
+             data-phone="+998 90 657 05 00"
+             data-hours="Dushanba–Juma: 9:00 – 18:00"
+             data-lat="41.3565" data-lng="60.8567">
+            <g class="pin-mark">
+              <path class="drop" d="M0,-22 C-10,-22 -18,-14 -18,-4 C-18,8 -6,18 0,26 C6,18 18,8 18,-4 C18,-14 10,-22 0,-22 Z"/>
+              <circle class="ring" r="10" cy="-6"/>
+              <circle class="core" r="5"  cy="-6"/>
+            </g>
+            <g class="badge" transform="translate(0,30)">
+              <rect class="badge-bg" x="-40" y="-12" width="80" height="24" rx="10"/>
+              <text class="badge-txt" x="0" y="6" text-anchor="middle">Xorazm</text>
+            </g>
+          </g>
+
+          <!-- Samarqand -->
+          <g class="pin is-active" tabindex="0" role="button" aria-label="Samarqand"
+             transform="translate(600,490)"
+             data-city="Samarqand"
+             data-address="Registon ko‘chasi, 12"
+             data-phone="+998 90 600 00 00"
+             data-hours="Dushanba–Juma: 9:00 – 18:00"
+             data-lat="39.6542" data-lng="66.9597">
+            <g class="pin-mark">
+              <path class="drop" d="M0,-22 C-10,-22 -18,-14 -18,-4 C-18,8 -6,18 0,26 C6,18 18,8 18,-4 C18,-14 10,-22 0,-22 Z"/>
+              <circle class="ring" r="10" cy="-6"/>
+              <circle class="core" r="5"  cy="-6"/>
+            </g>
+            <g class="badge" transform="translate(0,30)">
+              <rect class="badge-bg" x="-52" y="-12" width="104" height="24" rx="10"/>
+              <text class="badge-txt" x="0" y="6" text-anchor="middle">Samarqand</text>
+            </g>
+          </g>
+
+          <!-- Toshkent -->
+          <g class="pin" tabindex="0" role="button" aria-label="Toshkent"
+             transform="translate(865,360)"
+             data-city="Toshkent"
+             data-address="Shota Rustaveli, 12"
+             data-phone="+998 71 200 00 00"
+             data-hours="Dushanba–Juma: 9:00 – 18:00"
+             data-lat="41.2995" data-lng="69.2401">
+            <g class="pin-mark">
+              <path class="drop" d="M0,-22 C-10,-22 -18,-14 -18,-4 C-18,8 -6,18 0,26 C6,18 18,8 18,-4 C18,-14 10,-22 0,-22 Z"/>
+              <circle class="ring" r="10" cy="-6"/>
+              <circle class="core" r="5"  cy="-6"/>
+            </g>
+            <g class="badge" transform="translate(0,30)">
+              <rect class="badge-bg" x="-44" y="-12" width="88" height="24" rx="10"/>
+              <text class="badge-txt" x="0" y="6" text-anchor="middle">Toshkent</text>
+            </g>
+          </g>
+
+          <!-- Fargʻona -->
+          <g class="pin" tabindex="0" role="button" aria-label="Fargʻona"
+             transform="translate(995,430)"
+             data-city="Fargʻona"
+             data-address="Mustaqillik, 45"
+             data-phone="+998 73 300 00 00"
+             data-hours="Dushanba–Juma: 9:00 – 18:00"
+             data-lat="40.3880" data-lng="71.7870">
+            <g class="pin-mark">
+              <path class="drop" d="M0,-22 C-10,-22 -18,-14 -18,-4 C-18,8 -6,18 0,26 C6,18 18,8 18,-4 C18,-14 10,-22 0,-22 Z"/>
+              <circle class="ring" r="10" cy="-6"/>
+              <circle class="core" r="5"  cy="-6"/>
+            </g>
+            <g class="badge" transform="translate(0,30)">
+              <rect class="badge-bg" x="-46" y="-12" width="92" height="24" rx="10"/>
+              <text class="badge-txt" x="0" y="6" text-anchor="middle">Fargʻona</text>
+            </g>
+          </g>
+        </g>
       </svg>
 
-      <!-- PINLAR (koordinata %) -->
-      <div class="pins" role="list">
-        <button class="pin is-active"
-                role="listitem"
-                data-region="samarqand"
-                data-address="Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy"
-                data-phone="+998 90 657 05 00"
-                data-hours="Dushanba–Juma: 9:00–18:00"
-                style="--x:52%; --y:64%;"
-                aria-pressed="true">
-          <span class="pin-dot" aria-hidden="true"></span>
-          <span class="pin-label">Samarqand</span>
-        </button>
-
-        <button class="pin"
-                role="listitem"
-                data-region="tashkent"
-                data-address="Toshkent sh., Yakkasaroy t., Shota Rustaveli ko‘chasi, 12"
-                data-phone="+998 71 200 00 00"
-                data-hours="Dushanba–Juma: 9:00–18:00"
-                style="--x:79%; --y:35%;"
-                aria-pressed="false">
-          <span class="pin-dot" aria-hidden="true"></span>
-          <span class="pin-label">Toshkent</span>
-        </button>
-
-        <button class="pin"
-                role="listitem"
-                data-region="fergana"
-                data-address="Fargʻona sh., Mustaqillik ko‘chasi, 45"
-                data-phone="+998 73 300 00 00"
-                data-hours="Dushanba–Juma: 9:00–18:00"
-                style="--x:88%; --y:52%;"
-                aria-pressed="false">
-          <span class="pin-dot" aria-hidden="true"></span>
-          <span class="pin-label">Fargʻona</span>
-        </button>
-
-        <button class="pin"
-                role="listitem"
-                data-region="xorazm"
-                data-address="Xiva sh., Bog‘cha ko‘chasi, 7"
-                data-phone="+998 62 220 00 00"
-                data-hours="Dushanba–Juma: 9:00–18:00"
-                style="--x:18%; --y:40%;"
-                aria-pressed="false">
-          <span class="pin-dot" aria-hidden="true"></span>
-          <span class="pin-label">Xorazm</span>
-        </button>
-      </div>
-
-      <!-- INFO-KARTA -->
+      <!-- Info-karta (sizdagi markup saqlanadi) -->
       <aside class="loc-card show" role="dialog" aria-live="polite" aria-label="Manzil kartasi">
         <div class="loc-card__inner">
           <div class="loc-card__row">
             <h3 class="loc-card__city" id="locCity">Samarqand</h3>
             <span class="badge-open" id="openBadge">Open</span>
           </div>
-
           <ul class="loc-card__list">
-            <li>
-              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-              <span class="js-address" id="locAddress">Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy</span>
-            </li>
-            <li>
-              <i class="fa-solid fa-phone" aria-hidden="true"></i>
-              <a class="js-phone" id="locPhone" href="tel:+998906570500">+998 90 657 05 00</a>
-            </li>
-            <li>
-              <i class="fa-regular fa-clock" aria-hidden="true"></i>
-              <span class="js-hours" id="locHours">Dushanba–Juma: 9:00–18:00</span>
-            </li>
+            <li><i class="fa-solid fa-location-dot"></i> <span id="locAddress">Registon ko‘chasi, 12</span></li>
+            <li><i class="fa-solid fa-phone"></i> <a id="locPhone" href="tel:+998906000000">+998 90 600 00 00</a></li>
+            <li><i class="fa-regular fa-clock"></i> <span id="locHours">Dushanba–Juma: 9:00 – 18:00</span></li>
           </ul>
-
           <div class="loc-actions">
             <button class="btn-outline" id="copyAddr" type="button">Copy</button>
             <button class="btn-outline" id="shareAddr" type="button">Share</button>
@@ -481,6 +492,7 @@
     </div>
   </div>
 </section>
+
 
 
 
