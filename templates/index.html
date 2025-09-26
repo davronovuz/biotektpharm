@@ -394,8 +394,9 @@
 </section>
 
 <!-- LOCATIONS -->
+<!-- LOCATIONS -->
 <section id="locations" class="locations-v3"
-         style="--hex-bg: url('{% static 'images/rasmchaa.png' %}');"
+         style="--hex-bg: url('{% static 'images/rasmchaaaa.png' %}');"
          aria-labelledby="loc-title">
   <div class="container">
     <header class="loc-head">
@@ -418,17 +419,24 @@
           </filter>
         </defs>
 
-        <image href="{% static 'images/rasmcha.png' %}" x="0" y="0" width="1152" height="768" />
+        <!-- BACKGROUND -->
+        <image href="{% static 'images/rasmchaa.png' %}" x="0" y="0" width="1152" height="768" />
 
+        <!-- ROUTES (Bezier) -->
         <g id="routes" aria-hidden="true">
-          <path class="route" d="M315,480 C470,450 555,475 650,540" />
-          <path class="route" d="M650,540 C735,485 800,440 865,365" />
-          <path class="route" d="M865,365 C900,375 940,400 1015,450" />
+          <!-- Xorazm -> Samarqand -->
+          <path class="route" d="M307.2,302.4 C420,270 520,320 608.8,441.6" />
+          <!-- Samarqand -> Toshkent -->
+          <path class="route" d="M608.8,441.6 C690,400 740,370 780,324.8" />
+          <!-- Toshkent -> Fargʻona -->
+          <path class="route" d="M780,324.8 C820,340 860,360 912.8,384.4" />
         </g>
 
+        <!-- PINS -->
         <g id="pins">
+          <!-- XORAZM -->
           <g class="pin is-active" tabindex="0" role="button" aria-label="Xorazm"
-             transform="translate(315,480)"
+             transform="translate(307.2,302.4)"
              data-city="Xorazm"
              data-address="Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy"
              data-phone="+998 90 657 05 00"
@@ -439,14 +447,16 @@
               <circle class="ring" r="11" cy="-7"/>
               <circle class="core" r="5"  cy="-7"/>
             </g>
+            <!-- badge: 81x36 => rect width=81, x=-40.5 -->
             <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
-              <rect class="badge-bg" x="-36" y="-14" width="72" height="28" rx="12"/>
+              <rect class="badge-bg" x="-40.5" y="-18" width="81" height="36" rx="20"/>
               <text class="badge-txt" x="0" y="6" text-anchor="middle">Xorazm</text>
             </g>
           </g>
 
+          <!-- SAMARQAND -->
           <g class="pin" tabindex="0" role="button" aria-label="Samarqand"
-             transform="translate(650,540)"
+             transform="translate(608.8,441.6)"
              data-city="Samarqand"
              data-address="Registon ko‘chasi, 12"
              data-phone="+998 99 370 56 00"
@@ -457,14 +467,16 @@
               <circle class="ring" r="11" cy="-7"/>
               <circle class="core" r="5"  cy="-7"/>
             </g>
+            <!-- badge: 109x36 => rect width=109, x=-54.5 -->
             <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
-              <rect class="badge-bg" x="-56" y="-14" width="112" height="28" rx="12"/>
+              <rect class="badge-bg" x="-54.5" y="-18" width="109" height="36" rx="20"/>
               <text class="badge-txt" x="0" y="6" text-anchor="middle">Samarqand</text>
             </g>
           </g>
 
+          <!-- TOSHKENT -->
           <g class="pin" tabindex="0" role="button" aria-label="Toshkent"
-             transform="translate(865,365)"
+             transform="translate(780,324.8)"
              data-city="Toshkent"
              data-address="Shota Rustaveli, 12"
              data-phone="+998 99 370 56 00"
@@ -475,14 +487,16 @@
               <circle class="ring" r="11" cy="-7"/>
               <circle class="core" r="5"  cy="-7"/>
             </g>
+            <!-- badge: 93x36 => rect width=93, x=-46.5 -->
             <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
-              <rect class="badge-bg" x="-48" y="-14" width="96" height="28" rx="12"/>
+              <rect class="badge-bg" x="-46.5" y="-18" width="93" height="36" rx="20"/>
               <text class="badge-txt" x="0" y="6" text-anchor="middle">Toshkent</text>
             </g>
           </g>
 
+          <!-- FARGʻONA -->
           <g class="pin" tabindex="0" role="button" aria-label="Fargʻona"
-             transform="translate(1015,450)"
+             transform="translate(912.8,384.4)"
              data-city="Fargʻona"
              data-address="Mustaqillik, 45"
              data-phone="+998 99 370 56 00"
@@ -493,8 +507,9 @@
               <circle class="ring" r="11" cy="-7"/>
               <circle class="core" r="5"  cy="-7"/>
             </g>
+            <!-- badge: 93x36 => rect width=93, x=-46.5 -->
             <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
-              <rect class="badge-bg" x="-48" y="-14" width="96" height="28" rx="12"/>
+              <rect class="badge-bg" x="-46.5" y="-18" width="93" height="36" rx="20"/>
               <text class="badge-txt" x="0" y="6" text-anchor="middle">Fargʻona</text>
             </g>
           </g>
@@ -523,6 +538,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- Contact Section -->
 <section class="contact" id="contact">
