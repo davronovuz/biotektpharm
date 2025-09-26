@@ -394,11 +394,10 @@
 </section>
 
 <!-- LOCATIONS -->
-<!-- LOCATIONS -->
-<!-- LOCATIONS -->
+<!-- LOCATIONS (single PNG background) -->
 <section id="locations" class="locations-v3"
-         style="--loc-bg: url('{% static 'images/rasmchaaaa.png' %}');">
-
+         style="--loc-bg: url('{% static 'images/rasmchaaaa.png' %}');"
+         aria-labelledby="loc-title">
   <div class="container">
     <header class="loc-head">
       <p class="loc-kicker" data-i18n="locations_kicker">
@@ -410,8 +409,8 @@
     </header>
 
     <div class="loc-stage" role="img" aria-label="Oʻzbekiston xaritasi va joylashuvlar">
-      <!-- Eʼtibor: endi fon rasm .loc-stage::before orqali keladi -->
-      <svg class="loc-canvas" viewBox="0 0 1440 993" preserveAspectRatio="xMidYMid meet" role="img">
+      <!-- SVG: 1152×768 (Figma PNG nisbatiga mos) -->
+      <svg class="loc-canvas" viewBox="0 0 1152 768" preserveAspectRatio="xMidYMid meet" role="img">
         <defs>
           <filter id="pinShadow" x="-50%" y="-50%" width="200%" height="200%">
             <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="rgba(31,102,255,.25)"/>
@@ -421,17 +420,17 @@
           </filter>
         </defs>
 
-        <!-- ROUTES (Bezier, Figma px koordinatalarida) -->
+        <!-- ROUTES (dashed) -->
         <g id="routes" aria-hidden="true">
-          <!-- Xorazm(384,391) -> Samarqand(761,571) -->
-          <path class="route" d="M384,391 C525,349.3 650,414 761,571" />
-          <!-- Samarqand(761,571) -> Toshkent(975,420) -->
-          <path class="route" d="M761,571 C862.5,517.5 925,478.7 975,420" />
-          <!-- Toshkent(975,420) -> Fargʻona(1141,497) -->
-          <path class="route" d="M975,420 C1025,439.8 1075,465.7 1141,497" />
+          <!-- Xorazm -> Samarqand -->
+          <path class="route" d="M384,391 C525,349 649,414 761,571" />
+          <!-- Samarqand -> Toshkent -->
+          <path class="route" d="M761,571 C862,518 925,479 975,420" />
+          <!-- Toshkent -> Fargʻona -->
+          <path class="route" d="M975,420 C1025,440 1075,466 1141,497" />
         </g>
 
-        <!-- PINS (Figmadagi px koordinatalar) -->
+        <!-- PINS -->
         <g id="pins">
           <!-- XORAZM -->
           <g class="pin is-active" tabindex="0" role="button" aria-label="Xorazm"
@@ -446,7 +445,6 @@
               <circle class="ring" r="11" cy="-7"/>
               <circle class="core" r="5"  cy="-7"/>
             </g>
-            <!-- badge: 81x36 -->
             <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
               <rect class="badge-bg" x="-40.5" y="-18" width="81" height="36" rx="20"/>
               <text class="badge-txt" x="0" y="6" text-anchor="middle">Xorazm</text>
@@ -466,7 +464,6 @@
               <circle class="ring" r="11" cy="-7"/>
               <circle class="core" r="5"  cy="-7"/>
             </g>
-            <!-- badge: 109x36 -->
             <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
               <rect class="badge-bg" x="-54.5" y="-18" width="109" height="36" rx="20"/>
               <text class="badge-txt" x="0" y="6" text-anchor="middle">Samarqand</text>
@@ -486,7 +483,6 @@
               <circle class="ring" r="11" cy="-7"/>
               <circle class="core" r="5"  cy="-7"/>
             </g>
-            <!-- badge: 93x36 -->
             <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
               <rect class="badge-bg" x="-46.5" y="-18" width="93" height="36" rx="20"/>
               <text class="badge-txt" x="0" y="6" text-anchor="middle">Toshkent</text>
@@ -506,7 +502,6 @@
               <circle class="ring" r="11" cy="-7"/>
               <circle class="core" r="5"  cy="-7"/>
             </g>
-            <!-- badge: 93x36 -->
             <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
               <rect class="badge-bg" x="-46.5" y="-18" width="93" height="36" rx="20"/>
               <text class="badge-txt" x="0" y="6" text-anchor="middle">Fargʻona</text>
@@ -537,6 +532,8 @@
     </div>
   </div>
 </section>
+
+
 
 
 
