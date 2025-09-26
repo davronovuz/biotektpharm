@@ -395,145 +395,149 @@
 
 <!-- LOCATIONS -->
 <!-- LOCATIONS (single PNG background) -->
-<section id="locations" class="locations-v3"
-         style="--loc-bg: url('{% static 'images/rasmchaaaa.png' %}');"
-         aria-labelledby="loc-title">
-  <div class="container">
-    <header class="loc-head">
-      <p class="loc-kicker" data-i18n="locations_kicker">
-        Butun Oʻzbekiston boʻylab ofis va omborlarimiz
-      </p>
-      <h2 id="loc-title" class="loc-title" data-i18n="locations_title">
-        Bizning joylashuvlar
-      </h2>
-    </header>
+<!--<section id="locations" class="locations-v3"-->
+<!--         style="&#45;&#45;loc-bg: url('{% static 'images/rasmchaaaa.png' %}');"-->
+<!--         aria-labelledby="loc-title">-->
+<!--  <div class="container">-->
+<!--    <header class="loc-head">-->
+<!--      <p class="loc-kicker" data-i18n="locations_kicker">-->
+<!--        Butun Oʻzbekiston boʻylab ofis va omborlarimiz-->
+<!--      </p>-->
+<!--      <h2 id="loc-title" class="loc-title" data-i18n="locations_title">-->
+<!--        Bizning joylashuvlar-->
+<!--      </h2>-->
+<!--    </header>-->
 
-    <div class="loc-stage" role="img" aria-label="Oʻzbekiston xaritasi va joylashuvlar">
-      <!-- SVG: viewBox ni Figma PNG ga mos qildim (1152x768) -->
-      <svg class="loc-canvas" viewBox="0 0 1152 768" preserveAspectRatio="xMidYMid meet" role="img">
-        <defs>
-          <filter id="pinShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="rgba(31,102,255,.25)"/>
-          </filter>
-          <filter id="badgeShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="rgba(31,102,255,.18)"/>
-          </filter>
-        </defs>
+<!--    <div class="loc-stage" role="img" aria-label="Oʻzbekiston xaritasi va joylashuvlar">-->
+<!--      &lt;!&ndash; SVG: viewBox ni Figma PNG ga mos qildim (1152x768) &ndash;&gt;-->
+<!--      <svg class="loc-canvas" viewBox="0 0 1152 768" preserveAspectRatio="xMidYMid meet" role="img">-->
+<!--        <defs>-->
+<!--          <filter id="pinShadow" x="-50%" y="-50%" width="200%" height="200%">-->
+<!--            <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="rgba(31,102,255,.25)"/>-->
+<!--          </filter>-->
+<!--          <filter id="badgeShadow" x="-50%" y="-50%" width="200%" height="200%">-->
+<!--            <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="rgba(31,102,255,.18)"/>-->
+<!--          </filter>-->
+<!--        </defs>-->
 
-        <!-- ROUTES (dashed) – Figma dagidek -->
-        <g id="routes" aria-hidden="true">
-          <!-- Xorazm -> Samarqand -->
-          <path class="route" d="M384,391 C525,349 649,414 761,571" />
-          <!-- Samarqand -> Toshkent -->
-          <path class="route" d="M761,571 C862,518 925,479 975,420" />
-          <!-- Toshkent -> Fargʻona -->
-          <path class="route" d="M975,420 C1025,440 1075,466 1141,497" />
-        </g>
+<!--        &lt;!&ndash; ROUTES (dashed) – Figma dagidek &ndash;&gt;-->
+<!--        <g id="routes" aria-hidden="true">-->
+<!--          &lt;!&ndash; Xorazm -> Samarqand &ndash;&gt;-->
+<!--          <path class="route" d="M384,391 C525,349 649,414 761,571" />-->
+<!--          &lt;!&ndash; Samarqand -> Toshkent &ndash;&gt;-->
+<!--          <path class="route" d="M761,571 C862,518 925,479 975,420" />-->
+<!--          &lt;!&ndash; Toshkent -> Fargʻona &ndash;&gt;-->
+<!--          <path class="route" d="M975,420 C1025,440 1075,466 1141,497" />-->
+<!--        </g>-->
 
-        <!-- PINS – Figma dagidek nuqtalar va badge'lar -->
-        <g id="pins">
-          <!-- XORAZM -->
-          <g class="pin is-active" tabindex="0" role="button" aria-label="Xorazm"
-             transform="translate(384,391)"
-             data-city="Xorazm"
-             data-address="Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy"
-             data-phone="+998 90 657 05 00"
-             data-hours="Dushanba–Juma: 9:00 – 18:00"
-             data-lat="41.3565" data-lng="60.8567">
-            <g class="pin-mark" filter="url(#pinShadow)">
-              <path class="drop" d="M0,-24 C-11,-24 -19,-15 -19,-4 C-19,9 -6,19 0,28 C6,19 19,9 19,-4 C19,-15 11,-24 0,-24 Z"/>
-              <circle class="ring" r="11" cy="-7"/>
-              <circle class="core" r="5"  cy="-7"/>
-            </g>
-            <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
-              <rect class="badge-bg" x="-40.5" y="-18" width="81" height="36" rx="20"/>
-              <text class="badge-txt" x="0" y="6" text-anchor="middle">Xorazm</text>
-            </g>
-          </g>
+<!--        &lt;!&ndash; PINS – Figma dagidek nuqtalar va badge'lar &ndash;&gt;-->
+<!--        <g id="pins">-->
+<!--          &lt;!&ndash; XORAZM &ndash;&gt;-->
+<!--          <g class="pin is-active" tabindex="0" role="button" aria-label="Xorazm"-->
+<!--             transform="translate(384,391)"-->
+<!--             data-city="Xorazm"-->
+<!--             data-address="Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy"-->
+<!--             data-phone="+998 90 657 05 00"-->
+<!--             data-hours="Dushanba–Juma: 9:00 – 18:00"-->
+<!--             data-lat="41.3565" data-lng="60.8567">-->
+<!--            <g class="pin-mark" filter="url(#pinShadow)">-->
+<!--              <path class="drop" d="M0,-24 C-11,-24 -19,-15 -19,-4 C-19,9 -6,19 0,28 C6,19 19,9 19,-4 C19,-15 11,-24 0,-24 Z"/>-->
+<!--              <circle class="ring" r="11" cy="-7"/>-->
+<!--              <circle class="core" r="5"  cy="-7"/>-->
+<!--            </g>-->
+<!--            <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">-->
+<!--              <rect class="badge-bg" x="-40.5" y="-18" width="81" height="36" rx="20"/>-->
+<!--              <text class="badge-txt" x="0" y="6" text-anchor="middle">Xorazm</text>-->
+<!--            </g>-->
+<!--          </g>-->
 
-          <!-- SAMARQAND -->
-          <g class="pin" tabindex="0" role="button" aria-label="Samarqand"
-             transform="translate(761,571)"
-             data-city="Samarqand"
-             data-address="Registon ko‘chasi, 12"
-             data-phone="+998 99 370 56 00"
-             data-hours="Dushanba–Juma: 9:00 – 18:00"
-             data-lat="39.6542" data-lng="66.9597">
-            <g class="pin-mark" filter="url(#pinShadow)">
-              <path class="drop" d="M0,-24 C-11,-24 -19,-15 -19,-4 C-19,9 -6,19 0,28 C6,19 19,9 19,-4 C19,-15 11,-24 0,-24 Z"/>
-              <circle class="ring" r="11" cy="-7"/>
-              <circle class="core" r="5"  cy="-7"/>
-            </g>
-            <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
-              <rect class="badge-bg" x="-54.5" y="-18" width="109" height="36" rx="20"/>
-              <text class="badge-txt" x="0" y="6" text-anchor="middle">Samarqand</text>
-            </g>
-          </g>
+<!--          &lt;!&ndash; SAMARQAND &ndash;&gt;-->
+<!--          <g class="pin" tabindex="0" role="button" aria-label="Samarqand"-->
+<!--             transform="translate(761,571)"-->
+<!--             data-city="Samarqand"-->
+<!--             data-address="Registon ko‘chasi, 12"-->
+<!--             data-phone="+998 99 370 56 00"-->
+<!--             data-hours="Dushanba–Juma: 9:00 – 18:00"-->
+<!--             data-lat="39.6542" data-lng="66.9597">-->
+<!--            <g class="pin-mark" filter="url(#pinShadow)">-->
+<!--              <path class="drop" d="M0,-24 C-11,-24 -19,-15 -19,-4 C-19,9 -6,19 0,28 C6,19 19,9 19,-4 C19,-15 11,-24 0,-24 Z"/>-->
+<!--              <circle class="ring" r="11" cy="-7"/>-->
+<!--              <circle class="core" r="5"  cy="-7"/>-->
+<!--            </g>-->
+<!--            <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">-->
+<!--              <rect class="badge-bg" x="-54.5" y="-18" width="109" height="36" rx="20"/>-->
+<!--              <text class="badge-txt" x="0" y="6" text-anchor="middle">Samarqand</text>-->
+<!--            </g>-->
+<!--          </g>-->
 
-          <!-- TOSHKENT -->
-          <g class="pin" tabindex="0" role="button" aria-label="Toshkent"
-             transform="translate(975,420)"
-             data-city="Toshkent"
-             data-address="Shota Rustaveli, 12"
-             data-phone="+998 99 370 56 00"
-             data-hours="Dushanba–Juma: 9:00 – 18:00"
-             data-lat="41.2995" data-lng="69.2401">
-            <g class="pin-mark" filter="url(#pinShadow)">
-              <path class="drop" d="M0,-24 C-11,-24 -19,-15 -19,-4 C-19,9 -6,19 0,28 C6,19 19,9 19,-4 C19,-15 11,-24 0,-24 Z"/>
-              <circle class="ring" r="11" cy="-7"/>
-              <circle class="core" r="5"  cy="-7"/>
-            </g>
-            <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
-              <rect class="badge-bg" x="-46.5" y="-18" width="93" height="36" rx="20"/>
-              <text class="badge-txt" x="0" y="6" text-anchor="middle">Toshkent</text>
-            </g>
-          </g>
+<!--          &lt;!&ndash; TOSHKENT &ndash;&gt;-->
+<!--          <g class="pin" tabindex="0" role="button" aria-label="Toshkent"-->
+<!--             transform="translate(975,420)"-->
+<!--             data-city="Toshkent"-->
+<!--             data-address="Shota Rustaveli, 12"-->
+<!--             data-phone="+998 99 370 56 00"-->
+<!--             data-hours="Dushanba–Juma: 9:00 – 18:00"-->
+<!--             data-lat="41.2995" data-lng="69.2401">-->
+<!--            <g class="pin-mark" filter="url(#pinShadow)">-->
+<!--              <path class="drop" d="M0,-24 C-11,-24 -19,-15 -19,-4 C-19,9 -6,19 0,28 C6,19 19,9 19,-4 C19,-15 11,-24 0,-24 Z"/>-->
+<!--              <circle class="ring" r="11" cy="-7"/>-->
+<!--              <circle class="core" r="5"  cy="-7"/>-->
+<!--            </g>-->
+<!--            <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">-->
+<!--              <rect class="badge-bg" x="-46.5" y="-18" width="93" height="36" rx="20"/>-->
+<!--              <text class="badge-txt" x="0" y="6" text-anchor="middle">Toshkent</text>-->
+<!--            </g>-->
+<!--          </g>-->
 
-          <!-- FARGʻONA -->
-          <g class="pin" tabindex="0" role="button" aria-label="Fargʻona"
-             transform="translate(1141,497)"
-             data-city="Fargʻona"
-             data-address="Mustaqillik, 45"
-             data-phone="+998 99 370 56 00"
-             data-hours="Dushanba–Juma: 9:00 – 18:00"
-             data-lat="40.3880" data-lng="71.7870">
-            <g class="pin-mark" filter="url(#pinShadow)">
-              <path class="drop" d="M0,-24 C-11,-24 -19,-15 -19,-4 C-19,9 -6,19 0,28 C6,19 19,9 19,-4 C19,-15 11,-24 0,-24 Z"/>
-              <circle class="ring" r="11" cy="-7"/>
-              <circle class="core" r="5"  cy="-7"/>
-            </g>
-            <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">
-              <rect class="badge-bg" x="-46.5" y="-18" width="93" height="36" rx="20"/>
-              <text class="badge-txt" x="0" y="6" text-anchor="middle">Fargʻona</text>
-            </g>
-          </g>
-        </g>
-      </svg>
+<!--          &lt;!&ndash; FARGʻONA &ndash;&gt;-->
+<!--          <g class="pin" tabindex="0" role="button" aria-label="Fargʻona"-->
+<!--             transform="translate(1141,497)"-->
+<!--             data-city="Fargʻona"-->
+<!--             data-address="Mustaqillik, 45"-->
+<!--             data-phone="+998 99 370 56 00"-->
+<!--             data-hours="Dushanba–Juma: 9:00 – 18:00"-->
+<!--             data-lat="40.3880" data-lng="71.7870">-->
+<!--            <g class="pin-mark" filter="url(#pinShadow)">-->
+<!--              <path class="drop" d="M0,-24 C-11,-24 -19,-15 -19,-4 C-19,9 -6,19 0,28 C6,19 19,9 19,-4 C19,-15 11,-24 0,-24 Z"/>-->
+<!--              <circle class="ring" r="11" cy="-7"/>-->
+<!--              <circle class="core" r="5"  cy="-7"/>-->
+<!--            </g>-->
+<!--            <g class="badge" transform="translate(0,32)" filter="url(#badgeShadow)">-->
+<!--              <rect class="badge-bg" x="-46.5" y="-18" width="93" height="36" rx="20"/>-->
+<!--              <text class="badge-txt" x="0" y="6" text-anchor="middle">Fargʻona</text>-->
+<!--            </g>-->
+<!--          </g>-->
+<!--        </g>-->
+<!--      </svg>-->
 
-      <!-- Info-karta – Figma dagidek chapda -->
-      <aside class="loc-card" role="dialog" aria-live="polite" aria-label="Manzil kartasi">
-        <div class="loc-card__inner">
-          <div class="loc-card__row">
-            <h3 class="loc-card__city" id="locCity">Xorazm</h3>
-            <span class="badge-open" id="openBadge">Open</span>
-          </div>
-          <ul class="loc-card__list">
-            <li><i class="fa-solid fa-location-dot"></i> <span id="locAddress">Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy</span></li>
-            <li><i class="fa-solid fa-phone"></i> <a id="locPhone" href="tel:+998906570500">+998 90 657 05 00</a></li>
-            <li><i class="fa-regular fa-clock"></i> <span id="locHours">Dushanba–Juma: 9:00 – 18:00</span></li>
-          </ul>
-          <div class="loc-actions">
-            <button class="btn-outline" id="copyAddr" type="button" data-i18n="loc_copy">Copy</button>
-            <button class="btn-outline" id="shareAddr" type="button" data-i18n="loc_share">Share</button>
-            <a class="btn btn-primary" id="dirBtn" target="_blank" rel="noopener" data-i18n="loc_route">Yo‘lni ko‘rsat</a>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </div>
+<!--      &lt;!&ndash; Info-karta – Figma dagidek chapda &ndash;&gt;-->
+<!--      <aside class="loc-card" role="dialog" aria-live="polite" aria-label="Manzil kartasi">-->
+<!--        <div class="loc-card__inner">-->
+<!--          <div class="loc-card__row">-->
+<!--            <h3 class="loc-card__city" id="locCity">Xorazm</h3>-->
+<!--            <span class="badge-open" id="openBadge">Open</span>-->
+<!--          </div>-->
+<!--          <ul class="loc-card__list">-->
+<!--            <li><i class="fa-solid fa-location-dot"></i> <span id="locAddress">Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy</span></li>-->
+<!--            <li><i class="fa-solid fa-phone"></i> <a id="locPhone" href="tel:+998906570500">+998 90 657 05 00</a></li>-->
+<!--            <li><i class="fa-regular fa-clock"></i> <span id="locHours">Dushanba–Juma: 9:00 – 18:00</span></li>-->
+<!--          </ul>-->
+<!--          <div class="loc-actions">-->
+<!--            <button class="btn-outline" id="copyAddr" type="button" data-i18n="loc_copy">Copy</button>-->
+<!--            <button class="btn-outline" id="shareAddr" type="button" data-i18n="loc_share">Share</button>-->
+<!--            <a class="btn btn-primary" id="dirBtn" target="_blank" rel="noopener" data-i18n="loc_route">Yo‘lni ko‘rsat</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </aside>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+<section id="locations"
+  class="locations-v3 only-image"
+  style="--loc-bg: url('{% static 'images/rasm.svg'%}');">
 </section>
-
-
 
 
 
