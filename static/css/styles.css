@@ -1087,6 +1087,33 @@ section{padding:6rem 0;position:relative}
 }
 .locations-v3 .loc-head + .loc-stage{margin-top:8px}
 
+/* ===== LOCATIONS: hard reset of old background layers ===== */
+#locations.locations-v3{ --hex-bg: none !important; }               /* eski var */
+#locations.locations-v3::before{ content:none !important;
+  background:none !important; opacity:0 !important; }
+
+/* SVG ichida tasodifan qolgan <image> qatlamlarini o'chirish */
+#locations .loc-canvas > image{ display:none !important; visibility:hidden !important; }
+
+/* Panel fon – bitta PNG faqat shu yerda */
+#locations .loc-stage{
+  border-radius:24px; position:relative; isolation:isolate; overflow:hidden;
+  aspect-ratio:1440/993; background:linear-gradient(180deg,#eff4ff,#eaf1ff);
+}
+#locations .loc-stage::before{
+  content:""; position:absolute; inset:0; z-index:0;
+  background-image:var(--loc-bg);           /* YANGI o'zgaruvchi! */
+  background-size:contain; background-position:center; background-repeat:no-repeat;
+}
+#locations .loc-canvas{ position:relative; z-index:2; width:100%; height:auto; display:block; }
+
+/* Route’lar – figma */
+#locations .route{ fill:none; stroke:#fff; stroke-width:5; stroke-linecap:round;
+  stroke-dasharray:10 12; vector-effect:non-scaling-stroke;
+  animation:locRouteDash 3.2s linear infinite; filter:drop-shadow(0 2px 0 rgba(0,0,0,.05)); }
+@keyframes locRouteDash{ to{ stroke-dashoffset:-420 } }
+@media (prefers-reduced-motion:reduce){ #locations .route{ animation:none } }
+
 
 
 
