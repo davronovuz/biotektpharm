@@ -28,8 +28,8 @@ class HeroSection(models.Model):
         return self.title_uz or self.title_ru or self.title_en or "Hero"
 
     class Meta:
-        verbose_name = "Hero bo‘limi"
-        verbose_name_plural = "Hero bo‘limi"
+        verbose_name = "Bosh sahifa "
+        verbose_name_plural = "Bosh sahifa "
 
 
 
@@ -61,6 +61,8 @@ class FeatureCard(models.Model):
 
     class Meta:
         ordering = ['order']
+        verbose_name = "Afzallik kartochkasi"
+        verbose_name_plural = "Afzallik kartochkalari"
 
     def __str__(self):
         return self.title_uz
@@ -115,8 +117,8 @@ class AboutSection(models.Model):
     objects = ActiveQuerySet.as_manager()
 
     class Meta:
-        verbose_name = "About (Hero) bo‘limi"
-        verbose_name_plural = "About (Hero) bo‘limi"
+        verbose_name = "Biz haqimizda"
+        verbose_name_plural = "Biz haqimizda"
 
     def __str__(self):
         return f"AboutSection: {self.overline_uz or 'About'}"
@@ -171,8 +173,8 @@ class HistoryCard(models.Model):
 
     class Meta:
         ordering = ["order"]
-        verbose_name = "Tarix kartasi"
-        verbose_name_plural = "Tarix kartalari"
+        verbose_name = " Bizning Tarix "
+        verbose_name_plural = "Bizing Tarix "
 
     def __str__(self):
         return f"{self.year} — {self.title_uz[:40]}"
@@ -220,8 +222,8 @@ class ServiceCard(models.Model):
 
     class Meta:
         ordering = ("order",)
-        verbose_name = "Xizmat kartkasi"
-        verbose_name_plural = "Xizmat kartkalari"
+        verbose_name = "Bizning Xizmatlar "
+        verbose_name_plural = "Bizing Xizmatlar"
 
     def __str__(self):
         return f"{self.order}. {self.title_uz or 'Xizmat'}"
@@ -249,8 +251,8 @@ class PartnerCard(models.Model):
 
     class Meta:
         ordering = ("order",)
-        verbose_name = "Hamkor"
-        verbose_name_plural = "Hamkorlar"
+        verbose_name = "Hamkorlar"
+        verbose_name_plural = "Hamkorlarlar"
 
     def __str__(self):
         return f"{self.order}. {self.name_uz}"
