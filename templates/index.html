@@ -406,33 +406,62 @@
       <img class="map" src="{% static 'images/rasmchaaaa.png' %}" alt="Oʻzbekiston xaritasi" />
 
       <!-- PINS (faqat shu joylar) -->
-      <button class="pin" style="--x:33%; --y:50%" data-name="Xorazm"
-              data-addr="Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy"
-              data-phone="+998 90 657 05 00" data-time="Dushanba–Juma: 9:00 – 18:00">
-        <i class="fa-solid fa-location-dot"></i>
-        <span class="pin-pill">Xorazm</span>
-      </button>
+ <!-- Xorazm -->
+    <button class="pin" style="--x:33%; --y:50%; --delay:.0s"
+            data-name-uz="Xorazm"   data-name-ru="Хорезм"   data-name-en="Khorezm"
+            data-addr-uz="Yuqori Turkman, Oʻzbekiston ko‘chasi, 158-uy"
+            data-addr-ru="Yuqori Turkman, ул. Узбекистан, дом 158"
+            data-addr-en="Yuqori Turkman, Uzbekistan St., 158"
+            data-phone="+998 90 657 05 00"
+            data-time-uz="Dushanba–Juma: 9:00 – 18:00"
+            data-time-ru="Пн–Пт: 9:00 – 18:00"
+            data-time-en="Mon–Fri: 9:00 – 18:00">
+      <i class="fa-solid fa-location-dot"></i>
+      <span class="pin-pill i18n-db" data-uz="Xorazm" data-ru="Хорезм" data-en="Khorezm">Xorazm</span>
+    </button>
 
-      <button class="pin" style="--x:55%; --y:68%" data-name="Samarqand"
-              data-addr="Samarqand shahri, Registon ko‘chasi, 1"
-              data-phone="+998 99 370 56 00" data-time="Dushanba–Juma: 9:00 – 18:00">
-        <i class="fa-solid fa-location-dot"></i>
-        <span class="pin-pill">Samarqand</span>
-      </button>
+    <!-- Samarqand -->
+    <button class="pin" style="--x:55%; --y:68%; --delay:.15s"
+            data-name-uz="Samarqand" data-name-ru="Самарканд" data-name-en="Samarkand"
+            data-addr-uz="Samarqand shahri, Registon ko‘chasi, 1"
+            data-addr-ru="г. Самарканд, ул. Регистан, 1"
+            data-addr-en="Samarkand city, Registan St., 1"
+            data-phone="+998 99 370 56 00"
+            data-time-uz="Dushanba–Juma: 9:00 – 18:00"
+            data-time-ru="Пн–Пт: 9:00 – 18:00"
+            data-time-en="Mon–Fri: 9:00 – 18:00">
+      <i class="fa-solid fa-location-dot"></i>
+      <span class="pin-pill i18n-db" data-uz="Samarqand" data-ru="Самарканд" data-en="Samarkand">Samarqand</span>
+    </button>
 
-      <button class="pin" style="--x:73%; --y:47%" data-name="Toshkent"
-              data-addr="Toshkent, Amir Temur ko‘chasi, 7"
-              data-phone="+998 71 000 00 00" data-time="Dushanba–Juma: 9:00 – 18:00">
-        <i class="fa-solid fa-location-dot"></i>
-        <span class="pin-pill">Toshkent</span>
-      </button>
+    <!-- Toshkent -->
+    <button class="pin" style="--x:73%; --y:47%; --delay:.3s"
+            data-name-uz="Toshkent" data-name-ru="Ташкент" data-name-en="Tashkent"
+            data-addr-uz="Toshkent, Amir Temur ko‘chasi, 7"
+            data-addr-ru="Ташкент, ул. Амира Темура, 7"
+            data-addr-en="Tashkent, Amir Temur St., 7"
+            data-phone="+998 71 000 00 00"
+            data-time-uz="Dushanba–Juma: 9:00 – 18:00"
+            data-time-ru="Пн–Пт: 9:00 – 18:00"
+            data-time-en="Mon–Fri: 9:00 – 18:00">
+      <i class="fa-solid fa-location-dot"></i>
+      <span class="pin-pill i18n-db" data-uz="Toshkent" data-ru="Ташкент" data-en="Tashkent">Toshkent</span>
+    </button>
 
-      <button class="pin" style="--x:84%; --y:58%" data-name="Fargʻona"
-              data-addr="Fargʻona, Mustaqillik ko‘chasi, 12"
-              data-phone="+998 73 000 00 00" data-time="Dushanba–Juma: 9:00 – 18:00">
-        <i class="fa-solid fa-location-dot"></i>
-        <span class="pin-pill">Fargʻona</span>
-      </button>
+    <!-- Farg‘ona -->
+    <button class="pin" style="--x:84%; --y:58%; --delay:.45s"
+            data-name-uz="Farg‘ona" data-name-ru="Фергана" data-name-en="Fergana"
+            data-addr-uz="Fargʻona, Mustaqillik ko‘chasi, 12"
+            data-addr-ru="Фергана, ул. Мустакиллик, 12"
+            data-addr-en="Fergana, Mustaqillik St., 12"
+            data-phone="+998 73 000 00 00"
+            data-time-uz="Dushanba–Juma: 9:00 – 18:00"
+            data-time-ru="Пн–Пт: 9:00 – 18:00"
+            data-time-en="Mon–Fri: 9:00 – 18:00">
+      <i class="fa-solid fa-location-dot"></i>
+      <span class="pin-pill i18n-db" data-uz="Farg‘ona" data-ru="Фергана" data-en="Fergana">Farg‘ona</span>
+    </button>
+
 
       <!-- ROUTE -->
       <svg id="route" class="route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
