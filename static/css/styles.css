@@ -1038,8 +1038,6 @@ section{padding:6rem 0;position:relative}
 .form-group input,.form-group textarea{width:100%;font:500 16px/1.4 var(--font-primary,'Montserrat',sans-serif);background:#fff;color:#111827;border:2px solid #e3e8ef;border-radius:14px;padding:14px 14px;transition:border .15s ease,box-shadow .15s ease}
 .form-group textarea{min-height:132px;resize:vertical}
 .form-group label{position:absolute;left:16px;top:14px;color:#94a3b8;padding:0 6px;background:#fff;pointer-events:none;transition:transform .15s ease,color .15s ease,top .15s ease,font-size .15s ease}
-.with-icon .fg-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#64748b;pointer-events:none}
-.with-icon input{padding-left:44px}
 .form-group input:focus,.form-group textarea:focus{border-color:#1f66ff;box-shadow:0 0 0 3px rgba(31,102,255,.15);outline:0}
 .form-group input:focus + label,
 .form-group input:not(:placeholder-shown) + label,
@@ -1050,6 +1048,8 @@ section{padding:6rem 0;position:relative}
 .error-msg{display:none;color:#ef4444;font-size:12px;margin-top:6px}
 .form-group.is-invalid .error-msg{display:block}
 .alert.alert-info{background:#edf2ff;border:1px solid #cdd9ff;color:#1f3b8b;padding:10px 12px;border-radius:10px}
+
+
 
 /* ===== Footer (Figma-match) ===== */
 .footer{
