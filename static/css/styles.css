@@ -975,44 +975,69 @@ section{padding:6rem 0;position:relative}
 
 
 /* ================= LOCATIONS (scoped) – Figma dagidek to'liq fon va layout ================= */
+/* ==== LOCATIONS (scoped to .map-sec) ==== */
+.map-sec{padding:56px 0;background:#e9effb}
+.map-sec .head{text-align:center;margin-bottom:20px}
+.map-sec .kicker{margin:0 0 8px;color:#6b7280;font-weight:500}
+.map-sec .title{margin:0;color:#1f459e;font:800 clamp(28px,3.6vw,42px)/1.2 "Playfair Display",serif}
 
+/* Stage */
+.map-sec .stage{position:relative;width:100%;height:min(100vh,720px);overflow:hidden}
+.map-sec .map{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 58%;z-index:1}
 
-
-
-/* faqat rasm ko'rsatiladi */
-.locations-v3.only-image{
-  position: relative;
-  width: 100%;
-  background-color: #e9effb;         /* figmadagi och ko'k fon */
-  aspect-ratio: 1440 / 993;           /* figma nisbatiga mos */
-  min-height: clamp(320px, 60vw, 740px);
-  overflow: hidden;
+/* Pins */
+.map-sec .pin{
+  position:absolute;left:var(--x);top:var(--y);
+  transform:translate(-50%,-100%);
+  background:transparent;border:0;cursor:pointer;z-index:3;
+}
+.map-sec .pin i{color:#fff;font-size:48px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+.map-sec .pin .pin-pill{
+  position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);
+  background:#fff;color:#334155;font:600 12px/1 system-ui, -apple-system, Segoe UI, Inter, Roboto, sans-serif;
+  padding:6px 10px;border-radius:999px;white-space:nowrap;
+  box-shadow:0 6px 14px rgba(2,6,23,.12);
 }
 
-/* rasm qatlami */
-.locations-v3.only-image::before{
-  content:"";
-  position:absolute; inset:0;
-  background-image: var(--loc-bg);
-  background-size: cover;             /* to‘liq qoplansin */
-  background-position: center;        /* markazda tursin */
-  background-repeat: no-repeat;
-  transform: translateZ(0);
+/* Card */
+.map-sec .card{
+  position:absolute;left:8%;top:8%;z-index:4;
+  background:#fff;border:1px solid #e5ecff;border-radius:16px;
+  padding:12px 14px;width:min(300px,38%);
+  box-shadow:0 12px 28px rgba(16,24,40,.12)
+}
+.map-sec .card__title{
+  margin:0 0 8px;color:#0b173d;
+  font:800 clamp(18px,2.2vw,22px)/1.2 "Playfair Display",serif
+}
+.map-sec .card__list{list-style:none;margin:0;padding:0;display:grid;gap:8px;font:500 13.5px/1.55 system-ui,sans-serif}
+.map-sec .card__list li{display:flex;align-items:flex-start;gap:8px}
+.map-sec .card__list i{color:#1f66ff;font-size:14px;margin-top:1px}
+
+/* ROUTE (animated dashed path) */
+.map-sec .route{
+  position:absolute; inset:0; z-index:2;   /* xarita ustida, pinlardan past */
+  pointer-events:none;
+}
+.map-sec .route path{fill:none; vector-effect: non-scaling-stroke; stroke-linecap: round;}
+.map-sec .route-shadow{stroke: rgba(31,102,255,.35); stroke-width: 8}
+.map-sec .route-dash{
+  stroke: #fff; stroke-width: 6;
+  stroke-dasharray: 14 14;
+  animation: mapsec-route-march 2.4s linear infinite;
+  filter: drop-shadow(0 1px 2px rgba(2,6,23,.1));
+}
+@keyframes mapsec-route-march{
+  to{ stroke-dashoffset: -28; }
 }
 
-/* eski brauzerlar uchun aspect-ratio fallback */
-@supports not (aspect-ratio: 1 / 1){
-  .locations-v3.only-image{
-    height: auto;
-  }
-  .locations-v3.only-image::after{
-    /* 993/1440 = 68.9583% — nisbatni saqlash uchun pad */
-    content:"";
-    display:block;
-    padding-top: 68.9583%;
-  }
+/* Responsive */
+@media (max-width:768px){
+  .map-sec .stage{height:60vh}
+  .map-sec .card{position:static;margin-top:12px;width:100%}
+  .map-sec .route-shadow{stroke-width:6}
+  .map-sec .route-dash{stroke-width:4;stroke-dasharray:10 12}
 }
-
 
 
 
