@@ -152,147 +152,259 @@
   })();
 
   /* ===================== Locations ===================== */
-  BIOTEK.locations = (() => {
-    let wrap, stage, card, elTitle, elAddr, elPhone, elTime, pins, routeDash, routeShad;
+/* ===================== BIOTEK.locations — FULL (pins + card + route + runner) ===================== */
+BIOTEK.locations = (() => {
+  let wrap, stage, card, elTitle, elAddr, elPhone, elTime, pins;
+  let routeSVG, routeDash, routeShad, routeRunner;
 
-    const ROUTE = {
-      shift:{x:-20,y:60}, attach:0.92,
-      points:[
-        {ref:"pin",index:0},
-        {ref:"pin",index:1,dy:-2},
-        {x:70,y:52},
-        {ref:"pin",index:2,dx:2,dy:-4},
-        {ref:"pin",index:3}
-      ],
-      curvature:{default:0.28,perSeg:{0:0.30,1:0.28,2:0.27,3:0.26}},
-      lift:{default:7,perSeg:{0:8,1:7,2:7,3:6}}
-    };
+  /* --- ROUTE (yoy) chizish sozlamalari --- */
+  const ROUTE = {
+    shift:{ x:-20, y:60 },   // butun path’ni umumiy siljitish (% birliklar)
+    attach:0.92,             // pin pastki nuqtasi (0..1)
+    points:[
+      { ref:"pin", index:0 },                 // Xorazm
+      { ref:"pin", index:1, dy:-2 },          // Samarqand
+      { x:70, y:52 },                         // oraliq nuqta
+      { ref:"pin", index:2, dx:2, dy:-4 },    // Toshkent
+      { ref:"pin", index:3 }                  // Farg'ona
+    ],
+    curvature:{ default:0.28, perSeg:{ 0:0.30, 1:0.28, 2:0.27, 3:0.26 } },
+    lift:     { default:7,    perSeg:{ 0:8,    1:7,    2:7,    3:6    } }
+  };
 
-    const getLang = () => BIOTEK.i18n?.getLang?.() || document.documentElement.getAttribute("lang") || "uz";
+  /* --- RUNNER (oq nuqta) animatsiyasi --- */
+  const FLOW = {
+    enabled: true,
+    speed: 80,        // yo'l bo'ylab tezlik (SVG birlik/sek). Kattaroq -> tezroq
+    startFromSeg: 1,  // 0: Xorazm→Samarqand, **1: Samarqand→Toshkent**, 2: Toshkent→Farg'ona...
+    pauseAtEndsMs: 350
+  };
 
-    // *** IMPORTANT: dataset o‘rniga getAttribute + lang-aware pick ***
-    const pick = (pin, base) =>
-      pin.getAttribute(`data-${base}-${getLang()}`) ||
-      pin.getAttribute(`data-${base}`) || "";
+  /* -------- helpers -------- */
+  const q  = (s,r=document)=> r.querySelector(s);
+  const qa = (s,r=document)=> Array.from(r.querySelectorAll(s));
+  const on = (el,ev,fn,opt)=> el&&el.addEventListener(ev,fn,opt);
+  const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const getLang = () => BIOTEK.i18n?.getLang?.() || document.documentElement.getAttribute("lang") || "uz";
+  const pick = (pin, base) =>
+    pin.getAttribute(`data-${base}-${getLang()}`) ||
+    pin.getAttribute(`data-${base}`) || "";
 
-    function updateCard(pin){
-      const name = pick(pin,"name");
-      const addr = pick(pin,"addr");
-      const time = pick(pin,"time");
-      const phoneRaw = (pin.getAttribute("data-phone") || "").trim();
+  function getPinCenterPct(pin, attach=ROUTE.attach){
+    const s = stage.getBoundingClientRect();
+    const r = pin.getBoundingClientRect();
+    const x = ((r.left + r.width/2) - s.left) / s.width  * 100;
+    const y = ((r.top  + r.height*attach) - s.top) / s.height * 100;
+    return { x, y };
+  }
 
-      if (name) elTitle.textContent = name;
-      if (addr) elAddr.textContent  = addr;
-      if (time) elTime.textContent  = time;
-
-      elPhone.textContent = phoneRaw;
-      elPhone.href = "tel:" + phoneRaw.replace(/[^0-9+]/g,"");
+  function parsePoint(def){
+    if('x' in def && 'y' in def){
+      return { x: def.x + ROUTE.shift.x, y: def.y + ROUTE.shift.y };
     }
-
-    function placeCard(pin){
-      const style = getComputedStyle(card);
-      if (style.position === "static") return; // mobile (CSS da statik)
-      const s = stage.getBoundingClientRect();
-      const p = pin.getBoundingClientRect();
-      const c = card.getBoundingClientRect();
-      const pad = 10;
-      let left = p.left - s.left - c.width/2 + p.width/2;
-      let top  = p.top  - s.top  - c.height - 14;
-      left = Math.max(pad, Math.min(left, s.width - c.width - pad));
-      top  = Math.max(pad, Math.min(top,  s.height - c.height - pad));
-      card.style.left = left + "px";
-      card.style.top  = top  + "px";
-    }
-
-    function setActive(pin){
-      pins.forEach(p=> p.removeAttribute("data-active"));
-      pin.setAttribute("data-active","");
-      updateCard(pin);
-      placeCard(pin);
-      drawRoute();
-    }
-
-    function getPinCenterPct(pin, attach=ROUTE.attach){
-      const s = stage.getBoundingClientRect();
-      const r = pin.getBoundingClientRect();
+    if(def.ref === 'pin' && typeof def.index === 'number' && pins[def.index]){
+      const base = getPinCenterPct(pins[def.index], def.attach ?? ROUTE.attach);
       return {
-        x: ((r.left + r.width/2) - s.left) / s.width  * 100,
-        y: ((r.top  + r.height*attach) - s.top) / s.height * 100
+        x: base.x + (def.dx || 0) + ROUTE.shift.x,
+        y: base.y + (def.dy || 0) + ROUTE.shift.y
       };
     }
-    function parsePoint(def){
-      if('x' in def && 'y' in def) return { x:def.x+ROUTE.shift.x, y:def.y+ROUTE.shift.y };
-      if(def.ref==="pin" && typeof def.index==="number" && pins[def.index]){
-        const base = getPinCenterPct(pins[def.index], def.attach ?? ROUTE.attach);
-        return { x: base.x + (def.dx||0) + ROUTE.shift.x, y: base.y + (def.dy||0) + ROUTE.shift.y };
-      }
-      return null;
+    return null;
+  }
+
+  function cubicSeg(p0, p1, k, lift){
+    const dx = p1.x - p0.x, dy = p1.y - p0.y;
+    const c1 = { x: p0.x + dx * k, y: p0.y + dy * k - lift };
+    const c2 = { x: p1.x - dx * k, y: p1.y - dy * k - lift };
+    return `C ${c1.x.toFixed(2)} ${c1.y.toFixed(2)}, ${c2.x.toFixed(2)} ${c2.y.toFixed(2)}, ${p1.x.toFixed(2)} ${p1.y.toFixed(2)}`;
+  }
+
+  /* -------- Card -------- */
+  function updateCard(pin){
+    const name = pick(pin,"name");
+    const addr = pick(pin,"addr");
+    const time = pick(pin,"time");
+    const phoneRaw = (pin.getAttribute("data-phone") || "").trim();
+
+    if (name) elTitle.textContent = name;
+    if (addr) elAddr.textContent  = addr;
+    if (time) elTime.textContent  = time;
+
+    elPhone.textContent = phoneRaw;
+    elPhone.href = 'tel:' + phoneRaw.replace(/[^0-9+]/g,'');
+  }
+
+  function placeCard(pin){
+    const style = getComputedStyle(card);
+    if(style.position === 'static') return; // mobile
+    const s = stage.getBoundingClientRect();
+    const p = pin.getBoundingClientRect();
+    const c = card.getBoundingClientRect();
+    const pad = 10;
+    let left = p.left - s.left - c.width/2 + p.width/2;
+    let top  = p.top  - s.top  - c.height - 14;
+    left = Math.max(pad, Math.min(left, s.width - c.width - pad));
+    top  = Math.max(pad, Math.min(top,  s.height - c.height - pad));
+    card.style.left = left + 'px';
+    card.style.top  = top  + 'px';
+  }
+
+  function setActive(pin){
+    pins.forEach(p=>p.removeAttribute('data-active'));
+    pin.setAttribute('data-active','');
+    updateCard(pin);
+    placeCard(pin);
+    drawRoute(); // chiziq va runner yangilanadi
+  }
+
+  /* -------- Route & Runner -------- */
+  let pathLen = 0;
+  let segOffsets = [];     // har segment boshlanish offseti
+  let flow_t = 0;          // joriy masofa (0..pathLen)
+  let flow_dir = 1;        // 1 -> oldinga, -1 -> orqaga
+  let flow_lastTs = 0;     // raf time
+  let flow_pauseUntil = 0; // ms timestamp
+
+  function drawRoute(){
+    if(!routeDash || !routeShad) return;
+
+    const pts = ROUTE.points.map(parsePoint).filter(Boolean);
+    if (pts.length < 2) return;
+
+    let d = `M ${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)} `;
+    for(let i=0;i<pts.length-1;i++){
+      const k = ROUTE.curvature.perSeg[i] ?? ROUTE.curvature.default;
+      const l = ROUTE.lift.perSeg[i]      ?? ROUTE.lift.default;
+      d += cubicSeg(pts[i], pts[i+1], k, l) + ' ';
     }
-    function cubicSeg(p0,p1,k,l){
-      const dx=p1.x-p0.x, dy=p1.y-p0.y;
-      const c1={x:p0.x+dx*k,y:p0.y+dy*k-l};
-      const c2={x:p1.x-dx*k,y:p1.y-dy*k-l};
-      return `C ${c1.x.toFixed(2)} ${c1.y.toFixed(2)}, ${c2.x.toFixed(2)} ${c2.y.toFixed(2)}, ${p1.x.toFixed(2)} ${p1.y.toFixed(2)}`;
-    }
-    function drawRoute(){
-      if(!routeDash || !routeShad) return;
-      const pts = ROUTE.points.map(parsePoint).filter(Boolean);
-      if (pts.length < 2) return;
-      let d = `M ${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)} `;
-      for(let i=0;i<pts.length-1;i++){
-        const k = ROUTE.curvature.perSeg[i] ?? ROUTE.curvature.default;
-        const l = ROUTE.lift.perSeg[i]      ?? ROUTE.lift.default;
-        d += cubicSeg(pts[i], pts[i+1], k, l) + " ";
-      }
-      routeDash.setAttribute("d", d.trim());
-      routeShad.setAttribute("d", d.trim());
+    d = d.trim();
+    routeDash.setAttribute('d', d);
+    routeShad.setAttribute('d', d);
+
+    // uzunlik va segment offsetlarini hisoblash
+    pathLen = routeDash.getTotalLength?.() || 0;
+
+    segOffsets = [];
+    let acc = 0;
+    for(let i=0;i<pts.length-1;i++){
+      // har bir segment uchun alohida path tuzib, uzunligini olish
+      const segPath = document.createElementNS("http://www.w3.org/2000/svg","path");
+      const k = ROUTE.curvature.perSeg[i] ?? ROUTE.curvature.default;
+      const l = ROUTE.lift.perSeg[i]      ?? ROUTE.lift.default;
+      segPath.setAttribute("d", `M ${pts[i].x} ${pts[i].y} ${cubicSeg(pts[i], pts[i+1], k, l)}`);
+      segOffsets.push(acc);
+      acc += segPath.getTotalLength?.() || 0;
     }
 
-    // pin tagidagi pill textlarini lokalizatsiya qiladi
-    function updatePinPills(){
-      const lang = getLang();
-      pins.forEach(p=>{
-        const pill = p.querySelector(".pin-pill");
-        if (!pill) return;
-        const t = p.getAttribute(`data-name-${lang}`) || p.getAttribute("data-name") || pill.textContent;
-        pill.textContent = t;
+    // Runner startini segment bo'yicha joylashtirish (Samarqand -> keyingi)
+    const start = segOffsets[FLOW.startFromSeg] ?? 0;
+    flow_t = start;
+    flow_dir = 1;
+    flow_lastTs = 0;
+    flow_pauseUntil = 0;
+
+    // Runner ko‘rinadigan qilib bir marta joyini yangilab qo‘yamiz
+    if(routeRunner && pathLen){
+      const p = routeDash.getPointAtLength(flow_t);
+      routeRunner.setAttribute("cx", p.x.toFixed(2));
+      routeRunner.setAttribute("cy", p.y.toFixed(2));
+    }
+  }
+
+  function tick(ts){
+    if(!FLOW.enabled || prefersReduced || !routeDash || !routeRunner || pathLen<=0){
+      requestAnimationFrame(tick);
+      return;
+    }
+
+    // pauza bo‘lsa — kutamiz
+    if (flow_pauseUntil && ts < flow_pauseUntil){
+      requestAnimationFrame(tick);
+      return;
+    }
+
+    if(!flow_lastTs) flow_lastTs = ts;
+    const dt = (ts - flow_lastTs) / 1000; // sekund
+    flow_lastTs = ts;
+
+    // harakat
+    flow_t += flow_dir * FLOW.speed * dt;
+
+    // chegaralarda yo‘nalishni o‘zgartiramiz
+    if (flow_t >= pathLen){
+      flow_t = pathLen;
+      flow_dir = -1;
+      flow_pauseUntil = ts + FLOW.pauseAtEndsMs;
+    } else if (flow_t <= 0){
+      flow_t = 0;
+      flow_dir = 1;
+      flow_pauseUntil = ts + FLOW.pauseAtEndsMs;
+    }
+
+    // nuqtani koordinatalarini yangilash
+    try{
+      const p = routeDash.getPointAtLength(flow_t);
+      routeRunner.setAttribute("cx", p.x.toFixed(2));
+      routeRunner.setAttribute("cy", p.y.toFixed(2));
+    }catch(e){ /* eski brauzerlar uchun xavfsiz */ }
+
+    requestAnimationFrame(tick);
+  }
+
+  /* -------- Pin pill’larini joriy tilga moslash -------- */
+  function updatePinPills(){
+    const lang = getLang();
+    pins.forEach(p=>{
+      const pill = p.querySelector(".pin-pill");
+      if (!pill) return;
+      const t = p.getAttribute(`data-name-${lang}`) || p.getAttribute("data-name") || pill.textContent;
+      pill.textContent = t;
+    });
+  }
+
+  /* -------- init -------- */
+  function init(){
+    wrap = q('.map-sec'); if(!wrap) return;
+    stage = q('#stage', wrap); if(!stage) return;
+
+    card = q('#card', wrap);
+    elTitle = q('#cardTitle', wrap);
+    elAddr  = q('#cardAddr',  wrap);
+    elPhone = q('#cardPhone', wrap);
+    elTime  = q('#cardTime',  wrap);
+    pins = qa('.pin', stage);
+
+    routeSVG    = q('#route', wrap);
+    routeDash   = q('#routeDash', routeSVG);
+    routeShad   = q('#routeShadow', routeSVG);
+    routeRunner = q('#routeRunner', routeSVG);
+
+    if (pins.length){ setActive(pins[1] || pins[0]); } // Samarqandga yaqinroq ko'rsatish ham mumkin
+
+    pins.forEach(pin=>{
+      ['mouseenter','focus','click','touchstart'].forEach(evt=>{
+        pin.addEventListener(evt, ()=> setActive(pin), {passive:true});
       });
-    }
+    });
 
-    function init(){
-      wrap = $(".map-sec"); if(!wrap) return;
-      stage = $("#stage", wrap) || wrap.querySelector("#stage"); if(!stage) return;
-      card  = $("#card",  wrap);
-      elTitle = $("#cardTitle",wrap);
-      elAddr  = $("#cardAddr",wrap);
-      elPhone = $("#cardPhone",wrap);
-      elTime  = $("#cardTime",wrap);
-      pins = $$(".pin", stage);
+    // Til almashganda pill + card yangilansin
+    on(document,"biotek:langchange",()=>{
+      updatePinPills();
+      const a = wrap.querySelector('.pin[data-active]') || pins[0];
+      if(a){ updateCard(a); }
+    });
 
-      const routeSVG = $("#route", wrap);
-      routeDash = $("#routeDash", routeSVG);
-      routeShad = $("#routeShadow", routeSVG);
+    // Birinchi render
+    on(window,'load',  ()=>{ updatePinPills(); drawRoute(); const a=wrap.querySelector('.pin[data-active]')||pins[0]; if(a) placeCard(a); });
+    on(window,'resize',()=>{ drawRoute(); const a=wrap.querySelector('.pin[data-active]')||pins[0]; if(a) placeCard(a); });
 
-      if (pins.length){
-        // boshlang‘ich card (birinchi pin)
-        setActive(pins[0]);
-      }
+    // Runner loop
+    requestAnimationFrame(tick);
+  }
 
-      pins.forEach(pin=>{
-        ["mouseenter","focus","click","touchstart"].forEach(evt=>{
-          pin.addEventListener(evt, ()=> setActive(pin), { passive:true });
-        });
-      });
+  return { init };
+})();
 
-      // language o‘zgarsa — pill va card ni yangilash
-      on(document,"biotek:langchange",()=>{ updatePinPills(); const a=wrap.querySelector(".pin[data-active]")||pins[0]; if(a){ updateCard(a); } });
-
-      // load/resize
-      on(window,"load", ()=>{ updatePinPills(); drawRoute(); const a=wrap.querySelector(".pin[data-active]")||pins[0]; if(a) placeCard(a); });
-      on(window,"resize",()=>{ drawRoute(); const a=wrap.querySelector(".pin[data-active]")||pins[0]; if(a) placeCard(a); });
-    }
-    return { init };
-  })();
 
   /* ===================== Partners ===================== */
   BIOTEK.partners = (() => {

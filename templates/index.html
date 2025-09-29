@@ -407,7 +407,7 @@
 </header>
 
 
-    <div class="stage" id="stage">
+  <div class="stage" id="stage">
       <img class="map" src="{% static 'images/rasmchaaaa.png' %}" alt="Oʻzbekiston xaritasi" />
 
       <!-- PINS (faqat shu joylar) -->
@@ -472,7 +472,10 @@
       <svg id="route" class="route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         <path id="routeShadow" class="route-shadow" />
         <path id="routeDash"   class="route-dash" />
+        <!-- Yangi: harakatlanuvchi nuqta -->
+        <circle id="routeRunner" class="route-runner" r="1.2" />
       </svg>
+
 
       <!-- INFO CARD -->
       <aside class="card" id="card" aria-live="polite">
