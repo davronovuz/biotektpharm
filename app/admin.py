@@ -130,3 +130,22 @@ class PartnerCardAdmin(admin.ModelAdmin):
         ("Logo va havola", {"fields": ("logo", "url"),
                             "description": "Logo: SVG/PNG, 320×160 tavsiya. Havola ixtiyoriy."}),
     )
+
+
+
+# main/admin.py
+from django.contrib import admin
+from .models import Location
+
+@admin.register(Location)
+class LocationAdmin(admin.ModelAdmin):
+    list_display  = ("region","phone","is_active")
+    list_editable = ("is_active",)
+    search_fields = ("name_uz","name_ru","name_en","address_uz","address_ru","address_en","phone")
+    list_filter   = ("is_active","region")
+    fieldsets = (
+        ("Asosiy", {"fields": ("region","is_active")}),
+        ("Nom (3 til)", {"fields": ("name_uz","name_ru","name_en")}),
+        ("Manzil (3 til)", {"fields": ("address_uz","address_ru","address_en")}),
+        ("Telefon / Ish vaqti", {"fields": ("phone","time_uz","time_ru","time_en")}),
+    )

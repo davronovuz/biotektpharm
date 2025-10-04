@@ -275,3 +275,41 @@ class Contact(models.Model):
     class Meta:
         verbose_name = "Contact"
         verbose_name_plural = "Contacts"
+
+
+
+
+class Region(models.TextChoices):
+    SAMARKAND = "samarkand", "Samarqand"
+    TASHKENT  = "tashkent",  "Toshkent"
+    KHOREZM   = "khorezm",   "Xorazm"
+    FERGHANA  = "ferghana",  "Farg‘ona"
+
+class Location(models.Model):
+    region   = models.CharField("Hudud", max_length=20, choices=Region.choices, unique=True)
+
+    # nom / card sarlavha
+    name_uz  = models.CharField("Nom (UZ)", max_length=120, blank=True)
+    name_ru  = models.CharField("Nom (RU)", max_length=120, blank=True)
+    name_en  = models.CharField("Nom (EN)", max_length=120, blank=True)
+
+    # manzil
+    address_uz = models.CharField("Manzil (UZ)", max_length=255, blank=True)
+    address_ru = models.CharField("Manzil (RU)", max_length=255, blank=True)
+    address_en = models.CharField("Manzil (EN)", max_length=255, blank=True)
+
+    # telefon va ish vaqti
+    phone   = models.CharField("Telefon", max_length=32, blank=True)
+    time_uz = models.CharField("Ish vaqti (UZ)", max_length=120, blank=True)
+    time_ru = models.CharField("Ish vaqti (RU)", max_length=120, blank=True)
+    time_en = models.CharField("Ish vaqti (EN)", max_length=120, blank=True)
+
+    is_active = models.BooleanField("Faol", default=True)
+
+    class Meta:
+        verbose_name = "Joylashuv"
+        verbose_name_plural = "Joylashuvlar"
+        ordering = ("region",)
+
+    def __str__(self): return self.get_region_display()
+
