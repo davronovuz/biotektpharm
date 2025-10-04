@@ -1303,4 +1303,32 @@ section{padding:6rem 0;position:relative}
 }
 
 
+/* ===== PARTNERS — Desktop’da qat'iy 3 ustun ===== */
+@media (min-width: 1024px){
+  /* Barcha qatorlarni 3 ustunli gridga majburlaymiz */
+  #partners .partners-row{
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+  }
+}
+
+/* Kartalar o'lchami va logo bir xil ko'rinishi uchun */
+#partners .partner-card{
+  height: 120px !important;
+  border-radius: 16px !important;
+}
+
+#partners .partner-logo{
+  padding: 0 18px !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+#partners .partner-logo img{
+  max-width: 80% !important;
+  max-height: 52px !important;
+  object-fit: contain !important;
+  mix-blend-mode: normal !important;  /* ranglar buzilmasin */
+  filter: none !important;
+}
 
