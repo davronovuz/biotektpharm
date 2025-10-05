@@ -19,8 +19,8 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - static-data:/app/staticfiles
       - media-data:/app/media
-      - /etc/letsencrypt/archive/biotekpharm.uz/fullchain2.pem:/etc/nginx/ssl/fullchain.pem
-      - /etc/letsencrypt/archive/biotekpharm.uz/privkey2.pem:/etc/nginx/ssl/privkey.pem
+      - /etc/letsencrypt/archive/biotekpharm.uz/fullchain3.pem:/etc/nginx/ssl/fullchain.pem
+      - /etc/letsencrypt/archive/biotekpharm.uz/privkey3.pem:/etc/nginx/ssl/privkey.pem
     depends_on:
       - app
     networks:
